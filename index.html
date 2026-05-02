@@ -153,6 +153,28 @@ ul.task-list li input[type="checkbox"] {
     window.HTMLWidgets._patchedResilience = true;
   }
 
+
+  /* FIX 4 - Force Leaflet maps to render after page load
+     Leaflet defers rendering when el.offsetWidth === 0 at DOMContentLoaded.
+     Accesses the factory instance via htmlwidget_data_init_result and
+     calls instance.resize() after load when proper dimensions exist. */
+  window.addEventListener('load', function() {
+    requestAnimationFrame(function() {
+      document.querySelectorAll('.leaflet.html-widget').forEach(function(el) {
+        var inst = el.htmlwidget_data_init_result;
+        if (!inst) return;
+        var map = inst.getMap && inst.getMap();
+        if (map) {
+          if (map.leafletr && map.leafletr.pendingRenderData) {
+            inst.resize(el.offsetWidth || 860, el.offsetHeight || 480);
+          } else {
+            map.invalidateSize(true);
+          }
+        }
+      });
+    });
+  }, false);
+
   patchVisNetwork();
   patchStaticRender();
 
