@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ec8dbbdf99699f055fea5e95a428e1d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5caa1b20d9d64f0dc87779560aaf795d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c25eb98772c06d8f32c3974c1d5766f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&amp;family=Fira+Code:wght@400;500&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&amp;family=Poppins:wght@600;700;800&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script>
 (function() {
@@ -105,11 +105,17 @@ ul.task-list li input[type="checkbox"] {
   if (typeof window.crosstalk === 'undefined') {
     window.crosstalk = makeCrosstalkShim();
   }
+  /* Registered in <head> => fires BEFORE htmlwidgets.js DOMContentLoaded handler.
+     capture:true ensures we run in capture phase, before any bubble-phase handlers. */
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof window.crosstalk === 'undefined' ||
         typeof window.crosstalk.FilterHandle !== 'function') {
       window.crosstalk = makeCrosstalkShim();
     }
+    /* Apply patches HERE — HTMLWidgets is now defined (body scripts ran),
+       but htmlwidgets' own DOMContentLoaded handler hasn't fired yet. */
+    patchVisNetwork();
+    patchStaticRender();
   }, { once: true, capture: true });
 
   /* FIX 2 - Patch visNetwork renderValue: null configure bug
@@ -154,29 +160,22 @@ ul.task-list li input[type="checkbox"] {
   }
 
 
-  /* FIX 4 - Force Leaflet maps to render after page load
-     Leaflet defers rendering when el.offsetWidth === 0 at DOMContentLoaded.
-     Accesses the factory instance via htmlwidget_data_init_result and
-     calls instance.resize() after load when proper dimensions exist. */
+  /* FIX 4 - Force Leaflet maps to render after page load.
+     leaflet-binding stores the L.Map as inst.map (not inst.getMap()).
+     We also dispatch a resize event as fallback for any deferred renders. */
   window.addEventListener('load', function() {
-    requestAnimationFrame(function() {
+    setTimeout(function() {
       document.querySelectorAll('.leaflet.html-widget').forEach(function(el) {
         var inst = el.htmlwidget_data_init_result;
         if (!inst) return;
-        var map = inst.getMap && inst.getMap();
-        if (map) {
-          if (map.leafletr && map.leafletr.pendingRenderData) {
-            inst.resize(el.offsetWidth || 860, el.offsetHeight || 480);
-          } else {
-            map.invalidateSize(true);
-          }
+        var map = inst.map;
+        if (map && typeof map.invalidateSize === 'function') {
+          map.invalidateSize(true);
         }
       });
-    });
+      window.dispatchEvent(new Event('resize'));
+    }, 400);
   }, false);
-
-  patchVisNetwork();
-  patchStaticRender();
 
 })();
 </script>
