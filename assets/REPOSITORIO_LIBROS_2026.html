@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Repositorio de Libros FEPAR 2026 - Catálogo interactivo de recursos bibliográficos organizados por temática">
+<title>📚 Repositorio de Libros FEPAR 2026</title>
+<style>
+  :root {
+    color-scheme: light;
+    --c-se:    #38a169;
+    --c-eco:   #d69e2e;
+    --c-sig:   #3182ce;
+    --c-prod:  #e53e3e;
+    --c-form:  #805ad5;
+    --c-gest:  #dd6b20;
+    --c-marco: #319795;
+    --shadow:  0 2px 8px rgba(0,0,0,0.10);
+    --radius:  12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f0f4f8;
+    color: #1a202c;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 100%);
+    color: white;
+    padding: 20px 16px 18px;
+    text-align: center;
+  }
+  header h1 { font-size: clamp(1.2rem, 5vw, 1.8rem); font-weight: 800; letter-spacing: 0.3px; }
+  header p  { font-size: clamp(0.78rem, 3vw, 0.92rem); opacity: 0.85; margin-top: 5px; }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    margin-top: 10px;
+  }
+
+  /* ── STATS ── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+    padding: 8px 18px;
+    border-radius: 10px;
+    background: #f7fafc;
+    min-width: 80px;
+  }
+  .stat-num   { font-size: 1.5rem; font-weight: 800; color: #2d6a9f; }
+  .stat-label { font-size: 0.68rem; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── SEARCH ── */
+  .search-wrap { padding: 14px 16px 0; background: white; }
+  .search-box {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .search-box:focus { border-color: #2d6a9f; }
+
+  /* ── FILTERS ── */
+  .filters {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px 14px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 9px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #4a5568;
+    transition: all 0.18s;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .filter-btn:hover  { border-color: #2d6a9f; color: #2d6a9f; }
+  .filter-btn.active { color: white; border-color: transparent; }
+  .filter-btn[data-cat="all"].active   { background: #2d6a9f; }
+  .filter-btn[data-cat="se"].active    { background: var(--c-se); }
+  .filter-btn[data-cat="eco"].active   { background: var(--c-eco); }
+  .filter-btn[data-cat="sig"].active   { background: var(--c-sig); }
+  .filter-btn[data-cat="prod"].active  { background: var(--c-prod); }
+  .filter-btn[data-cat="form"].active  { background: var(--c-form); }
+  .filter-btn[data-cat="gest"].active  { background: var(--c-gest); }
+  .filter-btn[data-cat="marco"].active { background: var(--c-marco); }
+
+  /* ── MAIN ── */
+  .main { padding: 20px 16px 32px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 28px; }
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 3px solid; flex-wrap: wrap;
+  }
+  .section-icon  { font-size: 1.4rem; }
+  .section-title { font-size: 1rem; font-weight: 800; flex: 1; }
+  .section-count { font-size: 0.72rem; color: #718096; background: #f7fafc; border-radius: 20px; padding: 3px 11px; font-weight: 600; }
+
+  .cat-se    .section-header { border-color: var(--c-se);    }
+  .cat-eco   .section-header { border-color: var(--c-eco);   }
+  .cat-sig   .section-header { border-color: var(--c-sig);   }
+  .cat-prod  .section-header { border-color: var(--c-prod);  }
+  .cat-form  .section-header { border-color: var(--c-form);  }
+  .cat-gest  .section-header { border-color: var(--c-gest);  }
+  .cat-marco .section-header { border-color: var(--c-marco); }
+
+  .cat-se    .section-title { color: var(--c-se);    }
+  .cat-eco   .section-title { color: var(--c-eco);   }
+  .cat-sig   .section-title { color: var(--c-sig);   }
+  .cat-prod  .section-title { color: var(--c-prod);  }
+  .cat-form  .section-title { color: var(--c-form);  }
+  .cat-gest  .section-title { color: var(--c-gest);  }
+  .cat-marco .section-title { color: var(--c-marco); }
+
+  /* ── GRID ── */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+
+  /* ── CARD ── */
+  .card {
+    background: white; border-radius: var(--radius); padding: 16px;
+    border-left: 5px solid; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 8px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (hover: hover) {
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.13); }
+  }
+  .cat-se    .card, .card.cat-se    { border-left-color: var(--c-se);    }
+  .cat-eco   .card, .card.cat-eco   { border-left-color: var(--c-eco);   }
+  .cat-sig   .card, .card.cat-sig   { border-left-color: var(--c-sig);   }
+  .cat-prod  .card, .card.cat-prod  { border-left-color: var(--c-prod);  }
+  .cat-form  .card, .card.cat-form  { border-left-color: var(--c-form);  }
+  .cat-gest  .card, .card.cat-gest  { border-left-color: var(--c-gest);  }
+  .cat-marco .card, .card.cat-marco { border-left-color: var(--c-marco); }
+
+  .card-title  { font-size: 0.9rem; font-weight: 700; line-height: 1.45; color: #1a202c; }
+  .card-author { font-size: 0.78rem; color: #4a5568; font-style: italic; }
+  .card-meta   { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; }
+
+  .card-tag { font-size: 0.68rem; padding: 3px 9px; border-radius: 20px; font-weight: 600; }
+  .cat-se    .card-tag { background: #c6f6d5; color: #276749; }
+  .cat-eco   .card-tag { background: #fefcbf; color: #975a16; }
+  .cat-sig   .card-tag { background: #bee3f8; color: #1a365d; }
+  .cat-prod  .card-tag { background: #fed7d7; color: #9b2335; }
+  .cat-form  .card-tag { background: #e9d8fd; color: #553c9a; }
+  .cat-gest  .card-tag { background: #feebc8; color: #7b341e; }
+  .cat-marco .card-tag { background: #b2f5ea; color: #1d4044; }
+
+  .card-link {
+    margin-left: auto; padding: 8px 16px; border-radius: 8px;
+    font-size: 0.8rem; font-weight: 700; text-decoration: none; color: white;
+    display: inline-flex; align-items: center; gap: 4px;
+    transition: opacity 0.15s; white-space: nowrap;
+    min-height: 36px; touch-action: manipulation;
+  }
+  .card-link:hover  { opacity: 0.85; }
+  .card-link:active { opacity: 0.7;  }
+  .cat-se    .card-link { background: var(--c-se);    }
+  .cat-eco   .card-link { background: var(--c-eco);   }
+  .cat-sig   .card-link { background: var(--c-sig);   }
+  .cat-prod  .card-link { background: var(--c-prod);  }
+  .cat-form  .card-link { background: var(--c-form);  }
+  .cat-gest  .card-link { background: var(--c-gest);  }
+  .cat-marco .card-link { background: var(--c-marco); }
+
+  .subfolder-badge { font-size: 0.68rem; color: #a0aec0; display: flex; align-items: center; gap: 3px; }
+
+  /* ── NO RESULTS ── */
+  .no-results { display: none; text-align: center; color: #a0aec0; padding: 60px 20px; }
+  .no-results.show { display: block; }
+  .no-results .emoji { font-size: 3rem; margin-bottom: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 20px 16px;
+    font-size: 0.75rem; color: #a0aec0;
+    border-top: 1px solid #e2e8f0; line-height: 1.8;
+  }
+  footer a { color: #2d6a9f; text-decoration: none; font-weight: 600; }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position: fixed; bottom: 20px; right: 20px;
+    background: #2d6a9f; color: white; border: none;
+    border-radius: 50%; width: 46px; height: 46px;
+    font-size: 1.2rem; cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    display: none; align-items: center; justify-content: center;
+    transition: opacity 0.2s; z-index: 100;
+    touch-action: manipulation;
+  }
+  #scrollTop.visible { display: flex; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 Repositorio de Libros FEPAR 2026</h1>
+  <p>Catálogo interactivo de recursos bibliográficos · Organizado por temática</p>
+  <div class="header-badge">Acceso directo · Google Drive · Actualizable</div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num" id="showing-count">23</div>
+    <div class="stat-label">Mostrando</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">23</div>
+    <div class="stat-label">Total libros</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">7</div>
+    <div class="stat-label">Categorías</div>
+  </div>
+</div>
+
+<div class="search-wrap">
+  <input type="search" class="search-box" id="searchInput"
+         placeholder="🔍  Buscar por título, autor o tema..."
+         autocomplete="off" autocorrect="off" spellcheck="false">
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" data-cat="all">✦ Todos</button>
+  <button class="filter-btn" data-cat="se">🌿 Servicios Ecosistémicos</button>
+  <button class="filter-btn" data-cat="eco">💰 Economía Ambiental</button>
+  <button class="filter-btn" data-cat="sig">🗺️ SIG &amp; Teledetección</button>
+  <button class="filter-btn" data-cat="prod">♻️ Producción Limpia</button>
+  <button class="filter-btn" data-cat="form">📋 Formulación de Proyectos</button>
+  <button class="filter-btn" data-cat="gest">🏗️ Gestión de Proyectos</button>
+  <button class="filter-btn" data-cat="marco">🎯 Marco Lógico</button>
+</div>
+
+<div class="main">
+
+  <!-- 1. SERVICIOS ECOSISTÉMICOS -->
+  <div class="section cat-se" data-section="se">
+    <div class="section-header">
+      <span class="section-icon">🌿</span>
+      <span class="section-title">Servicios Ecosistémicos &amp; Capital Natural</span>
+      <span class="section-count" id="count-se">6 libros</span>
+    </div>
+    <div class="grid">
+
+      <div class="card cat-se" data-search="biodiversity environmental assessment ecosystem services human well-being slootweg rajvanshi servicios ecosistemicos evaluacion ambiental biodiversidad">
+        <div class="card-title">Biodiversity in Environmental Assessment: Enhancing Ecosystem Services for Human Well-Being</div>
+        <div class="card-author">Roel Slootweg, Asha Rajvanshi</div>
+        <div class="card-meta">
+          <span class="card-tag">Evaluación Ambiental</span>
+          <span class="card-tag">Biodiversidad</span>
+          <a class="card-link cat-se" href="https://drive.google.com/file/d/1CVT_gDI9ywWBu-xcl9cG6Ro8lYwGsUb0/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+      <div class="card cat-se" data-search="ecosystem services guide decision makers ranganathan bennett servicios ecosistemicos tomadores decision politica ambiental">
+        <div class="card-title">Ecosystem Services: A Guide for Decision Makers</div>
+        <div class="card-author">J. Ranganathan, K. Bennett et al.</div>
+        <div class="card-meta">
+          <span class="card-tag">Servicios Ecosistémicos</span>
+          <span class="card-tag">Política Ambiental</span>
+          <a class="card-link cat-se" href="https://drive.google.com/file/d/1r2GDg4XQ1uDqOy30rVFbzr6I-TwhTntt/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+      <div class="card cat-se" data-search="natural capital theory practice mapping ecosystem services kareiva tallis capital natural mapeo cartografia">
+        <div class="card-title">Natural Capital: Theory and Practice of Mapping Ecosystem Services</div>
+        <div class="card-author">Peter Kareiva, Heather Tallis et al.</div>
+        <div class="card-meta">
+          <span class="card-tag">Capital Natural</span>
+          <span class="card-tag">Cartografía SE</span>
+          <a class="card-link cat-se" href="https://drive.google.com/file/d/1VfR0dI6RWrpJAczjEgRVfk730D_-MR16/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+      <div class="card cat-se" data-search="earth observation ecosystem services remote sensing alcaraz segura teledeteccion observacion tierra servicios ecosistemicos satelital">
+        <div class="card-title">Earth Observation of Ecosystem Services</div>
+        <div class="card-author">Domingo Alcaraz-Segura et al.</div>
+        <div class="card-meta">
+          <span class="card-tag">Teledetección</span>
+          <span class="card-tag">Servicios Ecosistémicos</span>
+          <a class="card-link cat-se" href="https://drive.google.com/file/d/1cR-4WwvjAegp1-ykgG3Vvbx-9t52Mr2S/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+      <div class="card cat-se" data-search="ecosystem services spatial planning urban landscape ronchi planificacion espacial urbana territorio servicios ecosistemicos">
+        <div class="card-title">Ecosystem Services for Spatial Planning</div>
+        <div class="card-author">Silvia Ronchi</div>
+        <div class="card-meta">
+          <span class="card-tag">Planificación Espacial</span>
+          <span class="card-tag">Paisaje Urbano</span>
+          <a class="card-link cat-se" href="https://drive.google.com/file/d/1cVu6WVd2gH6CZOXg77unaHTvr_4dXA6u/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+      <div class="card cat-se" data-search="biophysical models applications ecosystem analysis jiquan chen modelado biofisico ecosistema analisis ecologico">
+        <div class="card-title">Biophysical Models and Applications in Ecosystem Analysis</div>
+        <div class="card-author">Jiquan Chen (ed.)</div>
+        <div class="card-meta">
+          <span class="card-tag">Modelos Biofísicos</span>
+          <span class="card-tag">Análisis de Ecosistemas</span>
+          <a class="card-link cat-se" href="https://drive.google.com/file/d/1UaSl3e3oc5txXa0ZOXSkHGuZ1wX2W6VZ/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. ECONOMÍA AMBIENTAL -->
+  <div class="section cat-eco" data-section="eco">
+    <div class="section-header">
+      <span class="section-icon">💰</span>
+      <span class="section-title">Economía Ambiental &amp; Valoración</span>
+      <span class="section-count" id="count-eco">2 libros</span>
+    </div>
+    <div class="grid">
+
+      <div class="card cat-eco" data-search="environmental economics kolstad economia ambiental valoracion externalidades mercado contaminacion politica economica ambiental">
+        <div class="card-title">Environmental Economics</div>
+        <div class="card-author">Charles D. Kolstad</div>
+        <div class="card-meta">
+          <span class="card-tag">Economía Ambiental</span>
+          <span class="card-tag">Externalidades</span>
+          <a class="card-link cat-eco" href="https://drive.google.com/file/d/15q6QxXNYGJIGhZ6YaylECAGLnQ6XrbnA/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+      <div class="card cat-eco" data-search="environmental natural resource economics tietenberg lewis recursos naturales economia ambiental 12 edicion sostenibilidad mercado">
+        <div class="card-title">Environmental and Natural Resource Economics – 12ª Edición</div>
+        <div class="card-author">Tom Tietenberg, Lynne Lewis</div>
+        <div class="card-meta">
+          <span class="card-tag">Recursos Naturales</span>
+          <span class="card-tag">Economía Ambiental</span>
+          <a class="card-link cat-eco" href="https://drive.google.com/file/d/1dAGTcEmTPwJmQuWrERZmsxAHs1DVd5kt/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SERVICIOS_ECOSISTEMICOS</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. SIG Y TELEDETECCIÓN -->
+  <div class="section cat-sig" data-section="sig">
+    <div class="section-header">
+      <span class="section-icon">🗺️</span>
+      <span class="section-title">SIG, Teledetección &amp; Análisis Espacial</span>
+      <span class="section-count" id="count-sig">2 libros</span>
+    </div>
+    <div class="grid">
+
+      <div class="card cat-sig" data-search="analisis estadistico datos espaciales qgis r garcia perez cabrero ortega SIG geoestadistica teledeteccion ciencia datos espaciales">
+        <div class="card-title">Análisis Estadístico de Datos Espaciales con QGIS y R</div>
+        <div class="card-author">Alfonso García Pérez, Cabrero Ortega et al.</div>
+        <div class="card-meta">
+          <span class="card-tag">QGIS</span>
+          <span class="card-tag">R</span>
+          <span class="card-tag">Geoestadística</span>
+          <a class="card-link cat-sig" href="https://drive.google.com/file/d/1672nTAb1JhcUEUiug7toYrf6WsAp7OjS/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SIG_TELEDETECCION</div>
+      </div>
+
+      <div class="card cat-sig" data-search="qgis aplicado evaluacion territorio casos practicos robalo cabrera manzano agugliaro SIG territorial sistemas informacion geografica">
+        <div class="card-title">QGIS Aplicado a la Evaluación del Territorio: Casos Prácticos</div>
+        <div class="card-author">Isabel Robalo Cabrera, Manzano Agugliaro et al.</div>
+        <div class="card-meta">
+          <span class="card-tag">QGIS</span>
+          <span class="card-tag">Evaluación Territorial</span>
+          <a class="card-link cat-sig" href="https://drive.google.com/file/d/1sBkwHAPW3B001ByCjxXJpm3_VPXbHzZw/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / SIG_TELEDETECCION</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. PRODUCCIÓN LIMPIA -->
+  <div class="section cat-prod" data-section="prod">
+    <div class="section-header">
+      <span class="section-icon">♻️</span>
+      <span class="section-title">Producción Limpia &amp; Análisis de Impacto</span>
+      <span class="section-count" id="count-prod">3 libros</span>
+    </div>
+    <div class="grid">
+
+      <div class="card cat-prod" data-search="green productivity cleaner production guidebook sustainability produccion limpia productividad verde sostenibilidad procesos productivos">
+        <div class="card-title">Green Productivity and Cleaner Production: A Guidebook for Sustainability</div>
+        <div class="card-author">Varios autores</div>
+        <div class="card-meta">
+          <span class="card-tag">Producción Limpia</span>
+          <span class="card-tag">Sostenibilidad</span>
+          <a class="card-link cat-prod" href="https://drive.google.com/file/d/1MqQfOqly0QHNyCFxzMIZdyK2R_jwEzuW/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / PRODUCCION_LIMPIA</div>
+      </div>
+
+      <div class="card cat-prod" data-search="state science future cumulative impact assessment evaluacion impacto acumulativo ambiental EIA">
+        <div class="card-title">State of the Science and the Future of Cumulative Impact Assessment</div>
+        <div class="card-author">Varios autores</div>
+        <div class="card-meta">
+          <span class="card-tag">Impacto Acumulativo</span>
+          <span class="card-tag">EIA</span>
+          <a class="card-link cat-prod" href="https://drive.google.com/file/d/1VT8awC6Jl-xNJwrL7U8KmTpkfwwtYZOB/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / PRODUCCION_LIMPIA</div>
+      </div>
+
+      <div class="card cat-prod" data-search="identification cleaner production improvement opportunities mulholland produccion limpia oportunidades mejora procesos industriales">
+        <div class="card-title">Identification of Cleaner Production Improvement Opportunities</div>
+        <div class="card-author">Kenneth L. Mulholland</div>
+        <div class="card-meta">
+          <span class="card-tag">Producción Limpia</span>
+          <span class="card-tag">Mejora Continua</span>
+          <a class="card-link cat-prod" href="https://drive.google.com/file/d/1TLvU3aseDu1X-bCW_jgkk2NyVLBAeOvL/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / PRODUCCION_LIMPIA</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5. FORMULACIÓN Y EVALUACIÓN DE PROYECTOS -->
+  <div class="section cat-form" data-section="form">
+    <div class="section-header">
+      <span class="section-icon">📋</span>
+      <span class="section-title">Formulación &amp; Evaluación de Proyectos</span>
+      <span class="section-count" id="count-form">5 libros</span>
+    </div>
+    <div class="grid">
+
+      <div class="card cat-form" data-search="proyectos inversion formulacion evaluacion nassir sapag chain economica financiera">
+        <div class="card-title">Proyectos de Inversión: Formulación y Evaluación</div>
+        <div class="card-author">Nassir Sapag Chain</div>
+        <div class="card-meta">
+          <span class="card-tag">Inversión</span>
+          <span class="card-tag">Evaluación Económica</span>
+          <a class="card-link cat-form" href="https://drive.google.com/file/d/19EduF4kmk9c-PA_aAjUJ_bXDnI3pdZ5V/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / FORMULACION_EVALUACION_PROYECTOS</div>
+      </div>
+
+      <div class="card cat-form" data-search="diseño proyectos sociales aplicaciones practicas planificacion gestion evaluacion gloria perez serrano">
+        <div class="card-title">Diseño de Proyectos Sociales: Aplicaciones Prácticas</div>
+        <div class="card-author">Gloria Pérez Serrano</div>
+        <div class="card-meta">
+          <span class="card-tag">Proyectos Sociales</span>
+          <span class="card-tag">Planificación</span>
+          <a class="card-link cat-form" href="https://drive.google.com/file/d/1G5vdIwSBFWhgOrV485S4KF67dc_Jpmb7/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / FORMULACION_EVALUACION_PROYECTOS</div>
+      </div>
+
+      <div class="card cat-form" data-search="evaluacion social proyectos 12 edicion ernesto fontaine costo beneficio">
+        <div class="card-title">Evaluación Social de Proyectos – 12ª Edición</div>
+        <div class="card-author">Ernesto R. Fontaine</div>
+        <div class="card-meta">
+          <span class="card-tag">Evaluación Social</span>
+          <span class="card-tag">Costo-Beneficio</span>
+          <a class="card-link cat-form" href="https://drive.google.com/file/d/1ojbhvkvEWPWdcWsc-zzvjXGL6wDAo5FU/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / FORMULACION_EVALUACION_PROYECTOS</div>
+      </div>
+
+      <div class="card cat-form" data-search="manual formulacion evaluacion proyectos inversion infraestructura natural gilmer medina gamarra cifuentes">
+        <div class="card-title">Manual para la Formulación y Evaluación de Proyectos en Infraestructura Natural</div>
+        <div class="card-author">Gilmer Medina, Janeth Gamarra, Luisa Cifuentes</div>
+        <div class="card-meta">
+          <span class="card-tag">Infraestructura Natural</span>
+          <span class="card-tag">Manual</span>
+          <a class="card-link cat-form" href="https://drive.google.com/file/d/1QGLz-CXij2b6A6uwdZp0zY1_jDL2xVCi/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / FORMULACION_EVALUACION_PROYECTOS</div>
+      </div>
+
+      <div class="card cat-form" data-search="evaluacion social proyectos aguilera rosa social ambiental">
+        <div class="card-title">Evaluación Social de Proyectos</div>
+        <div class="card-author">Aguilera Rosa</div>
+        <div class="card-meta">
+          <span class="card-tag">Evaluación Social</span>
+          <a class="card-link cat-form" href="https://drive.google.com/file/d/18WlGZiDE7LT9LpNo0U8TB32G2gXpgGEV/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / FORMULACION_EVALUACION_PROYECTOS</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6. GESTIÓN DE PROYECTOS -->
+  <div class="section cat-gest" data-section="gest">
+    <div class="section-header">
+      <span class="section-icon">🏗️</span>
+      <span class="section-title">Gestión &amp; Dirección de Proyectos</span>
+      <span class="section-count" id="count-gest">3 libros</span>
+    </div>
+    <div class="grid">
+
+      <div class="card cat-gest" data-search="guia fundamentos direccion proyectos pmbok septima edicion project management institute PMI estandar">
+        <div class="card-title">Guía del PMBOK® – Séptima Edición &amp; El Estándar para la Dirección de Proyectos</div>
+        <div class="card-author">Project Management Institute (PMI)</div>
+        <div class="card-meta">
+          <span class="card-tag">PMBOK</span>
+          <span class="card-tag">PMI</span>
+          <a class="card-link cat-gest" href="https://drive.google.com/file/d/1vNm6GA-R93l_Sg08AR0E5P1iHmdBSILl/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / GESTION_PROYECTOS / DIRECCION_PROYECTOS</div>
+      </div>
+
+      <div class="card cat-gest" data-search="gestion proyectos organizaciones mirada tendencias modernas moreno monsalve administracion agile metodologias">
+        <div class="card-title">Gestión de Proyectos y Organizaciones: Una Mirada desde las Tendencias Modernas</div>
+        <div class="card-author">Moreno-Monsalve et al.</div>
+        <div class="card-meta">
+          <span class="card-tag">Gestión</span>
+          <span class="card-tag">Organizaciones</span>
+          <a class="card-link cat-gest" href="https://drive.google.com/file/d/1EzS_Qv1wnwCKWjnBw0AqNID9S2uuBDzB/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / GESTION_PROYECTOS / METODOLOGIAS_AGILES</div>
+      </div>
+
+      <div class="card cat-gest" data-search="gestion proyectos agile metodologias agiles capacidad respuesta zunzunegui scrum kanban sprint">
+        <div class="card-title">Gestión de Proyectos en AGILE: Metodologías Ágiles para Mejorar la Capacidad de Respuesta</div>
+        <div class="card-author">Alejandro de Zunzunegui</div>
+        <div class="card-meta">
+          <span class="card-tag">AGILE</span>
+          <span class="card-tag">Scrum</span>
+          <span class="card-tag">Kanban</span>
+          <a class="card-link cat-gest" href="https://drive.google.com/file/d/1xTNzWO9NmYJO2FsnyHNeZyWpDvlBQBIK/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / GESTION_PROYECTOS / METODOLOGIAS_AGILES</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 7. MARCO LÓGICO -->
+  <div class="section cat-marco" data-section="marco">
+    <div class="section-header">
+      <span class="section-icon">🎯</span>
+      <span class="section-title">Marco Lógico &amp; Planificación Estratégica</span>
+      <span class="section-count" id="count-marco">2 libros</span>
+    </div>
+    <div class="grid">
+
+      <div class="card cat-marco" data-search="gestion proyectos enfoque marco logico gutierrez rodriguez EML matriz planificacion">
+        <div class="card-title">Gestión de Proyectos con Enfoque de Marco Lógico</div>
+        <div class="card-author">Gutiérrez Rodríguez et al.</div>
+        <div class="card-meta">
+          <span class="card-tag">Marco Lógico</span>
+          <span class="card-tag">EML</span>
+          <a class="card-link cat-marco" href="https://drive.google.com/file/d/1NRDpWiaKIkJuMra_xeN7GKhjwR68nadl/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / MARCO_LÓGICO</div>
+      </div>
+
+      <div class="card cat-marco" data-search="guia diseño proyectos sociales comunitarios marco logico conceptos esenciales aplicaciones crespo planificacion">
+        <div class="card-title">Guía de Diseño de Proyectos Sociales Comunitarios bajo el Enfoque del Marco Lógico</div>
+        <div class="card-author">Marco A. Crespo A.</div>
+        <div class="card-meta">
+          <span class="card-tag">Marco Lógico</span>
+          <span class="card-tag">Comunitario</span>
+          <a class="card-link cat-marco" href="https://drive.google.com/file/d/1DHMgjJPaWIG5dUObEo7deKch7FkCsChe/view" target="_blank" rel="noopener">Abrir ↗</a>
+        </div>
+        <div class="subfolder-badge">📁 Libros / MARCO_LÓGICO</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="no-results" id="noResults">
+    <div class="emoji">📭</div>
+    <p>No se encontraron libros con ese criterio.</p>
+    <p style="margin-top:8px;font-size:0.85rem;">Intentá con otro término o categoría.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div>
+    <a href="https://drive.google.com/drive/folders/1EKSX5d8dP18_5_3LG0Rt9sAVbx7201lx" target="_blank" rel="noopener">
+      📁 Ver carpeta Libros en Google Drive
+    </a>
+  </div>
+  <div style="margin-top:6px">
+    Repositorio de Libros FEPAR 2026 · Para agregar libros o actualizar el catálogo, contactar al administrador
+  </div>
+</footer>
+
+<button id="scrollTop" title="Volver arriba">↑</button>
+
+<script>
+  const searchInput  = document.getElementById('searchInput');
+  const filterBtns   = document.querySelectorAll('.filter-btn');
+  const noResults    = document.getElementById('noResults');
+  const showingCount = document.getElementById('showing-count');
+  let activeCategory = 'all';
+
+  function applyFilters() {
+    const query = searchInput.value.toLowerCase().trim();
+    let visible = 0, anyVisible = false;
+
+    document.querySelectorAll('.section').forEach(section => {
+      const cat   = section.dataset.section;
+      const cards = section.querySelectorAll('.card');
+      let sectionVisible = 0;
+      const catMatch = activeCategory === 'all' || activeCategory === cat;
+
+      cards.forEach(card => {
+        const text = (card.dataset.search + ' ' + card.innerText).toLowerCase();
+        const show = catMatch && (!query || text.includes(query));
+        card.style.display = show ? '' : 'none';
+        if (show) { sectionVisible++; visible++; }
+      });
+
+      section.style.display = (catMatch && sectionVisible > 0) ? '' : 'none';
+      if (catMatch && sectionVisible > 0) anyVisible = true;
+
+      const countEl = section.querySelector('.section-count');
+      if (countEl) countEl.textContent = sectionVisible + (sectionVisible === 1 ? ' libro' : ' libros');
+    });
+
+    showingCount.textContent = visible;
+    noResults.classList.toggle('show', !anyVisible);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.cat;
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 300);
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
