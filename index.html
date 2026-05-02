@@ -79,23 +79,83 @@ ul.task-list li input[type="checkbox"] {
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&amp;family=Fira+Code:wght@400;500&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script>
-/* Crosstalk safety shim — prevents ReferenceError if crosstalk loads late or fails */
 (function() {
+
+  /* FIX 1 - Crosstalk safety shim
+     Provides FilterHandle/SelectionHandle stubs so leaflet-binding.js
+     never throws even if crosstalk.min.js is missing or loads late. */
   function makeCrosstalkShim() {
-    var noopVar = { set: function(v){ return this; }, get: function(){ return null; }, on: function(){}, off: function(){} };
-    var noopGroup = { var: function(){ return noopVar; }, has: function(){ return false; } };
-    return { var: function(){ return noopVar; }, group: function(){ return noopGroup; }, SelectionHandle: function(){}, FilterHandle: function(){} };
+    function makeHandle() {
+      return { filteredKeys: null, value: null,
+        set:   function() { return this; },
+        clear: function() { return this; },
+        on:    function() { return this; },
+        off:   function() { return this; },
+        close: function() {} };
+    }
+    var noopVar = { set: function(){ return this; }, get: function(){ return null; },
+                    on:  function(){ return this; }, off: function(){ return this; } };
+    return {
+      var:             function() { return noopVar; },
+      group:           function() { return { var: function(){ return noopVar; }, has: function(){ return false; } }; },
+      FilterHandle:    makeHandle,
+      SelectionHandle: makeHandle
+    };
   }
   if (typeof window.crosstalk === 'undefined') {
     window.crosstalk = makeCrosstalkShim();
   }
-  /* Re-check after scripts load in case crosstalk.min.js failed */
   document.addEventListener('DOMContentLoaded', function() {
-    if (window.crosstalk && typeof window.crosstalk.var === 'function' &&
-        window.crosstalk.var('test') && typeof window.crosstalk.var('test').set !== 'function') {
+    if (typeof window.crosstalk === 'undefined' ||
+        typeof window.crosstalk.FilterHandle !== 'function') {
       window.crosstalk = makeCrosstalkShim();
     }
   }, { once: true, capture: true });
+
+  /* FIX 2 - Patch visNetwork renderValue: null configure bug
+     visNetwork-binding.js checks (x.options.configure !== undefined).
+     null !== undefined is TRUE, so it then accesses null.container
+     which throws TypeError and kills the entire HTMLWidgets forEach
+     chain, preventing datatables and leaflet from ever rendering. */
+  function patchVisNetwork() {
+    var widgets = window.HTMLWidgets && window.HTMLWidgets.widgets;
+    if (!widgets) return;
+    widgets.forEach(function(w) {
+      if (w.name === 'visNetwork' && !w._patchedConfigure) {
+        var orig = w.renderValue;
+        w.renderValue = function(el, x, inst) {
+          if (x && x.options && x.options.configure == null) {
+            x.options.configure = undefined;
+          }
+          return orig.call(this, el, x, inst);
+        };
+        w._patchedConfigure = true;
+      }
+    });
+  }
+
+  /* FIX 3 - Resilient staticRender: per-binding isolation
+     Wraps each binding type in its own try-catch so one failing
+     widget never blocks all subsequent widget types. */
+  function patchStaticRender() {
+    if (!window.HTMLWidgets || !window.HTMLWidgets.staticRender) return;
+    if (window.HTMLWidgets._patchedResilience) return;
+    var orig = window.HTMLWidgets.staticRender;
+    window.HTMLWidgets.staticRender = function() {
+      var all = (window.HTMLWidgets.widgets || []).slice();
+      all.forEach(function(binding) {
+        window.HTMLWidgets.widgets = [binding];
+        try   { orig.call(window); }
+        catch (e) { console.warn('[widget-resilience] "' + binding.name + '" error: ' + e.message); }
+        finally   { window.HTMLWidgets.widgets = all; }
+      });
+    };
+    window.HTMLWidgets._patchedResilience = true;
+  }
+
+  patchVisNetwork();
+  patchStaticRender();
+
 })();
 </script>
 
