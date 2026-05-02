@@ -78,6 +78,26 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&amp;family=Fira+Code:wght@400;500&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+/* Crosstalk safety shim — prevents ReferenceError if crosstalk loads late or fails */
+(function() {
+  function makeCrosstalkShim() {
+    var noopVar = { set: function(v){ return this; }, get: function(){ return null; }, on: function(){}, off: function(){} };
+    var noopGroup = { var: function(){ return noopVar; }, has: function(){ return false; } };
+    return { var: function(){ return noopVar; }, group: function(){ return noopGroup; }, SelectionHandle: function(){}, FilterHandle: function(){} };
+  }
+  if (typeof window.crosstalk === 'undefined') {
+    window.crosstalk = makeCrosstalkShim();
+  }
+  /* Re-check after scripts load in case crosstalk.min.js failed */
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.crosstalk && typeof window.crosstalk.var === 'function' &&
+        window.crosstalk.var('test') && typeof window.crosstalk.var('test').set !== 'function') {
+      window.crosstalk = makeCrosstalkShim();
+    }
+  }, { once: true, capture: true });
+})();
+</script>
 
 
 <meta property="og:title" content="Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales">
