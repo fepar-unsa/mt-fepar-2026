@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Recurso pedagógico digital interactivo para la materia Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales. Carrera de Ingeniería en Recursos Naturales y Medioambiente — Universidad Nacional de Salta.">
+
+<title>8&nbsp; Matemáticas Financieras – Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./06_cap_tecnicos.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ec8dbbdf99699f055fea5e95a428e1d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-21c5b34ee03bf87da2cd0534873615a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
+
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&amp;family=Poppins:wght@600;700;800&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+(function() {
+
+  /* FIX 1 - Crosstalk safety shim
+     Provides FilterHandle/SelectionHandle stubs so leaflet-binding.js
+     never throws even if crosstalk.min.js is missing or loads late. */
+  function makeCrosstalkShim() {
+    function makeHandle() {
+      return { filteredKeys: null, value: null,
+        set:   function() { return this; },
+        clear: function() { return this; },
+        on:    function() { return this; },
+        off:   function() { return this; },
+        close: function() {} };
+    }
+    var noopVar = { set: function(){ return this; }, get: function(){ return null; },
+                    on:  function(){ return this; }, off: function(){ return this; } };
+    return {
+      var:             function() { return noopVar; },
+      group:           function() { return { var: function(){ return noopVar; }, has: function(){ return false; } }; },
+      FilterHandle:    makeHandle,
+      SelectionHandle: makeHandle
+    };
+  }
+  if (typeof window.crosstalk === 'undefined') {
+    window.crosstalk = makeCrosstalkShim();
+  }
+  /* Registered in <head> => fires BEFORE htmlwidgets.js DOMContentLoaded handler.
+     capture:true ensures we run in capture phase, before any bubble-phase handlers. */
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof window.crosstalk === 'undefined' ||
+        typeof window.crosstalk.FilterHandle !== 'function') {
+      window.crosstalk = makeCrosstalkShim();
+    }
+    /* Apply patches HERE — HTMLWidgets is now defined (body scripts ran),
+       but htmlwidgets' own DOMContentLoaded handler hasn't fired yet. */
+    patchVisNetwork();
+    patchStaticRender();
+  }, { once: true, capture: true });
+
+  /* FIX 2 - Patch visNetwork renderValue: null configure bug
+     visNetwork-binding.js checks (x.options.configure !== undefined).
+     null !== undefined is TRUE, so it then accesses null.container
+     which throws TypeError and kills the entire HTMLWidgets forEach
+     chain, preventing datatables and leaflet from ever rendering. */
+  function patchVisNetwork() {
+    var widgets = window.HTMLWidgets && window.HTMLWidgets.widgets;
+    if (!widgets) return;
+    widgets.forEach(function(w) {
+      if (w.name === 'visNetwork' && !w._patchedConfigure) {
+        var orig = w.renderValue;
+        w.renderValue = function(el, x, inst) {
+          if (x && x.options && x.options.configure == null) {
+            x.options.configure = undefined;
+          }
+          return orig.call(this, el, x, inst);
+        };
+        w._patchedConfigure = true;
+      }
+    });
+  }
+
+  /* FIX 3 - Resilient staticRender: per-binding isolation
+     Wraps each binding type in its own try-catch so one failing
+     widget never blocks all subsequent widget types. */
+  function patchStaticRender() {
+    if (!window.HTMLWidgets || !window.HTMLWidgets.staticRender) return;
+    if (window.HTMLWidgets._patchedResilience) return;
+    var orig = window.HTMLWidgets.staticRender;
+    window.HTMLWidgets.staticRender = function() {
+      var all = (window.HTMLWidgets.widgets || []).slice();
+      all.forEach(function(binding) {
+        window.HTMLWidgets.widgets = [binding];
+        try   { orig.call(window); }
+        catch (e) { console.warn('[widget-resilience] "' + binding.name + '" error: ' + e.message); }
+        finally   { window.HTMLWidgets.widgets = all; }
+      });
+    };
+    window.HTMLWidgets._patchedResilience = true;
+  }
+
+
+  /* FIX 4 - Force Leaflet maps to render after page load.
+     leaflet-binding stores the L.Map as inst.map (not inst.getMap()).
+     We also dispatch a resize event as fallback for any deferred renders. */
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.querySelectorAll('.leaflet.html-widget').forEach(function(el) {
+        var inst = el.htmlwidget_data_init_result;
+        if (!inst) return;
+        var map = inst.map;
+        if (map && typeof map.invalidateSize === 'function') {
+          map.invalidateSize(true);
+        }
+      });
+      window.dispatchEvent(new Event('resize'));
+    }, 400);
+  }, false);
+
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="8&nbsp; Matemáticas Financieras – Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales">
+<meta property="og:description" content="Recurso pedagógico digital interactivo para la materia Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales. Carrera de Ingeniería en Recursos Naturales y Medioambiente — Universidad Nacional de Salta.">
+<meta property="og:site_name" content="Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales">
+<meta name="twitter:title" content="8&nbsp; Matemáticas Financieras – Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales">
+<meta name="twitter:description" content="Recurso pedagógico digital interactivo para la materia Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales. Carrera de Ingeniería en Recursos Naturales y Medioambiente — Universidad Nacional de Salta.">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Buscar"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_cap_mercados.html"><strong>PARTE II — ESTUDIOS DE FACTIBILIDAD</strong></a></li><li class="breadcrumb-item"><a href="./07_cap_matematicas.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matemáticas Financieras</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Manual Teórico FEPAR 2026</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>PARTE I — FUNDAMENTOS DE PROYECTOS</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_cap_proyecto_inversion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">El Proyecto de Inversión</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_cap_marco_logico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">La Metodología del Marco Lógico</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_cap_indicadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Los Indicadores de Proyecto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_cap_decisiones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">La Toma de Decisiones</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>PARTE II — ESTUDIOS DE FACTIBILIDAD</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_cap_mercados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estudios de Mercado</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_cap_tecnicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estudios Técnicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_cap_matematicas.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matemáticas Financieras</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En este capítulo</h2>
+   
+  <ul>
+  <li><a href="#sec-contexto" id="toc-sec-contexto" class="nav-link active" data-scroll-target="#sec-contexto"><span class="header-section-number">8.1</span> El contexto económico de las decisiones de inversión</a></li>
+  <li><a href="#sec-conceptos" id="toc-sec-conceptos" class="nav-link" data-scroll-target="#sec-conceptos"><span class="header-section-number">8.2</span> Conceptos básicos: capital, interés y tasa de interés</a>
+  <ul>
+  <li><a href="#sec-tmar" id="toc-sec-tmar" class="nav-link" data-scroll-target="#sec-tmar"><span class="header-section-number">8.2.1</span> La inversión y la TMAR</a></li>
+  <li><a href="#sec-interes" id="toc-sec-interes" class="nav-link" data-scroll-target="#sec-interes"><span class="header-section-number">8.2.2</span> El interés como valor del dinero en el tiempo</a></li>
+  </ul></li>
+  <li><a href="#sec-flujo" id="toc-sec-flujo" class="nav-link" data-scroll-target="#sec-flujo"><span class="header-section-number">8.3</span> El diagrama de flujo de fondos</a></li>
+  <li><a href="#sec-equiv-sumas" id="toc-sec-equiv-sumas" class="nav-link" data-scroll-target="#sec-equiv-sumas"><span class="header-section-number">8.4</span> Equivalencias entre sumas presentes y futuras</a>
+  <ul>
+  <li><a href="#sec-capitalizacion" id="toc-sec-capitalizacion" class="nav-link" data-scroll-target="#sec-capitalizacion"><span class="header-section-number">8.4.1</span> Capitalización: del presente al futuro</a></li>
+  <li><a href="#sec-actualizacion" id="toc-sec-actualizacion" class="nav-link" data-scroll-target="#sec-actualizacion"><span class="header-section-number">8.4.2</span> Actualización: del futuro al presente</a></li>
+  </ul></li>
+  <li><a href="#sec-equiv-tasas" id="toc-sec-equiv-tasas" class="nav-link" data-scroll-target="#sec-equiv-tasas"><span class="header-section-number">8.5</span> Equivalencias entre tasas de interés</a></li>
+  <li><a href="#sec-equiv-utiles" id="toc-sec-equiv-utiles" class="nav-link" data-scroll-target="#sec-equiv-utiles"><span class="header-section-number">8.6</span> Equivalencias útiles: series uniformes y gradientes</a>
+  <ul>
+  <li><a href="#sec-anualidad-vf" id="toc-sec-anualidad-vf" class="nav-link" data-scroll-target="#sec-anualidad-vf"><span class="header-section-number">8.6.1</span> Anualidad y valor futuro</a></li>
+  <li><a href="#sec-anualidad-vp" id="toc-sec-anualidad-vp" class="nav-link" data-scroll-target="#sec-anualidad-vp"><span class="header-section-number">8.6.2</span> Anualidad y valor presente</a></li>
+  <li><a href="#sec-gradiente" id="toc-sec-gradiente" class="nav-link" data-scroll-target="#sec-gradiente"><span class="header-section-number">8.6.3</span> Gradiente aritmético</a></li>
+  </ul></li>
+  <li><a href="#sec-van-tir" id="toc-sec-van-tir" class="nav-link" data-scroll-target="#sec-van-tir"><span class="header-section-number">8.7</span> Matemáticas aplicadas a proyectos: VAN y TIR</a>
+  <ul>
+  <li><a href="#sec-van" id="toc-sec-van" class="nav-link" data-scroll-target="#sec-van"><span class="header-section-number">8.7.1</span> Valor Actual Neto (VAN)</a></li>
+  <li><a href="#sec-tir" id="toc-sec-tir" class="nav-link" data-scroll-target="#sec-tir"><span class="header-section-number">8.7.2</span> Tasa Interna de Retorno (TIR)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_cap_mercados.html"><strong>PARTE II — ESTUDIOS DE FACTIBILIDAD</strong></a></li><li class="breadcrumb-item"><a href="./07_cap_matematicas.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matemáticas Financieras</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matemáticas Financieras</span></h1>
+<p class="subtitle lead">Equivalencias, tasas de interés y aplicaciones a proyectos</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="chapter-hero">
+  <div class="chapter-hero-body">
+    <div class="chapter-hero-icon">
+      <i class="fas fa-calculator"></i>
+    </div>
+    <div class="chapter-hero-content">
+      <div class="chapter-hero-eyebrow">
+        <span class="hero-num">Capítulo 7</span>
+        <span class="hero-sep">·</span>
+        <span>Parte III — Evaluación Financiera</span>
+      </div>
+      <p class="chapter-hero-title">Matemáticas Financieras</p>
+      <p class="chapter-hero-sub">Equivalencias, tasas de interés y aplicaciones a proyectos</p>
+      <div class="chapter-hero-tags">
+        <span class="hero-tag">Valor del dinero</span>
+        <span class="hero-tag">Interés</span>
+        <span class="hero-tag">VAN</span>
+        <span class="hero-tag">TIR</span>
+        <span class="hero-tag">Series uniformes</span>
+      </div>
+    </div>
+  </div>
+  <div class="chapter-hero-quote">
+    <span class="hero-quote-mark">"</span>
+    La matemática financiera es la herramienta que permite comparar flujos de dinero que ocurren en distintos momentos del tiempo, haciendo posible la toma de decisiones de inversión racionales y fundamentadas.
+    <span class="hero-quote-attr">— Sapag Chain, N. &amp; Sapag Chain, R., <em>Preparación y Evaluación de Proyectos</em> (McGraw-Hill, 5.ª ed., 2008)</span>
+  </div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Concepto clave</span>Objetivos de aprendizaje del Capítulo 7
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al finalizar este capítulo, el estudiante será capaz de:</p>
+<ul>
+<li><strong>Comprender</strong> los conceptos básicos de capital, interés y tasa de interés como expresión del valor del dinero en el tiempo.</li>
+<li><strong>Calcular</strong> equivalencias entre sumas presentes y futuras mediante los procesos de capitalización y actualización (descuento).</li>
+<li><strong>Convertir</strong> entre distintos tipos de tasas de interés: nominal, efectiva, periódica y continua.</li>
+<li><strong>Aplicar</strong> las equivalencias útiles de series uniformes y gradientes a problemas de inversión y depreciación.</li>
+<li><strong>Construir</strong> y leer un diagrama de flujo de fondos, y emplear los indicadores VAN y TIR para evaluar la conveniencia de un proyecto.</li>
+</ul>
+</div>
+</div>
+<hr>
+<section id="sec-contexto" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sec-contexto"><span class="header-section-number">8.1</span> El contexto económico de las decisiones de inversión</h2>
+<p>El conocimiento del contexto económico en el que nos desenvolvemos resulta esencial para comprender nuestra posición dentro del sistema y definir claramente las relaciones económicas que mantenemos, las cuales pueden agruparse en relaciones de <strong>producción, distribución y consumo</strong>. Una vez identificada esa posición dentro de la estructura económica, se adoptan decisiones que, desde una perspectiva racional, tienden a la maximización del beneficio individual o sectorial dentro de la sociedad en la que estamos insertos.</p>
+<p>El modo de producción dominante en Argentina es el <strong>capitalista</strong>, atravesado por sucesivas reformas estructurales desde 1989. La economía argentina ha oscilado históricamente entre modelos de liberalización con tinte conservador y modelos de mayor presencia estatal, sin resolver el problema estructural de fondo. Indicadores como la inflación, el endeudamiento, la pobreza y la desocupación condicionan permanentemente las decisiones de inversión. A modo de referencia, según el Banco Mundial, en 2019 la inflación anual según el IPC alcanzó el 53,54 %, y la cotización del dólar oficial pasó de 13,07 $/US$ en enero de 2016 a 121 $/US$ en junio de 2022 —una devaluación superior al 800 % en seis años—. La deuda pública pasó del 53,1 % del PBI en 2016 al 90,20 % en 2019, lo que el economista Eduardo Levy Yeyati definió como <em>“el talón de Aquiles de Argentina”</em>.</p>
+<p>A esta volatilidad se sumaron shocks de magnitud excepcional, como la pandemia de COVID-19, que paralizó la economía mundial, y los posteriores procesos de ajuste fiscal, reforma del Estado y desregulación de la economía. En este contexto de incertidumbre permanente, los proyectos deben adaptarse para sostener la actividad económica.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Por qué importa el contexto en un capítulo de matemáticas?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Toda herramienta financiera —VAN, TIR, equivalencias entre tasas— opera sobre supuestos de estabilidad de los escenarios económicos, sociales, financieros, políticos y ambientales. En contextos de <strong>alta inflación y devaluación</strong>, la elección de la tasa de descuento y el tratamiento de la moneda (constante vs.&nbsp;corriente) se vuelven decisiones críticas que condicionan el resultado de la evaluación. La matemática es exacta; los supuestos sobre los que se aplica, no.</p>
+</div>
+</div>
+<p>Realizada esta aclaración, avanzaremos en forma crítica sobre algunas de las herramientas financieras que nos permiten estudiar, evaluar, decidir y ejecutar proyectos de inversión.</p>
+<hr>
+</section>
+<section id="sec-conceptos" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sec-conceptos"><span class="header-section-number">8.2</span> Conceptos básicos: capital, interés y tasa de interés</h2>
+<p>En el área cuantitativa del proyecto, correspondiente a los <strong>estudios financieros</strong>, durante la etapa de preinversión se reúnen los resultados de los estudios técnicos con el fin de sintetizarlos en indicadores que brinden información financiera integrada. Los estudios técnicos aportan información sobre los recursos (bienes y servicios) necesarios para el logro de cada componente, mientras que los estudios financieros cuantifican los flujos reales de bienes y servicios en unidades que sintetizan su magnitud.</p>
+<p>Realizando una analogía entre un proyecto personal y un proyecto de inversión, en la vida cotidiana nos enfrentamos constantemente a situaciones relacionadas con el manejo de <strong>valores monetarios en el tiempo</strong>: cuánto dinero se obtendrá al colocar fondos a plazo fijo, si conviene pagar al contado, financiar en cuotas o solicitar un crédito. Todas estas decisiones pueden evaluarse utilizando herramientas de análisis financiero que consideran el <strong>valor del dinero en el tiempo</strong>.</p>
+<p>En todos los casos, frente a nosotros tendremos <strong>flujos de dinero</strong>: cada flujo de ingresos y egresos representa una opción, una decisión que deberemos tomar. La respuesta a <em>“¿cuál elijo?”</em> no se hace esperar: ¡la más conveniente! En una economía de mercado, el recurso más representativo y generalmente más limitado es el dinero, por lo que gran parte del análisis financiero se resume en un interrogante central: <strong>cuánto dinero ingresa y cuánto dinero egresa a lo largo del tiempo</strong>.</p>
+<section id="sec-tmar" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="sec-tmar"><span class="header-section-number">8.2.1</span> La inversión y la TMAR</h3>
+<p>Desde una perspectiva netamente financiera, una <strong>inversión</strong> puede definirse como la asignación de una determinada suma de dinero a una actividad o proyecto que reúna condiciones aceptables de rentabilidad, plazo y riesgo. En toda inversión hay un <strong>inversor</strong> —individuo, empresa, productor o banco— interesado en cubrir sus propias expectativas de rentabilidad: ganar dinero.</p>
+<p>A esta expectativa la denominamos <strong>Rentabilidad Mínima Aceptable</strong> o <strong>Tasa Mínima Aceptable de Rendimiento (TMAR)</strong>. Para muchos, la TMAR es la tasa de un plazo fijo bancario; sin embargo, difícilmente esa rentabilidad cubra la desvalorización del dinero por inflación. Por ello, siguiendo a Baca Urbina, la TMAR debe reflejar la compensación por el riesgo de la inversión (<span class="math inline">\(i\)</span>) y la inflación (<span class="math inline">\(f\)</span>):</p>
+<p><span class="math display">\[\text{TMAR} = i + f + (i \cdot f)\]</span></p>
+<p>donde el término <span class="math inline">\(i \cdot f\)</span> corresponde al efecto combinado (cruzado) entre el premio al riesgo y la inflación. La TMAR es así la <strong>tasa de interés pertinente</strong> para la empresa, y constituye el costo de oportunidad del capital del inversor.</p>
+</section>
+<section id="sec-interes" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="sec-interes"><span class="header-section-number">8.2.2</span> El interés como valor del dinero en el tiempo</h3>
+<p>El estudio del cálculo financiero parte de un concepto básico que se conoce como el <strong>valor tiempo del dinero</strong>. Algunos autores definen el <strong>interés</strong> como la manifestación del valor del dinero en el tiempo; otros, como la compensación recibida o pagada por el uso del dinero. Se estará dispuesto a dar o recibir una compensación por:</p>
+<ul>
+<li>Las <strong>oportunidades perdidas</strong> al escoger una forma particular de invertir el capital disponible (costo de oportunidad).</li>
+<li>El <strong>riesgo</strong> implícito en la actividad económica seleccionada.</li>
+<li>La <strong>disminución de bienes disponibles</strong> durante el período de inmovilización.</li>
+<li>Los <strong>procesos de desvalorización</strong> del dinero (inflación).</li>
+</ul>
+<p>En definitiva, el <strong>valor del dinero en el mercado</strong> no es ni más ni menos que la <strong>tasa de interés</strong>: el precio del dinero, sometido a las leyes de la oferta y la demanda dentro del mercado financiero.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Para profundizar</span>Idea clave — Sumas de dinero en distintos tiempos no son equivalentes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>No es lo mismo $1.000 hoy que $1.000 dentro de un año.</p>
+</blockquote>
+<p>Por más que en magnitud las sumas sean uniformes, su <strong>valor en el tiempo</strong> ha cambiado. Para poder operarlas matemáticamente —sumarlas, restarlas, compararlas— necesitamos transformarlas en sumas <strong>equivalentes</strong>. El factor de transformación que descubrieron la economía y las matemáticas es, precisamente, la <strong>tasa de interés</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-flujo" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="sec-flujo"><span class="header-section-number">8.3</span> El diagrama de flujo de fondos</h2>
+<p>Cuando hablamos de sumas de dinero que tienen movilidad en el tiempo, conviene establecer una <strong>convención</strong> sobre la posición exacta de ese capital. Existen dos convenciones: de <strong>fin de período</strong> y de <strong>comienzo de período</strong>. En este manual utilizaremos la convención de <strong>fin de período</strong>, la más habitual en el análisis financiero de proyectos.</p>
+<p>El instrumento gráfico que sintetiza un proyecto de inversión es el <strong>diagrama de flujo de fondos</strong> (o flujo de caja): una línea de tiempo en la que se representan los egresos (hacia abajo, negativos) y los ingresos (hacia arriba, positivos) en cada período del horizonte de evaluación. La inversión inicial se ubica habitualmente en el período 0; los ingresos netos, en los períodos sucesivos; y un eventual <strong>valor de salvamento</strong> o recupero, al final de la vida útil.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Diagrama de flujo de fondos (plotly)</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># DIAGRAMA DE FLUJO DE FONDOS</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Paquete: plotly | Tipo: barras verticales (egreso/ingreso)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso: Proyecto de saneamiento hídrico a 10 años</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Elaboración propia para fines pedagógicos</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>periodos <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>flujos   <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="dv">500000</span>,                                  <span class="co"># Período 0: inversión inicial</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>   <span class="dv">82000</span>, <span class="dv">85000</span>, <span class="dv">88000</span>, <span class="dv">84000</span>, <span class="dv">90000</span>,       <span class="co"># Períodos 1-5: ingresos netos</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>   <span class="dv">87000</span>, <span class="dv">86000</span>, <span class="dv">89000</span>, <span class="dv">83000</span>,              <span class="co"># Períodos 6-9: ingresos netos</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>   <span class="dv">120000</span>                                   <span class="co"># Período 10: ingreso + valor de salvamento</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>df_flujo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">periodo =</span> periodos,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">flujo   =</span> flujos,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">color   =</span> <span class="fu">ifelse</span>(flujos <span class="sc">&lt;</span> <span class="dv">0</span>, col_rojo, col_verde),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">etiqueta =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    flujos <span class="sc">&lt;</span> <span class="dv">0</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Inversión inicial"</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(periodos <span class="sc">==</span> <span class="dv">10</span>, <span class="st">"Ingreso + valor de salvamento"</span>, <span class="st">"Ingreso neto anual"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>fig_flujo <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(df_flujo) <span class="sc">%&gt;%</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_bars</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span>periodo, <span class="at">y =</span> <span class="sc">~</span>flujo,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="sc">~</span>color, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">width =</span> <span class="dv">1</span>)),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">hovertext =</span> <span class="sc">~</span><span class="fu">paste0</span>(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;b&gt;Año "</span>, periodo, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      etiqueta, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Flujo: $"</span>, <span class="fu">formatC</span>(flujo, <span class="at">format =</span> <span class="st">"d"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">hoverinfo =</span> <span class="st">"text"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">showlegend =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Línea de referencia en y = 0</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_segments</span>(</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">-</span><span class="fl">0.6</span>, <span class="at">xend =</span> <span class="fl">10.6</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#1e293b"</span>, <span class="at">dash =</span> <span class="st">"dash"</span>, <span class="at">width =</span> <span class="fl">1.5</span>),</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">showlegend =</span> <span class="cn">FALSE</span>, <span class="at">hoverinfo =</span> <span class="st">"none"</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="st">"&lt;b&gt;Diagrama de Flujo de Fondos — Proyecto de Saneamiento Hídrico&lt;/b&gt;&lt;br&gt;&lt;sup&gt;Inversión inicial, ingresos netos anuales y valor de salvamento&lt;/sup&gt;"</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.04</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Período (años)&lt;/b&gt;"</span>, <span class="at">dtick =</span> <span class="dv">1</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>                 <span class="at">zeroline =</span> <span class="cn">FALSE</span>, <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Valor ($)&lt;/b&gt;"</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                 <span class="at">zeroline =</span> <span class="cn">FALSE</span>, <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tickformat =</span> <span class="st">",.0f"</span>),</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#fafaf8"</span>, <span class="at">plot_bgcolor =</span> <span class="st">"#fafaf8"</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">75</span>, <span class="at">b =</span> <span class="dv">55</span>, <span class="at">l =</span> <span class="dv">75</span>, <span class="at">r =</span> <span class="dv">25</span>),</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">420</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>fig_flujo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-flujo-fondos" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flujo-fondos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-7c72649e4c33f34ffce3" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-7c72649e4c33f34ffce3">{"x":{"visdat":{"2c02b711995":["function () ","plotlyVisDat"]},"cur_data":"2c02b711995","attrs":{"2c02b711995":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"bar","marker":{"color":{},"line":{"color":"white","width":1}},"hovertext":{},"hoverinfo":"text","showlegend":false,"inherit":true},"2c02b711995.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":-0.59999999999999998,"y":0,"xend":10.6,"yend":0,"type":"scatter","mode":"lines","line":{"color":"#1e293b","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":"none","inherit":true}},"layout":{"height":420,"margin":{"b":55,"l":75,"t":75,"r":25},"title":{"text":"<b>Diagrama de Flujo de Fondos — Proyecto de Saneamiento Hídrico<\/b><br><sup>Inversión inicial, ingresos netos anuales y valor de salvamento<\/sup>","font":{"size":15,"color":"#1e3a5f"},"x":0.040000000000000001},"xaxis":{"domain":[0,1],"automargin":true,"title":"<b>Período (años)<\/b>","dtick":1,"zeroline":false,"gridcolor":"#f1f5f9"},"yaxis":{"domain":[0,1],"automargin":true,"title":"<b>Valor ($)<\/b>","zeroline":false,"gridcolor":"#f1f5f9","tickformat":",.0f"},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-500000,82000,85000,88000,84000,90000,87000,86000,89000,83000,120000],"type":"bar","marker":{"color":["#dc2626","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a"],"line":{"color":"white","width":1}},"hovertext":["<b>Año 0<\/b><br>Inversión inicial<br>Flujo: $-500.000","<b>Año 1<\/b><br>Ingreso neto anual<br>Flujo: $82.000","<b>Año 2<\/b><br>Ingreso neto anual<br>Flujo: $85.000","<b>Año 3<\/b><br>Ingreso neto anual<br>Flujo: $88.000","<b>Año 4<\/b><br>Ingreso neto anual<br>Flujo: $84.000","<b>Año 5<\/b><br>Ingreso neto anual<br>Flujo: $90.000","<b>Año 6<\/b><br>Ingreso neto anual<br>Flujo: $87.000","<b>Año 7<\/b><br>Ingreso neto anual<br>Flujo: $86.000","<b>Año 8<\/b><br>Ingreso neto anual<br>Flujo: $89.000","<b>Año 9<\/b><br>Ingreso neto anual<br>Flujo: $83.000","<b>Año 10<\/b><br>Ingreso + valor de salvamento<br>Flujo: $120.000"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text"],"showlegend":false,"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-0.59999999999999998,10.6],"y":[0,0],"type":"scatter","mode":"lines","line":{"color":"#1e293b","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flujo-fondos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.1: Diagrama de flujo de fondos de un proyecto de saneamiento hídrico a 10 años: inversión inicial en el período 0, ingresos netos anuales y recupero (valor de salvamento) en el período final. Elaboración propia para fines pedagógicos.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Este diagrama es el punto de partida de toda evaluación: sobre él aplicaremos las equivalencias financieras para “trasladar” cada flujo a un mismo momento del tiempo y poder así sumarlos en términos comparables.</p>
+<hr>
+</section>
+<section id="sec-equiv-sumas" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="sec-equiv-sumas"><span class="header-section-number">8.4</span> Equivalencias entre sumas presentes y futuras</h2>
+<p>El principal inconveniente de las medidas de rentabilidad que tienen en cuenta el tiempo radica en cómo lograr que dos sumas de dinero ubicadas en momentos diferentes puedan ser comparadas, sumadas, restadas o, en definitiva, operadas matemáticamente. Las sumas de dinero sufren transformaciones en el tiempo: son afectadas por un factor conocido como la <strong>tasa de interés</strong>.</p>
+<p>Las dos preguntas básicas que dan origen a las dos equivalencias principales son:</p>
+<ol type="1">
+<li>¿A cuánto representa una suma de dinero del presente, transcurridos <span class="math inline">\(n\)</span> años? → <strong>Capitalización</strong></li>
+<li>¿Cuál es el valor en el presente de una suma de dinero ubicada en el año <span class="math inline">\(n\)</span>? → <strong>Actualización (descuento)</strong></li>
+</ol>
+<section id="sec-capitalizacion" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="sec-capitalizacion"><span class="header-section-number">8.4.1</span> Capitalización: del presente al futuro</h3>
+<p>La <strong>capitalización</strong> es la suma de dinero que obtendré al final de un período, a una tasa de interés dada. Partiendo de un valor presente <span class="math inline">\(P\)</span> (o <span class="math inline">\(VP\)</span>) y una tasa de interés compuesta <span class="math inline">\(i\)</span> por período, al cabo de un año tendremos:</p>
+<p><span class="math display">\[F_1 = P \,(1 + i)\]</span></p>
+<p>En el segundo año, si no retiro ni el capital ni los intereses ganados, se calculan intereses <strong>sobre los intereses</strong> (interés compuesto):</p>
+<p><span class="math display">\[F_2 = F_1\,(1 + i) = P\,(1 + i)^2\]</span></p>
+<p>Generalizando para <span class="math inline">\(n\)</span> períodos obtenemos la <strong>fórmula del valor futuro</strong>:</p>
+<p><span class="math display">\[\boxed{\;VF = VP \cdot (1 + i)^{n}\;}\]</span></p>
+</section>
+<section id="sec-actualizacion" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="sec-actualizacion"><span class="header-section-number">8.4.2</span> Actualización: del futuro al presente</h3>
+<p>El proceso inverso —la <strong>actualización</strong> o <strong>descuento</strong>— responde a la segunda pregunta: a cuánto equivale hoy una suma futura. Por simple despeje algebraico de la fórmula anterior:</p>
+<p><span class="math display">\[\boxed{\;VP = \frac{VF}{(1 + i)^{n}} = VF \cdot (1 + i)^{-n}\;}\]</span></p>
+<p>El factor <span class="math inline">\((1+i)^{-n}\)</span> se denomina <strong>factor de actualización</strong> o <strong>factor de descuento</strong>. A medida que aumentan la tasa <span class="math inline">\(i\)</span> y el horizonte <span class="math inline">\(n\)</span>, el valor presente de una misma suma futura <strong>disminuye</strong>: el dinero futuro “vale menos” hoy.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ejemplo práctico</span>Interés simple vs.&nbsp;interés compuesto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si en el procedimiento <strong>no</strong> incluyéramos los intereses sobre los intereses, estaríamos ante <strong>interés simple</strong>, en el cual el valor futuro crece linealmente: <span class="math inline">\(VF = VP\,(1 + i \cdot n)\)</span>. En cambio, en el <strong>interés compuesto</strong> los intereses se acumulan al capital y generan a su vez nuevos intereses, produciendo un crecimiento <strong>exponencial</strong>. A los fines del análisis y evaluación de proyectos, las equivalencias financieras se determinan habitualmente mediante <strong>tasas de interés compuestas</strong>.</p>
+</div>
+</div>
+<p>El siguiente gráfico interactivo muestra cómo el <strong>valor presente</strong> de $100.000 futuros cae a medida que aumentan el plazo y la tasa de descuento. Mediante el menú desplegable puede alternarse hacia la vista de <strong>valor futuro</strong> (capitalización) de un mismo monto inicial.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Calculadora de equivalencia financiera (plotly)</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CALCULADORA DE EQUIVALENCIA FINANCIERA</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Paquete: plotly con updatemenus (VP / VF)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># VP = VF / (1+i)^n   |   VF = VP * (1+i)^n</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Elaboración propia para fines pedagógicos</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tasas   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.08</span>, <span class="fl">0.10</span>, <span class="fl">0.12</span>, <span class="fl">0.15</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>anios   <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>monto   <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Paleta secuencial azul → verde para las 5 tasas</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>paleta  <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(col_azul, col_celeste, col_verde))(<span class="fu">length</span>(tasas))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>fig_eq <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>()</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Trazas de VALOR PRESENTE (visibles por defecto)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="fu">seq_along</span>(tasas)) {</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  i  <span class="ot">&lt;-</span> tasas[k]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  vp <span class="ot">&lt;-</span> monto <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> i)<span class="sc">^</span>anios</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  fig_eq <span class="ot">&lt;-</span> fig_eq <span class="sc">%&gt;%</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_trace</span>(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> anios, <span class="at">y =</span> vp,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="fu">paste0</span>(<span class="fu">format</span>(i <span class="sc">*</span> <span class="dv">100</span>, <span class="at">nsmall =</span> <span class="dv">0</span>), <span class="st">"%"</span>),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">line   =</span> <span class="fu">list</span>(<span class="at">color =</span> paleta[k], <span class="at">width =</span> <span class="fl">2.5</span>),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">color =</span> paleta[k], <span class="at">size =</span> <span class="dv">5</span>),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">hovertext =</span> <span class="fu">paste0</span>(</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Tasa "</span>, i <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"% — Año "</span>, anios, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"VP = $"</span>, <span class="fu">formatC</span>(<span class="fu">round</span>(vp), <span class="at">format =</span> <span class="st">"d"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">hoverinfo =</span> <span class="st">"text"</span>,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">visible =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Trazas de VALOR FUTURO (ocultas por defecto)</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="fu">seq_along</span>(tasas)) {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  i  <span class="ot">&lt;-</span> tasas[k]</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  vf <span class="ot">&lt;-</span> monto <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> i)<span class="sc">^</span>anios</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  fig_eq <span class="ot">&lt;-</span> fig_eq <span class="sc">%&gt;%</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_trace</span>(</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> anios, <span class="at">y =</span> vf,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="fu">paste0</span>(<span class="fu">format</span>(i <span class="sc">*</span> <span class="dv">100</span>, <span class="at">nsmall =</span> <span class="dv">0</span>), <span class="st">"%"</span>),</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">line   =</span> <span class="fu">list</span>(<span class="at">color =</span> paleta[k], <span class="at">width =</span> <span class="fl">2.5</span>),</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">color =</span> paleta[k], <span class="at">size =</span> <span class="dv">5</span>),</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">hovertext =</span> <span class="fu">paste0</span>(</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Tasa "</span>, i <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"% — Año "</span>, anios, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="st">"VF = $"</span>, <span class="fu">formatC</span>(<span class="fu">round</span>(vf), <span class="at">format =</span> <span class="st">"d"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>      <span class="at">hoverinfo =</span> <span class="st">"text"</span>,</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      <span class="at">visible =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>n_t <span class="ot">&lt;-</span> <span class="fu">length</span>(tasas)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>fig_eq <span class="sc">%&gt;%</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="st">"&lt;b&gt;Valor Presente de $100.000 según tasa y plazo&lt;/b&gt;"</span>,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.04</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Horizonte temporal (años)&lt;/b&gt;"</span>, <span class="at">dtick =</span> <span class="dv">2</span>,</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>),</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Valor ($)&lt;/b&gt;"</span>, <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>,</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tickformat =</span> <span class="st">",.0f"</span>),</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Tasa&lt;/b&gt;"</span>),</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>                  <span class="at">orientation =</span> <span class="st">"v"</span>, <span class="at">x =</span> <span class="fl">1.02</span>, <span class="at">y =</span> <span class="fl">0.95</span>),</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#fafaf8"</span>, <span class="at">plot_bgcolor =</span> <span class="st">"#fafaf8"</span>,</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">90</span>, <span class="at">b =</span> <span class="dv">55</span>, <span class="at">l =</span> <span class="dv">80</span>, <span class="at">r =</span> <span class="dv">30</span>),</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">460</span>,</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">updatemenus =</span> <span class="fu">list</span>(</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"dropdown"</span>, <span class="at">direction =</span> <span class="st">"down"</span>,</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fl">0.0</span>, <span class="at">xanchor =</span> <span class="st">"left"</span>, <span class="at">y =</span> <span class="fl">1.16</span>, <span class="at">yanchor =</span> <span class="st">"top"</span>,</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>        <span class="at">bgcolor =</span> <span class="st">"#ffffff"</span>, <span class="at">bordercolor =</span> col_azul,</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>        <span class="at">buttons =</span> <span class="fu">list</span>(</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>          <span class="fu">list</span>(</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>            <span class="at">method =</span> <span class="st">"update"</span>,</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">"Valor Presente (descuento)"</span>,</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="at">visible =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, n_t), <span class="fu">rep</span>(<span class="cn">FALSE</span>, n_t))),</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Valor Presente de $100.000 según tasa y plazo&lt;/b&gt;"</span>,</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>                             <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.04</span>)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>          <span class="fu">list</span>(</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>            <span class="at">method =</span> <span class="st">"update"</span>,</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">"Valor Futuro (capitalización)"</span>,</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="at">visible =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">FALSE</span>, n_t), <span class="fu">rep</span>(<span class="cn">TRUE</span>, n_t))),</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Valor Futuro de $100.000 según tasa y plazo&lt;/b&gt;"</span>,</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>                             <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.04</span>)</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-equivalencia-vp" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-equivalencia-vp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-3798b3670a6badb510f5" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3798b3670a6badb510f5">{"x":{"visdat":{"2c025d74bad":["function () ","plotlyVisDat"]},"cur_data":"2c025d74bad","attrs":{"2c025d74bad":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[95238.095238095237,90702.947845804985,86383.759853147596,82270.247479188183,78352.616646845883,74621.539663662741,71068.133013012135,67683.936202868703,64460.891621779709,61391.325354075918,58467.928908643727,55683.741817755923,53032.135064529451,50506.79529955185,48101.709809096996,45811.15219914,43629.668761085712,41552.065486748303,39573.395701665038,37688.948287300038],"type":"scatter","mode":"lines+markers","name":"5%","line":{"color":"#1E3A5F","width":2.5},"marker":{"color":"#1E3A5F","size":5},"hovertext":["Tasa 5% — Año 1<br>VP = $95.238","Tasa 5% — Año 2<br>VP = $90.703","Tasa 5% — Año 3<br>VP = $86.384","Tasa 5% — Año 4<br>VP = $82.270","Tasa 5% — Año 5<br>VP = $78.353","Tasa 5% — Año 6<br>VP = $74.622","Tasa 5% — Año 7<br>VP = $71.068","Tasa 5% — Año 8<br>VP = $67.684","Tasa 5% — Año 9<br>VP = $64.461","Tasa 5% — Año 10<br>VP = $61.391","Tasa 5% — Año 11<br>VP = $58.468","Tasa 5% — Año 12<br>VP = $55.684","Tasa 5% — Año 13<br>VP = $53.032","Tasa 5% — Año 14<br>VP = $50.507","Tasa 5% — Año 15<br>VP = $48.102","Tasa 5% — Año 16<br>VP = $45.811","Tasa 5% — Año 17<br>VP = $43.630","Tasa 5% — Año 18<br>VP = $41.552","Tasa 5% — Año 19<br>VP = $39.573","Tasa 5% — Año 20<br>VP = $37.689"],"hoverinfo":"text","visible":true,"inherit":true},"2c025d74bad.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[92592.592592592584,85733.882030178313,79383.22410201696,73502.98527964532,68058.319703375295,63016.962688310457,58349.039526213375,54026.88845019757,50024.896713145892,46319.348808468414,42888.285933767052,39711.375864599118,36769.792467221399,34046.104136316113,31524.170496588991,29189.046756100917,27026.895144537881,25024.902911609151,23171.2063996381,21454.820740405645],"type":"scatter","mode":"lines+markers","name":"8%","line":{"color":"#136588","width":2.5},"marker":{"color":"#136588","size":5},"hovertext":["Tasa 8% — Año 1<br>VP = $92.593","Tasa 8% — Año 2<br>VP = $85.734","Tasa 8% — Año 3<br>VP = $79.383","Tasa 8% — Año 4<br>VP = $73.503","Tasa 8% — Año 5<br>VP = $68.058","Tasa 8% — Año 6<br>VP = $63.017","Tasa 8% — Año 7<br>VP = $58.349","Tasa 8% — Año 8<br>VP = $54.027","Tasa 8% — Año 9<br>VP = $50.025","Tasa 8% — Año 10<br>VP = $46.319","Tasa 8% — Año 11<br>VP = $42.888","Tasa 8% — Año 12<br>VP = $39.711","Tasa 8% — Año 13<br>VP = $36.770","Tasa 8% — Año 14<br>VP = $34.046","Tasa 8% — Año 15<br>VP = $31.524","Tasa 8% — Año 16<br>VP = $29.189","Tasa 8% — Año 17<br>VP = $27.027","Tasa 8% — Año 18<br>VP = $25.025","Tasa 8% — Año 19<br>VP = $23.171","Tasa 8% — Año 20<br>VP = $21.455"],"hoverinfo":"text","visible":true,"inherit":true},"2c025d74bad.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[90909.090909090897,82644.62809917354,75131.480090157755,68301.345536507055,62092.132305915497,56447.393005377715,51315.811823070646,46650.738020973309,42409.761837248458,38554.328942953143,35049.389948139222,31863.08177103565,28966.43797366877,26333.125430607972,23939.204936916336,21762.91357901485,19784.466890013497,17985.878990921359,16350.79908265578,14864.362802414345],"type":"scatter","mode":"lines+markers","name":"10%","line":{"color":"#0891B2","width":2.5},"marker":{"color":"#0891B2","size":5},"hovertext":["Tasa 10% — Año 1<br>VP = $90.909","Tasa 10% — Año 2<br>VP = $82.645","Tasa 10% — Año 3<br>VP = $75.131","Tasa 10% — Año 4<br>VP = $68.301","Tasa 10% — Año 5<br>VP = $62.092","Tasa 10% — Año 6<br>VP = $56.447","Tasa 10% — Año 7<br>VP = $51.316","Tasa 10% — Año 8<br>VP = $46.651","Tasa 10% — Año 9<br>VP = $42.410","Tasa 10% — Año 10<br>VP = $38.554","Tasa 10% — Año 11<br>VP = $35.049","Tasa 10% — Año 12<br>VP = $31.863","Tasa 10% — Año 13<br>VP = $28.966","Tasa 10% — Año 14<br>VP = $26.333","Tasa 10% — Año 15<br>VP = $23.939","Tasa 10% — Año 16<br>VP = $21.763","Tasa 10% — Año 17<br>VP = $19.784","Tasa 10% — Año 18<br>VP = $17.986","Tasa 10% — Año 19<br>VP = $16.351","Tasa 10% — Año 20<br>VP = $14.864"],"hoverinfo":"text","visible":true,"inherit":true},"2c025d74bad.3":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[89285.714285714275,79719.387755102027,71178.024781341082,63551.80784048311,56742.685571859918,50663.11211773206,45234.921533689332,40388.322797936904,36061.002498157941,32197.323659069592,28747.61040988356,25667.50929453889,22917.41901298115,20461.98126159031,18269.62612641992,16312.166184303496,14564.434093128122,13003.959011721536,11610.677689037084,10366.676508068824],"type":"scatter","mode":"lines+markers","name":"12%","line":{"color":"#0F9A7E","width":2.5},"marker":{"color":"#0F9A7E","size":5},"hovertext":["Tasa 12% — Año 1<br>VP = $89.286","Tasa 12% — Año 2<br>VP = $79.719","Tasa 12% — Año 3<br>VP = $71.178","Tasa 12% — Año 4<br>VP = $63.552","Tasa 12% — Año 5<br>VP = $56.743","Tasa 12% — Año 6<br>VP = $50.663","Tasa 12% — Año 7<br>VP = $45.235","Tasa 12% — Año 8<br>VP = $40.388","Tasa 12% — Año 9<br>VP = $36.061","Tasa 12% — Año 10<br>VP = $32.197","Tasa 12% — Año 11<br>VP = $28.748","Tasa 12% — Año 12<br>VP = $25.668","Tasa 12% — Año 13<br>VP = $22.917","Tasa 12% — Año 14<br>VP = $20.462","Tasa 12% — Año 15<br>VP = $18.270","Tasa 12% — Año 16<br>VP = $16.312","Tasa 12% — Año 17<br>VP = $14.564","Tasa 12% — Año 18<br>VP = $13.004","Tasa 12% — Año 19<br>VP = $11.611","Tasa 12% — Año 20<br>VP = $10.367"],"hoverinfo":"text","visible":true,"inherit":true},"2c025d74bad.4":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[86956.521739130447,75614.366729678644,65751.623243198832,57175.324559303335,49717.673529828986,43232.759591155649,37593.70399230926,32690.177384616753,28426.241204014568,24718.470612186586,21494.322271466597,18690.715018666608,16252.795668405748,14132.865798613693,12289.448520533648,10686.476974377087,9292.5886733713796,8080.5118898881574,7026.5320781636156,6110.0278940553171],"type":"scatter","mode":"lines+markers","name":"15%","line":{"color":"#16A34A","width":2.5},"marker":{"color":"#16A34A","size":5},"hovertext":["Tasa 15% — Año 1<br>VP = $86.957","Tasa 15% — Año 2<br>VP = $75.614","Tasa 15% — Año 3<br>VP = $65.752","Tasa 15% — Año 4<br>VP = $57.175","Tasa 15% — Año 5<br>VP = $49.718","Tasa 15% — Año 6<br>VP = $43.233","Tasa 15% — Año 7<br>VP = $37.594","Tasa 15% — Año 8<br>VP = $32.690","Tasa 15% — Año 9<br>VP = $28.426","Tasa 15% — Año 10<br>VP = $24.718","Tasa 15% — Año 11<br>VP = $21.494","Tasa 15% — Año 12<br>VP = $18.691","Tasa 15% — Año 13<br>VP = $16.253","Tasa 15% — Año 14<br>VP = $14.133","Tasa 15% — Año 15<br>VP = $12.289","Tasa 15% — Año 16<br>VP = $10.686","Tasa 15% — Año 17<br>VP = $9.293","Tasa 15% — Año 18<br>VP = $8.081","Tasa 15% — Año 19<br>VP = $7.027","Tasa 15% — Año 20<br>VP = $6.110"],"hoverinfo":"text","visible":true,"inherit":true},"2c025d74bad.5":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[105000,110250,115762.50000000001,121550.62500000003,127628.15625000003,134009.56406250005,140710.04226562506,147745.54437890631,155132.82159785161,162889.46267774419,171033.93581163141,179585.63260221301,188564.91423232367,197993.15994393986,207892.81794113686,218287.45883819371,229201.83178010341,240661.92336910855,252695.01953756405,265329.77051444224],"type":"scatter","mode":"lines+markers","name":"5%","line":{"color":"#1E3A5F","width":2.5},"marker":{"color":"#1E3A5F","size":5},"hovertext":["Tasa 5% — Año 1<br>VF = $105.000","Tasa 5% — Año 2<br>VF = $110.250","Tasa 5% — Año 3<br>VF = $115.763","Tasa 5% — Año 4<br>VF = $121.551","Tasa 5% — Año 5<br>VF = $127.628","Tasa 5% — Año 6<br>VF = $134.010","Tasa 5% — Año 7<br>VF = $140.710","Tasa 5% — Año 8<br>VF = $147.746","Tasa 5% — Año 9<br>VF = $155.133","Tasa 5% — Año 10<br>VF = $162.889","Tasa 5% — Año 11<br>VF = $171.034","Tasa 5% — Año 12<br>VF = $179.586","Tasa 5% — Año 13<br>VF = $188.565","Tasa 5% — Año 14<br>VF = $197.993","Tasa 5% — Año 15<br>VF = $207.893","Tasa 5% — Año 16<br>VF = $218.287","Tasa 5% — Año 17<br>VF = $229.202","Tasa 5% — Año 18<br>VF = $240.662","Tasa 5% — Año 19<br>VF = $252.695","Tasa 5% — Año 20<br>VF = $265.330"],"hoverinfo":"text","visible":false,"inherit":true},"2c025d74bad.6":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[108000,116640.00000000001,125971.20000000001,136048.89600000004,146932.80768000006,158687.43229440006,171382.42687795209,185093.02102818826,199900.46271044333,215892.49972727883,233163.89970546111,251817.01168189803,271962.37261644989,293719.3624257659,317216.9114198272,342594.26433341339,370001.80548008654,399601.94991849345,431570.10591197293,466095.71438493085],"type":"scatter","mode":"lines+markers","name":"8%","line":{"color":"#136588","width":2.5},"marker":{"color":"#136588","size":5},"hovertext":["Tasa 8% — Año 1<br>VF = $108.000","Tasa 8% — Año 2<br>VF = $116.640","Tasa 8% — Año 3<br>VF = $125.971","Tasa 8% — Año 4<br>VF = $136.049","Tasa 8% — Año 5<br>VF = $146.933","Tasa 8% — Año 6<br>VF = $158.687","Tasa 8% — Año 7<br>VF = $171.382","Tasa 8% — Año 8<br>VF = $185.093","Tasa 8% — Año 9<br>VF = $199.900","Tasa 8% — Año 10<br>VF = $215.892","Tasa 8% — Año 11<br>VF = $233.164","Tasa 8% — Año 12<br>VF = $251.817","Tasa 8% — Año 13<br>VF = $271.962","Tasa 8% — Año 14<br>VF = $293.719","Tasa 8% — Año 15<br>VF = $317.217","Tasa 8% — Año 16<br>VF = $342.594","Tasa 8% — Año 17<br>VF = $370.002","Tasa 8% — Año 18<br>VF = $399.602","Tasa 8% — Año 19<br>VF = $431.570","Tasa 8% — Año 20<br>VF = $466.096"],"hoverinfo":"text","visible":false,"inherit":true},"2c025d74bad.7":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[110000.00000000001,121000.00000000001,133100.00000000003,146410.00000000003,161051.00000000006,177156.10000000009,194871.71000000011,214358.88100000017,235794.76910000018,259374.24601000024,285311.67061100027,313842.83767210029,345227.12143931037,379749.83358324145,417724.8169415656,459497.2986357222,505447.02849929448,555991.73134922399,611590.90448414639,672749.99493256107],"type":"scatter","mode":"lines+markers","name":"10%","line":{"color":"#0891B2","width":2.5},"marker":{"color":"#0891B2","size":5},"hovertext":["Tasa 10% — Año 1<br>VF = $110.000","Tasa 10% — Año 2<br>VF = $121.000","Tasa 10% — Año 3<br>VF = $133.100","Tasa 10% — Año 4<br>VF = $146.410","Tasa 10% — Año 5<br>VF = $161.051","Tasa 10% — Año 6<br>VF = $177.156","Tasa 10% — Año 7<br>VF = $194.872","Tasa 10% — Año 8<br>VF = $214.359","Tasa 10% — Año 9<br>VF = $235.795","Tasa 10% — Año 10<br>VF = $259.374","Tasa 10% — Año 11<br>VF = $285.312","Tasa 10% — Año 12<br>VF = $313.843","Tasa 10% — Año 13<br>VF = $345.227","Tasa 10% — Año 14<br>VF = $379.750","Tasa 10% — Año 15<br>VF = $417.725","Tasa 10% — Año 16<br>VF = $459.497","Tasa 10% — Año 17<br>VF = $505.447","Tasa 10% — Año 18<br>VF = $555.992","Tasa 10% — Año 19<br>VF = $611.591","Tasa 10% — Año 20<br>VF = $672.750"],"hoverinfo":"text","visible":false,"inherit":true},"2c025d74bad.8":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[112000.00000000001,125440.00000000001,140492.80000000005,157351.93600000005,176234.16832000008,197382.26851840012,221068.14074060816,247596.31762948114,277307.87574501894,310584.8208344212,347854.9993345518,389597.59925469809,436349.3111652619,488711.22850509331,547356.57592570456,613039.36503678921,686604.08884120395,768996.57950214855,861276.16904240637,964629.30932749517],"type":"scatter","mode":"lines+markers","name":"12%","line":{"color":"#0F9A7E","width":2.5},"marker":{"color":"#0F9A7E","size":5},"hovertext":["Tasa 12% — Año 1<br>VF = $112.000","Tasa 12% — Año 2<br>VF = $125.440","Tasa 12% — Año 3<br>VF = $140.493","Tasa 12% — Año 4<br>VF = $157.352","Tasa 12% — Año 5<br>VF = $176.234","Tasa 12% — Año 6<br>VF = $197.382","Tasa 12% — Año 7<br>VF = $221.068","Tasa 12% — Año 8<br>VF = $247.596","Tasa 12% — Año 9<br>VF = $277.308","Tasa 12% — Año 10<br>VF = $310.585","Tasa 12% — Año 11<br>VF = $347.855","Tasa 12% — Año 12<br>VF = $389.598","Tasa 12% — Año 13<br>VF = $436.349","Tasa 12% — Año 14<br>VF = $488.711","Tasa 12% — Año 15<br>VF = $547.357","Tasa 12% — Año 16<br>VF = $613.039","Tasa 12% — Año 17<br>VF = $686.604","Tasa 12% — Año 18<br>VF = $768.997","Tasa 12% — Año 19<br>VF = $861.276","Tasa 12% — Año 20<br>VF = $964.629"],"hoverinfo":"text","visible":false,"inherit":true},"2c025d74bad.9":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[114999.99999999999,132249.99999999997,152087.49999999997,174900.62499999994,201135.71874999994,231306.07656249992,266001.98804687487,305902.28625390609,351787.62919199193,404555.77357079065,465239.13960640924,535025.01054737065,615278.76212947618,707570.57644889748,813706.16291623213,935762.08735366678,1076126.4004567168,1237545.3605252241,1423177.1646040077,1636653.7392946088],"type":"scatter","mode":"lines+markers","name":"15%","line":{"color":"#16A34A","width":2.5},"marker":{"color":"#16A34A","size":5},"hovertext":["Tasa 15% — Año 1<br>VF = $115.000","Tasa 15% — Año 2<br>VF = $132.250","Tasa 15% — Año 3<br>VF = $152.087","Tasa 15% — Año 4<br>VF = $174.901","Tasa 15% — Año 5<br>VF = $201.136","Tasa 15% — Año 6<br>VF = $231.306","Tasa 15% — Año 7<br>VF = $266.002","Tasa 15% — Año 8<br>VF = $305.902","Tasa 15% — Año 9<br>VF = $351.788","Tasa 15% — Año 10<br>VF = $404.556","Tasa 15% — Año 11<br>VF = $465.239","Tasa 15% — Año 12<br>VF = $535.025","Tasa 15% — Año 13<br>VF = $615.279","Tasa 15% — Año 14<br>VF = $707.571","Tasa 15% — Año 15<br>VF = $813.706","Tasa 15% — Año 16<br>VF = $935.762","Tasa 15% — Año 17<br>VF = $1.076.126","Tasa 15% — Año 18<br>VF = $1.237.545","Tasa 15% — Año 19<br>VF = $1.423.177","Tasa 15% — Año 20<br>VF = $1.636.654"],"hoverinfo":"text","visible":false,"inherit":true}},"layout":{"height":460,"margin":{"b":55,"l":80,"t":90,"r":30},"title":{"text":"<b>Valor Presente de $100.000 según tasa y plazo<\/b>","font":{"size":15,"color":"#1e3a5f"},"x":0.040000000000000001},"xaxis":{"domain":[0,1],"automargin":true,"title":"<b>Horizonte temporal (años)<\/b>","dtick":2,"gridcolor":"#f1f5f9"},"yaxis":{"domain":[0,1],"automargin":true,"title":"<b>Valor ($)<\/b>","gridcolor":"#f1f5f9","tickformat":",.0f"},"legend":{"title":{"text":"<b>Tasa<\/b>"},"orientation":"v","x":1.02,"y":0.94999999999999996},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","updatemenus":[{"type":"dropdown","direction":"down","x":0,"xanchor":"left","y":1.1599999999999999,"yanchor":"top","bgcolor":"#ffffff","bordercolor":"#1e3a5f","buttons":[{"method":"update","label":"Valor Presente (descuento)","args":[{"visible":[true,true,true,true,true,false,false,false,false,false]},{"title":{"text":"<b>Valor Presente de $100.000 según tasa y plazo<\/b>","font":{"size":15,"color":"#1e3a5f"},"x":0.040000000000000001}}]},{"method":"update","label":"Valor Futuro (capitalización)","args":[{"visible":[false,false,false,false,false,true,true,true,true,true]},{"title":{"text":"<b>Valor Futuro de $100.000 según tasa y plazo<\/b>","font":{"size":15,"color":"#1e3a5f"},"x":0.040000000000000001}}]}]}],"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[95238.095238095237,90702.947845804985,86383.759853147596,82270.247479188183,78352.616646845883,74621.539663662741,71068.133013012135,67683.936202868703,64460.891621779709,61391.325354075918,58467.928908643727,55683.741817755923,53032.135064529451,50506.79529955185,48101.709809096996,45811.15219914,43629.668761085712,41552.065486748303,39573.395701665038,37688.948287300038],"type":"scatter","mode":"lines+markers","name":"5%","line":{"color":"#1E3A5F","width":2.5},"marker":{"color":"#1E3A5F","size":5,"line":{"color":"rgba(31,119,180,1)"}},"hovertext":["Tasa 5% — Año 1<br>VP = $95.238","Tasa 5% — Año 2<br>VP = $90.703","Tasa 5% — Año 3<br>VP = $86.384","Tasa 5% — Año 4<br>VP = $82.270","Tasa 5% — Año 5<br>VP = $78.353","Tasa 5% — Año 6<br>VP = $74.622","Tasa 5% — Año 7<br>VP = $71.068","Tasa 5% — Año 8<br>VP = $67.684","Tasa 5% — Año 9<br>VP = $64.461","Tasa 5% — Año 10<br>VP = $61.391","Tasa 5% — Año 11<br>VP = $58.468","Tasa 5% — Año 12<br>VP = $55.684","Tasa 5% — Año 13<br>VP = $53.032","Tasa 5% — Año 14<br>VP = $50.507","Tasa 5% — Año 15<br>VP = $48.102","Tasa 5% — Año 16<br>VP = $45.811","Tasa 5% — Año 17<br>VP = $43.630","Tasa 5% — Año 18<br>VP = $41.552","Tasa 5% — Año 19<br>VP = $39.573","Tasa 5% — Año 20<br>VP = $37.689"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":true,"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[92592.592592592584,85733.882030178313,79383.22410201696,73502.98527964532,68058.319703375295,63016.962688310457,58349.039526213375,54026.88845019757,50024.896713145892,46319.348808468414,42888.285933767052,39711.375864599118,36769.792467221399,34046.104136316113,31524.170496588991,29189.046756100917,27026.895144537881,25024.902911609151,23171.2063996381,21454.820740405645],"type":"scatter","mode":"lines+markers","name":"8%","line":{"color":"#136588","width":2.5},"marker":{"color":"#136588","size":5,"line":{"color":"rgba(255,127,14,1)"}},"hovertext":["Tasa 8% — Año 1<br>VP = $92.593","Tasa 8% — Año 2<br>VP = $85.734","Tasa 8% — Año 3<br>VP = $79.383","Tasa 8% — Año 4<br>VP = $73.503","Tasa 8% — Año 5<br>VP = $68.058","Tasa 8% — Año 6<br>VP = $63.017","Tasa 8% — Año 7<br>VP = $58.349","Tasa 8% — Año 8<br>VP = $54.027","Tasa 8% — Año 9<br>VP = $50.025","Tasa 8% — Año 10<br>VP = $46.319","Tasa 8% — Año 11<br>VP = $42.888","Tasa 8% — Año 12<br>VP = $39.711","Tasa 8% — Año 13<br>VP = $36.770","Tasa 8% — Año 14<br>VP = $34.046","Tasa 8% — Año 15<br>VP = $31.524","Tasa 8% — Año 16<br>VP = $29.189","Tasa 8% — Año 17<br>VP = $27.027","Tasa 8% — Año 18<br>VP = $25.025","Tasa 8% — Año 19<br>VP = $23.171","Tasa 8% — Año 20<br>VP = $21.455"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":true,"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[90909.090909090897,82644.62809917354,75131.480090157755,68301.345536507055,62092.132305915497,56447.393005377715,51315.811823070646,46650.738020973309,42409.761837248458,38554.328942953143,35049.389948139222,31863.08177103565,28966.43797366877,26333.125430607972,23939.204936916336,21762.91357901485,19784.466890013497,17985.878990921359,16350.79908265578,14864.362802414345],"type":"scatter","mode":"lines+markers","name":"10%","line":{"color":"#0891B2","width":2.5},"marker":{"color":"#0891B2","size":5,"line":{"color":"rgba(44,160,44,1)"}},"hovertext":["Tasa 10% — Año 1<br>VP = $90.909","Tasa 10% — Año 2<br>VP = $82.645","Tasa 10% — Año 3<br>VP = $75.131","Tasa 10% — Año 4<br>VP = $68.301","Tasa 10% — Año 5<br>VP = $62.092","Tasa 10% — Año 6<br>VP = $56.447","Tasa 10% — Año 7<br>VP = $51.316","Tasa 10% — Año 8<br>VP = $46.651","Tasa 10% — Año 9<br>VP = $42.410","Tasa 10% — Año 10<br>VP = $38.554","Tasa 10% — Año 11<br>VP = $35.049","Tasa 10% — Año 12<br>VP = $31.863","Tasa 10% — Año 13<br>VP = $28.966","Tasa 10% — Año 14<br>VP = $26.333","Tasa 10% — Año 15<br>VP = $23.939","Tasa 10% — Año 16<br>VP = $21.763","Tasa 10% — Año 17<br>VP = $19.784","Tasa 10% — Año 18<br>VP = $17.986","Tasa 10% — Año 19<br>VP = $16.351","Tasa 10% — Año 20<br>VP = $14.864"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":true,"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[89285.714285714275,79719.387755102027,71178.024781341082,63551.80784048311,56742.685571859918,50663.11211773206,45234.921533689332,40388.322797936904,36061.002498157941,32197.323659069592,28747.61040988356,25667.50929453889,22917.41901298115,20461.98126159031,18269.62612641992,16312.166184303496,14564.434093128122,13003.959011721536,11610.677689037084,10366.676508068824],"type":"scatter","mode":"lines+markers","name":"12%","line":{"color":"#0F9A7E","width":2.5},"marker":{"color":"#0F9A7E","size":5,"line":{"color":"rgba(214,39,40,1)"}},"hovertext":["Tasa 12% — Año 1<br>VP = $89.286","Tasa 12% — Año 2<br>VP = $79.719","Tasa 12% — Año 3<br>VP = $71.178","Tasa 12% — Año 4<br>VP = $63.552","Tasa 12% — Año 5<br>VP = $56.743","Tasa 12% — Año 6<br>VP = $50.663","Tasa 12% — Año 7<br>VP = $45.235","Tasa 12% — Año 8<br>VP = $40.388","Tasa 12% — Año 9<br>VP = $36.061","Tasa 12% — Año 10<br>VP = $32.197","Tasa 12% — Año 11<br>VP = $28.748","Tasa 12% — Año 12<br>VP = $25.668","Tasa 12% — Año 13<br>VP = $22.917","Tasa 12% — Año 14<br>VP = $20.462","Tasa 12% — Año 15<br>VP = $18.270","Tasa 12% — Año 16<br>VP = $16.312","Tasa 12% — Año 17<br>VP = $14.564","Tasa 12% — Año 18<br>VP = $13.004","Tasa 12% — Año 19<br>VP = $11.611","Tasa 12% — Año 20<br>VP = $10.367"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":true,"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[86956.521739130447,75614.366729678644,65751.623243198832,57175.324559303335,49717.673529828986,43232.759591155649,37593.70399230926,32690.177384616753,28426.241204014568,24718.470612186586,21494.322271466597,18690.715018666608,16252.795668405748,14132.865798613693,12289.448520533648,10686.476974377087,9292.5886733713796,8080.5118898881574,7026.5320781636156,6110.0278940553171],"type":"scatter","mode":"lines+markers","name":"15%","line":{"color":"#16A34A","width":2.5},"marker":{"color":"#16A34A","size":5,"line":{"color":"rgba(148,103,189,1)"}},"hovertext":["Tasa 15% — Año 1<br>VP = $86.957","Tasa 15% — Año 2<br>VP = $75.614","Tasa 15% — Año 3<br>VP = $65.752","Tasa 15% — Año 4<br>VP = $57.175","Tasa 15% — Año 5<br>VP = $49.718","Tasa 15% — Año 6<br>VP = $43.233","Tasa 15% — Año 7<br>VP = $37.594","Tasa 15% — Año 8<br>VP = $32.690","Tasa 15% — Año 9<br>VP = $28.426","Tasa 15% — Año 10<br>VP = $24.718","Tasa 15% — Año 11<br>VP = $21.494","Tasa 15% — Año 12<br>VP = $18.691","Tasa 15% — Año 13<br>VP = $16.253","Tasa 15% — Año 14<br>VP = $14.133","Tasa 15% — Año 15<br>VP = $12.289","Tasa 15% — Año 16<br>VP = $10.686","Tasa 15% — Año 17<br>VP = $9.293","Tasa 15% — Año 18<br>VP = $8.081","Tasa 15% — Año 19<br>VP = $7.027","Tasa 15% — Año 20<br>VP = $6.110"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":true,"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[105000,110250,115762.50000000001,121550.62500000003,127628.15625000003,134009.56406250005,140710.04226562506,147745.54437890631,155132.82159785161,162889.46267774419,171033.93581163141,179585.63260221301,188564.91423232367,197993.15994393986,207892.81794113686,218287.45883819371,229201.83178010341,240661.92336910855,252695.01953756405,265329.77051444224],"type":"scatter","mode":"lines+markers","name":"5%","line":{"color":"#1E3A5F","width":2.5},"marker":{"color":"#1E3A5F","size":5,"line":{"color":"rgba(140,86,75,1)"}},"hovertext":["Tasa 5% — Año 1<br>VF = $105.000","Tasa 5% — Año 2<br>VF = $110.250","Tasa 5% — Año 3<br>VF = $115.763","Tasa 5% — Año 4<br>VF = $121.551","Tasa 5% — Año 5<br>VF = $127.628","Tasa 5% — Año 6<br>VF = $134.010","Tasa 5% — Año 7<br>VF = $140.710","Tasa 5% — Año 8<br>VF = $147.746","Tasa 5% — Año 9<br>VF = $155.133","Tasa 5% — Año 10<br>VF = $162.889","Tasa 5% — Año 11<br>VF = $171.034","Tasa 5% — Año 12<br>VF = $179.586","Tasa 5% — Año 13<br>VF = $188.565","Tasa 5% — Año 14<br>VF = $197.993","Tasa 5% — Año 15<br>VF = $207.893","Tasa 5% — Año 16<br>VF = $218.287","Tasa 5% — Año 17<br>VF = $229.202","Tasa 5% — Año 18<br>VF = $240.662","Tasa 5% — Año 19<br>VF = $252.695","Tasa 5% — Año 20<br>VF = $265.330"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":false,"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[108000,116640.00000000001,125971.20000000001,136048.89600000004,146932.80768000006,158687.43229440006,171382.42687795209,185093.02102818826,199900.46271044333,215892.49972727883,233163.89970546111,251817.01168189803,271962.37261644989,293719.3624257659,317216.9114198272,342594.26433341339,370001.80548008654,399601.94991849345,431570.10591197293,466095.71438493085],"type":"scatter","mode":"lines+markers","name":"8%","line":{"color":"#136588","width":2.5},"marker":{"color":"#136588","size":5,"line":{"color":"rgba(227,119,194,1)"}},"hovertext":["Tasa 8% — Año 1<br>VF = $108.000","Tasa 8% — Año 2<br>VF = $116.640","Tasa 8% — Año 3<br>VF = $125.971","Tasa 8% — Año 4<br>VF = $136.049","Tasa 8% — Año 5<br>VF = $146.933","Tasa 8% — Año 6<br>VF = $158.687","Tasa 8% — Año 7<br>VF = $171.382","Tasa 8% — Año 8<br>VF = $185.093","Tasa 8% — Año 9<br>VF = $199.900","Tasa 8% — Año 10<br>VF = $215.892","Tasa 8% — Año 11<br>VF = $233.164","Tasa 8% — Año 12<br>VF = $251.817","Tasa 8% — Año 13<br>VF = $271.962","Tasa 8% — Año 14<br>VF = $293.719","Tasa 8% — Año 15<br>VF = $317.217","Tasa 8% — Año 16<br>VF = $342.594","Tasa 8% — Año 17<br>VF = $370.002","Tasa 8% — Año 18<br>VF = $399.602","Tasa 8% — Año 19<br>VF = $431.570","Tasa 8% — Año 20<br>VF = $466.096"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":false,"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[110000.00000000001,121000.00000000001,133100.00000000003,146410.00000000003,161051.00000000006,177156.10000000009,194871.71000000011,214358.88100000017,235794.76910000018,259374.24601000024,285311.67061100027,313842.83767210029,345227.12143931037,379749.83358324145,417724.8169415656,459497.2986357222,505447.02849929448,555991.73134922399,611590.90448414639,672749.99493256107],"type":"scatter","mode":"lines+markers","name":"10%","line":{"color":"#0891B2","width":2.5},"marker":{"color":"#0891B2","size":5,"line":{"color":"rgba(127,127,127,1)"}},"hovertext":["Tasa 10% — Año 1<br>VF = $110.000","Tasa 10% — Año 2<br>VF = $121.000","Tasa 10% — Año 3<br>VF = $133.100","Tasa 10% — Año 4<br>VF = $146.410","Tasa 10% — Año 5<br>VF = $161.051","Tasa 10% — Año 6<br>VF = $177.156","Tasa 10% — Año 7<br>VF = $194.872","Tasa 10% — Año 8<br>VF = $214.359","Tasa 10% — Año 9<br>VF = $235.795","Tasa 10% — Año 10<br>VF = $259.374","Tasa 10% — Año 11<br>VF = $285.312","Tasa 10% — Año 12<br>VF = $313.843","Tasa 10% — Año 13<br>VF = $345.227","Tasa 10% — Año 14<br>VF = $379.750","Tasa 10% — Año 15<br>VF = $417.725","Tasa 10% — Año 16<br>VF = $459.497","Tasa 10% — Año 17<br>VF = $505.447","Tasa 10% — Año 18<br>VF = $555.992","Tasa 10% — Año 19<br>VF = $611.591","Tasa 10% — Año 20<br>VF = $672.750"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":false,"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[112000.00000000001,125440.00000000001,140492.80000000005,157351.93600000005,176234.16832000008,197382.26851840012,221068.14074060816,247596.31762948114,277307.87574501894,310584.8208344212,347854.9993345518,389597.59925469809,436349.3111652619,488711.22850509331,547356.57592570456,613039.36503678921,686604.08884120395,768996.57950214855,861276.16904240637,964629.30932749517],"type":"scatter","mode":"lines+markers","name":"12%","line":{"color":"#0F9A7E","width":2.5},"marker":{"color":"#0F9A7E","size":5,"line":{"color":"rgba(188,189,34,1)"}},"hovertext":["Tasa 12% — Año 1<br>VF = $112.000","Tasa 12% — Año 2<br>VF = $125.440","Tasa 12% — Año 3<br>VF = $140.493","Tasa 12% — Año 4<br>VF = $157.352","Tasa 12% — Año 5<br>VF = $176.234","Tasa 12% — Año 6<br>VF = $197.382","Tasa 12% — Año 7<br>VF = $221.068","Tasa 12% — Año 8<br>VF = $247.596","Tasa 12% — Año 9<br>VF = $277.308","Tasa 12% — Año 10<br>VF = $310.585","Tasa 12% — Año 11<br>VF = $347.855","Tasa 12% — Año 12<br>VF = $389.598","Tasa 12% — Año 13<br>VF = $436.349","Tasa 12% — Año 14<br>VF = $488.711","Tasa 12% — Año 15<br>VF = $547.357","Tasa 12% — Año 16<br>VF = $613.039","Tasa 12% — Año 17<br>VF = $686.604","Tasa 12% — Año 18<br>VF = $768.997","Tasa 12% — Año 19<br>VF = $861.276","Tasa 12% — Año 20<br>VF = $964.629"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":false,"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"y":[114999.99999999999,132249.99999999997,152087.49999999997,174900.62499999994,201135.71874999994,231306.07656249992,266001.98804687487,305902.28625390609,351787.62919199193,404555.77357079065,465239.13960640924,535025.01054737065,615278.76212947618,707570.57644889748,813706.16291623213,935762.08735366678,1076126.4004567168,1237545.3605252241,1423177.1646040077,1636653.7392946088],"type":"scatter","mode":"lines+markers","name":"15%","line":{"color":"#16A34A","width":2.5},"marker":{"color":"#16A34A","size":5,"line":{"color":"rgba(23,190,207,1)"}},"hovertext":["Tasa 15% — Año 1<br>VF = $115.000","Tasa 15% — Año 2<br>VF = $132.250","Tasa 15% — Año 3<br>VF = $152.087","Tasa 15% — Año 4<br>VF = $174.901","Tasa 15% — Año 5<br>VF = $201.136","Tasa 15% — Año 6<br>VF = $231.306","Tasa 15% — Año 7<br>VF = $266.002","Tasa 15% — Año 8<br>VF = $305.902","Tasa 15% — Año 9<br>VF = $351.788","Tasa 15% — Año 10<br>VF = $404.556","Tasa 15% — Año 11<br>VF = $465.239","Tasa 15% — Año 12<br>VF = $535.025","Tasa 15% — Año 13<br>VF = $615.279","Tasa 15% — Año 14<br>VF = $707.571","Tasa 15% — Año 15<br>VF = $813.706","Tasa 15% — Año 16<br>VF = $935.762","Tasa 15% — Año 17<br>VF = $1.076.126","Tasa 15% — Año 18<br>VF = $1.237.545","Tasa 15% — Año 19<br>VF = $1.423.177","Tasa 15% — Año 20<br>VF = $1.636.654"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"visible":false,"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-equivalencia-vp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.2: Equivalencia financiera interactiva. Vista ‘Valor Presente’: descuento de $100.000 futuros según tasa y plazo. Vista ‘Valor Futuro’: capitalización de $100.000 presentes. Use el menú desplegable para alternar. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-equiv-tasas" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="sec-equiv-tasas"><span class="header-section-number">8.5</span> Equivalencias entre tasas de interés</h2>
+<p>Se reconocen, desde el punto de vista financiero, distintos tipos de tasas de interés. Una primera clasificación se vincula con la <strong>forma de capitalización</strong>:</p>
+<ul>
+<li><strong>Tasa Nominal (TN o TNA).</strong> Es la que normalmente publican las entidades financieras. Por definición es <strong>anual</strong> y <strong>no incluye</strong> el efecto de la capitalización; por ello no es la que realmente se paga o se cobra.</li>
+<li><strong>Tasa Efectiva (TE o TEA).</strong> Tiene en cuenta el <strong>interés compuesto</strong>. Es la tasa <strong>real</strong> que efectivamente se paga o recibe para el período considerado.</li>
+<li><strong>Tasa Periódica.</strong> Es la tasa efectiva aplicada en cada período de capitalización (diario, mensual, trimestral, etc.).</li>
+</ul>
+<p>Otra clasificación considera el <strong>momento</strong> en que se aplican los intereses:</p>
+<ul>
+<li><strong>Tasa Anticipada.</strong> Se aplica al comienzo del período (típica de los créditos tipo francés).</li>
+<li><strong>Tasa Vencida.</strong> Se aplica sobre el saldo al final del período.</li>
+</ul>
+<p>Para obtener la equivalencia entre una tasa <strong>nominal</strong> y una <strong>efectiva</strong> es necesario conocer cuántas veces en el año se capitaliza la deuda (<span class="math inline">\(m\)</span>): si se calcula una sola vez al año, <span class="math inline">\(m = 1\)</span>; si es semestral, <span class="math inline">\(m = 2\)</span>; mensual, <span class="math inline">\(m = 12\)</span>; etcétera. La relación entre la tasa nominal anual vencida (<span class="math inline">\(TNA\)</span>) y la tasa efectiva anual (<span class="math inline">\(TEA\)</span>) es:</p>
+<p><span class="math display">\[TEA = \left(1 + \frac{TNA}{m}\right)^{m} - 1\]</span></p>
+<p>donde <span class="math inline">\(\dfrac{TNA}{m}\)</span> es la <strong>tasa periódica</strong>. En el límite, cuando la frecuencia de capitalización <span class="math inline">\(m \to \infty\)</span>, obtenemos la <strong>capitalización continua</strong>, cuya tasa efectiva equivalente es:</p>
+<p><span class="math display">\[TEA_{\text{continua}} = e^{\,TNA} - 1\]</span></p>
+<p>La siguiente tabla muestra, para una misma tasa nominal anual del 12 %, cómo crece la tasa efectiva a medida que aumenta la frecuencia de capitalización. Es el mismo “12 % nominal”, pero el costo o rendimiento <strong>real</strong> difiere según cuántas veces al año se capitalice.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Tabla de equivalencias de tasas (DT)</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># TABLA DE EQUIVALENCIAS DE TASAS DE INTERÉS</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Paquete: DT | TNA fija del 12% con distintas capitalizaciones</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># TEA = (1 + TNA/m)^m - 1   |   continua: e^TNA - 1</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Elaboración propia para fines pedagógicos</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>tna <span class="ot">&lt;-</span> <span class="fl">0.12</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>m   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>)   <span class="co"># mensual, trimestral, semestral, anual</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>tea_disc <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">+</span> tna <span class="sc">/</span> m)<span class="sc">^</span>m <span class="sc">-</span> <span class="dv">1</span>     <span class="co"># TEA por capitalización discreta</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>tea_cont <span class="ot">&lt;-</span> <span class="fu">exp</span>(tna) <span class="sc">-</span> <span class="dv">1</span>            <span class="co"># TEA por capitalización continua</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa efectiva mensual equivalente a cada TEA: (1+TEA)^(1/12) - 1</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>tem <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">c</span>(tea_disc, tea_cont))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>tasas_tbl <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Tasa Nominal Anual</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"12,00%"</span>, <span class="dv">5</span>),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Capitalización</span><span class="st">`</span>     <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Mensual (m=12)"</span>, <span class="st">"Trimestral (m=4)"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Semestral (m=2)"</span>, <span class="st">"Anual (m=1)"</span>, <span class="st">"Continua (m→∞)"</span>),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Tasa Efectiva Anual</span><span class="st">`</span>   <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">formatC</span>(<span class="fu">c</span>(tea_disc, tea_cont) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>), <span class="st">"%"</span>),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Tasa Efectiva Mensual</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">formatC</span>(tem <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">4</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>), <span class="st">"%"</span>),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Tasa Continua</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"—"</span>, <span class="dv">4</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">paste0</span>(<span class="st">"e^0,12 − 1 = "</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">formatC</span>(tea_cont <span class="sc">*</span> <span class="dv">100</span>, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">decimal.mark =</span> <span class="st">","</span>), <span class="st">"%"</span>))</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  tasas_tbl,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">"t"</span>, <span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">ordering =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">columnDefs =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">className =</span> <span class="st">"dt-center"</span>, <span class="at">targets =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>))</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">class =</span> <span class="st">"stripe hover compact"</span>,</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">caption</span>(</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="st">"caption-side:top; font-weight:bold; color:#1e3a5f;"</span>,</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Equivalencias de tasas para una TNA del 12% según frecuencia de capitalización"</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">formatStyle</span>(</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tasa Efectiva Anual"</span>,</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontWeight =</span> <span class="st">"bold"</span>, <span class="at">color =</span> col_verde</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">formatStyle</span>(</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Capitalización"</span>,</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontWeight =</span> <span class="st">"bold"</span>, <span class="at">color =</span> col_azul</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-equiv-tasas" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-equiv-tasas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;8.1
+</figcaption>
+<div aria-describedby="tbl-equiv-tasas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-98ea1dde2dc38ee82f99" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-98ea1dde2dc38ee82f99">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side:top; font-weight:bold; color:#1e3a5f;\">Equivalencias de tasas para una TNA del 12% según frecuencia de capitalización<\/caption>","data":[["12,00%","12,00%","12,00%","12,00%","12,00%"],["Mensual (m=12)","Trimestral (m=4)","Semestral (m=2)","Anual (m=1)","Continua (m→∞)"],["12,6825%","12,5509%","12,3600%","12,0000%","12,7497%"],["1,0000%","0,9902%","0,9759%","0,9489%","1,0050%"],["—","—","—","—","e^0,12 − 1 = 12,7497%"]],"container":"<table class=\"stripe hover compact\">\n  <thead>\n    <tr>\n      <th>Tasa Nominal Anual<\/th>\n      <th>Capitalización<\/th>\n      <th>Tasa Efectiva Anual<\/th>\n      <th>Tasa Efectiva Mensual<\/th>\n      <th>Tasa Continua<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","pageLength":5,"ordering":false,"columnDefs":[{"className":"dt-center","targets":[0,1,2,3,4]},{"name":"Tasa Nominal Anual","targets":0},{"name":"Capitalización","targets":1},{"name":"Tasa Efectiva Anual","targets":2},{"name":"Tasa Efectiva Mensual","targets":3},{"name":"Tasa Continua","targets":4}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-weight':'bold','color':'#16a34a'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-weight':'bold','color':'#1e3a5f'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<p>Equivalencias de tasas de interés para una TNA del 12% según la frecuencia de capitalización. A mayor frecuencia, mayor tasa efectiva anual. Elaboración propia.</p>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Lectura de la tabla
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una TNA del 12 % capitalizada <strong>mensualmente</strong> equivale a una TEA de aproximadamente <strong>12,68 %</strong>, mientras que con capitalización <strong>anual</strong> la TEA coincide con la nominal (12 %). La <strong>capitalización continua</strong> —límite teórico— arroja la mayor TEA (<span class="math inline">\(e^{0,12}-1 \approx 12,75\%\)</span>). La diferencia, aparentemente pequeña, se vuelve significativa en plazos largos y montos elevados: comparar dos préstamos por su TNA puede ser engañoso; siempre debe compararse la <strong>TEA</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-equiv-utiles" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="sec-equiv-utiles"><span class="header-section-number">8.6</span> Equivalencias útiles: series uniformes y gradientes</h2>
+<p>De las ecuaciones de capitalización y descuento se derivan numerosos <strong>casos particulares</strong> de gran utilidad, tanto en la evaluación de proyectos como en la vida cotidiana. Estos casos involucran <strong>series uniformes</strong> —una <strong>anualidad</strong> <span class="math inline">\(A\)</span>, es decir, una suma de dinero igual que se repite cada período— y constituyen el segundo y tercer grupo de equivalencias financieras.</p>
+<section id="sec-anualidad-vf" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="sec-anualidad-vf"><span class="header-section-number">8.6.1</span> Anualidad y valor futuro</h3>
+<p>El <strong>factor de capitalización de una serie uniforme</strong> permite conocer el valor futuro <span class="math inline">\(F\)</span> acumulado por una serie de depósitos iguales <span class="math inline">\(A\)</span> (por ejemplo, aportes anuales a un fondo de reposición o a una cuenta previsional):</p>
+<p><span class="math display">\[F = A \cdot \frac{(1 + i)^{n} - 1}{i}\]</span></p>
+<p>El procedimiento inverso —el <strong>factor de fondo de amortización</strong> o <strong>depreciación</strong>— calcula la cuota anual <span class="math inline">\(A\)</span> que debe preverse para reunir un monto futuro <span class="math inline">\(F\)</span> al cabo de la vida útil de un bien (su reposición):</p>
+<p><span class="math display">\[A = F \cdot \frac{i}{(1 + i)^{n} - 1}\]</span></p>
+<p>Conceptualmente, este último corresponde al cálculo contable de la <strong>depreciación</strong>: la suma de dinero anual que se previsiona de modo tal que, al final de la vida útil del bien, se disponga del monto necesario para reponerlo.</p>
+</section>
+<section id="sec-anualidad-vp" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="sec-anualidad-vp"><span class="header-section-number">8.6.2</span> Anualidad y valor presente</h3>
+<p>La pregunta que inevitablemente surge ante un crédito es: ¿cuál será la <strong>cuota anual</strong> <span class="math inline">\(A\)</span> que tendré que pagar para devolver un préstamo <span class="math inline">\(P\)</span> recibido hoy, a lo largo de <span class="math inline">\(n\)</span> años? La respuesta la da el <strong>factor de recuperación de capital</strong> (FRC):</p>
+<p><span class="math display">\[\boxed{\;A = P \cdot \frac{i\,(1 + i)^{n}}{(1 + i)^{n} - 1}\;}\]</span></p>
+<p>De manera inversa, el <strong>factor de valor presente de una serie uniforme</strong> obtiene el valor presente <span class="math inline">\(P\)</span> de una anualidad (por ejemplo, el valor hoy de una corriente de ingresos netos constantes de un proyecto):</p>
+<p><span class="math display">\[P = A \cdot \frac{(1 + i)^{n} - 1}{i\,(1 + i)^{n}}\]</span></p>
+</section>
+<section id="sec-gradiente" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="sec-gradiente"><span class="header-section-number">8.6.3</span> Gradiente aritmético</h3>
+<p>En la práctica, los flujos de un proyecto rara vez son perfectamente uniformes. Cuando crecen (o decrecen) en una <strong>cantidad constante</strong> <span class="math inline">\(G\)</span> cada período —un <strong>gradiente aritmético</strong>—, su valor presente puede descomponerse en una serie uniforme más el aporte del gradiente:</p>
+<p><span class="math display">\[P_G = G \cdot \frac{1}{i}\left[\frac{(1 + i)^{n} - 1}{i\,(1 + i)^{n}} - \frac{n}{(1 + i)^{n}}\right]\]</span></p>
+<p>El gradiente aritmético es especialmente útil para modelar <strong>costos de mantenimiento crecientes</strong> con el envejecimiento de los equipos, o <strong>ingresos que aumentan</strong> gradualmente a medida que un proyecto alcanza su capacidad plena.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Tabla resumen de factores (DT)</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>factores <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Factor</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Valor Futuro de un pago único"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Valor Presente de un pago único"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Valor Futuro de serie uniforme"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fondo de amortización (depreciación)"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Recuperación de capital (cuota)"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Valor Presente de serie uniforme"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Notación</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"(F/P, i, n)"</span>, <span class="st">"(P/F, i, n)"</span>, <span class="st">"(F/A, i, n)"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"(A/F, i, n)"</span>, <span class="st">"(A/P, i, n)"</span>, <span class="st">"(P/A, i, n)"</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Despeja</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"VF a partir de VP"</span>, <span class="st">"VP a partir de VF"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"F a partir de A"</span>, <span class="st">"A a partir de F"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"A a partir de P"</span>, <span class="st">"P a partir de A"</span>),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Aplicación típica</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Capitalizar una inversión inicial"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Descontar un valor de salvamento"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Acumular aportes periódicos (fondos)"</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Previsionar la reposición de un bien"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Calcular la cuota de un crédito"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Valuar una corriente de ingresos netos"</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  factores,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">"t"</span>, <span class="at">pageLength =</span> <span class="dv">6</span>, <span class="at">ordering =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">columnDefs =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">className =</span> <span class="st">"dt-center"</span>, <span class="at">targets =</span> <span class="dv">1</span>))</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">class =</span> <span class="st">"stripe hover compact"</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">caption</span>(</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="st">"caption-side:top; font-weight:bold; color:#1e3a5f;"</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Factores de equivalencia financiera más utilizados"</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">formatStyle</span>(<span class="st">"Notación"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>, <span class="at">color =</span> col_violeta) <span class="sc">%&gt;%</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">formatStyle</span>(<span class="st">"Factor"</span>, <span class="at">fontWeight =</span> <span class="st">"bold"</span>, <span class="at">color =</span> col_azul)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-factores" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-factores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;8.2
+</figcaption>
+<div aria-describedby="tbl-factores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-9a0af05d47b6c9a008c4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9a0af05d47b6c9a008c4">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side:top; font-weight:bold; color:#1e3a5f;\">Factores de equivalencia financiera más utilizados<\/caption>","data":[["Valor Futuro de un pago único","Valor Presente de un pago único","Valor Futuro de serie uniforme","Fondo de amortización (depreciación)","Recuperación de capital (cuota)","Valor Presente de serie uniforme"],["(F/P, i, n)","(P/F, i, n)","(F/A, i, n)","(A/F, i, n)","(A/P, i, n)","(P/A, i, n)"],["VF a partir de VP","VP a partir de VF","F a partir de A","A a partir de F","A a partir de P","P a partir de A"],["Capitalizar una inversión inicial","Descontar un valor de salvamento","Acumular aportes periódicos (fondos)","Previsionar la reposición de un bien","Calcular la cuota de un crédito","Valuar una corriente de ingresos netos"]],"container":"<table class=\"stripe hover compact\">\n  <thead>\n    <tr>\n      <th>Factor<\/th>\n      <th>Notación<\/th>\n      <th>Despeja<\/th>\n      <th>Aplicación típica<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","pageLength":6,"ordering":false,"columnDefs":[{"className":"dt-center","targets":1},{"name":"Factor","targets":0},{"name":"Notación","targets":1},{"name":"Despeja","targets":2},{"name":"Aplicación típica","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-weight':'bold','color':'#7c3aed'});\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold','color':'#1e3a5f'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<p>Síntesis de los factores de equivalencia financiera más utilizados en evaluación de proyectos, con su notación estándar y fórmula. Elaboración propia.</p>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-van-tir" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="sec-van-tir"><span class="header-section-number">8.7</span> Matemáticas aplicadas a proyectos: VAN y TIR</h2>
+<p>Una vez que disponemos del diagrama de flujo de fondos y de la tasa de descuento pertinente (la TMAR), las equivalencias financieras nos permiten <strong>trasladar todos los flujos al presente</strong> y sumarlos en términos comparables. De aquí surgen los dos indicadores centrales de la evaluación financiera de proyectos.</p>
+<section id="sec-van" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="sec-van"><span class="header-section-number">8.7.1</span> Valor Actual Neto (VAN)</h3>
+<p>El <strong>Valor Actual Neto</strong> (VAN, también VPN o VNA) es la suma de todos los flujos netos del proyecto actualizados a una tasa de descuento <span class="math inline">\(i\)</span>, incluida la inversión inicial <span class="math inline">\(F_0\)</span> (negativa). Mide, en pesos de hoy, la <strong>riqueza neta</strong> que el proyecto crea por encima de la rentabilidad exigida:</p>
+<p><span class="math display">\[\boxed{\;VAN = \sum_{t=0}^{n} \frac{F_t}{(1 + i)^{t}} = -F_0 + \sum_{t=1}^{n} \frac{F_t}{(1 + i)^{t}}\;}\]</span></p>
+<p>El criterio de decisión es directo:</p>
+<ul>
+<li><span class="math inline">\(VAN &gt; 0\)</span> → el proyecto rinde <strong>más</strong> que la tasa exigida: <strong>conviene</strong>.</li>
+<li><span class="math inline">\(VAN = 0\)</span> → el proyecto rinde <strong>exactamente</strong> la tasa exigida: indiferente.</li>
+<li><span class="math inline">\(VAN &lt; 0\)</span> → el proyecto rinde <strong>menos</strong> que la tasa exigida: <strong>no conviene</strong>.</li>
+</ul>
+</section>
+<section id="sec-tir" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="sec-tir"><span class="header-section-number">8.7.2</span> Tasa Interna de Retorno (TIR)</h3>
+<p>La <strong>Tasa Interna de Retorno</strong> (TIR) es aquella tasa de descuento que hace el <strong>VAN igual a cero</strong>. Representa la rentabilidad intrínseca del proyecto:</p>
+<p><span class="math display">\[\sum_{t=0}^{n} \frac{F_t}{(1 + \text{TIR})^{t}} = 0\]</span></p>
+<p>El criterio de aceptación compara la TIR con la TMAR: si <span class="math inline">\(\text{TIR} &gt; \text{TMAR}\)</span>, el proyecto es conveniente. El <strong>perfil del VAN</strong> —la curva del VAN en función de la tasa de descuento— permite visualizar la TIR como el punto en que la curva <strong>cruza el eje horizontal</strong>.</p>
+<p>El siguiente gráfico calcula el VAN del proyecto de saneamiento del flujo de fondos presentado al inicio del capítulo, para tasas de descuento entre 0 % y 25 %, e identifica la TIR.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Perfil del VAN y determinación de la TIR (plotly)</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PERFIL DEL VAN — DETERMINACIÓN DE LA TIR</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Paquete: plotly | VAN computado en R sobre el flujo del proyecto</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># VAN(i) = sum( F_t / (1+i)^t )  ; TIR: VAN(TIR) = 0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Elaboración propia para fines pedagógicos</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Mismo flujo de fondos del diagrama inicial</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>flujo_proy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">500000</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                <span class="dv">82000</span>, <span class="dv">85000</span>, <span class="dv">88000</span>, <span class="dv">84000</span>, <span class="dv">90000</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                <span class="dv">87000</span>, <span class="dv">86000</span>, <span class="dv">89000</span>, <span class="dv">83000</span>, <span class="dv">120000</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Función VAN sobre el vector de flujos para una tasa i</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>van_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(i, flujo) {</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>(<span class="fu">length</span>(flujo) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(flujo <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> i)<span class="sc">^</span>t)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Curva del VAN para tasas de 0% a 25%</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>tasas_d <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="at">by =</span> <span class="fl">0.005</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>van_v   <span class="ot">&lt;-</span> <span class="fu">sapply</span>(tasas_d, van_fun, <span class="at">flujo =</span> flujo_proy)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># TIR por búsqueda de raíz (cambio de signo del VAN)</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>tir <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(van_fun, <span class="at">interval =</span> <span class="fu">c</span>(<span class="fl">0.0001</span>, <span class="fl">0.5</span>), <span class="at">flujo =</span> flujo_proy)<span class="sc">$</span>root</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Separar tramos positivo y negativo para colorear</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>van_pos <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(van_v <span class="sc">&gt;=</span> <span class="dv">0</span>, van_v, <span class="cn">NA</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>van_neg <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(van_v <span class="sc">&lt;</span>  <span class="dv">0</span>, van_v, <span class="cn">NA</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>fig_van <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> tasas_d <span class="sc">*</span> <span class="dv">100</span>, <span class="at">y =</span> van_pos,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_verde, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"VAN &gt; 0 (conveniente)"</span>,</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">hovertext =</span> <span class="fu">paste0</span>(<span class="st">"Tasa "</span>, tasas_d <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"%&lt;br&gt;VAN = $"</span>,</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">formatC</span>(<span class="fu">round</span>(van_v), <span class="at">format =</span> <span class="st">"d"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)),</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">hoverinfo =</span> <span class="st">"text"</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> tasas_d <span class="sc">*</span> <span class="dv">100</span>, <span class="at">y =</span> van_neg,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines"</span>,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_rojo, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"VAN &lt; 0 (no conviene)"</span>,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">hovertext =</span> <span class="fu">paste0</span>(<span class="st">"Tasa "</span>, tasas_d <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"%&lt;br&gt;VAN = $"</span>,</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">formatC</span>(<span class="fu">round</span>(van_v), <span class="at">format =</span> <span class="st">"d"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)),</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">hoverinfo =</span> <span class="st">"text"</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_segments</span>(</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">25</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#1e293b"</span>, <span class="at">dash =</span> <span class="st">"dash"</span>, <span class="at">width =</span> <span class="fl">1.2</span>),</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">showlegend =</span> <span class="cn">FALSE</span>, <span class="at">hoverinfo =</span> <span class="st">"none"</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> tir <span class="sc">*</span> <span class="dv">100</span>, <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"markers"</span>,</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">color =</span> col_oro, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">symbol =</span> <span class="st">"circle"</span>,</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>                  <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">width =</span> <span class="dv">2</span>)),</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"TIR"</span>,</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">hovertext =</span> <span class="fu">paste0</span>(<span class="st">"&lt;b&gt;TIR = "</span>, <span class="fu">formatC</span>(tir <span class="sc">*</span> <span class="dv">100</span>, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">decimal.mark =</span> <span class="st">","</span>), <span class="st">"%&lt;/b&gt;"</span>),</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">hoverinfo =</span> <span class="st">"text"</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_annotations</span>(</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> tir <span class="sc">*</span> <span class="dv">100</span>, <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">"&lt;b&gt;TIR ≈ "</span>, <span class="fu">formatC</span>(tir <span class="sc">*</span> <span class="dv">100</span>, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">decimal.mark =</span> <span class="st">","</span>), <span class="st">"%&lt;/b&gt;"</span>),</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">showarrow =</span> <span class="cn">TRUE</span>, <span class="at">arrowhead =</span> <span class="dv">3</span>, <span class="at">arrowcolor =</span> col_oro,</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">ax =</span> <span class="dv">45</span>, <span class="at">ay =</span> <span class="sc">-</span><span class="dv">45</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">color =</span> col_oro)</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="st">"&lt;b&gt;Perfil del VAN — Determinación de la TIR&lt;/b&gt;&lt;br&gt;&lt;sup&gt;Proyecto de saneamiento hídrico, horizonte 10 años&lt;/sup&gt;"</span>,</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>      <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.04</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Tasa de descuento (%)&lt;/b&gt;"</span>, <span class="at">dtick =</span> <span class="dv">5</span>,</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;VAN ($)&lt;/b&gt;"</span>, <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>,</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tickformat =</span> <span class="st">",.0f"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.22</span>),</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#fafaf8"</span>, <span class="at">plot_bgcolor =</span> <span class="st">"#fafaf8"</span>,</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">80</span>, <span class="at">b =</span> <span class="dv">70</span>, <span class="at">l =</span> <span class="dv">85</span>, <span class="at">r =</span> <span class="dv">30</span>),</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">460</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>fig_van</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-perfil-van" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perfil-van-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-0ac394e3add9420552e2" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-0ac394e3add9420552e2">{"x":{"visdat":{"2c01e0e6b0f":["function () ","plotlyVisDat"]},"cur_data":"2c01e0e6b0f","attrs":{"2c01e0e6b0f":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,0.5,1,1.5,2,2.5,3,3.5000000000000004,4,4.5,5,5.5,6,6.5,7.0000000000000009,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14.000000000000002,14.499999999999998,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25],"y":[394000,369087.22080252069,345165.81179819233,322188.21456173947,300109.46907839784,278887.05647736375,258480.75213745126,238852.48842771401,219966.2264017573,201787.83581603301,184284.98288972001,167427.02526742866,151184.91368603104,135531.09988390747,120439.45032488197,105885.16534053003,91844.703323414869,78295.70963052407,65216.949880752982,52588.247353042629,40390.424212726342,28605.246313065567,17215.371336837852,6204.3000594448094,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"type":"scatter","mode":"lines","line":{"color":"#16a34a","width":3},"name":"VAN > 0 (conveniente)","hovertext":["Tasa 0%<br>VAN = $394.000","Tasa 0.5%<br>VAN = $369.087","Tasa 1%<br>VAN = $345.166","Tasa 1.5%<br>VAN = $322.188","Tasa 2%<br>VAN = $300.109","Tasa 2.5%<br>VAN = $278.887","Tasa 3%<br>VAN = $258.481","Tasa 3.5%<br>VAN = $238.852","Tasa 4%<br>VAN = $219.966","Tasa 4.5%<br>VAN = $201.788","Tasa 5%<br>VAN = $184.285","Tasa 5.5%<br>VAN = $167.427","Tasa 6%<br>VAN = $151.185","Tasa 6.5%<br>VAN = $135.531","Tasa 7%<br>VAN = $120.439","Tasa 7.5%<br>VAN = $105.885","Tasa 8%<br>VAN = $91.845","Tasa 8.5%<br>VAN = $78.296","Tasa 9%<br>VAN = $65.217","Tasa 9.5%<br>VAN = $52.588","Tasa 10%<br>VAN = $40.390","Tasa 10.5%<br>VAN = $28.605","Tasa 11%<br>VAN = $17.215","Tasa 11.5%<br>VAN = $6.204","Tasa 12%<br>VAN = $-4.444","Tasa 12.5%<br>VAN = $-14.743","Tasa 13%<br>VAN = $-24.709","Tasa 13.5%<br>VAN = $-34.355","Tasa 14%<br>VAN = $-43.693","Tasa 14.5%<br>VAN = $-52.736","Tasa 15%<br>VAN = $-61.496","Tasa 15.5%<br>VAN = $-69.983","Tasa 16%<br>VAN = $-78.209","Tasa 16.5%<br>VAN = $-86.183","Tasa 17%<br>VAN = $-93.916","Tasa 17.5%<br>VAN = $-101.417","Tasa 18%<br>VAN = $-108.694","Tasa 18.5%<br>VAN = $-115.756","Tasa 19%<br>VAN = $-122.612","Tasa 19.5%<br>VAN = $-129.268","Tasa 20%<br>VAN = $-135.732","Tasa 20.5%<br>VAN = $-142.012","Tasa 21%<br>VAN = $-148.114","Tasa 21.5%<br>VAN = $-154.045","Tasa 22%<br>VAN = $-159.810","Tasa 22.5%<br>VAN = $-165.416","Tasa 23%<br>VAN = $-170.868","Tasa 23.5%<br>VAN = $-176.173","Tasa 24%<br>VAN = $-181.334","Tasa 24.5%<br>VAN = $-186.357","Tasa 25%<br>VAN = $-191.248"],"hoverinfo":"text","inherit":true},"2c01e0e6b0f.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,0.5,1,1.5,2,2.5,3,3.5000000000000004,4,4.5,5,5.5,6,6.5,7.0000000000000009,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14.000000000000002,14.499999999999998,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-4443.6694696994855,-14743.485016525978,-24709.380698340174,-34354.915130268826,-43693.007334620001,-52735.970555213062,-61495.544109054041,-69982.923398758139,-78208.788200797659,-86183.329336928116,-93916.273828958016,-101416.90863038435,-108694.10302220176,-115756.32975446257,-122611.68500979232,-129267.90726011105,-135732.3950831618,-142012.22400115762,-148114.1623998296,-154044.68658244042,-159809.99500983031,-165416.02177433585,-170868.44935238271,-176172.72067774925,-181334.05057485239,-186357.43658896917,-191247.66924799999],"type":"scatter","mode":"lines","line":{"color":"#dc2626","width":3},"name":"VAN < 0 (no conviene)","hovertext":["Tasa 0%<br>VAN = $394.000","Tasa 0.5%<br>VAN = $369.087","Tasa 1%<br>VAN = $345.166","Tasa 1.5%<br>VAN = $322.188","Tasa 2%<br>VAN = $300.109","Tasa 2.5%<br>VAN = $278.887","Tasa 3%<br>VAN = $258.481","Tasa 3.5%<br>VAN = $238.852","Tasa 4%<br>VAN = $219.966","Tasa 4.5%<br>VAN = $201.788","Tasa 5%<br>VAN = $184.285","Tasa 5.5%<br>VAN = $167.427","Tasa 6%<br>VAN = $151.185","Tasa 6.5%<br>VAN = $135.531","Tasa 7%<br>VAN = $120.439","Tasa 7.5%<br>VAN = $105.885","Tasa 8%<br>VAN = $91.845","Tasa 8.5%<br>VAN = $78.296","Tasa 9%<br>VAN = $65.217","Tasa 9.5%<br>VAN = $52.588","Tasa 10%<br>VAN = $40.390","Tasa 10.5%<br>VAN = $28.605","Tasa 11%<br>VAN = $17.215","Tasa 11.5%<br>VAN = $6.204","Tasa 12%<br>VAN = $-4.444","Tasa 12.5%<br>VAN = $-14.743","Tasa 13%<br>VAN = $-24.709","Tasa 13.5%<br>VAN = $-34.355","Tasa 14%<br>VAN = $-43.693","Tasa 14.5%<br>VAN = $-52.736","Tasa 15%<br>VAN = $-61.496","Tasa 15.5%<br>VAN = $-69.983","Tasa 16%<br>VAN = $-78.209","Tasa 16.5%<br>VAN = $-86.183","Tasa 17%<br>VAN = $-93.916","Tasa 17.5%<br>VAN = $-101.417","Tasa 18%<br>VAN = $-108.694","Tasa 18.5%<br>VAN = $-115.756","Tasa 19%<br>VAN = $-122.612","Tasa 19.5%<br>VAN = $-129.268","Tasa 20%<br>VAN = $-135.732","Tasa 20.5%<br>VAN = $-142.012","Tasa 21%<br>VAN = $-148.114","Tasa 21.5%<br>VAN = $-154.045","Tasa 22%<br>VAN = $-159.810","Tasa 22.5%<br>VAN = $-165.416","Tasa 23%<br>VAN = $-170.868","Tasa 23.5%<br>VAN = $-176.173","Tasa 24%<br>VAN = $-181.334","Tasa 24.5%<br>VAN = $-186.357","Tasa 25%<br>VAN = $-191.248"],"hoverinfo":"text","inherit":true},"2c01e0e6b0f.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":0,"y":0,"xend":25,"yend":0,"type":"scatter","mode":"lines","line":{"color":"#1e293b","dash":"dash","width":1.2},"showlegend":false,"hoverinfo":"none","inherit":true},"2c01e0e6b0f.3":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":11.789633817479681,"y":0,"type":"scatter","mode":"markers","marker":{"color":"#c4a029","size":12,"symbol":"circle","line":{"color":"white","width":2}},"name":"TIR","hovertext":"<b>TIR = 11,79%<\/b>","hoverinfo":"text","inherit":true}},"layout":{"height":460,"margin":{"b":70,"l":85,"t":80,"r":30},"annotations":[{"text":"<b>TIR ≈ 11,79%<\/b>","x":11.789633817479681,"y":0,"showarrow":true,"arrowhead":3,"arrowcolor":"#c4a029","ax":45,"ay":-45,"font":{"size":13,"color":"#c4a029"}},{"text":"<b>TIR ≈ 11,79%<\/b>","x":11.789633817479681,"y":0,"showarrow":true,"arrowhead":3,"arrowcolor":"#c4a029","ax":45,"ay":-45,"font":{"size":13,"color":"#c4a029"}}],"title":{"text":"<b>Perfil del VAN — Determinación de la TIR<\/b><br><sup>Proyecto de saneamiento hídrico, horizonte 10 años<\/sup>","font":{"size":15,"color":"#1e3a5f"},"x":0.040000000000000001},"xaxis":{"domain":[0,1],"automargin":true,"title":"<b>Tasa de descuento (%)<\/b>","dtick":5,"gridcolor":"#f1f5f9","zeroline":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"<b>VAN ($)<\/b>","gridcolor":"#f1f5f9","tickformat":",.0f","zeroline":false},"legend":{"orientation":"h","x":0.5,"xanchor":"center","y":-0.22},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.5,1,1.5,2,2.5,3,3.5000000000000004,4,4.5,5,5.5,6,6.5,7.0000000000000009,7.5,8,8.5,9,9.5,10,10.5,11,11.5],"y":[394000,369087.22080252069,345165.81179819233,322188.21456173947,300109.46907839784,278887.05647736375,258480.75213745126,238852.48842771401,219966.2264017573,201787.83581603301,184284.98288972001,167427.02526742866,151184.91368603104,135531.09988390747,120439.45032488197,105885.16534053003,91844.703323414869,78295.70963052407,65216.949880752982,52588.247353042629,40390.424212726342,28605.246313065567,17215.371336837852,6204.3000594448094],"type":"scatter","mode":"lines","line":{"color":"#16a34a","width":3},"name":"VAN > 0 (conveniente)","hovertext":["Tasa 0%<br>VAN = $394.000","Tasa 0.5%<br>VAN = $369.087","Tasa 1%<br>VAN = $345.166","Tasa 1.5%<br>VAN = $322.188","Tasa 2%<br>VAN = $300.109","Tasa 2.5%<br>VAN = $278.887","Tasa 3%<br>VAN = $258.481","Tasa 3.5%<br>VAN = $238.852","Tasa 4%<br>VAN = $219.966","Tasa 4.5%<br>VAN = $201.788","Tasa 5%<br>VAN = $184.285","Tasa 5.5%<br>VAN = $167.427","Tasa 6%<br>VAN = $151.185","Tasa 6.5%<br>VAN = $135.531","Tasa 7%<br>VAN = $120.439","Tasa 7.5%<br>VAN = $105.885","Tasa 8%<br>VAN = $91.845","Tasa 8.5%<br>VAN = $78.296","Tasa 9%<br>VAN = $65.217","Tasa 9.5%<br>VAN = $52.588","Tasa 10%<br>VAN = $40.390","Tasa 10.5%<br>VAN = $28.605","Tasa 11%<br>VAN = $17.215","Tasa 11.5%<br>VAN = $6.204"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[12,12.5,13,13.5,14.000000000000002,14.499999999999998,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25],"y":[-4443.6694696994855,-14743.485016525978,-24709.380698340174,-34354.915130268826,-43693.007334620001,-52735.970555213062,-61495.544109054041,-69982.923398758139,-78208.788200797659,-86183.329336928116,-93916.273828958016,-101416.90863038435,-108694.10302220176,-115756.32975446257,-122611.68500979232,-129267.90726011105,-135732.3950831618,-142012.22400115762,-148114.1623998296,-154044.68658244042,-159809.99500983031,-165416.02177433585,-170868.44935238271,-176172.72067774925,-181334.05057485239,-186357.43658896917,-191247.66924799999],"type":"scatter","mode":"lines","line":{"color":"#dc2626","width":3},"name":"VAN < 0 (no conviene)","hovertext":["Tasa 12%<br>VAN = $-4.444","Tasa 12.5%<br>VAN = $-14.743","Tasa 13%<br>VAN = $-24.709","Tasa 13.5%<br>VAN = $-34.355","Tasa 14%<br>VAN = $-43.693","Tasa 14.5%<br>VAN = $-52.736","Tasa 15%<br>VAN = $-61.496","Tasa 15.5%<br>VAN = $-69.983","Tasa 16%<br>VAN = $-78.209","Tasa 16.5%<br>VAN = $-86.183","Tasa 17%<br>VAN = $-93.916","Tasa 17.5%<br>VAN = $-101.417","Tasa 18%<br>VAN = $-108.694","Tasa 18.5%<br>VAN = $-115.756","Tasa 19%<br>VAN = $-122.612","Tasa 19.5%<br>VAN = $-129.268","Tasa 20%<br>VAN = $-135.732","Tasa 20.5%<br>VAN = $-142.012","Tasa 21%<br>VAN = $-148.114","Tasa 21.5%<br>VAN = $-154.045","Tasa 22%<br>VAN = $-159.810","Tasa 22.5%<br>VAN = $-165.416","Tasa 23%<br>VAN = $-170.868","Tasa 23.5%<br>VAN = $-176.173","Tasa 24%<br>VAN = $-181.334","Tasa 24.5%<br>VAN = $-186.357","Tasa 25%<br>VAN = $-191.248"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,25],"y":[0,0],"type":"scatter","mode":"lines","line":{"color":"#1e293b","dash":"dash","width":1.2},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[11.789633817479681],"y":[0],"type":"scatter","mode":"markers","marker":{"color":"#c4a029","size":12,"symbol":"circle","line":{"color":"white","width":2}},"name":"TIR","hovertext":"<b>TIR = 11,79%<\/b>","hoverinfo":"text","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"line":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perfil-van-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.3: Perfil del VAN del proyecto de saneamiento hídrico: el VAN decrece al aumentar la tasa de descuento y cruza el eje en la TIR. Tramo verde (VAN &gt; 0) = conveniente; tramo rojo (VAN &lt; 0) = no conveniente. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Concepto clave</span>Relación entre VAN, TIR y TMAR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El perfil muestra gráficamente la equivalencia entre ambos criterios: <strong>mientras la tasa de descuento sea inferior a la TIR, el VAN es positivo</strong> (tramo verde) y el proyecto conviene; cuando la tasa supera a la TIR, el VAN se vuelve negativo (tramo rojo). Por eso aceptar un proyecto con <span class="math inline">\(VAN &gt; 0\)</span> a la TMAR equivale a verificar que <span class="math inline">\(\text{TIR} &gt; \text{TMAR}\)</span>. No obstante, el VAN es el criterio <strong>preferido</strong> cuando se comparan proyectos mutuamente excluyentes o con flujos no convencionales, donde la TIR puede ser múltiple o no existir.</p>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Concepto clave</span>Síntesis del Capítulo 7
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las <strong>matemáticas financieras</strong> proporcionan el lenguaje común que permite comparar flujos de dinero ubicados en distintos momentos del tiempo:</p>
+<ol type="1">
+<li>El <strong>valor del dinero en el tiempo</strong> se materializa en la <strong>tasa de interés</strong>, que actúa como factor de transformación entre sumas presentes y futuras. $1.000 hoy no equivalen a $1.000 mañana.</li>
+<li>La <strong>capitalización</strong> (<span class="math inline">\(VF = VP(1+i)^n\)</span>) y la <strong>actualización</strong> (<span class="math inline">\(VP = VF(1+i)^{-n}\)</span>) son las dos equivalencias fundamentales; en evaluación de proyectos se usan tasas <strong>compuestas</strong>.</li>
+<li>Las <strong>tasas</strong> nominal, efectiva, periódica y continua se relacionan mediante la frecuencia de capitalización <span class="math inline">\(m\)</span>. Comparar créditos por su TNA es engañoso: debe usarse la <strong>TEA</strong>.</li>
+<li>Las <strong>equivalencias útiles</strong> —series uniformes y gradientes— resuelven problemas de cuotas, depreciación, fondos de reposición y corrientes de ingresos.</li>
+<li>El <strong>VAN</strong> mide la riqueza neta creada en pesos de hoy, y la <strong>TIR</strong> es la tasa que anula el VAN. La regla es simple: aceptar si <span class="math inline">\(VAN &gt; 0\)</span>, equivalentemente si <span class="math inline">\(\text{TIR} &gt; \text{TMAR}\)</span>.</li>
+</ol>
+<p>Los capítulos siguientes profundizan en la <strong>construcción del flujo de caja</strong> del proyecto y en los criterios complementarios de evaluación bajo riesgo e incertidumbre.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Para profundizar</span>Repositorio: libros recomendados para este capítulo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los siguientes recursos del Repositorio FEPAR 2026 son especialmente relevantes para profundizar los contenidos de este capítulo:</p>
+<ul>
+<li><strong>Sapag Chain, N. &amp; Sapag Chain, R. (2008)</strong> — <em>Preparación y Evaluación de Proyectos</em>: referencia central del capítulo, con desarrollo completo de equivalencias, VAN y TIR.</li>
+<li><strong>Baca Urbina, G. (2013)</strong> — <em>Evaluación de Proyectos</em>: tratamiento de la TMAR, el riesgo y la inflación en la tasa de descuento.</li>
+<li><strong>Mokate, K. M. (2004)</strong> — <em>Evaluación financiera de proyectos de inversión</em>: el interés como compensación financiera por aplazar el uso del dinero.</li>
+<li><strong>Blank, L. &amp; Tarquin, A. (2012)</strong> — <em>Ingeniería Económica</em>: notación de factores <span class="math inline">\((F/P)\)</span>, <span class="math inline">\((A/P)\)</span>, gradientes y aplicaciones de ingeniería.</li>
+</ul>
+<p>Acceder al Repositorio FEPAR 2026 desde la <strong>Portada</strong> del manual digital.</p>
+</div>
+</div>
+<div class="chapter-summary">
+  <div class="chapter-summary-header">
+    <i class="fas fa-book-open-reader" style="color:#1e3a5f;font-size:1.1rem;"></i>
+    Síntesis del Capítulo 7 — Matemáticas Financieras
+  </div>
+  <div class="chapter-summary-grid">
+    <div class="summary-block">
+      <div class="summary-block-title">
+        <i class="fas fa-key" style="color:#2563eb;"></i> Conceptos clave
+      </div>
+      <ul>
+        <li>El interés es el precio del dinero: la manifestación de su valor en el tiempo y la compensación por el costo de oportunidad, el riesgo y la inflación.</li>
+        <li>Capitalizar traslada una suma del presente al futuro; actualizar (descontar) la trae del futuro al presente. Ambas usan la tasa de interés compuesta.</li>
+        <li>La tasa efectiva anual (TEA) crece con la frecuencia de capitalización; en el límite continuo equivale a e^TNA − 1.</li>
+        <li>Las series uniformes y los gradientes permiten valuar cuotas, depreciaciones y corrientes de ingresos no constantes.</li>
+        <li>El VAN mide la creación de valor en pesos de hoy; la TIR es la tasa que lo anula. Se acepta el proyecto si VAN &gt; 0, equivalentemente si TIR &gt; TMAR.</li>
+      </ul>
+    </div>
+    <div class="summary-block">
+      <div class="summary-block-title">
+        <i class="fas fa-book" style="color:#2563eb;"></i> Referencias principales
+      </div>
+      <ul>
+        <li>Sapag Chain, N. &amp; Sapag Chain, R. (2008). <em>Preparación y Evaluación de Proyectos</em> (5.ª ed.). McGraw-Hill.</li>
+        <li>Baca Urbina, G. (2013). <em>Evaluación de Proyectos</em> (7.ª ed.). McGraw-Hill.</li>
+        <li>Mokate, K. M. (2004). <em>Evaluación financiera de proyectos de inversión</em> (2.ª ed.). Alfaomega / Universidad de los Andes.</li>
+        <li>Blank, L. &amp; Tarquin, A. (2012). <em>Ingeniería Económica</em> (7.ª ed.). McGraw-Hill.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-next">
+    <i class="fas fa-arrow-right" style="color:#2563eb;"></i>
+    Próximo capítulo: Construcción del Flujo de Caja del Proyecto (en preparación)
+  </div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./06_cap_tecnicos.html" class="pagination-link" aria-label="Estudios Técnicos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estudios Técnicos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>MT FEPAR 2026</strong> · Cátedra de Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Universidad Nacional de Salta · Ingeniería en Recursos Naturales y Medioambiente</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
