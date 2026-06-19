@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Recurso pedagógico digital interactivo para la materia Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales. Carrera de Ingeniería en Recursos Naturales y Medioambiente — Universidad Nacional de Salta.">
+
+<title>10&nbsp; La Evaluación Financiera de Proyectos – Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./10_cap_estudios_economicos.html" rel="next">
+<link href="./08_cap_estudios_financieros.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ec8dbbdf99699f055fea5e95a428e1d3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-21c5b34ee03bf87da2cd0534873615a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
+
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+<link href="site_libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+
+<script src="site_libs/vis-9.1.0/vis-network.min.js"></script>
+
+<script src="site_libs/visNetwork-binding-2.1.4/visNetwork.js"></script>
+
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&amp;family=Poppins:wght@600;700;800&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+(function() {
+
+  /* FIX 1 - Crosstalk safety shim
+     Provides FilterHandle/SelectionHandle stubs so leaflet-binding.js
+     never throws even if crosstalk.min.js is missing or loads late. */
+  function makeCrosstalkShim() {
+    function makeHandle() {
+      return { filteredKeys: null, value: null,
+        set:   function() { return this; },
+        clear: function() { return this; },
+        on:    function() { return this; },
+        off:   function() { return this; },
+        close: function() {} };
+    }
+    var noopVar = { set: function(){ return this; }, get: function(){ return null; },
+                    on:  function(){ return this; }, off: function(){ return this; } };
+    return {
+      var:             function() { return noopVar; },
+      group:           function() { return { var: function(){ return noopVar; }, has: function(){ return false; } }; },
+      FilterHandle:    makeHandle,
+      SelectionHandle: makeHandle
+    };
+  }
+  if (typeof window.crosstalk === 'undefined') {
+    window.crosstalk = makeCrosstalkShim();
+  }
+  /* Registered in <head> => fires BEFORE htmlwidgets.js DOMContentLoaded handler.
+     capture:true ensures we run in capture phase, before any bubble-phase handlers. */
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof window.crosstalk === 'undefined' ||
+        typeof window.crosstalk.FilterHandle !== 'function') {
+      window.crosstalk = makeCrosstalkShim();
+    }
+    /* Apply patches HERE — HTMLWidgets is now defined (body scripts ran),
+       but htmlwidgets' own DOMContentLoaded handler hasn't fired yet. */
+    patchVisNetwork();
+    patchStaticRender();
+  }, { once: true, capture: true });
+
+  /* FIX 2 - Patch visNetwork renderValue: null configure bug
+     visNetwork-binding.js checks (x.options.configure !== undefined).
+     null !== undefined is TRUE, so it then accesses null.container
+     which throws TypeError and kills the entire HTMLWidgets forEach
+     chain, preventing datatables and leaflet from ever rendering. */
+  function patchVisNetwork() {
+    var widgets = window.HTMLWidgets && window.HTMLWidgets.widgets;
+    if (!widgets) return;
+    widgets.forEach(function(w) {
+      if (w.name === 'visNetwork' && !w._patchedConfigure) {
+        var orig = w.renderValue;
+        w.renderValue = function(el, x, inst) {
+          if (x && x.options && x.options.configure == null) {
+            x.options.configure = undefined;
+          }
+          return orig.call(this, el, x, inst);
+        };
+        w._patchedConfigure = true;
+      }
+    });
+  }
+
+  /* FIX 3 - Resilient staticRender: per-binding isolation
+     Wraps each binding type in its own try-catch so one failing
+     widget never blocks all subsequent widget types. */
+  function patchStaticRender() {
+    if (!window.HTMLWidgets || !window.HTMLWidgets.staticRender) return;
+    if (window.HTMLWidgets._patchedResilience) return;
+    var orig = window.HTMLWidgets.staticRender;
+    window.HTMLWidgets.staticRender = function() {
+      var all = (window.HTMLWidgets.widgets || []).slice();
+      all.forEach(function(binding) {
+        window.HTMLWidgets.widgets = [binding];
+        try   { orig.call(window); }
+        catch (e) { console.warn('[widget-resilience] "' + binding.name + '" error: ' + e.message); }
+        finally   { window.HTMLWidgets.widgets = all; }
+      });
+    };
+    window.HTMLWidgets._patchedResilience = true;
+  }
+
+
+  /* FIX 4 - Force Leaflet maps to render after page load.
+     leaflet-binding stores the L.Map as inst.map (not inst.getMap()).
+     We also dispatch a resize event as fallback for any deferred renders. */
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.querySelectorAll('.leaflet.html-widget').forEach(function(el) {
+        var inst = el.htmlwidget_data_init_result;
+        if (!inst) return;
+        var map = inst.map;
+        if (map && typeof map.invalidateSize === 'function') {
+          map.invalidateSize(true);
+        }
+      });
+      window.dispatchEvent(new Event('resize'));
+    }, 400);
+  }, false);
+
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="10&nbsp; La Evaluación Financiera de Proyectos – Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales">
+<meta property="og:description" content="Recurso pedagógico digital interactivo para la materia Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales. Carrera de Ingeniería en Recursos Naturales y Medioambiente — Universidad Nacional de Salta.">
+<meta property="og:site_name" content="Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales">
+<meta name="twitter:title" content="10&nbsp; La Evaluación Financiera de Proyectos – Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales">
+<meta name="twitter:description" content="Recurso pedagógico digital interactivo para la materia Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales. Carrera de Ingeniería en Recursos Naturales y Medioambiente — Universidad Nacional de Salta.">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Buscar"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08_cap_estudios_financieros.html"><strong>PARTE III — EVALUACIÓN DE PROYECTOS</strong></a></li><li class="breadcrumb-item"><a href="./09_cap_evaluacion_financiera.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">La Evaluación Financiera de Proyectos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Manual Teórico FEPAR 2026</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>PARTE I — FUNDAMENTOS DE PROYECTOS</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_cap_proyecto_inversion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">El Proyecto de Inversión</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_cap_marco_logico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">La Metodología del Marco Lógico</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_cap_indicadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Los Indicadores de Proyecto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_cap_decisiones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">La Toma de Decisiones</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>PARTE II — ESTUDIOS DE FACTIBILIDAD</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_cap_mercados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estudios de Mercado</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_cap_tecnicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estudios Técnicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_cap_matematicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Matemáticas Financieras</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>PARTE III — EVALUACIÓN DE PROYECTOS</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_cap_estudios_financieros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estudios Financieros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_cap_evaluacion_financiera.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">La Evaluación Financiera de Proyectos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_cap_estudios_economicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estudios Económicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_cap_evaluacion_economica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">La Evaluación Económica</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En este capítulo</h2>
+   
+  <ul>
+  <li><a href="#sec-decision" id="toc-sec-decision" class="nav-link active" data-scroll-target="#sec-decision"><span class="header-section-number">10.1</span> La decisión de invertir</a>
+  <ul>
+  <li><a href="#sec-escenarios" id="toc-sec-escenarios" class="nav-link" data-scroll-target="#sec-escenarios"><span class="header-section-number">10.1.1</span> Escenarios de evaluación</a></li>
+  <li><a href="#sec-no-unico" id="toc-sec-no-unico" class="nav-link" data-scroll-target="#sec-no-unico"><span class="header-section-number">10.1.2</span> El criterio financiero no es el único</a></li>
+  </ul></li>
+  <li><a href="#sec-medidas" id="toc-sec-medidas" class="nav-link" data-scroll-target="#sec-medidas"><span class="header-section-number">10.2</span> Medidas de Rentabilidad de un Proyecto</a>
+  <ul>
+  <li><a href="#sec-sin-tiempo" id="toc-sec-sin-tiempo" class="nav-link" data-scroll-target="#sec-sin-tiempo"><span class="header-section-number">10.2.1</span> Medidas que no consideran el tiempo</a></li>
+  <li><a href="#sec-con-tiempo" id="toc-sec-con-tiempo" class="nav-link" data-scroll-target="#sec-con-tiempo"><span class="header-section-number">10.2.2</span> Medidas de resultado que consideran el tiempo</a></li>
+  <li><a href="#sec-historia" id="toc-sec-historia" class="nav-link" data-scroll-target="#sec-historia"><span class="header-section-number">10.2.3</span> Reseña histórica del origen de los indicadores financieros</a></li>
+  </ul></li>
+  <li><a href="#sec-criterios" id="toc-sec-criterios" class="nav-link" data-scroll-target="#sec-criterios"><span class="header-section-number">10.3</span> Criterios de Rentabilidad</a>
+  <ul>
+  <li><a href="#sec-indicadores" id="toc-sec-indicadores" class="nav-link" data-scroll-target="#sec-indicadores"><span class="header-section-number">10.3.1</span> Indicadores de rentabilidad financiera</a>
+  <ul class="collapse">
+  <li><a href="#sec-van" id="toc-sec-van" class="nav-link" data-scroll-target="#sec-van">El Valor Actualizado Neto (VAN)</a></li>
+  <li><a href="#sec-tir" id="toc-sec-tir" class="nav-link" data-scroll-target="#sec-tir">La Tasa Interna de Retorno (TIR)</a></li>
+  <li><a href="#sec-tur" id="toc-sec-tur" class="nav-link" data-scroll-target="#sec-tur">La Tasa Única de Retorno (TUR)</a></li>
+  <li><a href="#sec-rbc" id="toc-sec-rbc" class="nav-link" data-scroll-target="#sec-rbc">Relación Beneficio-Costo (RBC)</a></li>
+  <li><a href="#sec-tri" id="toc-sec-tri" class="nav-link" data-scroll-target="#sec-tri">Tiempo de Recupero de la Inversión (TRI)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-comparacion" id="toc-sec-comparacion" class="nav-link" data-scroll-target="#sec-comparacion"><span class="header-section-number">10.4</span> Comparación integrada de indicadores</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08_cap_estudios_financieros.html"><strong>PARTE III — EVALUACIÓN DE PROYECTOS</strong></a></li><li class="breadcrumb-item"><a href="./09_cap_evaluacion_financiera.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">La Evaluación Financiera de Proyectos</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">La Evaluación Financiera de Proyectos</span></h1>
+<p class="subtitle lead">Capítulo 9 — VAN, TIR, RBC y TRI: criterios para la toma de decisiones de inversión</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="chapter-hero">
+  <div class="chapter-hero-body">
+    <div class="chapter-hero-icon"><i class="fas fa-scale-balanced"></i></div>
+    <div class="chapter-hero-content">
+      <div class="chapter-hero-eyebrow">
+        <span class="hero-num">Capítulo 9</span>
+        <span class="hero-sep">·</span>
+        <span>Parte III — Evaluación de Proyectos</span>
+      </div>
+      <p class="chapter-hero-title">La Evaluación Financiera de Proyectos</p>
+      <p class="chapter-hero-sub">VAN, TIR, RBC y TRI: criterios para la toma de decisiones de inversión</p>
+      <div class="chapter-hero-tags">
+        <span class="hero-tag">VAN</span>
+        <span class="hero-tag">TIR</span>
+        <span class="hero-tag">Tasa de descuento</span>
+        <span class="hero-tag">Rentabilidad</span>
+        <span class="hero-tag">Decisión de inversión</span>
+      </div>
+    </div>
+  </div>
+  <div class="chapter-hero-quote">
+    <span class="hero-quote-mark">"</span>
+    El VAN mide el excedente resultante después de obtener la rentabilidad deseada o exigida y después de recuperar toda la inversión.
+    <span class="hero-quote-attr">— Nassir Sapag Chaín, <em>Proyectos de inversión: formulación y evaluación</em></span>
+  </div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Concepto clave</span>Objetivos de aprendizaje del Capítulo 9
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al finalizar este capítulo, el estudiante será capaz de:</p>
+<ul>
+<li><strong>Distinguir</strong> entre las medidas de rentabilidad que consideran el valor del dinero en el tiempo y aquellas que no lo consideran.</li>
+<li><strong>Calcular e interpretar</strong> los cuatro indicadores financieros centrales: VAN, TIR, RBC y TRI (Tiempo de Recupero de la Inversión).</li>
+<li><strong>Seleccionar y justificar</strong> una Tasa Mínima Aceptable de Rendimiento (TMAR) como costo de oportunidad de la inversión.</li>
+<li><strong>Aplicar</strong> los criterios de decisión (VAN &gt; 0, TIR &gt; TMAR, RBC &gt; 1, TRI &lt; TRMA) para aceptar, rechazar o priorizar proyectos.</li>
+<li><strong>Reconocer</strong> las limitaciones del criterio financiero como único criterio de decisión y la necesidad de complementarlo con enfoques sociales, ambientales y territoriales.</li>
+</ul>
+</div>
+</div>
+<hr>
+<section id="sec-decision" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-decision"><span class="header-section-number">10.1</span> La decisión de invertir</h2>
+<p>Una vez que se cuenta con las alternativas del proyecto, se procede a determinar cuál de ellas es <strong>más rentable</strong>: aquella que retribuya una suma de dinero conveniente, que pague mejor (interés) por el capital invertido frente a otra (interés de oportunidad), o —para el caso de un proyecto a nivel de factibilidad— analizar su <strong>viabilidad financiera</strong>, su rentabilidad general previa a su ejecución.</p>
+<p>Los interrogantes que se plantean al proyectista, planificador y a los organismos de financiación son los que deberán responderse para tomar la decisión respecto de inversiones en proyectos:</p>
+<div class="frase-destacada">
+<p>“¿Qué proyecto es el más factible financieramente? ¿Conviene orientar los factores productivos escasos hacia el Proyecto A o hacia el Proyecto B? ¿Mi proyecto puede ser más rentable si obtengo financiación para afrontar mis costos de inversión? ¿Conviene realizar el Proyecto?”</p>
+</div>
+<section id="sec-escenarios" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="sec-escenarios"><span class="header-section-number">10.1.1</span> Escenarios de evaluación</h3>
+<p>Cuando realizamos la evaluación de un proyecto en vistas a tomar una decisión, en realidad lo que estamos haciendo es <strong>evaluar uno de múltiples escenarios posibles</strong> en los cuales el proyecto se desarrollará. Ese escenario puede ser uno <strong>probable</strong>, uno poco probable pero <strong>pesimista</strong>, u <strong>optimista</strong>. Lo cierto es que lo que suceda con el proyecto lo sabremos una vez que comencemos a transitarlo durante la ejecución del mismo.</p>
+<p>Esto no le quita mérito a la <strong>evaluación ex ante</strong>, que es la que me permitirá, de una manera sencilla, tomar una decisión. Lo importante es que la decisión de invertir o no invertir estará condicionada al escenario que se haya descripto y para el cual se construyeron los flujos de fondos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Escenarios de flujo de fondos acumulado</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>anios <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Flujo de fondos neto descontado acumulado para tres escenarios (USD miles)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>optimista <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">920</span>, <span class="sc">-</span><span class="dv">700</span>, <span class="sc">-</span><span class="dv">430</span>, <span class="sc">-</span><span class="dv">120</span>, <span class="dv">230</span>, <span class="dv">610</span>, <span class="dv">1010</span>, <span class="dv">1430</span>, <span class="dv">1870</span>, <span class="dv">2330</span>, <span class="dv">2810</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>probable  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">920</span>, <span class="sc">-</span><span class="dv">780</span>, <span class="sc">-</span><span class="dv">600</span>, <span class="sc">-</span><span class="dv">390</span>, <span class="sc">-</span><span class="dv">150</span>, <span class="dv">110</span>, <span class="dv">390</span>, <span class="dv">690</span>, <span class="dv">1010</span>, <span class="dv">1350</span>, <span class="dv">1710</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pesimista <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">920</span>, <span class="sc">-</span><span class="dv">850</span>, <span class="sc">-</span><span class="dv">760</span>, <span class="sc">-</span><span class="dv">650</span>, <span class="sc">-</span><span class="dv">520</span>, <span class="sc">-</span><span class="dv">370</span>, <span class="sc">-</span><span class="dv">200</span>, <span class="sc">-</span><span class="dv">10</span>,  <span class="dv">200</span>,  <span class="dv">430</span>,  <span class="dv">680</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>fig_esc <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> anios, <span class="at">y =</span> optimista, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"Optimista"</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_verde, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">7</span>, <span class="at">color =</span> col_verde),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">hovertemplate =</span> <span class="st">"Año %{x}&lt;br&gt;Acumulado: USD %{y} mil&lt;extra&gt;Optimista&lt;/extra&gt;"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> anios, <span class="at">y =</span> probable, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"Probable"</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_azul, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">7</span>, <span class="at">color =</span> col_azul),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">hovertemplate =</span> <span class="st">"Año %{x}&lt;br&gt;Acumulado: USD %{y} mil&lt;extra&gt;Probable&lt;/extra&gt;"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> anios, <span class="at">y =</span> pesimista, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"Pesimista"</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_rojo, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">7</span>, <span class="at">color =</span> col_rojo),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">hovertemplate =</span> <span class="st">"Año %{x}&lt;br&gt;Acumulado: USD %{y} mil&lt;extra&gt;Pesimista&lt;/extra&gt;"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_segments</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#94a3b8"</span>, <span class="at">dash =</span> <span class="st">"dash"</span>, <span class="at">width =</span> <span class="fl">1.5</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>               <span class="at">showlegend =</span> <span class="cn">FALSE</span>, <span class="at">hoverinfo =</span> <span class="st">"none"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Flujo de Fondos Neto Descontado Acumulado — Tres Escenarios&lt;/b&gt;&lt;br&gt;&lt;sup&gt;Cruce con el eje cero: punto de recupero de la inversión&lt;/sup&gt;"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.03</span>),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Horizonte del proyecto (años)&lt;/b&gt;"</span>, <span class="at">dtick =</span> <span class="dv">1</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Flujo acumulado (USD miles)&lt;/b&gt;"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.18</span>),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#fafaf8"</span>, <span class="at">plot_bgcolor =</span> <span class="st">"#fafaf8"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">70</span>, <span class="at">b =</span> <span class="dv">70</span>, <span class="at">l =</span> <span class="dv">60</span>, <span class="at">r =</span> <span class="dv">30</span>), <span class="at">height =</span> <span class="dv">440</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>fig_esc</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-escenarios" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-escenarios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-13f33eebcaa51e3b3cb8" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-13f33eebcaa51e3b3cb8">{"x":{"visdat":{"6f2c3a14769e":["function () ","plotlyVisDat"]},"cur_data":"6f2c3a14769e","attrs":{"6f2c3a14769e":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-700,-430,-120,230,610,1010,1430,1870,2330,2810],"type":"scatter","mode":"lines+markers","name":"Optimista","line":{"color":"#16a34a","width":3},"marker":{"size":7,"color":"#16a34a"},"hovertemplate":"Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","inherit":true},"6f2c3a14769e.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-780,-600,-390,-150,110,390,690,1010,1350,1710],"type":"scatter","mode":"lines+markers","name":"Probable","line":{"color":"#1e3a5f","width":3},"marker":{"size":7,"color":"#1e3a5f"},"hovertemplate":"Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","inherit":true},"6f2c3a14769e.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-850,-760,-650,-520,-370,-200,-10,200,430,680],"type":"scatter","mode":"lines+markers","name":"Pesimista","line":{"color":"#dc2626","width":3},"marker":{"size":7,"color":"#dc2626"},"hovertemplate":"Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","inherit":true},"6f2c3a14769e.3":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":0,"y":0,"xend":10,"yend":0,"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":"none","inherit":true}},"layout":{"height":440,"margin":{"b":70,"l":60,"t":70,"r":30},"title":{"text":"<b>Flujo de Fondos Neto Descontado Acumulado — Tres Escenarios<\/b><br><sup>Cruce con el eje cero: punto de recupero de la inversión<\/sup>","font":{"size":15,"color":"#1e3a5f"},"x":0.029999999999999999},"xaxis":{"domain":[0,1],"automargin":true,"title":"<b>Horizonte del proyecto (años)<\/b>","dtick":1,"gridcolor":"#f1f5f9","zeroline":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"<b>Flujo acumulado (USD miles)<\/b>","gridcolor":"#f1f5f9","zeroline":false},"legend":{"orientation":"h","x":0.5,"xanchor":"center","y":-0.17999999999999999},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-700,-430,-120,230,610,1010,1430,1870,2330,2810],"type":"scatter","mode":"lines+markers","name":"Optimista","line":{"color":"#16a34a","width":3},"marker":{"color":"#16a34a","size":7,"line":{"color":"rgba(31,119,180,1)"}},"hovertemplate":["Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Optimista<\/extra>"],"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-780,-600,-390,-150,110,390,690,1010,1350,1710],"type":"scatter","mode":"lines+markers","name":"Probable","line":{"color":"#1e3a5f","width":3},"marker":{"color":"#1e3a5f","size":7,"line":{"color":"rgba(255,127,14,1)"}},"hovertemplate":["Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Probable<\/extra>"],"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-850,-760,-650,-520,-370,-200,-10,200,430,680],"type":"scatter","mode":"lines+markers","name":"Pesimista","line":{"color":"#dc2626","width":3},"marker":{"color":"#dc2626","size":7,"line":{"color":"rgba(44,160,44,1)"}},"hovertemplate":["Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>","Año %{x}<br>Acumulado: USD %{y} mil<extra>Pesimista<\/extra>"],"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,10],"y":[0,0],"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-escenarios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.1: Tres escenarios de un mismo proyecto: el flujo de fondos acumulado descontado difiere según los supuestos de ingresos y costos. La decisión de invertir está condicionada al escenario descripto. Elaboración propia para fines pedagógicos.
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="sec-no-unico" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="sec-no-unico"><span class="header-section-number">10.1.2</span> El criterio financiero no es el único</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Atención</span>Una advertencia indispensable
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En este punto conviene aclarar que el <strong>criterio financiero no es el único</strong>, ni necesariamente el más relevante, al momento de tomar decisiones. Sin embargo, en el ámbito empresarial suele otorgársele una importancia predominante. La experiencia demuestra que se han cometido numerosos errores al asignar recursos escasos a proyectos basándose <strong>exclusivamente</strong> en los resultados financieros esperados.</p>
+</div>
+</div>
+<p>Hecha esta última aclaración, nos adentraremos directamente en las decisiones basadas en criterios financieros, siendo conscientes de la <strong>potencialidad</strong> de la herramienta como así también de sus <strong>limitaciones</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-medidas" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="sec-medidas"><span class="header-section-number">10.2</span> Medidas de Rentabilidad de un Proyecto</h2>
+<p>El punto final del proceso que comprende un estudio financiero es <strong>determinar la factibilidad de invertir</strong>. Reunimos toda la información, la procesamos, construimos los flujos de fondos, analizamos la inserción del proyecto en el marco tributario, incorporamos la financiación conveniente, para determinar los <strong>flujos de fondos netos</strong>. En esta instancia, sólo resta calcular un indicador —o un conjunto de ellos— que nos informe respecto de cuán rentable resulta ser el proyecto que evaluamos.</p>
+<p>Existen numerosas medidas de rentabilidad o resultado que contribuyen a la toma de decisiones. Estas pueden agruparse según <strong>incorporen explícitamente la dimensión temporal del dinero</strong> en el análisis o, por el contrario, se basen en evaluaciones realizadas en un momento determinado, <strong>sin considerar el valor del dinero a través del tiempo</strong>.</p>
+<div class="cell">
+<div id="fig-taxonomia-medidas" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-taxonomia-medidas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="htmlwidget-7d578cc8f7be6f39a714" style="width:100%;height:430px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7d578cc8f7be6f39a714">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11],"label":["MEDIDAS DE\nRENTABILIDAD","NO consideran\nel tiempo\n(análisis sincrónico)","SÍ consideran\nel tiempo\n(análisis plurianual)","Beneficio bruto","Beneficio neto","Beneficio normal","Rentabilidad\ninstantánea","VAN\nValor Actualizado Neto","TIR / TUR\nTasa Interna de Retorno","RBC\nRelación Beneficio-Costo","TRI\nTiempo de Recupero"],"level":[1,2,2,3,3,3,3,3,3,3,3],"color.background":["#1e3a5f","#ea580c","#16a34a","#fb923c","#fb923c","#fb923c","#fb923c","#22c55e","#22c55e","#22c55e","#22c55e"],"color.border":["white","white","white","white","white","white","white","white","white","white","white"],"font.color":["white","white","white","white","white","white","white","white","white","white","white"],"font.size":[12,12,12,12,12,12,12,12,12,12,12],"shape":["ellipse","box","box","box","box","box","box","box","box","box","box"],"size":[55,44,44,34,34,34,34,34,34,34,34]},"edges":{"from":[1,1,2,2,2,2,3,3,3,3],"to":[2,3,4,5,6,7,8,9,10,11],"color":["#94a3b8","#94a3b8","#ea580c","#ea580c","#ea580c","#ea580c","#16a34a","#16a34a","#16a34a","#16a34a"],"arrows":["to","to","to","to","to","to","to","to","to","to"],"width":[2,2,2,2,2,2,2,2,2,2]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"layout":{"hierarchical":{"enabled":true,"levelSeparation":130,"nodeSpacing":150,"direction":"UD","sortMethod":"directed"}},"interaction":{"dragNodes":true,"navigationButtons":true,"zoomView":true,"zoomSpeed":1},"physics":{"enabled":false}},"groups":null,"width":"100%","height":"430px","idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"Taxonomía de las Medidas de Rentabilidad","style":"font-family:Poppins, Nunito, sans-serif;font-size:16px;color:#1e3a5f;font-weight:bold;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-taxonomia-medidas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.2: Taxonomía de las medidas de rentabilidad de proyectos según consideren o no el valor del dinero en el tiempo. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="sec-sin-tiempo" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="sec-sin-tiempo"><span class="header-section-number">10.2.1</span> Medidas que no consideran el tiempo</h3>
+<p>Tenemos aquí <strong>estimaciones puntuales o instantáneas</strong> de resultado, donde los precios de los <em>output</em> y los <em>input</em> de la actividad considerada son obtenidos en un momento determinado, el cual corresponde normalmente al período de comercialización, al ciclo productivo completo (siempre que este no exceda un tiempo limitado), o al período de implantación.</p>
+<p>Evidentemente, a esta categoría de indicadores la podremos considerar solo para empresas con <strong>ciclo productivo corto</strong> y en análisis de rentabilidad instantánea. Estamos en presencia de <strong>análisis sincrónicos</strong> de la producción.</p>
+<p>A título de ejemplo, se pueden mencionar como medidas de resultado comprendidas dentro de esta categoría al <strong>beneficio neto</strong>, el <strong>beneficio normal</strong>, el <strong>beneficio bruto</strong> y la <strong>rentabilidad</strong>, entre otras.</p>
+</section>
+<section id="sec-con-tiempo" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="sec-con-tiempo"><span class="header-section-number">10.2.2</span> Medidas de resultado que consideran el tiempo</h3>
+<p>Una considerable cantidad de proyectos se encuadran dentro de <strong>actividades plurianuales</strong>. En general, la mayoría de los emprendimientos de características ambientales o relacionadas al aprovechamiento de recursos naturales se encuentran dentro de esta categoría, donde el ciclo de proyecto se extiende a lo largo de varios años: 15, 20, 25 o más, según la naturaleza del proyecto considerado. En estos proyectos, los beneficios se pueden verificar luego de transcurridos varios años. Para estos casos, los <strong>análisis costo-beneficio que consideran el tiempo</strong> resultan más apropiados.</p>
+<p>Al tener los flujos de fondos representados temporalmente, conformando sumas de dinero periódicas, deberemos ser conscientes de que estamos en presencia de <strong>flujos de caja no equivalentes entre sí</strong>, por lo que no podremos operacionalizar estas sumas de dinero en forma matemática sin antes transformarlas en <strong>sumas de dinero equivalentes</strong>.</p>
+<p>Se han propuesto una serie de indicadores financieros para la evaluación financiera en estos casos. Entre estos indicadores encontramos el <strong>Valor Actualizado Neto (VAN)</strong>, la <strong>Tasa Interna de Retorno (TIR)</strong>, la <strong>Relación Beneficio-Costo (RBC)</strong> y el <strong>Tiempo de Retorno de la Inversión (TRI)</strong>.</p>
+</section>
+<section id="sec-historia" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="sec-historia"><span class="header-section-number">10.2.3</span> Reseña histórica del origen de los indicadores financieros</h3>
+<p>Los indicadores financieros de rentabilidad surgieron como herramientas fundamentales para la toma de decisiones de inversión, especialmente a partir de la <strong>consolidación del capitalismo industrial</strong> en los siglos XVIII y XIX. A medida que los proyectos fueron más importantes en inversiones, se hizo necesario contar con criterios técnicos financieros que permitieran evaluar la conveniencia de su realización.</p>
+<p>Uno de los pilares conceptuales que dio origen a estos indicadores fue la noción del <strong>valor del dinero en el tiempo</strong>, que establece que un monto de dinero disponible en el presente tiene un valor superior al mismo monto en el futuro, debido a su capacidad de generar rendimientos. Este principio fue abordado desde la <strong>Edad Media</strong> en los primeros tratados sobre interés compuesto, y sistematizado en el <strong>siglo XVIII</strong> con el desarrollo de las matemáticas financieras.</p>
+<p>Ya en el siglo XX, con el auge de la <strong>teoría financiera moderna</strong>, se consolidaron formalmente los principales indicadores utilizados hoy en día:</p>
+<div class="cell">
+<div id="fig-linea-tiempo" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linea-tiempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-8363403e7f4e4bad27dc" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-8363403e7f4e4bad27dc">{"x":{"visdat":{"6f2c466351e7":["function () ","plotlyVisDat"]},"cur_data":"6f2c466351e7","attrs":{"6f2c466351e7":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":1740,"y":1,"xend":2010,"yend":1,"type":"scatter","mode":"lines","line":{"color":"#cbd5e1","width":3},"showlegend":false,"hoverinfo":"none","inherit":true},"6f2c466351e7.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","marker":{"size":22,"color":{},"line":{"color":"white","width":3}},"text":{},"hoverinfo":"text","showlegend":false,"inherit":true}},"layout":{"height":320,"margin":{"b":30,"l":20,"t":50,"r":20},"annotations":[{"text":"Siglo XVIII<br>Matemáticas financieras<br>(interés compuesto)","x":1750,"y":1.3999999999999999,"showarrow":true,"arrowcolor":"#cbd5e1","arrowwidth":1.5,"arrowhead":0,"ax":0,"ay":-30,"font":{"size":9.5,"color":"#334155"},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0"},{"text":"1930-40<br>Formalización del VAN<br>como criterio","x":1935,"y":0.59999999999999998,"showarrow":true,"arrowcolor":"#cbd5e1","arrowwidth":1.5,"arrowhead":0,"ax":0,"ay":30,"font":{"size":9.5,"color":"#334155"},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0"},{"text":"Años 1950<br>Popularización de la TIR","x":1955,"y":1.3999999999999999,"showarrow":true,"arrowcolor":"#cbd5e1","arrowwidth":1.5,"arrowhead":0,"ax":0,"ay":-30,"font":{"size":9.5,"color":"#334155"},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0"},{"text":"Años 1960<br>Planeamiento estratégico<br>y Escuela de Chicago","x":1965,"y":0.59999999999999998,"showarrow":true,"arrowcolor":"#cbd5e1","arrowwidth":1.5,"arrowhead":0,"ax":0,"ay":30,"font":{"size":9.5,"color":"#334155"},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0"},{"text":"Años 1970<br>Proyectos públicos<br>(Banco Mundial, BID)","x":1975,"y":1.3999999999999999,"showarrow":true,"arrowcolor":"#cbd5e1","arrowwidth":1.5,"arrowhead":0,"ax":0,"ay":-30,"font":{"size":9.5,"color":"#334155"},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0"},{"text":"Décadas recientes<br>Enfoques integrales:<br>multicriterio, ambientales","x":2000,"y":0.59999999999999998,"showarrow":true,"arrowcolor":"#cbd5e1","arrowwidth":1.5,"arrowhead":0,"ax":0,"ay":30,"font":{"size":9.5,"color":"#334155"},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0"}],"title":{"text":"<b>Origen y consolidación de los indicadores financieros<\/b>","font":{"size":15,"color":"#1e3a5f"},"x":0.029999999999999999},"xaxis":{"domain":[0,1],"automargin":true,"title":"","range":[1735,2015],"showgrid":false,"zeroline":false,"tickvals":[1750,1850,1950,2000]},"yaxis":{"domain":[0,1],"automargin":true,"title":"","range":[0.20000000000000001,1.8],"showgrid":false,"zeroline":false,"showticklabels":false},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1740,2010],"y":[1,1],"type":"scatter","mode":"lines","line":{"color":"#cbd5e1","width":3},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1750,1935,1955,1965,1975,2000],"y":[1,1,1,1,1,1],"type":"scatter","mode":"markers","marker":{"color":["#7c3aed","#1e3a5f","#16a34a","#0891b2","#c4a029","#ea580c"],"size":22,"line":{"color":"white","width":3}},"text":["Siglo XVIII: Matemáticas financieras — (interés compuesto)","1930-40: Formalización del VAN — como criterio","Años 1950: Popularización de la TIR","Años 1960: Planeamiento estratégico — y Escuela de Chicago","Años 1970: Proyectos públicos — (Banco Mundial, BID)","Décadas recientes: Enfoques integrales: — multicriterio, ambientales"],"hoverinfo":["text","text","text","text","text","text"],"showlegend":false,"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linea-tiempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.3: Línea de tiempo del origen y consolidación de los indicadores financieros de rentabilidad. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<ul>
+<li>El <strong>Valor Actual Neto (VAN)</strong> se formaliza como criterio en los años <strong>1930 y 1940</strong>. Permite determinar si una inversión genera valor al comparar el valor presente de los flujos de fondos futuros con la inversión inicial. Es considerado uno de los indicadores más robustos desde el punto de vista económico.</li>
+<li>La <strong>Tasa Interna de Retorno (TIR)</strong> se populariza en los años <strong>1950</strong>. Representa la tasa de descuento que iguala el valor actual de los ingresos futuros al desembolso inicial. Aunque puede generar ambigüedad en proyectos no convencionales, sigue siendo un referente clave.</li>
+<li>El <strong>Período de Recupero de la Inversión (PRI)</strong> es utilizado como indicador complementario, especialmente útil en contextos donde la <strong>liquidez</strong> es un factor determinante. Evalúa el tiempo necesario para recuperar la inversión inicial, sin considerar el valor del dinero en el tiempo.</li>
+</ul>
+<p>Con la expansión del planeamiento estratégico en las grandes corporaciones a mediados del siglo XX y el fortalecimiento de la <strong>Escuela de Chicago</strong>, estos indicadores pasaron a formar parte del análisis financiero aplicado a decisiones empresariales y públicas. A partir de los años <strong>1970</strong>, su uso se extiende también a los proyectos de inversión pública promovidos por organismos internacionales como el <strong>Banco Mundial</strong> y el <strong>BID</strong>, en el marco del enfoque de proyectos.</p>
+<p>En las últimas décadas, estos criterios se han complementado con <strong>enfoques integrales</strong> que incorporan impactos sociales, ambientales y territoriales, especialmente en el contexto de proyectos de <strong>desarrollo sostenible</strong>. De este modo, los indicadores financieros coexisten hoy con herramientas de evaluación más amplias, como el <strong>análisis multicriterio</strong>, la <strong>valoración económica de servicios ecosistémicos</strong> y la <strong>contabilidad ambiental</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-criterios" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sec-criterios"><span class="header-section-number">10.3</span> Criterios de Rentabilidad</h2>
+<p>La literatura muestra numerosos criterios que se pueden utilizar a la hora de evaluar la factibilidad financiera de una asignación, aunque <strong>dos de ellos</strong> son los que gozan de la mejor reputación en este ámbito de análisis: el <strong>Valor Actualizado Neto (VAN)</strong> y la <strong>Tasa Interna de Retorno (TIR)</strong>.</p>
+<p>Encontraremos en la profusa literatura muchos otros indicadores que se ajustan a los requerimientos del evaluador y del tipo de proyecto a evaluar. Así se mencionan el <strong>Valor Equivalente Anual</strong>, la relación <strong>VAN versus inversión</strong> y el <strong>Tiempo de Recupero de la Inversión</strong>. Se menciona también como criterio a los indicadores de <strong>Costo-Efectividad</strong>, recomendado para proyectos cuyos beneficios no puedan ser medidos en términos monetarios. La Tasa Interna de Retorno, además, puede ser ajustada obteniéndose la <strong>Tasa Única de Retorno (TUR)</strong> y la <strong>Tasa Interna de Retorno Modificada (TIRM)</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Un supuesto de partida: el ambiente de certidumbre
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es importante plantear que todas las técnicas que se verán a continuación, y que se utilizan para la toma de decisión, se aplican en un <strong>ambiente que arroja certidumbre</strong>, aunque esa certidumbre se sustente en <strong>supuestos preestablecidos</strong>.</p>
+</div>
+</div>
+<section id="sec-indicadores" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="sec-indicadores"><span class="header-section-number">10.3.1</span> Indicadores de rentabilidad financiera</h3>
+<p>A continuación, abordaremos los siguientes indicadores financieros: <strong>Valor Actualizado Neto</strong>, <strong>Tasa Interna de Retorno</strong>, <strong>Tasa Única de Retorno</strong>, <strong>Análisis Beneficio-Costo</strong> y <strong>Tiempo de Recupero de la Inversión</strong>.</p>
+<section id="sec-van" class="level4">
+<h4 class="anchored" data-anchor-id="sec-van">El Valor Actualizado Neto (VAN)</h4>
+<p>Uno de los indicadores más utilizados para definir la rentabilidad financiera de un proyecto es el <strong>Valor Actualizado Neto (VAN)</strong>. Con relación a la nomenclatura utilizada, se podrá encontrar en la literatura de proyectos terminologías para representar este indicador tales como <strong>Valor Presente Neto (VPN)</strong>, <strong>Beneficio Actualizado Neto (BAN)</strong>, etc.; en todos los casos estamos refiriéndonos al <strong>mismo indicador</strong>.</p>
+<p>Conceptualmente, el VAN puede ser definido como la <strong>suma de dinero equivalente a los ingresos netos presentes y futuros</strong> de un proyecto. Como lo define Baca Urbina, el VAN surge de un proceso de:</p>
+<div class="frase-destacada">
+<p>“sumar los flujos descontados en el presente y restar la inversión inicial equivale a comparar todas las ganancias esperadas contra todos los desembolsos necesarios para producir esas ganancias, en términos de su valor equivalente en este momento o tiempo cero.”</p>
+<p>— Gabriel Baca Urbina</p>
+</div>
+<p>También se define al VAN de una inversión como el <strong>valor monetario que resulta de restar la suma de los flujos descontados a la inversión inicial</strong>.</p>
+<p>Cuando se analizó el flujo de fondos de un proyecto, tanto matricial como gráficamente, pudimos observar la existencia de un <strong>movimiento neto de fondos a lo largo del tiempo</strong>: desde la inversión inicial, representada por valores negativos (costos de inversión), los años subsiguientes con valores positivos o negativos de acuerdo al proyecto en cuestión, hasta el año de cierre de proyecto, conocido como <strong>horizonte del emprendimiento</strong>.</p>
+<p>Es evidente que la comparación de estos fondos no es posible debido a que son egresos o ingresos tomados en distintos años, por lo que son <strong>incomparables</strong>. Se hace necesario <strong>actualizar (descontar)</strong> los fondos futuros, o <strong>capitalizar</strong> el dinero del presente al futuro, tomando como referencia el año 0 de la inversión inicial o el horizonte del proyecto respectivamente. Realizada esta operación, los ingresos y egresos futuros son ahora comparables entre sí, por lo que pueden ser sumados o restados como cantidades equivalentes.</p>
+<p>De modo que el <strong>Valor Actualizado de los Ingresos</strong> y el <strong>Valor Presente de los Egresos</strong> de un proyecto pueden expresarse matemáticamente, y el Valor Actualizado Neto sintetizarse en la siguiente expresión:</p>
+<p><span class="math display">\[
+VAN = \sum_{i=1}^{n} \frac{BN_i}{(1+r)^i} + \frac{VS}{(1+r)^n} - CI
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(VAN\)</span> = Valor Actualizado Neto</li>
+<li><span class="math inline">\(BN_i\)</span> = Beneficio Neto en el año <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(r\)</span> = tasa de interés de oportunidad</li>
+<li><span class="math inline">\(n\)</span> = horizonte del proyecto</li>
+<li><span class="math inline">\(VS\)</span> = Valor de Salvamento</li>
+<li><span class="math inline">\(CI\)</span> = Costos de Inversión (bajo el supuesto de que la inversión sea realizada completa en el período 0 del proyecto)</li>
+</ul>
+<p>Como se puede apreciar, el Valor Actualizado Neto de un proyecto no representa más que la <strong>diferencia actualizada</strong> de todos los beneficios del proyecto, sumado el valor presente del valor de salvamento, menos los costos de inversión y menos los egresos operativos del proyecto.</p>
+<p>El VAN no es ni más ni menos que la expresión de una <strong>equivalencia financiera</strong>, donde aplicamos a todos los flujos de fondos netos el proceso de <strong>descuento intertemporal</strong>. Traemos cada una de las sumas de dinero ubicadas en cada período a lo largo del horizonte o vida útil del proyecto, al presente. A estos flujos netos descontados y sumados en el presente, le descontamos la inversión inicial y tenemos el VAN.</p>
+<section id="sec-tmar" class="level5">
+<h5 class="anchored" data-anchor-id="sec-tmar">La Tasa de Descuento o TMAR</h5>
+<p>Una de las decisiones importantes al analizar la rentabilidad de un proyecto mediante el VAN es la <strong>selección de la Tasa de Descuento</strong> apropiada para realizar la actualización de los flujos de fondos netos, también denominada <strong>Tasa Mínima Aceptable de Rendimiento (TMAR)</strong>.</p>
+<p>Todo inversor, o equipo de análisis financiero de la inversión, antes de iniciar el proceso de evaluación, deberá contar con la información que le permita evaluar la inversión considerando una <strong>tasa de referencia</strong>.</p>
+<p>La TMAR representa lo que se denomina el <strong>costo de oportunidad</strong> de la inversión. La idea de todo proyectista es que el capital invertido crezca <strong>por encima</strong> de esta Tasa Mínima de Rentabilidad; es decir, la pregunta a responder es: <em>¿cuál es mi costo de oportunidad?</em> Se buscará que el rendimiento del capital del inversor crezca en <strong>términos reales</strong>. Para el caso de Argentina —o todo país con procesos inflacionarios crónicos— hablamos de que el capital invertido en un proyecto crezca <strong>por encima de la inflación</strong>, es decir, crezca en términos reales, o a tasas positivas.</p>
+<p>La pregunta asociada será entonces: <em>¿de dónde obtengo información sobre la TMAR?</em> Pareciera ser que la tasa que ofrece pagar un banco por las colocaciones financieras <strong>no sería una buena fuente de información</strong>, toda vez que dichas instituciones no necesariamente nos cubren o protegen de los procesos inflacionarios.</p>
+<p>La lógica del inversor será obtener una rentabilidad <strong>superior</strong> a la que arroja la TMAR, por lo que buscará cuidadosamente una rentabilidad alternativa que represente la <strong>ganancia mínima esperada</strong>. Como lo plantea Baca Urbina, esa tasa debería cubrir la <strong>inflación</strong> y un <strong>premio al riesgo</strong> de la inversión.</p>
+<p>Según el autor mencionado, la <strong>tasa de riesgo</strong> se define como el <em>“verdadero crecimiento del dinero”</em>. Podemos pensar que, si la actividad productiva sólo cubre la desvalorización del dinero en el tiempo, no existe ganancia y convendría asignar el capital en la alternativa que permite cubrir la inflación. Por lo que esa tasa de riesgo representaría la <strong>ganancia esperable del inversor</strong>. Todo inversor debe fijar esta tasa de referencia para hacer sus análisis financieros, ya que es la tasa que será utilizada para la obtención de los indicadores de rentabilidad. Es aquí donde se recurrirá a información relacionada a la <strong>renta esperable</strong> en el rubro donde el proyecto desarrolle su accionar: los rendimientos en la bolsa de valores, la rentabilidad de empresas similares, entre otras aproximaciones, son válidas a la hora de determinar la tasa de riesgo y, por ende, la TMAR.</p>
+<p>La <strong>tasa de inflación</strong> es otra cuestión a discutir. En el contexto inflacionario estructural de la Argentina, el proceso inflacionario es seguido con atención por organismos gubernamentales y no gubernamentales, y el ciudadano común está permanentemente informado de la situación de los precios. No es sencillo, en este contexto, realizar un análisis del <strong>riesgo inflacionario hacia el futuro</strong>, lo que genera en los inversores <strong>incertidumbre</strong> a la hora de invertir, considerando que lo que hacemos ex ante es <strong>proyectar el comportamiento de la TMAR en el tiempo</strong>.</p>
+</section>
+<section id="sec-van-tasa" class="level5">
+<h5 class="anchored" data-anchor-id="sec-van-tasa">La relación inversa entre el VAN y la tasa: calculadora interactiva</h5>
+<p>Encontraremos la relevancia de una correcta y real identificación de la TMAR en la relación que existe entre la rentabilidad mínima exigible y el Valor Actualizado Neto. A medida que la <strong>TMAR aumenta</strong> su valor, <strong>el VAN disminuye</strong>. En la medida en que el inversor le exija al proyecto un mayor esfuerzo para enfrentar el costo de oportunidad, más cerca estaremos de <strong>rechazar</strong> la posibilidad de asignar recursos en la inversión productiva, e invertir en propuestas de menor riesgo e igual rentabilidad.</p>
+<p>En economías donde las tasas de interés bancarias son elevadas y cubren los riesgos inflacionarios, es lógico esperar —por la <strong>relación inversa</strong> entre el VAN y el interés de oportunidad— que se <strong>desalienten los proyectos productivos</strong> y se alienten las <strong>inversiones especulativas</strong>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Calculadora VAN vs.&nbsp;tasa de descuento</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Flujo de fondos del proyecto pedagógico (USD miles) ──────</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>CI    <span class="ot">&lt;-</span> <span class="dv">920</span>                                  <span class="co"># inversión inicial (año 0)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>BN    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">180</span>, <span class="dv">240</span>, <span class="dv">290</span>, <span class="dv">330</span>, <span class="dv">360</span>, <span class="dv">390</span>, <span class="dv">410</span>, <span class="dv">430</span>, <span class="dv">450</span>)  <span class="co"># beneficios netos años 1-10</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>VS    <span class="ot">&lt;-</span> <span class="dv">150</span>                                  <span class="co"># valor de salvamento año 10</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="fu">length</span>(BN)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>van_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(r) {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  vp_bn <span class="ot">&lt;-</span> <span class="fu">sum</span>(BN <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> r)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">:</span>n))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  vp_vs <span class="ot">&lt;-</span> VS <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> r)<span class="sc">^</span>n</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  vp_bn <span class="sc">+</span> vp_vs <span class="sc">-</span> CI</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>tasas <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.40</span>, <span class="at">by =</span> <span class="fl">0.005</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>vans  <span class="ot">&lt;-</span> <span class="fu">sapply</span>(tasas, van_fun)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># TIR aproximada (cruce con cero)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>tir_aprox <span class="ot">&lt;-</span> tasas[<span class="fu">which.min</span>(<span class="fu">abs</span>(vans))]</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>fig_van <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> tasas <span class="sc">*</span> <span class="dv">100</span>, <span class="at">y =</span> vans, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_azul, <span class="at">width =</span> <span class="dv">4</span>),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"tozeroy"</span>, <span class="at">fillcolor =</span> <span class="st">"rgba(30,58,95,0.08)"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">hovertemplate =</span> <span class="st">"Tasa de descuento: %{x:.1f}%&lt;br&gt;&lt;b&gt;VAN: USD %{y:.0f} mil&lt;/b&gt;&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"VAN"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_segments</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">40</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#94a3b8"</span>, <span class="at">dash =</span> <span class="st">"dash"</span>, <span class="at">width =</span> <span class="fl">1.5</span>),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>               <span class="at">showlegend =</span> <span class="cn">FALSE</span>, <span class="at">hoverinfo =</span> <span class="st">"none"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> tir_aprox <span class="sc">*</span> <span class="dv">100</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"markers+text"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">color =</span> col_rojo,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                          <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">width =</span> <span class="dv">2</span>)),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">"  TIR ≈ "</span>, <span class="fu">round</span>(tir_aprox <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">textposition =</span> <span class="st">"top right"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">textfont =</span> <span class="fu">list</span>(<span class="at">color =</span> col_rojo, <span class="at">size =</span> <span class="dv">13</span>),</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">hovertext =</span> <span class="fu">paste0</span>(<span class="st">"TIR ≈ "</span>, <span class="fu">round</span>(tir_aprox <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"%&lt;br&gt;(VAN = 0)"</span>),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">hoverinfo =</span> <span class="st">"text"</span>, <span class="at">showlegend =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_annotations</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">y =</span> <span class="fu">max</span>(vans) <span class="sc">*</span> <span class="fl">0.7</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text =</span> <span class="st">"&lt;b&gt;VAN &gt; 0&lt;/b&gt;&lt;br&gt;Proyecto acepta"</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                  <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">color =</span> col_verde, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                  <span class="at">bgcolor =</span> <span class="st">"rgba(220,252,231,0.7)"</span>, <span class="at">bordercolor =</span> <span class="st">"#86efac"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_annotations</span>(<span class="at">x =</span> <span class="dv">34</span>, <span class="at">y =</span> <span class="fu">min</span>(vans) <span class="sc">*</span> <span class="fl">0.6</span>,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text =</span> <span class="st">"&lt;b&gt;VAN &lt; 0&lt;/b&gt;&lt;br&gt;Proyecto rechaza"</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                  <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">color =</span> col_rojo, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                  <span class="at">bgcolor =</span> <span class="st">"rgba(254,226,226,0.7)"</span>, <span class="at">bordercolor =</span> <span class="st">"#fca5a5"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Perfil del VAN frente a la Tasa de Descuento&lt;/b&gt;&lt;br&gt;&lt;sup&gt;Relación inversa: a mayor TMAR, menor VAN — el cruce con cero es la TIR&lt;/sup&gt;"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                 <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.03</span>),</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Tasa de descuento / TMAR (%)&lt;/b&gt;"</span>, <span class="at">ticksuffix =</span> <span class="st">"%"</span>,</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;VAN (USD miles)&lt;/b&gt;"</span>,</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#fafaf8"</span>, <span class="at">plot_bgcolor =</span> <span class="st">"#fafaf8"</span>,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">showlegend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">70</span>, <span class="at">b =</span> <span class="dv">60</span>, <span class="at">l =</span> <span class="dv">60</span>, <span class="at">r =</span> <span class="dv">30</span>), <span class="at">height =</span> <span class="dv">450</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>fig_van</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-van-calculadora" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-van-calculadora-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-2aada883b08b3b4c266f" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2aada883b08b3b4c266f">{"x":{"visdat":{"6f2c5f816967":["function () ","plotlyVisDat"]},"cur_data":"6f2c5f816967","attrs":{"6f2c5f816967":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,0.5,1,1.5,2,2.5,3,3.5000000000000004,4,4.5,5,5.5,6,6.5,7.0000000000000009,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14.000000000000002,14.499999999999998,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.500000000000004,28.000000000000004,28.500000000000004,28.999999999999996,29.5,30,30.5,31,31.5,32,32.5,33,33.5,34,34.5,35,35.5,36,36.5,37,37.5,38,38.5,39,39.5,40],"y":[2430,2322.098373967317,2218.7375268782407,2119.6933291464816,2024.754104213956,1933.7198666279442,1846.4016107446214,1762.6206464412248,1682.2079784948833,1605.0037265400874,1530.8565827497578,1459.6233045996605,1391.1682402730767,1325.3628844446243,1262.0854623492705,1201.2205401970159,1142.6586601356803,1086.2959980954922,1032.034042969932,979.77929569905746,929.44298692440475,880.94081197989385,834.19268207094024,789.12249057540703,745.65789347506006,703.73010299583461,663.27369359946215,624.22641952865774,586.52904316318882,550.12517349524751,514.96111407994795,480.98571986066759,448.15026230968283,416.40830236231591,385.71557065794627,356.02985463371397,327.31089204708246,299.52027053143433,272.62133281507795,246.57908725825041,221.36012338534556,196.93253211055344,173.26583037470482,150.33088992926196,128.09987002041112,106.54615374194032,85.644287840373863,65.369925769482506,45.699773804152187,26.611540035458916,8.0838860799999566,-9.9036186531427575,-27.370540284670483,-44.335621514404579,-60.816820527058894,-76.831347875890401,-92.395701458286112,-107.52569969042861,-122.23651298171865,-136.54269360357489,-150.45820404157041,-163.99644391457014,-177.1702755395695,-189.99204821627097,-202.4736213011056,-214.62638613629156,-226.46128689573197,-237.98884040592429,-249.21915499673037,-260.16194843365929,-270.82656498038421,-281.22199163740424,-291.35687360017823,-301.23952897757601,-310.87796280920986,-320.27988041803201,-329.45270013255322,-338.40356541111703,-347.13935639887075,-355.66670094638232,-363.9919851172516],"type":"scatter","mode":"lines","line":{"color":"#1e3a5f","width":4},"fill":"tozeroy","fillcolor":"rgba(30,58,95,0.08)","hovertemplate":"Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","name":"VAN","inherit":true},"6f2c5f816967.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":0,"y":0,"xend":40,"yend":0,"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":"none","inherit":true},"6f2c5f816967.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":25,"y":0,"type":"scatter","mode":"markers+text","marker":{"size":14,"color":"#dc2626","line":{"color":"white","width":2}},"text":"  TIR ≈ 25%","textposition":"top right","textfont":{"color":"#dc2626","size":13},"hovertext":"TIR ≈ 25%<br>(VAN = 0)","hoverinfo":"text","showlegend":false,"inherit":true}},"layout":{"height":450,"margin":{"b":60,"l":60,"t":70,"r":30},"annotations":[{"text":"<b>VAN > 0<\/b><br>Proyecto acepta","x":6,"y":1701,"showarrow":false,"font":{"color":"#16a34a","size":12},"bgcolor":"rgba(220,252,231,0.7)","bordercolor":"#86efac"},{"text":"<b>VAN > 0<\/b><br>Proyecto acepta","x":6,"y":1701,"showarrow":false,"font":{"color":"#16a34a","size":12},"bgcolor":"rgba(220,252,231,0.7)","bordercolor":"#86efac"},{"text":"<b>VAN < 0<\/b><br>Proyecto rechaza","x":34,"y":-218.39519107035096,"showarrow":false,"font":{"color":"#dc2626","size":12},"bgcolor":"rgba(254,226,226,0.7)","bordercolor":"#fca5a5"},{"text":"<b>VAN < 0<\/b><br>Proyecto rechaza","x":34,"y":-218.39519107035096,"showarrow":false,"font":{"color":"#dc2626","size":12},"bgcolor":"rgba(254,226,226,0.7)","bordercolor":"#fca5a5"}],"title":{"text":"<b>Perfil del VAN frente a la Tasa de Descuento<\/b><br><sup>Relación inversa: a mayor TMAR, menor VAN — el cruce con cero es la TIR<\/sup>","font":{"size":15,"color":"#1e3a5f"},"x":0.029999999999999999},"xaxis":{"domain":[0,1],"automargin":true,"title":"<b>Tasa de descuento / TMAR (%)<\/b>","ticksuffix":"%","gridcolor":"#f1f5f9","zeroline":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"<b>VAN (USD miles)<\/b>","gridcolor":"#f1f5f9","zeroline":false},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","showlegend":false,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(30,58,95,0.08)","x":[0,0.5,1,1.5,2,2.5,3,3.5000000000000004,4,4.5,5,5.5,6,6.5,7.0000000000000009,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14.000000000000002,14.499999999999998,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.500000000000004,28.000000000000004,28.500000000000004,28.999999999999996,29.5,30,30.5,31,31.5,32,32.5,33,33.5,34,34.5,35,35.5,36,36.5,37,37.5,38,38.5,39,39.5,40],"y":[2430,2322.098373967317,2218.7375268782407,2119.6933291464816,2024.754104213956,1933.7198666279442,1846.4016107446214,1762.6206464412248,1682.2079784948833,1605.0037265400874,1530.8565827497578,1459.6233045996605,1391.1682402730767,1325.3628844446243,1262.0854623492705,1201.2205401970159,1142.6586601356803,1086.2959980954922,1032.034042969932,979.77929569905746,929.44298692440475,880.94081197989385,834.19268207094024,789.12249057540703,745.65789347506006,703.73010299583461,663.27369359946215,624.22641952865774,586.52904316318882,550.12517349524751,514.96111407994795,480.98571986066759,448.15026230968283,416.40830236231591,385.71557065794627,356.02985463371397,327.31089204708246,299.52027053143433,272.62133281507795,246.57908725825041,221.36012338534556,196.93253211055344,173.26583037470482,150.33088992926196,128.09987002041112,106.54615374194032,85.644287840373863,65.369925769482506,45.699773804152187,26.611540035458916,8.0838860799999566,-9.9036186531427575,-27.370540284670483,-44.335621514404579,-60.816820527058894,-76.831347875890401,-92.395701458286112,-107.52569969042861,-122.23651298171865,-136.54269360357489,-150.45820404157041,-163.99644391457014,-177.1702755395695,-189.99204821627097,-202.4736213011056,-214.62638613629156,-226.46128689573197,-237.98884040592429,-249.21915499673037,-260.16194843365929,-270.82656498038421,-281.22199163740424,-291.35687360017823,-301.23952897757601,-310.87796280920986,-320.27988041803201,-329.45270013255322,-338.40356541111703,-347.13935639887075,-355.66670094638232,-363.9919851172516],"type":"scatter","mode":"lines","line":{"color":"#1e3a5f","width":4},"fill":"tozeroy","hovertemplate":["Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>","Tasa de descuento: %{x:.1f}%<br><b>VAN: USD %{y:.0f} mil<\/b><extra><\/extra>"],"name":"VAN","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,40],"y":[0,0],"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[25],"y":[0],"type":"scatter","mode":"markers+text","marker":{"color":"#dc2626","size":14,"line":{"color":"white","width":2}},"text":"  TIR ≈ 25%","textposition":"top right","textfont":{"color":"#dc2626","size":13},"hovertext":"TIR ≈ 25%<br>(VAN = 0)","hoverinfo":"text","showlegend":false,"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-van-calculadora-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.4: Calculadora interactiva del VAN: el perfil del VAN frente a la tasa de descuento (curva de descuento). El punto donde la curva cruza el eje cero es la TIR. Mové el cursor sobre la curva para leer el VAN a cada tasa. Caso pedagógico: inversión inicial USD 920.000, flujos netos anuales crecientes. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Para profundizar</span>Criterio de selección de la tasa de descuento
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La elección de la tasa de descuento estará asociada al <strong>objetivo del análisis</strong> de rentabilidad planteado:</p>
+<ul>
+<li>Si se quiere saber si un proyecto <strong>reacciona positivamente dentro de una economía inflacionaria</strong>, la tasa de descuento utilizada será la <strong>tasa de inflación promedio anual</strong>.</li>
+<li>Si se pretende <strong>comparar el proyecto con otra alternativa conocida</strong>, podrá utilizarse como tasa de descuento la <strong>tasa de interés del proyecto alternativo</strong>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="sec-van-significado" class="level5">
+<h5 class="anchored" data-anchor-id="sec-van-significado">Significado e interpretación del VAN</h5>
+<p>Para entender la utilidad que nos reporta el uso del VAN como indicador de rentabilidad financiera, es conveniente —además de saber cómo calcularlo— <strong>entender su significado</strong>. Como expresa Sapag Chaín, el VAN <em>“mide el excedente resultante después de obtener la rentabilidad deseada o exigida y después de recuperar toda la inversión”</em>.</p>
+<p>En términos generales, podríamos afirmar que el VAN:</p>
+<ul>
+<li>Nos brinda información sobre la <strong>capacidad del proyecto de recuperar</strong> los egresos operativos y de inversión.</li>
+<li>Nos muestra la <strong>rentabilidad mínima</strong> sobre el capital.</li>
+<li>Nos da información del <strong>excedente global</strong> del proyecto.</li>
+</ul>
+<p>Entendiendo la lógica del indicador, podremos establecer un <strong>criterio de selección</strong> de proyectos o alternativas. Como el VAN es la expresión en dinero del excedente global de un proyecto —una vez que hemos logrado cubrir los costos de inversión, los costos operativos y el costo de oportunidad— queda claro que el inversor elegirá siempre proyectos con <strong>VAN superior a cero</strong>.</p>
+<div class="cell">
+<div id="fig-arbol-decision-van" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-arbol-decision-van-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="htmlwidget-6117e942a94f6b08186d" style="width:100%;height:400px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6117e942a94f6b08186d">{"x":{"nodes":{"id":[1,2,3,4,5,6,7],"label":["¿Cuál es el VAN\ndel proyecto?","VAN > 0","VAN = 0","VAN < 0","ACEPTAR\nGenera excedente por encima\ndel costo de oportunidad","INDIFERENTE\nRentabilidad igual al\ncosto de oportunidad","RECHAZAR\nNo cubre el costo\nde oportunidad exigido"],"level":[1,2,2,2,3,3,3],"color.background":["#1e3a5f","#16a34a","#c4a029","#dc2626","#16a34a","#c4a029","#dc2626"],"color.border":["white","white","white","white","white","white","white"],"font.color":["white","white","white","white","white","white","white"],"font.size":[12,12,12,12,12,12,12],"shape":["ellipse","box","box","box","box","box","box"],"size":[48,30,30,30,40,40,40]},"edges":{"from":[1,1,1,2,3,4],"to":[2,3,4,5,6,7],"label":["","","","","",""],"color":["#94a3b8","#94a3b8","#94a3b8","#16a34a","#c4a029","#dc2626"],"arrows":["to","to","to","to","to","to"],"width":[2.5,2.5,2.5,2.5,2.5,2.5]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"layout":{"hierarchical":{"enabled":true,"levelSeparation":120,"nodeSpacing":230,"direction":"UD","sortMethod":"directed"}},"interaction":{"dragNodes":true,"navigationButtons":true,"zoomSpeed":1},"physics":{"enabled":false}},"groups":null,"width":"100%","height":"400px","idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"Árbol de Decisión Financiera — Criterio del VAN","style":"font-family:Poppins, Nunito, sans-serif;font-size:16px;color:#1e3a5f;font-weight:bold;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arbol-decision-van-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.5: Árbol de decisión financiera basado en el VAN. Criterios de aceptación, indiferencia y rechazo. Para proyectos mutuamente excluyentes se elige el de mayor VAN. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Para proyectos <strong>mutuamente excluyentes</strong>, o cuando se comparen alternativas en la etapa de prefactibilidad, el criterio será <strong>seleccionar el proyecto o alternativa que tenga el VAN mayor</strong>.</p>
+<p><strong>Ventajas y desventajas del uso del VAN.</strong> La ventaja de este indicador se centra en la <strong>facilidad de interpretación</strong> de su resultado en términos monetarios. Mientras mayor sea el valor obtenido a una determinada tasa de descuento, mayor será la rentabilidad general del proyecto. Esto implica una relativa facilidad en su aplicación como criterio de selección. Tenemos que tener en cuenta que el VAN <strong>depende de la tasa de descuento seleccionada</strong>, que es definida arbitrariamente por el propio evaluador en función de su costo de oportunidad.</p>
+<p>Es importante aclarar que, si el VAN de un proyecto es <strong>igual a cero</strong>, no necesariamente implica que el proyecto no sea rentable; simplemente la interpretación debe ser que la <strong>rentabilidad es similar a la del costo de oportunidad del capital</strong>.</p>
+</section>
+</section>
+<section id="sec-tir" class="level4">
+<h4 class="anchored" data-anchor-id="sec-tir">La Tasa Interna de Retorno (TIR)</h4>
+<p>Otro de los indicadores que, junto con el VAN, ha cobrado una importancia relevante —generalizándose su uso en la evaluación de proyectos de inversión— es la <strong>Tasa Interna de Retorno (TIR)</strong>. Al igual que el VAN, procura evaluar, a partir de la información obtenida en los estudios financieros, la <strong>viabilidad de ejecución</strong> de un proyecto, proporcionando elementos de juicio para la toma de decisiones respecto de la conveniencia de asignar recursos a una determinada alternativa.</p>
+<p>La TIR es un indicador de rentabilidad financiera que se define como <strong>la tasa de interés que hace que el VAN de un proyecto sea igual a cero</strong>. También podríamos decir que la TIR es la tasa a la cual los flujos netos descontados y sumados en el presente se igualan con la inversión inicial; o, utilizando los conceptos de equivalencia financiera, la TIR es la tasa de descuento que iguala el valor futuro de la inversión con el valor futuro equivalente a las sumas que representan los flujos de fondos netos anuales, comparados en el tiempo <span class="math inline">\(T\)</span>.</p>
+<p>Como toda tasa de interés, se expresa en <strong>porcentaje de rentabilidad periódica</strong>. Si los períodos analizados son diarios, la tasa obtenida será una tasa efectiva diaria; si los flujos periódicos se expresan mensualmente, será una tasa efectiva mensual. En los proyectos vinculados a la producción de recursos naturales y de gestión ambiental, la tasa interna se expresa en general como <strong>efectiva anual</strong>.</p>
+<p>La TIR expresa la <strong>rentabilidad máxima teórica posible</strong> de alcanzar; es el <strong>umbral crítico de aceptabilidad</strong> de un proyecto de inversión. Podemos obtenerla matemáticamente a través de la misma ecuación que utilizamos para el cálculo del VAN, considerando que la TIR es aquella tasa de oportunidad a la que el VAN se iguala a cero:</p>
+<p><span class="math display">\[
+0 = \sum_{i=1}^{n} \frac{BN_i}{(1+\text{TIR})^i} + \frac{VS}{(1+\text{TIR})^n} - CI
+\]</span></p>
+<p>La ecuación así definida es un <strong>polinomio de grado <span class="math inline">\(n\)</span></strong>, constituyendo <span class="math inline">\(r = \text{TIR}\)</span> una de las <strong>raíces positivas</strong> del polinomio.</p>
+<p>La TIR es la rentabilidad máxima teórica del dinero invertido en un proyecto de inversión determinado. Para que esta tasa refleje la <strong>renta real</strong>, es necesario que se cumplan <strong>dos supuestos</strong> que condicionan la interpretación de los valores obtenidos:</p>
+<ol type="1">
+<li>Los <strong>beneficios netos se reinvierten en su totalidad</strong> a la tasa de descuento seleccionada.</li>
+<li>El dinero disponible para invertir en el proyecto, y otros fondos disponibles, <strong>se invierten a la misma tasa de oportunidad</strong>.</li>
+</ol>
+<section id="sec-tir-calculo" class="level5">
+<h5 class="anchored" data-anchor-id="sec-tir-calculo">Formas de cálculo de la TIR</h5>
+<p>La obtención de la TIR es un <strong>proceso de aproximación e interpolación</strong>. Han existido algunos métodos generales, entre los que se pueden mencionar:</p>
+<ul>
+<li><strong>Interpolación y extrapolación lineal.</strong></li>
+<li><strong>Determinación gráfica</strong> por regresión lineal simple.</li>
+<li><strong>Interpolación lineal</strong> basada en reglas de triángulos semejantes.</li>
+</ul>
+<p>En la actualidad, las herramientas informáticas han simplificado significativamente el cálculo de la TIR, al punto de que su determinación no representa mayores dificultades operativas. La mayoría de las aplicaciones de análisis financiero y las hojas de cálculo más utilizadas —como <strong>Microsoft Excel</strong>, <strong>Google Sheets</strong> y otros programas especializados— incorporan funciones específicas que permiten calcular este indicador de manera rápida y precisa. No obstante, estos cálculos se realizan mediante <strong>procedimientos numéricos iterativos</strong> de aproximación sucesiva, y no exclusivamente a través de métodos de interpolación o extrapolación lineal, como ocurría en aplicaciones más antiguas.</p>
+</section>
+<section id="sec-tir-criterio" class="level5">
+<h5 class="anchored" data-anchor-id="sec-tir-criterio">Criterio de decisión de la TIR</h5>
+<p>Como en todo indicador, el siguiente paso es definir un criterio de decisión. En el caso de la TIR, debemos tener en cuenta que, <strong>a diferencia del VAN, por sí sola la TIR no es suficiente</strong> para decidir sobre la factibilidad financiera de un emprendimiento. La TIR es un <strong>indicador relativo</strong>: deberemos compararlo con una <strong>tasa de referencia</strong> para tomar una decisión en proyectos independientes.</p>
+<div class="cell">
+<div id="tbl-criterio-tir" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-criterio-tir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;10.1: Criterio de decisión de la TIR frente a la TMAR (tasa de referencia / costo de oportunidad). Elaboración propia.
+</figcaption>
+<div aria-describedby="tbl-criterio-tir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ff2d197f85597a75d5b4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ff2d197f85597a75d5b4">{"x":{"filter":"none","vertical":false,"data":[["TIR &gt; TMAR","TIR = TMAR","TIR &lt; TMAR"],["<span style='background:#dcfce7;color:#14532d;border:1px solid #86efac;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700;'>ACEPTAR<\/span>","<span style='background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700;'>INDIFERENTE<\/span>","<span style='background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700;'>RECHAZAR<\/span>"],["El proyecto rinde por encima del costo de oportunidad del inversor","El proyecto rinde exactamente lo exigido como mínimo aceptable","El proyecto no alcanza la rentabilidad mínima exigida"]],"container":"<table class=\"stripe hover compact\">\n  <thead>\n    <tr>\n      <th>Condición<\/th>\n      <th>Decisión<\/th>\n      <th>Interpretación<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","pageLength":5,"ordering":false,"columnDefs":[{"className":"dt-center","targets":[0,1]},{"name":"Condición","targets":0},{"name":"Decisión","targets":1},{"name":"Interpretación","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Para proyectos <strong>mutuamente excluyentes</strong> o alternativas en fase de prefactibilidad, el criterio será seleccionar el proyecto que ofrezca una <strong>mayor tasa de rentabilidad</strong>, siempre teniendo en cuenta que todas las tasas que se comparan deben cumplir con el requisito indispensable de ser <strong>superiores a la tasa de referencia</strong> que refleja el costo de oportunidad del inversor.</p>
+</section>
+<section id="sec-tir-ventajas" class="level5">
+<h5 class="anchored" data-anchor-id="sec-tir-ventajas">Ventajas y desventajas de la TIR</h5>
+<p>La <strong>definición matemática de la TIR</strong> genera inconvenientes que fueron planteados por <strong>James Lorie y Leonard Savage en 1966</strong> para aquellos proyectos cuyos flujos de fondos son <strong>anómalos</strong>: es decir, que presentan, por ejemplo, flujos de fondos positivos al inicio del proyecto y flujos de fondos negativos al final de la vida útil.</p>
+<p>Otro aspecto de suma importancia —considerado la <strong>principal deficiencia de la TIR</strong>— surge de la interpretación de los supuestos del modelo. La TIR muestra la rentabilidad máxima de un proyecto, pero <strong>teórica</strong>. Para que la TIR dé un valor real de la rentabilidad, debería cumplirse que <strong>todos los excedentes del proyecto sean invertidos a una tasa igual a la de la rentabilidad interna</strong>, o en el mismo proyecto que estamos evaluando. Existen modelos que permiten ajustar la TIR teórica a una <strong>TIR real</strong>: aquí aparece otro indicador de rentabilidad, la <strong>Tasa Única de Retorno</strong>.</p>
+<div class="cell">
+<div id="tbl-van-vs-tir" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-van-vs-tir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;10.2: Diferencias básicas entre el VAN y la TIR, los dos indicadores más utilizados en la evaluación financiera de proyectos. Elaboración propia.
+</figcaption>
+<div aria-describedby="tbl-van-vs-tir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-233155261514b2932e3c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-233155261514b2932e3c">{"x":{"filter":"none","vertical":false,"data":[["Naturaleza del resultado","Unidad de medida","Dependencia de la tasa","Supuesto de reinversión","Proyectos con flujos anómalos","Suficiencia para decidir","Uso en proyectos excluyentes"],["Indicador absoluto (excedente)","Unidades monetarias ($)","Requiere fijar la TMAR ex ante","Reinversión a la tasa de descuento","Resultado único y consistente","Suficiente por sí solo (VAN &gt; 0)","Se elige el de mayor VAN"],["Indicador relativo (tasa)","Porcentaje (%)","No requiere fijar la tasa para calcularla","Reinversión a la propia TIR (supuesto fuerte)","Puede dar soluciones múltiples","Requiere comparación con la TMAR","Se elige la de mayor tasa (&gt; referencia)"]],"container":"<table class=\"stripe hover compact\">\n  <thead>\n    <tr>\n      <th>Aspecto<\/th>\n      <th>VAN<\/th>\n      <th>TIR<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","pageLength":7,"ordering":false,"columnDefs":[{"width":"26%","targets":0},{"name":"Aspecto","targets":0},{"name":"VAN","targets":1},{"name":"TIR","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold','color':'#1e3a5f'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-tur" class="level4">
+<h4 class="anchored" data-anchor-id="sec-tur">La Tasa Única de Retorno (TUR)</h4>
+<p>Uno de los inconvenientes que se plantean al calcular la TIR es el problema asociado a la <strong>existencia de soluciones múltiples</strong>, asociadas a flujos de fondos anómalos. Otro aspecto a corregir es la dificultad de cumplir el supuesto de <strong>reinversión de los excedentes</strong> a la misma tasa de la rentabilidad interna del proyecto, o en alternativas que generen igual rendimiento. Esto significa que la TIR <strong>no refleja la rentabilidad real</strong> de la inversión.</p>
+<p>Con el objeto de solucionar estos inconvenientes, se ha planteado como solución el cálculo de una <strong>Tasa Única de Retorno (TUR)</strong>, también conocida como <strong>Tasa Interna de Retorno Modificada (TIRM)</strong>. Esta tasa se calcula <strong>convirtiendo los flujos de fondos complejos en flujos simplificados</strong>: capitalizando el flujo de ingresos del proyecto al horizonte de proyecto y descontando el flujo de fondos al año 0.</p>
+<p>Utilizando los conocimientos de matemáticas financieras, por un lado transformaremos los flujos que representan los ingresos en el <strong>Valor Futuro de los Beneficios (VFB)</strong> mediante la ecuación general de capitalización. Por el otro lado, a los flujos negativos o egresos los descontaremos hasta el presente con la misma tasa de descuento, obteniendo el <strong>Valor Actualizado de Costos (VAC)</strong>. Estableciendo la equivalencia entre ambos flujos y despejando <span class="math inline">\(i\)</span>, obtenemos la ecuación de trabajo de la TUR:</p>
+<p><span class="math display">\[
+\text{TUR} = \left( \frac{VFB}{VAC} \right)^{\!\frac{1}{n}} - 1
+\]</span></p>
+<p>Donde <span class="math inline">\(n\)</span> es la vida útil u horizonte del proyecto analizado.</p>
+<p>Como se mencionó al referirnos a las ventajas y desventajas de la TIR, una de sus ventajas es su <strong>fácil interpretación</strong>. En este sentido, la TUR es un índice que, a la hora de tomar una decisión, deberá ser <strong>comparado con la TMAR</strong>, escogiéndose como tal la TUR de un proyecto alternativo, el interés de oportunidad del capital en el mercado financiero, o alguna otra alternativa de inversión.</p>
+<div class="cell">
+<div id="tbl-tur-problemas" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tur-problemas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;10.3: Problemas de la TIR resueltos por la Tasa Única de Retorno (TUR / TIRM). Elaboración propia.
+</figcaption>
+<div aria-describedby="tbl-tur-problemas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-bd5a06b6aa241204543f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bd5a06b6aa241204543f">{"x":{"filter":"none","vertical":false,"data":[["Soluciones múltiples ante flujos de fondos anómalos","Supuesto de reinversión a la propia tasa interna (irreal)","Sobreestimación de la rentabilidad real del proyecto"],["Convierte los flujos complejos en flujos simplificados (un único egreso y un único ingreso futuro), garantizando una tasa única","Capitaliza los ingresos a la tasa de descuento (TMAR), reflejando una reinversión realista","Refleja la rentabilidad efectiva al separar capitalización de ingresos y descuento de egresos"]],"container":"<table class=\"stripe hover compact\">\n  <thead>\n    <tr>\n      <th>Problema de la TIR<\/th>\n      <th>Solución de la TUR / TIRM<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","pageLength":3,"ordering":false,"columnDefs":[{"name":"Problema de la TIR","targets":0},{"name":"Solución de la TUR / TIRM","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-weight':'bold','color':'#dc2626'});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Como <strong>criterio de decisión</strong>, al igual que con la TIR: si la <strong>TUR &gt; TMAR</strong> se acepta, si <strong>TUR = TMAR</strong> es indiferente y si <strong>TUR &lt; TMAR</strong> se rechaza.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>El VAN sigue siendo el criterio preferente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>Tasa Única de Retorno (TUR)</strong> surge como una mejora de la TIR tradicional, corrigiendo principalmente el supuesto de reinversión de los flujos y los problemas derivados de la existencia de <strong>múltiples tasas internas de retorno</strong>. Sin embargo, al igual que la TIR, continúa siendo un <strong>indicador relativo</strong> de rentabilidad, por lo que el <strong>VAN mantiene su condición de criterio preferente</strong> para la selección de proyectos.</p>
+</div>
+</div>
+</section>
+<section id="sec-rbc" class="level4">
+<h4 class="anchored" data-anchor-id="sec-rbc">Relación Beneficio-Costo (RBC)</h4>
+<p>Como su nombre lo indica, la <strong>Relación Beneficio-Costo (RBC)</strong> es la relación que existe entre los <strong>beneficios actualizados</strong> y los <strong>costos actualizados</strong> de un proyecto:</p>
+<p><span class="math display">\[
+\text{RBC} = \frac{\displaystyle\sum_{i=1}^{n} \dfrac{B_i}{(1+r)^i}}{\displaystyle\sum_{i=1}^{n} \dfrac{C_i}{(1+r)^i}}
+\]</span></p>
+<p>Este indicador da una idea de la <strong>magnitud del beneficio</strong> que se espera obtener en un proyecto a una tasa de interés de oportunidad dada, con relación a los costos determinados.</p>
+<p>Existe <strong>otra forma de determinación</strong> de la RBC, y muchas veces los resultados pueden llegar a ser totalmente diferentes con una u otra metodología, por lo que es conveniente conocer la forma de obtención para una utilización coherente del indicador. Así, podremos calcular la RBC como una relación entre los <strong>Flujos de Fondos Netos positivos</strong> y los <strong>Flujos de Fondos Netos negativos</strong>. Este caso particular es el aplicado por el <strong>Gobierno de los Estados Unidos</strong> (Mokate et al., 1994).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Concepto clave</span>Criterio de utilización de la RBC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El proyecto será seleccionado como <strong>viable si la RBC es superior a uno</strong>, <strong>indiferente si es igual a uno</strong> e <strong>inviable si es inferior a uno</strong>.</p>
+<p><span class="math display">\[
+\text{RBC} &gt; 1 \Rightarrow \text{viable} \qquad
+\text{RBC} = 1 \Rightarrow \text{indiferente} \qquad
+\text{RBC} &lt; 1 \Rightarrow \text{inviable}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="sec-tri" class="level4">
+<h4 class="anchored" data-anchor-id="sec-tri">Tiempo de Recupero de la Inversión (TRI)</h4>
+<p>Este indicador es uno de los <strong>menos utilizados</strong>, salvo en forma <strong>complementaria</strong> con otros. Mide el <strong>tiempo necesario para recuperar la inversión inicial</strong> realizada en un proyecto a partir de los flujos netos de fondos generados por éste.</p>
+<p>Si los flujos de fondos son representados por una <strong>suma uniforme periódica (anualidad)</strong>, podemos estimar el TRI simplemente dividiendo el Costo de Inversión (<span class="math inline">\(CI\)</span>) por la Anualidad (<span class="math inline">\(A\)</span>):</p>
+<p><span class="math display">\[
+\text{TRI} = \frac{CI}{A}
+\]</span></p>
+<p>Para flujos de fondos que <strong>no son uniformes</strong>, lo que se hace es <strong>acumular los flujos de efectivo anuales</strong> hasta cubrir la inversión inicial.</p>
+<p>Uno de los <strong>inconvenientes</strong> de este indicador es que <strong>no utiliza en su cálculo el costo de interés de oportunidad</strong> del dinero para actualizar los flujos de fondos netos. Este aspecto puede ser resuelto <strong>incorporando la actualización</strong> (TRI descontado). Otra desventaja es que <strong>no provee información de lo que sucede con el proyecto una vez que la inversión inicial fue recuperada</strong>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — TRI por acumulación de flujos</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>anios_tri <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>flujo_neto <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">920</span>, <span class="dv">120</span>, <span class="dv">180</span>, <span class="dv">240</span>, <span class="dv">290</span>, <span class="dv">330</span>, <span class="dv">360</span>, <span class="dv">390</span>, <span class="dv">410</span>, <span class="dv">430</span>, <span class="dv">600</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>acumulado  <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(flujo_neto)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Período de recupero: primer año con acumulado &gt;= 0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>recupero <span class="ot">&lt;-</span> anios_tri[<span class="fu">which</span>(acumulado <span class="sc">&gt;=</span> <span class="dv">0</span>)[<span class="dv">1</span>]]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>barras_color <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(acumulado <span class="sc">&gt;=</span> <span class="dv">0</span>, col_verde, col_rojo)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>fig_tri <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_bars</span>(<span class="at">x =</span> anios_tri, <span class="at">y =</span> acumulado,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">color =</span> barras_color,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">width =</span> <span class="fl">1.5</span>)),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">hovertemplate =</span> <span class="st">"Año %{x}&lt;br&gt;Flujo acumulado: USD %{y} mil&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">showlegend =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_segments</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">xend =</span> <span class="fl">10.5</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#475569"</span>, <span class="at">width =</span> <span class="fl">1.5</span>),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">showlegend =</span> <span class="cn">FALSE</span>, <span class="at">hoverinfo =</span> <span class="st">"none"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_annotations</span>(<span class="at">x =</span> recupero, <span class="at">y =</span> <span class="dv">60</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">"&lt;b&gt;Recupero ≈ año "</span>, recupero, <span class="st">"&lt;/b&gt;"</span>),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                  <span class="at">showarrow =</span> <span class="cn">TRUE</span>, <span class="at">arrowhead =</span> <span class="dv">3</span>, <span class="at">arrowcolor =</span> col_azul,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ax =</span> <span class="dv">30</span>, <span class="at">ay =</span> <span class="sc">-</span><span class="dv">50</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                  <span class="at">font =</span> <span class="fu">list</span>(<span class="at">color =</span> col_azul, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                  <span class="at">bgcolor =</span> <span class="st">"rgba(255,255,255,0.85)"</span>, <span class="at">bordercolor =</span> col_azul) <span class="sc">%&gt;%</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Tiempo de Recupero de la Inversión (TRI)&lt;/b&gt;&lt;br&gt;&lt;sup&gt;Acumulación de flujos netos no uniformes — CI = USD 920 mil&lt;/sup&gt;"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                 <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.03</span>),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Horizonte del proyecto (años)&lt;/b&gt;"</span>, <span class="at">dtick =</span> <span class="dv">1</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Flujo neto acumulado (USD miles)&lt;/b&gt;"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#fafaf8"</span>, <span class="at">plot_bgcolor =</span> <span class="st">"#fafaf8"</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">70</span>, <span class="at">b =</span> <span class="dv">60</span>, <span class="at">l =</span> <span class="dv">60</span>, <span class="at">r =</span> <span class="dv">30</span>), <span class="at">height =</span> <span class="dv">420</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>fig_tri</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-tri-acumulado" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tri-acumulado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-54b7b7effaae5183629b" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-54b7b7effaae5183629b">{"x":{"visdat":{"6f2c42802bc8":["function () ","plotlyVisDat"]},"cur_data":"6f2c42802bc8","attrs":{"6f2c42802bc8":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-800,-620,-380,-90,240,600,990,1400,1830,2430],"type":"bar","marker":{"color":["#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a"],"line":{"color":"white","width":1.5}},"hovertemplate":"Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","showlegend":false,"inherit":true},"6f2c42802bc8.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":-0.5,"y":0,"xend":10.5,"yend":0,"type":"scatter","mode":"lines","line":{"color":"#475569","width":1.5},"showlegend":false,"hoverinfo":"none","inherit":true}},"layout":{"height":420,"margin":{"b":60,"l":60,"t":70,"r":30},"annotations":[{"text":"<b>Recupero ≈ año 5<\/b>","x":5,"y":60,"showarrow":true,"arrowhead":3,"arrowcolor":"#1e3a5f","ax":30,"ay":-50,"font":{"color":"#1e3a5f","size":12},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#1e3a5f"},{"text":"<b>Recupero ≈ año 5<\/b>","x":5,"y":60,"showarrow":true,"arrowhead":3,"arrowcolor":"#1e3a5f","ax":30,"ay":-50,"font":{"color":"#1e3a5f","size":12},"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#1e3a5f"}],"title":{"text":"<b>Tiempo de Recupero de la Inversión (TRI)<\/b><br><sup>Acumulación de flujos netos no uniformes — CI = USD 920 mil<\/sup>","font":{"size":15,"color":"#1e3a5f"},"x":0.029999999999999999},"xaxis":{"domain":[0,1],"automargin":true,"title":"<b>Horizonte del proyecto (años)<\/b>","dtick":1,"gridcolor":"#f1f5f9","zeroline":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"<b>Flujo neto acumulado (USD miles)<\/b>","gridcolor":"#f1f5f9","zeroline":false},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[-920,-800,-620,-380,-90,240,600,990,1400,1830,2430],"type":"bar","marker":{"color":["#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a","#16a34a"],"line":{"color":"white","width":1.5}},"hovertemplate":["Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>","Año %{x}<br>Flujo acumulado: USD %{y} mil<extra><\/extra>"],"showlegend":false,"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-0.5,10.5],"y":[0,0],"type":"scatter","mode":"lines","line":{"color":"#475569","width":1.5},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tri-acumulado-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.6: Tiempo de Recupero de la Inversión (TRI) por acumulación de flujos netos no uniformes. El punto donde el flujo acumulado cruza cero marca el período de recupero. Caso pedagógico: CI = USD 920 mil. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Si vamos a usar este indicador para la toma de decisiones, lo que se hace es <strong>comparar el TRI con el Tiempo de Recupero Máximo Aceptable (TRMA)</strong>. En este sentido, se puede establecer el siguiente criterio de decisión: si <strong>TRI &lt; TRMA</strong> se acepta el proyecto, si <strong>TRI = TRMA</strong> es indiferente y si <strong>TRI &gt; TRMA</strong> se rechaza.</p>
+<p>También se puede afirmar que, en un análisis comparativo de proyectos <strong>mutuamente excluyentes</strong>, siempre será preferible aquel proyecto o alternativa de <strong>menor TRI</strong>.</p>
+<p>Cabe aclarar que el <strong>TRMA se define por el proyectista o el administrador en forma subjetiva</strong>. En general se toman en consideración factores inherentes al propio proyecto, como por ejemplo la reposición de bienes de capital, la renovación, o el proyecto de expansión de la actividad. También se puede definir analizando la relación entre el TRI y el valor o cotización del <strong>paquete accionario</strong> para proyectos que cotizan en bolsa. Un aspecto que hace apreciado a este indicador por la administración de muchos proyectos es que, en la medida en que se observen <strong>TRI más cortos</strong>, se asumirá un <strong>menor riesgo</strong> de la inversión, al reducirse la probabilidad de que sucedan acontecimientos impredecibles que afecten su viabilidad.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="sec-comparacion" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="sec-comparacion"><span class="header-section-number">10.4</span> Comparación integrada de indicadores</h2>
+<p>A modo de síntesis aplicada, la siguiente tabla compara los cuatro indicadores centrales sobre tres proyectos de ejemplo. Permite observar cómo distintos indicadores pueden ordenar de manera diferente a las alternativas, y por qué el VAN se mantiene como criterio preferente.</p>
+<div class="cell">
+<div id="tbl-comparativa-indicadores" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparativa-indicadores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;10.4: Tablero comparativo de indicadores financieros (VAN, TIR, RBC y TRI) para tres proyectos de ejemplo, evaluados a una TMAR del 12%. Cifras en USD miles. Elaboración propia para fines pedagógicos.
+</figcaption>
+<div aria-describedby="tbl-comparativa-indicadores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-5d6fa4ca8bae6f567aa0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5d6fa4ca8bae6f567aa0">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side:top; font-weight:bold; color:#1e3a5f;\">Tablero comparativo de indicadores (TMAR = 12%)<\/caption>","data":[["A — Saneamiento hídrico","B — Energía solar rural","C — Reforestación"],[920,1350,540],[612,845,198],[21.4,19.8,16.2],[1.42,1.38,1.27],[5.2,6.8,4.1],["Aceptar","Aceptar","Aceptar"]],"container":"<table class=\"stripe hover compact\">\n  <thead>\n    <tr>\n      <th>Proyecto<\/th>\n      <th>Inversión (USD mil)<\/th>\n      <th>VAN (USD mil)<\/th>\n      <th>TIR (%)<\/th>\n      <th>RBC<\/th>\n      <th>TRI (años)<\/th>\n      <th>Decisión<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","pageLength":5,"ordering":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"name":"Proyecto","targets":0},{"name":"Inversión (USD mil)","targets":1},{"name":"VAN (USD mil)","targets":2},{"name":"TIR (%)","targets":3},{"name":"RBC","targets":4},{"name":"TRI (años)","targets":5},{"name":"Decisión","targets":6}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-weight':'bold','color':'#1e3a5f','background':isNaN(parseFloat(value)) || value <= 0.000000 ? '' : 'linear-gradient(90.000000deg, transparent ' + Math.max(900.000000 - value, 0)/900.000000 * 100 + '%, rgba(22,163,74,0.18) ' + Math.max(900.000000 - value, 0)/900.000000 * 100 + '%)'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-weight':'bold','color':'#16a34a'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-weight':'bold','color':isNaN(parseFloat(value)) ? '' : value <= 1 ? \"#dc2626\" : \"#16a34a\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-weight':'bold','color':'#14532d','background':value == \"Aceptar\" ? \"#dcfce7\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código R — Análisis de sensibilidad (diagrama tornado)</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>variaciones <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sensibilidad del VAN (% de cambio) frente a cada parámetro</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Pendientes distintas según el impacto de cada variable</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sens <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">variacion =</span> variaciones,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">precio    =</span> variaciones <span class="sc">*</span> <span class="fl">2.6</span>,   <span class="co"># variable más crítica</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">costos    =</span> variaciones <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.9</span>,  <span class="co"># relación inversa</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">inversion =</span> variaciones <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.3</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">tasa      =</span> variaciones <span class="sc">*</span> <span class="sc">-</span><span class="fl">0.9</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>fig_sens <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> sens<span class="sc">$</span>variacion, <span class="at">y =</span> sens<span class="sc">$</span>precio, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"Precio de venta"</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_verde, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> sens<span class="sc">$</span>variacion, <span class="at">y =</span> sens<span class="sc">$</span>costos, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"Costos operativos"</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_rojo, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> sens<span class="sc">$</span>variacion, <span class="at">y =</span> sens<span class="sc">$</span>inversion, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"Inversión inicial"</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_naranja, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(<span class="at">x =</span> sens<span class="sc">$</span>variacion, <span class="at">y =</span> sens<span class="sc">$</span>tasa, <span class="at">type =</span> <span class="st">"scatter"</span>, <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">name =</span> <span class="st">"Tasa de descuento"</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> col_celeste, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_segments</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">55</span>, <span class="at">yend =</span> <span class="dv">55</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>               <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#94a3b8"</span>, <span class="at">dash =</span> <span class="st">"dash"</span>, <span class="at">width =</span> <span class="fl">1.5</span>),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>               <span class="at">showlegend =</span> <span class="cn">FALSE</span>, <span class="at">hoverinfo =</span> <span class="st">"none"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_segments</span>(<span class="at">x =</span> <span class="sc">-</span><span class="dv">20</span>, <span class="at">xend =</span> <span class="dv">20</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>               <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#94a3b8"</span>, <span class="at">dash =</span> <span class="st">"dash"</span>, <span class="at">width =</span> <span class="fl">1.5</span>),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>               <span class="at">showlegend =</span> <span class="cn">FALSE</span>, <span class="at">hoverinfo =</span> <span class="st">"none"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Análisis de Sensibilidad del VAN&lt;/b&gt;&lt;br&gt;&lt;sup&gt;Variación del VAN (%) ante cambios en parámetros clave — pendiente = criticidad&lt;/sup&gt;"</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                 <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> col_azul), <span class="at">x =</span> <span class="fl">0.03</span>),</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Variación del parámetro (%)&lt;/b&gt;"</span>, <span class="at">ticksuffix =</span> <span class="st">"%"</span>,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"&lt;b&gt;Variación del VAN (%)&lt;/b&gt;"</span>, <span class="at">ticksuffix =</span> <span class="st">"%"</span>,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gridcolor =</span> <span class="st">"#f1f5f9"</span>, <span class="at">zeroline =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.2</span>),</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#fafaf8"</span>, <span class="at">plot_bgcolor =</span> <span class="st">"#fafaf8"</span>,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">70</span>, <span class="at">b =</span> <span class="dv">80</span>, <span class="at">l =</span> <span class="dv">60</span>, <span class="at">r =</span> <span class="dv">30</span>), <span class="at">height =</span> <span class="dv">450</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>fig_sens</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-sensibilidad" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sensibilidad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-e8f821aad784191f7610" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-e8f821aad784191f7610">{"x":{"visdat":{"6f2c48e66f06":["function () ","plotlyVisDat"]},"cur_data":"6f2c48e66f06","attrs":{"6f2c48e66f06":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[-52,-39,-26,-13,0,13,26,39,52],"type":"scatter","mode":"lines+markers","name":"Precio de venta","line":{"color":"#16a34a","width":3},"marker":{"size":6},"inherit":true},"6f2c48e66f06.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[38,28.5,19,9.5,-0,-9.5,-19,-28.5,-38],"type":"scatter","mode":"lines+markers","name":"Costos operativos","line":{"color":"#dc2626","width":3},"marker":{"size":6},"inherit":true},"6f2c48e66f06.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[26,19.5,13,6.5,-0,-6.5,-13,-19.5,-26],"type":"scatter","mode":"lines+markers","name":"Inversión inicial","line":{"color":"#ea580c","width":3},"marker":{"size":6},"inherit":true},"6f2c48e66f06.3":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[18,13.5,9,4.5,-0,-4.5,-9,-13.5,-18],"type":"scatter","mode":"lines+markers","name":"Tasa de descuento","line":{"color":"#0891b2","width":3},"marker":{"size":6},"inherit":true},"6f2c48e66f06.4":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":0,"y":-55,"xend":0,"yend":55,"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":"none","inherit":true},"6f2c48e66f06.5":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":-20,"y":0,"xend":20,"yend":0,"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":"none","inherit":true}},"layout":{"height":450,"margin":{"b":80,"l":60,"t":70,"r":30},"title":{"text":"<b>Análisis de Sensibilidad del VAN<\/b><br><sup>Variación del VAN (%) ante cambios en parámetros clave — pendiente = criticidad<\/sup>","font":{"size":15,"color":"#1e3a5f"},"x":0.029999999999999999},"xaxis":{"domain":[0,1],"automargin":true,"title":"<b>Variación del parámetro (%)<\/b>","ticksuffix":"%","gridcolor":"#f1f5f9","zeroline":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"<b>Variación del VAN (%)<\/b>","ticksuffix":"%","gridcolor":"#f1f5f9","zeroline":false},"legend":{"orientation":"h","x":0.5,"xanchor":"center","y":-0.20000000000000001},"paper_bgcolor":"#fafaf8","plot_bgcolor":"#fafaf8","hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[-52,-39,-26,-13,0,13,26,39,52],"type":"scatter","mode":"lines+markers","name":"Precio de venta","line":{"color":"#16a34a","width":3},"marker":{"color":"rgba(31,119,180,1)","size":6,"line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[38,28.5,19,9.5,-0,-9.5,-19,-28.5,-38],"type":"scatter","mode":"lines+markers","name":"Costos operativos","line":{"color":"#dc2626","width":3},"marker":{"color":"rgba(255,127,14,1)","size":6,"line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[26,19.5,13,6.5,-0,-6.5,-13,-19.5,-26],"type":"scatter","mode":"lines+markers","name":"Inversión inicial","line":{"color":"#ea580c","width":3},"marker":{"color":"rgba(44,160,44,1)","size":6,"line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-20,-15,-10,-5,0,5,10,15,20],"y":[18,13.5,9,4.5,-0,-4.5,-9,-13.5,-18],"type":"scatter","mode":"lines+markers","name":"Tasa de descuento","line":{"color":"#0891b2","width":3},"marker":{"color":"rgba(214,39,40,1)","size":6,"line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0],"y":[-55,55],"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-20,20],"y":[0,0],"type":"scatter","mode":"lines","line":{"color":"#94a3b8","dash":"dash","width":1.5},"showlegend":false,"hoverinfo":["none","none"],"marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensibilidad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.7: Análisis de sensibilidad del VAN: variación porcentual del VAN ante cambios de ±20% en los parámetros clave del proyecto (precio de venta, costos operativos, inversión inicial y tasa de descuento). Las pendientes más pronunciadas señalan las variables críticas. Caso pedagógico. Elaboración propia.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ejemplo práctico</span>Las limitaciones del criterio financiero
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Como se anticipó al inicio del capítulo, <strong>el criterio financiero no es el único</strong> ni necesariamente el más relevante. La experiencia demuestra que se han cometido numerosos errores al asignar recursos escasos a proyectos basándose <strong>exclusivamente</strong> en los resultados financieros esperados. En proyectos ambientales y de aprovechamiento de recursos naturales, los indicadores financieros deben coexistir con:</p>
+<ul>
+<li>el <strong>análisis multicriterio</strong>,</li>
+<li>la <strong>valoración económica de servicios ecosistémicos</strong>,</li>
+<li>la <strong>contabilidad ambiental</strong>, y</li>
+<li>los enfoques de <strong>costo-efectividad</strong> para beneficios no monetizables.</li>
+</ul>
+<p>El indicador financiero informa la decisión; no la reemplaza.</p>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Concepto clave</span>Síntesis del Capítulo 9
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>evaluación financiera</strong> constituye la instancia final del estudio financiero de un proyecto, donde se calcula uno o varios indicadores que informan cuán rentable resulta la inversión evaluada:</p>
+<ol type="1">
+<li>Las medidas de rentabilidad se dividen entre las que <strong>no consideran el tiempo</strong> (beneficio bruto, neto, normal, rentabilidad — para ciclos cortos) y las que <strong>sí lo consideran</strong> (VAN, TIR, RBC, TRI — para proyectos plurianuales, propios del ámbito ambiental).</li>
+<li>El <strong>VAN</strong> es el indicador más robusto: mide el excedente global del proyecto tras cubrir inversión, costos operativos y costo de oportunidad. Criterio: <strong>VAN &gt; 0</strong> se acepta; entre excluyentes, el de <strong>mayor VAN</strong>.</li>
+<li>La <strong>TIR</strong> es la tasa que hace VAN = 0. Es un indicador <strong>relativo</strong> que debe compararse con la <strong>TMAR</strong>; presenta limitaciones (soluciones múltiples, supuesto de reinversión) que la <strong>TUR / TIRM</strong> corrige.</li>
+<li>La <strong>RBC</strong> (beneficios/costos actualizados) selecciona si es <strong>&gt; 1</strong>; el <strong>TRI</strong> mide el tiempo de recupero y se compara con el <strong>TRMA</strong>, prefiriéndose siempre el menor.</li>
+<li>La elección de la <strong>tasa de descuento (TMAR)</strong> —como costo de oportunidad— es la decisión crítica: por la relación inversa, a mayor tasa exigida, menor VAN. El criterio financiero <strong>informa pero no reemplaza</strong> a los criterios sociales, ambientales y territoriales.</li>
+</ol>
+<p>El siguiente capítulo del manual desarrolla los <strong>estudios económicos</strong>, que amplían el horizonte de la evaluación más allá de la rentabilidad financiera privada.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Para profundizar</span>Repositorio: libros recomendados para este capítulo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los siguientes recursos del Repositorio FEPAR 2026 son especialmente relevantes para profundizar los contenidos de este capítulo:</p>
+<ul>
+<li><strong>Baca Urbina, G.</strong> — <em>Evaluación de proyectos</em>: referencia central para la conceptualización del VAN, la TMAR y la tasa de riesgo como “verdadero crecimiento del dinero”.</li>
+<li><strong>Sapag Chaín, N.</strong> — <em>Proyectos de inversión: formulación y evaluación</em>: tratamiento integral del VAN como excedente y de los criterios de decisión financiera.</li>
+<li><strong>Mokate, K. et al.&nbsp;(1994)</strong> — referencia para la Relación Beneficio-Costo según la metodología del Gobierno de los Estados Unidos.</li>
+<li><strong>Lorie, J. &amp; Savage, L. (1966)</strong> — trabajo seminal sobre las anomalías de la TIR en flujos de fondos no convencionales.</li>
+</ul>
+<p>Acceder al Repositorio FEPAR 2026 desde la <strong>Portada</strong> del manual digital.</p>
+</div>
+</div>
+<div class="chapter-summary">
+  <div class="chapter-summary-header">
+    <i class="fas fa-book-open-reader" style="color:#fff;font-size:1.1rem;"></i>
+    Síntesis del Capítulo 9 — La Evaluación Financiera de Proyectos
+  </div>
+  <div class="chapter-summary-grid">
+    <div class="summary-block">
+      <div class="summary-block-title">
+        <i class="fas fa-key" style="color:#2563eb;"></i> Conceptos clave
+      </div>
+      <ul>
+        <li>Valor Actualizado Neto (VAN): excedente global del proyecto; criterio VAN &gt; 0.</li>
+        <li>Tasa Interna de Retorno (TIR): tasa que hace VAN = 0; indicador relativo comparado con la TMAR.</li>
+        <li>Tasa Única de Retorno (TUR / TIRM): corrige el supuesto de reinversión y las soluciones múltiples de la TIR.</li>
+        <li>Relación Beneficio-Costo (RBC): viable si es superior a uno.</li>
+        <li>Tiempo de Recupero de la Inversión (TRI): comparado con el TRMA; se prefiere el menor.</li>
+        <li>Tasa de descuento (TMAR) y costo de oportunidad: relación inversa con el VAN.</li>
+      </ul>
+    </div>
+    <div class="summary-block">
+      <div class="summary-block-title">
+        <i class="fas fa-book" style="color:#2563eb;"></i> Referencias principales
+      </div>
+      <ul>
+        <li>Baca Urbina, G. <em>Evaluación de proyectos</em>. McGraw-Hill.</li>
+        <li>Sapag Chaín, N. <em>Proyectos de inversión: formulación y evaluación</em>. Pearson.</li>
+        <li>Mokate, K. et al. (1994). Relación Beneficio-Costo (metodología del Gobierno de EE. UU.).</li>
+        <li>Lorie, J. &amp; Savage, L. (1966). Anomalías de la TIR en flujos no convencionales.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-next">
+    <i class="fas fa-arrow-right" style="color:#2563eb;"></i>
+    Próximo capítulo: Estudios Económicos
+  </div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./08_cap_estudios_financieros.html" class="pagination-link" aria-label="Estudios Financieros">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estudios Financieros</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./10_cap_estudios_economicos.html" class="pagination-link" aria-label="Estudios Económicos">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estudios Económicos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>MT FEPAR 2026</strong> · Cátedra de Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Universidad Nacional de Salta · Ingeniería en Recursos Naturales y Medioambiente</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
