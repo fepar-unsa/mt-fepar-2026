@@ -598,6 +598,45 @@ html[data-theme="light"] #pop{background:rgba(240,246,243,.95)}
 .card.popped>.pop-b,.esq-wrap.popped>.pop-b{display:none}
 .card.popped .scrolly,.esq-wrap.popped .scrolly{max-height:none!important;overflow:visible}
 
+/* ===================== MARCADOR CON MUCHOS EQUIPOS (hasta 15) ===================== */
+#score{width:372px}
+.sc-top{position:sticky;top:-20px;z-index:3;margin:0 -18px;padding:20px 18px 12px;
+  background:linear-gradient(180deg,var(--panel) 86%,transparent);border-bottom:1px solid var(--line)}
+html[data-theme="light"] .sc-top{background:linear-gradient(180deg,var(--panel) 86%,transparent)}
+#score{padding-top:0}
+.tmn{display:flex;align-items:center;gap:7px;margin-top:2px}
+.tmn-b{width:28px;height:28px;flex:none;border-radius:8px;border:1px solid var(--line2);
+  background:rgba(255,255,255,.05);color:var(--tx2);font-size:16px;line-height:1;cursor:pointer;
+  font-family:var(--ff);display:flex;align-items:center;justify-content:center}
+.tmn-b:hover{border-color:var(--verde);color:var(--verde-l)}
+#tm-n{width:52px;flex:none;text-align:center;border:1px solid var(--line2);border-radius:8px;
+  background:rgba(255,255,255,.05);color:var(--tx);font-family:var(--fh);font-size:15px;font-weight:800;
+  padding:4px 0;-moz-appearance:textfield}
+#tm-n::-webkit-outer-spin-button,#tm-n::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+#tm-quick .qn{border:1px solid var(--line2);background:rgba(255,255,255,.045);color:var(--tx3);
+  border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer;font-family:var(--ff);
+  font-variant-numeric:tabular-nums}
+#tm-quick .qn:hover{border-color:var(--verde);color:var(--verde-l)}
+#tm-quick .qn.act{background:var(--verde);border-color:var(--verde);color:#04150e;font-weight:700}
+.tmu{display:flex;align-items:flex-start;gap:8px;margin-top:12px;font-size:11.5px;color:var(--tx3);
+  line-height:1.4;cursor:pointer}
+.tmu input{margin-top:1px;accent-color:var(--verde)}
+.tmu b{color:var(--oro);font-weight:700}
+.tm .tmi{flex:none;width:20px;font-size:11px;color:var(--tx3);font-variant-numeric:tabular-nums;
+  text-align:right}
+/* con más de 8 equipos las fichas se compactan para que entren en el panel */
+#tm-list.compact .tm{padding:6px 9px;margin-bottom:5px;border-radius:10px}
+#tm-list.compact .tm input{font-size:12.5px}
+#tm-list.compact .tm .pts{font-size:17px}
+#tm-list.compact .tm .b{padding:2px 7px;font-size:11px}
+#tm-list.compact .tm .wrap{margin-top:5px!important;gap:4px!important}
+/* dock de votación: con 15 chips no puede crecer sin límite */
+#vdock{max-height:56vh;overflow:auto}
+#vdock .vteams{max-height:none}
+
+@keyframes flashrow{from{background:rgba(0,160,90,.28)}to{background:transparent}}
+tr.flashrow td{animation:flashrow .9s ease forwards}
+
 /* ===================== BARRA INFERIOR EN PANTALLAS ANGOSTAS ===================== */
 @media (max-width:1560px){
   #hud{gap:9px;padding:0 clamp(12px,2vw,26px)}
@@ -706,6 +745,11 @@ html[data-theme="light"] #pop{background:rgba(240,246,243,.95)}
   .esq-wrap{padding:10px}
   .lgpath{gap:4px}
   .lgpath .st{font-size:11.5px;padding:5px 9px}
+  /* el marcador conserva sus filas horizontales aunque el resto pase a columna */
+  #score .row{flex-direction:row!important}
+  #score .tm .row{flex-wrap:nowrap!important;align-items:center}
+  #score .tm input{width:auto!important;min-width:0;flex:1}
+  #score .tm .pts{flex:none}
   .pop-b{opacity:.75;width:30px;height:30px}
   #pop-bar{padding:8px 10px;gap:6px}
   #pop-t{display:none}
@@ -1525,7 +1569,7 @@ html[data-theme="light"] #pop{background:rgba(240,246,243,.95)}
     <div><span class="eyebrow">Bloque 4 · listado de proyectos</span><h2>Los seis escenarios 2026</h2></div>
     <div class="wrap" id="sc-filters"></div>
   </div>
-  <p class="lead">Seis casos, uno por equipo. Hacé clic en cualquier tarjeta para abrir la ficha completa: esquema del caso, situación problemática, evidencias, condiciones y preguntas orientadoras.</p>
+  <p class="lead">Seis casos. Cada equipo trabaja con uno; si hay más equipos que escenarios, el caso se repite y cada equipo lo resuelve por su cuenta. Hacé clic en cualquier tarjeta para abrir la ficha completa: esquema del caso, situación problemática, evidencias, condiciones y preguntas orientadoras.</p>
   <div class="grid g4 fill scrolly" id="sc-grid" style="align-content:start"></div>
   <p class="tiny">Fuente: <span class="mono">TFP-2026 · Casos de estudio · R01</span>. Los escenarios fueron elaborados con fines exclusivamente académicos.</p>
 </section>
@@ -1534,10 +1578,11 @@ html[data-theme="light"] #pop{background:rgba(240,246,243,.95)}
 <section class="slide" data-sec="Escenarios" data-title="Asignación por equipo">
   <div class="row" style="justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px">
     <div><span class="eyebrow">Bloque 4</span><h2>Un escenario por equipo</h2></div>
-    <div class="row" style="gap:8px"><button class="btn ghost" id="asg-add">+ Agregar fila</button><button class="btn ghost" id="asg-print">Imprimir</button></div>
+    <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn" id="asg-sorteo">🎲 Sortear escenarios</button><button class="btn ghost" id="asg-clear">Limpiar sorteo</button><button class="btn ghost" id="asg-add">+ Fila</button><button class="btn ghost" id="asg-print">Imprimir</button></div>
   </div>
-  <p class="lead">Se completa en clase. Seis escenarios y un equipo por escenario: no se repiten. Anotá acá el nombre de fantasía y el coordinador de cada equipo a medida que se definan.</p>
-  <div class="card fill scrolly"><div class="tag"></div>
+  <p class="lead">Se completa en clase. La tabla trae una fila por equipo —hoy son <strong id="asg-count">15</strong>, se ajusta desde el marcador (<span class="kbd">M</span>)—. El sorteo reparte los escenarios al azar pero parejo. <span id="asg-msg" class="hl"></span></p>
+  <p class="tiny" id="asg-rep" style="display:none;color:var(--oro);margin-top:-4px">Con más equipos que escenarios, el escenario se repite: los equipos que comparten caso trabajan por separado y deben llegar a <strong>problemas centrales y proyectos distintos</strong>. Es material de comparación para la puesta en común, no un problema.</p>
+  <div class="card fill scrolly nofit"><div class="tag"></div>
     <table class="asg" id="asg"><thead><tr><th style="width:5%">#</th><th style="width:24%">Nombre de fantasía del equipo</th><th style="width:20%">Coordinador/a</th><th style="width:34%">Escenario asignado</th><th style="width:17%">Integrantes</th></tr></thead><tbody id="asg-b"></tbody></table>
   </div>
   <div class="row" style="gap:12px">
@@ -1688,17 +1733,27 @@ html[data-theme="light"] #pop{background:rgba(240,246,243,.95)}
 
 <!-- ===== MARCADOR DE EQUIPOS ===== -->
 <div id="score">
-  <div class="row" style="justify-content:space-between;align-items:center">
-    <div><span class="eyebrow">Participación</span><h3 style="margin-top:7px;font-size:17px">Marcador de equipos</h3></div>
-    <button class="btn ghost" id="sc-x" style="padding:5px 11px">✕</button>
+  <div class="sc-top">
+    <div class="row" style="justify-content:space-between;align-items:center">
+      <div><span class="eyebrow">Participación</span><h3 style="margin-top:7px;font-size:17px">Marcador de equipos</h3></div>
+      <button class="btn ghost" id="sc-x" style="padding:5px 11px">✕</button>
+    </div>
+    <div class="tmn" style="margin-top:12px">
+      <span class="tiny" style="flex:none">Equipos en el aula</span>
+      <button class="tmn-b" id="tm-less" title="Un equipo menos">−</button>
+      <input id="tm-n" type="number" min="1" max="15" value="15" aria-label="Cantidad de equipos">
+      <button class="tmn-b" id="tm-more" title="Un equipo más">+</button>
+    </div>
+    <div class="wrap" id="tm-quick" style="margin:8px 0 0;gap:6px"></div>
+    <div class="wrap" style="margin-top:11px">
+      <button class="btn" id="tm-roll">🎲 Sortear equipo</button>
+      <button class="btn ghost" id="tm-zero">Poner en cero</button>
+    </div>
+    <label class="tmu" id="tm-uniq-l"><input type="checkbox" id="tm-uniq" checked>
+      <span>No repetir hasta que hayan salido todos <b id="tm-left"></b></span></label>
   </div>
-  <p class="tiny" style="margin:10px 0 14px">Editá los nombres. Sumá puntos por respuesta fundamentada, no por respuesta rápida.</p>
+  <p class="tiny" style="margin:12px 0 9px">Editá los nombres. Sumá puntos por respuesta fundamentada, no por respuesta rápida.</p>
   <div id="tm-list"></div>
-  <div class="wrap" style="margin-top:14px">
-    <button class="btn" id="tm-roll">🎲 Sortear equipo</button>
-    <button class="btn ghost" id="tm-add">+ Equipo</button>
-    <button class="btn ghost" id="tm-zero">Poner en cero</button>
-  </div>
   <div class="box warn" style="margin-top:16px"><p class="tiny"><strong>Sugerencia de puntaje.</strong> +1 aporte a la pizarra · +2 reformulación correcta · +3 respuesta fundamentada · −1 hablar por encima de otro equipo.</p></div>
 </div>
 
@@ -1728,6 +1783,7 @@ html[data-theme="light"] #pop{background:rgba(240,246,243,.95)}
   <div class="rl">¿Quién responde?</div>
   <div class="rd">🎲</div>
   <div id="roll-n">Equipo 1</div>
+  <p id="roll-q" class="tiny" style="color:var(--oro);margin:-6px 0 2px"></p>
   <div id="roll-b">
     <button data-d="1" class="p">+1</button>
     <button data-d="2" class="p">+2</button>
@@ -1805,7 +1861,8 @@ function narrow(){ return window.innerWidth <= 760; }
 function overflowPx(s){
   var n = Math.max(0, s.scrollHeight - s.clientHeight - 3);
   s.querySelectorAll('.card,.esq-wrap,.scrolly').forEach(function(e){
-    if(e.classList.contains('sc-card')) return;
+    /* .nofit = panel de trabajo que se desplaza a propósito (planillas largas) */
+    if(e.classList.contains('sc-card') || e.classList.contains('nofit')) return;
     if(getComputedStyle(e).display === 'none') return;
     var dy = e.scrollHeight - e.clientHeight - 6;
     var dx = e.scrollWidth - e.clientWidth - 14;
@@ -1814,6 +1871,13 @@ function overflowPx(s){
   });
   return n;
 }
+/* ¿hay una planilla de trabajo (.nofit) que ya se está desplazando? entonces no conviene agrandar */
+function nofitOver(s){
+  var t = false;
+  s.querySelectorAll('.nofit').forEach(function(e){
+    if(e.scrollHeight > e.clientHeight + 6 || e.scrollWidth > e.clientWidth + 14) t = true; });
+  return t;
+}
 /* busca la escala que llena la pantalla sin obligar a desplazar ni abrir ningún panel */
 function measureFit(s){
   var i = slides.indexOf(s), z = 1, g = 0;
@@ -1821,10 +1885,10 @@ function measureFit(s){
   var base = overflowPx(s);
   if(base === 0){
     /* sobra lugar: agrandar hasta que algo empiece a no entrar */
-    while(z < FITMAX - 1e-6 && g++ < 16){
+    while(z < FITMAX - 1e-6 && g++ < 16 && !nofitOver(s)){
       var nz = Math.min(FITMAX, Math.round((z + .04) * 100) / 100);
       s.style.zoom = nz;
-      if(overflowPx(s) > 0){ s.style.zoom = z; break; }
+      if(overflowPx(s) > 0 || nofitOver(s)){ s.style.zoom = z; break; }
       z = nz;
     }
   } else {
@@ -1984,11 +2048,14 @@ document.addEventListener('keydown', function(e){
   if(e.key==='Escape'){ popClose(); closeModal(); closeOv(); closeVote(); closeAsk(); closeRes(); if(!ROLLING) rollClose(); return; }
   if(e.key==='+'||e.key==='='){ e.preventDefault(); po?popZ(.1):zoomStep(.1); return; }
   if(e.key==='-'||e.key==='_'){ e.preventDefault(); po?popZ(-.1):zoomStep(-.1); return; }
-  if(e.key==='0'){ e.preventDefault(); if(po){ POP.z=1; popZ(0); } else setZoom(1); return; }
+  /* con la votación por equipos abierta, el 0 vota por el equipo 10 y no resetea el zoom */
+  if(e.key==='0' && !(vt && VOTE.mode==='equipos')){
+    e.preventDefault(); if(po){ POP.z=1; popZ(0); } else setZoom(1); return; }
   if(po) return;
   if(vt){
     if(VOTE.mode==='manos' && '1234'.indexOf(e.key)>=0){ e.preventDefault(); vtAdd(+e.key-1); return; }
-    if(VOTE.mode==='equipos' && '123456789'.indexOf(e.key)>=0){ e.preventDefault(); vtTeam(+e.key-1); return; }
+    if(VOTE.mode==='equipos' && '1234567890'.indexOf(e.key)>=0){
+      e.preventDefault(); vtTeam(e.key==='0' ? 9 : (+e.key-1)); return; }
     if(e.key==='Backspace'){ e.preventDefault(); vtUndo(); return; }
   }
   if(mo) return;
@@ -2172,15 +2239,33 @@ document.querySelectorAll('.t-set').forEach(function(b){
 paint();
 
 /* ==================================================================== MARCADOR DE EQUIPOS */
+var MAXT = 15;
 var TEAMS = [];
-for(var ti=1; ti<=6; ti++) TEAMS.push({n:'Equipo '+ti, p:0});
+function mkTeam(i){ return {n:'Equipo '+i, p:0}; }
+for(var ti=1; ti<=MAXT; ti++) TEAMS.push(mkTeam(ti));
+
+/* cambia la cantidad de equipos conservando nombres y puntajes de los que quedan */
+function setTeams(n){
+  n = Math.max(1, Math.min(MAXT, n|0));
+  if(n === TEAMS.length) { tmPaint(); return; }
+  if(n > TEAMS.length){ for(var i=TEAMS.length+1; i<=n; i++) TEAMS.push(mkTeam(i)); }
+  else { TEAMS.length = n; }
+  ROLLPOOL = ROLLPOOL.filter(function(i){ return i < n; });
+  if(TURN.i >= n) TURN.i = -1;
+  VOTE.tv = VOTE.tv.slice(0, n);
+  tmPaint();
+  if(typeof vtPaint === 'function' && document.getElementById('vdock').classList.contains('on')) vtPaint();
+  if(typeof asgSync === 'function') asgSync();
+}
 function tmPaint(){
   var L = document.getElementById('tm-list'); L.innerHTML='';
+  L.classList.toggle('compact', TEAMS.length > 8);
   var max = Math.max.apply(null, TEAMS.map(function(t){return t.p;}));
   TEAMS.forEach(function(t,i){
     var d = document.createElement('div'); d.className='tm'+((t.p>0&&t.p===max)?' lead':'');
     d.dataset.i = i;
     d.innerHTML = '<div class="row" style="justify-content:space-between;align-items:center;gap:8px">'+
+      '<span class="tmi">'+(i+1)+'</span>'+
       '<input value="'+t.n.replace(/"/g,'&quot;')+'"><span class="pts">'+t.p+'</span></div>'+
       '<div class="wrap" style="margin-top:7px;gap:5px">'+
       '<button class="b" data-d="1">+1</button><button class="b" data-d="2">+2</button>'+
@@ -2191,6 +2276,23 @@ function tmPaint(){
     });
     L.appendChild(d);
   });
+  var inp = document.getElementById('tm-n'); if(inp) inp.value = TEAMS.length;
+  document.querySelectorAll('#tm-quick .qn').forEach(function(b){
+    b.classList.toggle('act', +b.dataset.n === TEAMS.length); });
+  rollLeft();
+}
+/* --- sorteo sin repetir --- */
+var ROLLPOOL = [], ROLLUNIQ = true;
+function rollLeft(){
+  var e = document.getElementById('tm-left'); if(!e) return;
+  e.textContent = ROLLUNIQ ? '(' + (ROLLPOOL.length || TEAMS.length) + ' sin salir)' : '';
+}
+function rollPick(){
+  if(!ROLLUNIQ) return Math.floor(Math.random()*TEAMS.length);
+  ROLLPOOL = ROLLPOOL.filter(function(i){ return i < TEAMS.length; });
+  if(!ROLLPOOL.length){ for(var i=0;i<TEAMS.length;i++) ROLLPOOL.push(i); }
+  var k = Math.floor(Math.random()*ROLLPOOL.length);
+  return ROLLPOOL.splice(k,1)[0];
 }
 var ROLLING = false, rollT = null;
 function tmRoll(){
@@ -2200,8 +2302,10 @@ function tmRoll(){
   ov.classList.add('on','spin'); ov.classList.remove('done');
   document.getElementById('roll-b').style.visibility = 'hidden';
   var L = TEAMS.length;
-  var start = Math.floor(Math.random()*L);
-  var total = L*2 + 4 + Math.floor(Math.random()*L);
+  var target = rollPick();
+  /* cantidad de pasos fija: con 15 equipos la ruleta no puede durar el triple */
+  var total = 16 + Math.floor(Math.random()*L);
+  var start = ((target - total) % L + L) % L;
   var n = 0;
   clearTimeout(rollT);
   (function step(){
@@ -2212,9 +2316,15 @@ function tmRoll(){
       ROLLING = false; TURN.i = idx;
       ov.classList.remove('spin'); ov.classList.add('done');
       document.getElementById('roll-b').style.visibility = 'visible';
+      var rq = document.getElementById('roll-q');
+      if(rq) rq.textContent = ROLLUNIQ
+        ? (ROLLPOOL.length ? 'Quedan ' + ROLLPOOL.length + ' equipos sin salir' : 'Salieron todos: la próxima vuelve a empezar la ronda')
+        : 'Sorteo con repetición: cualquier equipo puede volver a salir';
       tmPaint();
       document.querySelectorAll('#tm-list .tm').forEach(function(e,k){
         e.classList.toggle('pick', k===idx); });
+      var pick = document.querySelector('#tm-list .tm.pick');
+      if(pick) pick.scrollIntoView({block:'nearest'});
       return;
     }
     rollT = setTimeout(step, 55 + Math.pow(n/total, 3.2) * 300);
@@ -2224,8 +2334,21 @@ function rollClose(){ document.getElementById('roll').classList.remove('on','spi
 document.getElementById('b-score').onclick = function(){ document.getElementById('score').classList.toggle('on'); };
 document.getElementById('sc-x').onclick = function(){ document.getElementById('score').classList.remove('on'); };
 document.getElementById('tm-roll').onclick = tmRoll;
-document.getElementById('tm-add').onclick = function(){ TEAMS.push({n:'Equipo '+(TEAMS.length+1), p:0}); tmPaint(); };
 document.getElementById('tm-zero').onclick = function(){ TEAMS.forEach(function(t){t.p=0;}); tmPaint(); };
+document.getElementById('tm-less').onclick = function(){ setTeams(TEAMS.length-1); };
+document.getElementById('tm-more').onclick = function(){ setTeams(TEAMS.length+1); };
+document.getElementById('tm-n').onchange = function(e){ setTeams(+e.target.value); };
+document.getElementById('tm-uniq').onchange = function(e){
+  ROLLUNIQ = e.target.checked; ROLLPOOL = []; rollLeft(); };
+(function(){
+  var q = document.getElementById('tm-quick');
+  [4,6,8,10,12,15].forEach(function(n){
+    var b = document.createElement('button');
+    b.className = 'qn'; b.dataset.n = n; b.textContent = n;
+    b.onclick = function(){ setTeams(n); };
+    q.appendChild(b);
+  });
+})();
 tmPaint();
 
 /* ==================================================================== VOTACIÓN (dock) */
@@ -2271,7 +2394,11 @@ function vtPaint(){
     ? '<strong style="color:var(--tx)">'+tot+'</strong> de '+TEAMS.length+' equipos votaron'
     : '<strong style="color:var(--tx)">'+tot+'</strong> manos contadas';
   document.getElementById('vt-help').innerHTML = VOTE.mode==='equipos'
-    ? 'Cada equipo levanta su tarjeta. Hacé clic en el equipo —o apretá su número— hasta que aparezca su letra. <span class="kbd">⌫</span> deshace.'
+    ? ('Cada equipo levanta su tarjeta. Hacé clic en el equipo hasta que aparezca su letra'
+       + (TEAMS.length>10
+          ? '. Con el teclado: <span class="kbd">1</span>–<span class="kbd">9</span> y <span class="kbd">0</span> para el 10; del 11 en adelante, con un clic'
+          : ', o apretá su número (<span class="kbd">0</span> = equipo 10)')
+       + '. <span class="kbd">⌫</span> deshace.')
     : 'Contá las manos: clic sobre la opción, o teclas <span class="kbd">1</span> <span class="kbd">2</span> <span class="kbd">3</span> <span class="kbd">4</span>. <span class="kbd">⌫</span> deshace.';
   document.getElementById('vt-mode').textContent = VOTE.mode==='equipos' ? '👥 Por equipos' : '🙌 A mano alzada';
 }
@@ -3626,22 +3753,82 @@ scPaint();
 })();
 
 /* ==================================================================== 24 · ASIGNACIÓN */
+function asgOpts(){
+  return '<option value="">— sin asignar —</option>' + SC.map(function(s){
+    return '<option value="'+s.n+'">N° '+s.n+' · '+s.t+'</option>'; }).join('');
+}
 function asgRow(i){
   var tr = document.createElement('tr');
-  var opts = '<option value="">— sin asignar —</option>' + SC.map(function(s){
-    return '<option>N° '+s.n+' · '+s.t+'</option>'; }).join('');
-  tr.innerHTML = '<td style="color:var(--tx3);font-weight:700">'+i+'</td>'+
-    '<td><input placeholder="p. ej. PACHA Consultora"></td>'+
+  tr.innerHTML = '<td class="asg-i" style="color:var(--tx3);font-weight:700">'+i+'</td>'+
+    '<td><input class="asg-n" placeholder="p. ej. PACHA Consultora"></td>'+
     '<td><input placeholder="Apellido y nombre"></td>'+
-    '<td><select class="sel-i" style="font-size:12.5px">'+opts+'</select></td>'+
+    '<td><select class="sel-i asg-s" style="font-size:12.5px">'+asgOpts()+'</select></td>'+
     '<td><input placeholder="4 a 6"></td>';
   return tr;
 }
+/* la tabla sigue a la cantidad de equipos del marcador */
+function asgSync(){
+  var b = document.getElementById('asg-b'); if(!b) return;
+  var n = (typeof TEAMS !== 'undefined' && TEAMS.length) ? TEAMS.length : 6;
+  while(b.children.length < n) b.appendChild(asgRow(b.children.length+1));
+  while(b.children.length > n){
+    var last = b.lastElementChild;
+    var used = [].slice.call(last.querySelectorAll('input')).some(function(x){ return x.value.trim(); });
+    if(used) break;                       /* nunca borra una fila que el docente ya completó */
+    b.removeChild(last);
+  }
+  [].forEach.call(b.children, function(tr,k){
+    tr.querySelector('.asg-i').textContent = k+1;
+    var inp = tr.querySelector('.asg-n');
+    if(inp && !inp.value.trim() && TEAMS[k]) inp.placeholder = TEAMS[k].n;
+  });
+  var c = document.getElementById('asg-count');
+  if(c) c.textContent = b.children.length;
+  var r = document.getElementById('asg-rep');
+  if(r) r.style.display = b.children.length > SC.length ? 'block' : 'none';
+}
+/* sorteo equilibrado: reparte los escenarios lo más parejo posible entre las filas */
+function asgSorteo(){
+  var b = document.getElementById('asg-b'); if(!b) return;
+  var rows = [].slice.call(b.children), R = rows.length, S = SC.length;
+  if(!R || !S) return;
+  var bolsa = [];
+  while(bolsa.length < R){
+    var vuelta = SC.map(function(s){ return s.n; });
+    for(var i=vuelta.length-1; i>0; i--){                 /* Fisher-Yates por vuelta */
+      var j = Math.floor(Math.random()*(i+1)), t = vuelta[i]; vuelta[i]=vuelta[j]; vuelta[j]=t;
+    }
+    bolsa = bolsa.concat(vuelta);
+  }
+  bolsa = bolsa.slice(0, R);
+  for(var i=bolsa.length-1; i>0; i--){                    /* mezcla final: el orden de las filas también es al azar */
+    var j = Math.floor(Math.random()*(i+1)), t = bolsa[i]; bolsa[i]=bolsa[j]; bolsa[j]=t;
+  }
+  rows.forEach(function(tr,k){
+    var sel = tr.querySelector('.asg-s');
+    if(sel) sel.value = String(bolsa[k]);
+    tr.classList.remove('flashrow'); void tr.offsetWidth; tr.classList.add('flashrow');
+  });
+  var msg = document.getElementById('asg-msg');
+  if(msg){
+    var porEsc = {}; bolsa.forEach(function(n){ porEsc[n] = (porEsc[n]||0)+1; });
+    var vals = Object.keys(porEsc).map(function(k){ return porEsc[k]; });
+    var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals);
+    msg.textContent = R + ' equipos entre ' + S + ' escenarios: ' +
+      (mn===mx ? mn + ' equipo' + (mn>1?'s':'') + ' por escenario.' : mn + ' a ' + mx + ' equipos por escenario.');
+  }
+}
 (function(){
   var b = document.getElementById('asg-b'); if(!b) return;
-  for(var i=1;i<=6;i++) b.appendChild(asgRow(i));
-  document.getElementById('asg-add').onclick=function(){ b.appendChild(asgRow(b.children.length+1)); };
+  asgSync();
+  document.getElementById('asg-add').onclick=function(){ b.appendChild(asgRow(b.children.length+1)); asgSync(); };
   document.getElementById('asg-print').onclick=function(){ window.print(); };
+  var so = document.getElementById('asg-sorteo'); if(so) so.onclick = asgSorteo;
+  var cl = document.getElementById('asg-clear');
+  if(cl) cl.onclick = function(){
+    [].forEach.call(b.querySelectorAll('.asg-s'), function(s){ s.value=''; });
+    var m=document.getElementById('asg-msg'); if(m) m.textContent='';
+  };
 })();
 
 /* ==================================================================== 25 · TAREAS DEL TALLER */
