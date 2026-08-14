@@ -1880,7 +1880,7 @@ html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
     <div class="card" style="flex:1.5;display:flex;flex-direction:column;min-width:0">
       <div class="row" style="justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
         <h3 id="amTit" style="font-size:13px">Crédito de 470.000 USD · 60 cuotas mensuales</h3>
-        <span class="tiny">La barra de cada fila muestra qué parte de la cuota es interés y qué parte amortiza</span>
+        <span class="tiny">Pasá el mouse por cualquier valor para ver de dónde sale. La barra muestra qué parte de la cuota es interés y qué parte amortiza.</span>
       </div>
       <div class="tfw fill" id="amTabla" style="margin-top:11px"></div>
     </div>
@@ -1928,7 +1928,7 @@ html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
     <div class="card" style="flex:1.45;display:flex;flex-direction:column;min-width:0">
       <div class="row" style="justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
         <h3 id="foTit" style="font-size:13px">Opción C · depósito anual de 36.000 USD al 5 %</h3>
-        <span class="tiny">La barra muestra qué porción de la meta lleva reunida el fondo</span>
+        <span class="tiny">Pasá el mouse por cualquier valor para ver de dónde sale. La barra muestra qué porción de la meta lleva reunida el fondo.</span>
       </div>
       <div class="tfw fill" id="foTabla" style="margin-top:11px"></div>
     </div>
@@ -4987,7 +4987,9 @@ function tfPaint(){
   cont.innerHTML=h;
   cont.querySelectorAll('td[data-tip]').forEach(function(td){
     var tp=td.getAttribute('data-tip'); if(!tp) return;
-    hov(td, '<b>Período '+td.cellIndex+'</b>'+tp);
+    var rot=td.parentNode.cells[0].textContent.trim();
+    var per=td.cellIndex-1;            /* la primera celda es el rótulo de la fila */
+    hov(td, '<b>'+rot+(td.classList.contains('tot')?'':' · período '+per)+'</b>'+tp);
   });
 
   document.getElementById('tfR').textContent = act ? nf(resultado,2) : '—';
@@ -4998,6 +5000,20 @@ function tfPaint(){
   et.innerHTML = TF.err
     ? '<strong>'+TFERR[TF.err][0]+'.</strong> '+TFERR[TF.err][1]
     : 'Elegí un error y mirá qué fila de la tabla se rompe. Volvé a apretarlo para quitarlo.';
+}
+
+/* ---- tooltip por celda: cada valor cuenta como se calculo ---- */
+function tdt(txt, cls, tip){
+  return '<td'+(cls?' class="'+cls+'"':'')+(tip?' data-tip="'+esc(tip)+'"':'')+'>'+txt+'</td>';
+}
+function tipsTabla(id, rot){
+  var c=document.getElementById(id); if(!c) return;
+  c.querySelectorAll('td[data-tip]').forEach(function(td){
+    var tp=td.getAttribute('data-tip'); if(!tp) return;
+    var f=td.parentNode.cells[0].textContent.trim();
+    var enc = /^\d+$/.test(f) ? rot+' '+f : f;
+    hov(td, '<b>'+enc+'</b>'+tp);
+  });
 }
 
 /* ==================================================================== T2 · AMORTIZACIÓN */
@@ -5022,6 +5038,8 @@ function amPaint(){
 
   var c = i===0 ? P/n : P*i/(1-Math.pow(1+i,-n));
   var saldo=P, tInt=0, cruce=0, intExacto=c*n-P;
+  var fmC='A = P · i / [1 − (1 + i)⁻ⁿ] = '+nf(P,2)+' × '+nf(i,6)+' / [1 − (1 + '+nf(i,6)+')⁻'+n+'] = '+nf(c,2)+
+          ' USD. Es la misma en las '+n+' cuotas: por eso se llama sistema de cuota constante.';
   var h='<table class="tf"><thead><tr><th class="rh">Cuota</th><th>Saldo inicial</th><th>Interés</th>'+
         '<th>Amortización</th><th>Cuota</th><th>Saldo final</th><th style="min-width:120px">Composición</th></tr></thead><tbody>';
   for(var k=1;k<=n;k++){
@@ -5031,13 +5049,31 @@ function amPaint(){
     if(!cruce && am>=it) cruce=k;
     var pInt=Math.max(0,Math.min(100, it/c*100));
     h+='<tr'+(cruce===k?' class="cruce"':'')+'><th class="rh">'+k+'</th>'+
-       '<td>'+nf(si,2)+'</td><td class="int">'+nf(it,2)+'</td><td class="amo">'+nf(am,2)+'</td>'+
-       '<td class="tot2">'+nf(c,2)+'</td><td>'+nf(Math.max(saldo,0),2)+'</td>'+
-       '<td><span class="mix"><i style="width:'+pInt.toFixed(1)+'%"></i></span></td></tr>';
+       tdt(nf(si,2),'', k===1
+           ? 'Es el capital prestado: '+nf(P,2)+' USD. Todavía no se pagó nada.'
+           : 'Es el saldo final de la cuota '+(k-1)+'. Cada fila arranca donde terminó la anterior.')+
+       tdt(nf(it,2),'int',
+           nf(si,2)+' × '+nf(i*100,4)+' % = '+nf(it,2)+' USD. El interés se calcula sobre el saldo que quedaba '+
+           'al comienzo del período: eso es lo que quiere decir el Manual con que en el sistema francés '+
+           '"la tasa se aplica al comienzo del período considerado".')+
+       tdt(nf(am,2),'amo',
+           'Cuota menos interés: '+nf(c,2)+' − '+nf(it,2)+' = '+nf(am,2)+' USD. Es la única parte que baja la deuda.')+
+       tdt(nf(c,2),'tot2', fmC)+
+       tdt(nf(Math.max(saldo,0),2),'',
+           nf(si,2)+' − '+nf(am,2)+' = '+nf(Math.max(saldo,0),2)+' USD'+
+           (k===n?'. La última amortización deja el saldo en cero: el crédito queda cancelado.':'.'))+
+       tdt('<span class="mix"><i style="width:'+pInt.toFixed(1)+'%"></i></span>','',
+           'De cada 100 USD de cuota, '+nf(pInt,1)+' se van en intereses y '+nf(100-pInt,1)+' amortizan capital.')+
+       '</tr>';
   }
-  h+='</tbody><tfoot><tr><th class="rh">Totales</th><td>·</td><td class="int">'+nf(intExacto,2)+'</td>'+
-     '<td class="amo">'+nf(P,2)+'</td><td class="tot2">'+nf(c*n,2)+'</td><td>0,00</td><td></td></tr></tfoot></table>';
+  h+='</tbody><tfoot><tr><th class="rh">Totales</th><td>·</td>'+
+     tdt(nf(intExacto,2),'int','Cuota por cantidad de cuotas, menos el capital: '+nf(c*n,2)+' − '+nf(P,2)+' = '+
+         nf(intExacto,2)+' USD. Es el costo del crédito: un '+nf(intExacto/P*100,1)+' % sobre lo prestado.')+
+     tdt(nf(P,2),'amo','La suma de todas las amortizaciones es exactamente el capital prestado. Tiene que dar '+nf(P,2)+' USD.')+
+     tdt(nf(c*n,2),'tot2',nf(c,2)+' × '+n+' cuotas = '+nf(c*n,2)+' USD desembolsados en total.')+
+     '<td>0,00</td><td></td></tr></tfoot></table>';
   document.getElementById('amTabla').innerHTML=h;
+  tipsTabla('amTabla', AM.caso==='h3' ? 'Cuota' : 'Año');
 
   document.getElementById('amC').textContent=nf(c,2);
   document.getElementById('amInt').textContent=nf(intExacto,2);
@@ -5075,18 +5111,34 @@ function foPaint(){
   var filas=Math.min(MAX, Math.ceil(n)+1);
   var h='<table class="tf"><thead><tr><th class="rh">Año</th><th>Saldo inicial</th><th>Interés ganado</th>'+
         '<th>Depósito</th><th>Saldo final</th><th>% de la meta</th><th style="min-width:120px">Avance</th></tr></thead><tbody>';
+  var fmA=DAT[FO.k].red+' t CO₂e por módulo × 10 módulos × '+nf(p,2)+' USD por tonelada = '+nf(A,2)+
+           ' USD. El depósito es el mismo todos los años: es una serie constante.';
   for(var k=1;k<=filas;k++){
     var si=saldo, it=saldo*i;
     saldo=saldo*(1+i)+A;
     if(!cruce && saldo>=F) cruce=k;
     var pct=Math.min(100, saldo/F*100);
     h+='<tr'+(cruce===k?' class="cruce"':'')+'><th class="rh">'+k+'</th>'+
-       '<td>'+nf(si,2)+'</td><td class="int">'+nf(it,2)+'</td><td class="amo">'+nf(A,2)+'</td>'+
-       '<td class="tot2">'+nf(saldo,2)+'</td><td>'+nf(pct,2)+' %</td>'+
-       '<td><span class="mix ok"><i style="width:'+pct.toFixed(2)+'%"></i></span></td></tr>';
+       tdt(nf(si,2),'', k===1
+           ? 'El fondo arranca vacío: antes del primer año no hay nada depositado.'
+           : 'Es el saldo final del año '+(k-1)+'.')+
+       tdt(nf(it,2),'int', k===1
+           ? 'El primer año no gana interés porque el fondo todavía estaba en cero.'
+           : nf(si,2)+' × '+nf(i*100,1)+' % = '+nf(it,2)+' USD. Lo genera lo que ya estaba depositado, '+
+             'no el depósito de este año: por eso crece año a año aunque el depósito no cambie.')+
+       tdt(nf(A,2),'amo', fmA)+
+       tdt(nf(saldo,2),'tot2',
+           'Saldo inicial más interés más depósito: '+nf(si,2)+' + '+nf(it,2)+' + '+nf(A,2)+' = '+nf(saldo,2)+' USD.')+
+       tdt(nf(pct,2)+' %','',
+           nf(saldo,2)+' / '+nf(F,2)+' × 100 = '+nf(pct,2)+' % de la meta'+
+           (cruce===k?'. Acá el fondo alcanza el monto buscado.':'.'))+
+       tdt('<span class="mix ok"><i style="width:'+pct.toFixed(2)+'%"></i></span>','',
+           'Lleva reunido el '+nf(pct,2)+' % de los '+nf(F,2)+' USD que hay que juntar.')+
+       '</tr>';
   }
   h+='</tbody></table>';
   document.getElementById('foTabla').innerHTML=h;
+  tipsTabla('foTabla','Año');
 
   var t;
   if(cruce) t='El fondo alcanza la meta en el <strong>año '+cruce+'</strong>. Fijate que el interés ganado crece todos los años aunque el depósito sea siempre el mismo: eso es la capitalización trabajando.';
