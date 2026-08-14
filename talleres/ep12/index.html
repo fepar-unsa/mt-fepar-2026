@@ -993,6 +993,55 @@ html[data-theme="light"] .aplic{background:rgba(6,40,30,.025)}
 .aplic p{font-size:11.5px;line-height:1.5;color:var(--tx2);margin:0}
 .aplic .mono{color:var(--tx)}
 @media(max-width:900px){.aplic{grid-template-columns:1fr}.aplic>div{border-left:0;border-top:1px solid var(--line)}}
+/* ===================== TABLAS DE FLUJO ===================== */
+.tfw{overflow:auto;border:1px solid var(--line);border-radius:var(--r-s);
+  background:rgba(255,255,255,.02);min-height:0}
+html[data-theme="light"] .tfw{background:rgba(6,40,30,.02)}
+table.tf{border-collapse:separate;border-spacing:0;font-size:11px;
+  font-variant-numeric:tabular-nums;width:max-content;min-width:100%}
+table.tf th,table.tf td{padding:4px 7px;white-space:nowrap;text-align:right;
+  border-bottom:1px solid var(--line)}
+table.tf thead th{position:sticky;top:0;z-index:2;background:var(--panel2);
+  font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--tx3);font-weight:800;
+  border-bottom:1px solid var(--line2)}
+html[data-theme="light"] table.tf thead th{background:#eef3f0}
+table.tf th.rh{position:sticky;left:0;z-index:1;background:var(--panel2);text-align:left;
+  font-weight:650;color:var(--tx);font-size:11.5px;text-transform:none;letter-spacing:0;
+  border-right:1px solid var(--line2);min-width:118px}
+html[data-theme="light"] table.tf th.rh{background:#eef3f0}
+table.tf thead th.rh{z-index:3}
+table.tf td{color:var(--tx2)}
+table.tf td.z{color:var(--tx3);opacity:.45}
+table.tf td.tot,table.tf thead th.tot{position:sticky;right:0;z-index:2;background:var(--panel2);
+  color:var(--tx);font-weight:800;box-shadow:inset 3px 0 0 var(--verde), -9px 0 14px -8px rgba(0,0,0,.65)}
+html[data-theme="light"] table.tf td.tot,html[data-theme="light"] table.tf thead th.tot{background:#eef3f0;
+  box-shadow:inset 3px 0 0 var(--verde), -9px 0 14px -8px rgba(10,50,36,.20)}
+table.tf thead th.tot{z-index:4}
+table.tf tr.r-act td.tot{color:var(--verde-l);background:var(--panel2)}
+html[data-theme="light"] table.tf tr.r-act td.tot{background:#eef3f0}
+table.tf tbody tr:hover td{background:rgba(255,255,255,.05)}
+html[data-theme="light"] table.tf tbody tr:hover td{background:rgba(6,40,30,.05)}
+table.tf tr.r-inv th.rh{border-left:3px solid var(--s4)}
+table.tf tr.r-ser th.rh{border-left:3px solid var(--s2)}
+table.tf tr.r-vr  th.rh{border-left:3px solid var(--s1)}
+table.tf tr.r-net th.rh{border-left:3px solid var(--tx3)}
+table.tf tr.r-net td{color:var(--tx);font-weight:650}
+table.tf tr.r-fac th.rh{border-left:3px solid var(--s3)}
+table.tf tr.r-fac td{color:var(--s3)}
+table.tf tr.r-act th.rh{border-left:3px solid var(--verde)}
+table.tf tr.r-act td{color:var(--tx);font-weight:650;background:rgba(0,160,90,.07)}
+table.tf tfoot th,table.tf tfoot td{background:rgba(255,255,255,.06);color:var(--tx);font-weight:800;
+  border-top:1px solid var(--line2)}
+html[data-theme="light"] table.tf tfoot th,html[data-theme="light"] table.tf tfoot td{background:rgba(6,40,30,.06)}
+table.tf td.int{color:var(--s2)} table.tf td.amo{color:var(--s1)}
+table.tf td.tot2{color:var(--tx);font-weight:650}
+table.tf tr.cruce td,table.tf tr.cruce th.rh{background:rgba(47,159,191,.18);color:var(--tx)}
+table.tf tr.cruce th.rh{box-shadow:inset 3px 0 0 var(--s3)}
+.mix{display:block;height:9px;border-radius:99px;background:var(--s1);overflow:hidden;min-width:80px}
+.mix i{display:block;height:100%;background:var(--s2)}
+.mix.ok{background:rgba(255,255,255,.10)}
+html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
+.mix.ok i{background:var(--s1)}
 
 </style>
 </head>
@@ -1018,7 +1067,7 @@ html[data-theme="light"] .aplic{background:rgba(6,40,30,.025)}
     </p>
     <div class="wrap" style="margin-top:4px">
       <span class="pill v">Primer Parcial · TPO obligatorio</span>
-      <span class="pill o">11 actividades en vivo · 34 pantallas</span>
+      <span class="pill o">17 actividades en vivo · 41 pantallas</span>
       <span class="pill p">TMAR 12 % · horizonte 10 años</span>
       <span class="pill a">4 alternativas · 8 criterios</span>
     </div>
@@ -1752,6 +1801,154 @@ html[data-theme="light"] .aplic{background:rgba(6,40,30,.025)}
         <div class="box"><p class="sub"><strong>i1 ·</strong> el mismo factor 3, pero con la serie del lado de los ingresos: VAN = − I₀ + A · a(n;i)</p></div>
       </div>
       <p class="tiny" style="margin-top:9px">Notar que h1 y h3 usan tasas distintas —26,8242 % anual y 2,25 % mensual— porque una serie es anual y la otra mensual. Es el mismo crédito visto con dos relojes.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================== T1 · TABLA DEL FLUJO ============================== -->
+<section class="slide" data-sec="Matemática financiera" data-title="✋ La tabla del flujo, período por período">
+  <div class="row" style="justify-content:space-between;align-items:flex-end;gap:14px">
+    <div><span class="eyebrow">✋ De la línea de tiempo a la fórmula</span><h2>La misma tabla, antes y después de actualizar</h2></div>
+    <div class="wrap">
+      <button class="chip sm sel" id="tf-A" onclick="tfAlt('A')">A</button>
+      <button class="chip sm" id="tf-B" onclick="tfAlt('B')">B</button>
+      <button class="chip sm" id="tf-C" onclick="tfAlt('C')">C</button>
+      <button class="chip sm" id="tf-D" onclick="tfAlt('D')">D</button>
+      <button class="chip sm" id="tf-van" onclick="tfAlt('van')">i1 · inversión con bonos</button>
+    </div>
+  </div>
+  <div class="aplic">
+    <div><h5>El concepto</h5><p>La fórmula no es un conjuro: es la <strong>abreviatura de esta suma</strong>. Cada monto se divide por (1 + i) elevado al período en que ocurre, y después se suman todas las columnas.</p></div>
+    <div><h5>Qué resuelve</h5><p>Hace visible por qué el momento cero no lleva factor —se multiplica por uno— y por qué un peso del año 10 pesa apenas 0,32 de uno de hoy.</p></div>
+    <div><h5>Dónde se aplica</h5><p><span class="mono">c1</span> el VAC de cada alternativa · <span class="mono">i1</span> el VAN con venta de bonos. La columna Total es exactamente el resultado que se informa.</p></div>
+  </div>
+  <div class="row fill" style="gap:15px;align-items:stretch;min-height:0">
+    <div class="card" style="flex:1.95;display:flex;flex-direction:column;min-width:0">
+      <div class="row" style="justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h3 id="tfTit" style="font-size:13px">Opción A · flujo de costos</h3>
+        <div class="wrap">
+          <button class="btn" id="tfBtn" onclick="tfVista()">Actualizar los montos ▶</button>
+          <button class="btn ghost" onclick="tfReset()">Reiniciar</button>
+        </div>
+      </div>
+      <div class="tfw fill" id="tfTabla" style="margin-top:11px"></div>
+      <p class="tiny" id="tfPie" style="margin-top:9px"></p>
+    </div>
+    <div class="col sc" style="flex:.52;gap:11px">
+      <div class="card"><h3 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)">Parámetros</h3>
+        <div class="col" style="gap:13px;margin-top:11px">
+          <div class="sl"><div class="sh"><span class="sn">Tasa de descuento</span><span class="sv" id="tfIv">12,0 %</span></div>
+            <input type="range" id="tfI" min="4" max="30" step="0.0005" value="12" oninput="tfPaint()"></div>
+          <div class="sl"><div class="sh"><span class="sn">Horizonte</span><span class="sv o" id="tfNv">10 años</span></div>
+            <input type="range" class="o" id="tfN" min="3" max="15" step="1" value="10" oninput="tfPaint()"></div>
+        </div>
+        <div class="hr" style="margin:13px 0"></div>
+        <div class="kpi">
+          <div class="kv v"><div class="kl" id="tfRl">VAC · suma actualizada</div><div class="kn" id="tfR">1.011.777,46</div><div class="ks">dólares de hoy</div></div>
+        </div>
+      </div>
+      <div class="card oro"><h3>Errores que se ven en la tabla</h3>
+        <div class="wrap" style="margin-top:9px">
+          <button class="chip sm" id="tfe-nodesc" onclick="tfErr('nodesc')">Sumar sin actualizar</button>
+          <button class="chip sm" id="tfe-vranual" onclick="tfErr('vranual')">Residual con a(n; i)</button>
+          <button class="chip sm" id="tfe-novr" onclick="tfErr('novr')">Omitir el residual</button>
+        </div>
+        <p class="sub" id="tfErrTxt" style="margin-top:10px">Elegí un error y mirá qué fila de la tabla se rompe. Volvé a apretarlo para quitarlo.</p>
+      </div>
+      <div class="mt"><div class="mtt">Lo que hay que leer en voz alta</div>
+        <p>La fila <strong>Factor</strong> arranca en 1,0000000 y termina en 0,3219732. Ese descenso es todo el contenido del concepto de actualización: <strong>cuanto más lejos está el peso, menos pesa hoy</strong>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== T2 · TABLA DE AMORTIZACIÓN ============================== -->
+<section class="slide" data-sec="Matemática financiera" data-title="✋ La tabla del crédito, cuota por cuota">
+  <div class="row" style="justify-content:space-between;align-items:flex-end;gap:14px">
+    <div><span class="eyebrow">✋ Consigna h3 · sistema francés</span><h2>Si la cuota es siempre igual, ¿por qué al principio casi todo es interés?</h2></div>
+    <div class="wrap">
+      <button class="chip sm sel" id="am-h3" onclick="amCaso('h3')">h3 · 2,25 % mensual · 60 cuotas</button>
+      <button class="chip sm" id="am-an" onclick="amCaso('an')">El mismo crédito en cuotas anuales</button>
+    </div>
+  </div>
+  <div class="aplic">
+    <div><h5>El concepto</h5><p>La <strong>cuota es constante</strong>, pero su composición cambia. El interés de cada período se calcula sobre el <strong>saldo que quedaba antes</strong>, y lo que sobra amortiza capital.</p></div>
+    <div><h5>Qué resuelve</h5><p>Muestra la frase del Manual sobre el sistema francés —"la tasa se aplica al comienzo del período considerado"— como una columna que se puede recorrer con el dedo.</p></div>
+    <div><h5>Dónde se aplica</h5><p><span class="mono">h3</span> la cuota mensual del crédito de la opción D. Y el mismo factor, leído al revés, es el que produce el <span class="mono">CAE</span> a partir del VAC.</p></div>
+  </div>
+  <div class="row fill" style="gap:15px;align-items:stretch;min-height:0">
+    <div class="card" style="flex:1.5;display:flex;flex-direction:column;min-width:0">
+      <div class="row" style="justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h3 id="amTit" style="font-size:13px">Crédito de 470.000 USD · 60 cuotas mensuales</h3>
+        <span class="tiny">La barra de cada fila muestra qué parte de la cuota es interés y qué parte amortiza</span>
+      </div>
+      <div class="tfw fill" id="amTabla" style="margin-top:11px"></div>
+    </div>
+    <div class="col sc" style="flex:.66;gap:11px">
+      <div class="card"><h3 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)">Parámetros</h3>
+        <div class="col" style="gap:13px;margin-top:11px">
+          <div class="sl"><div class="sh"><span class="sn">Capital prestado</span><span class="sv" id="amPv">470.000</span></div>
+            <input type="range" id="amP" min="100000" max="900000" step="10000" value="470000" oninput="amPaint()"></div>
+          <div class="sl"><div class="sh"><span class="sn">Tasa efectiva del período</span><span class="sv" id="amIv">2,2500 %</span></div>
+            <input type="range" id="amI" min="0.25" max="6" step="0.05" value="2.25" oninput="amPaint()"></div>
+          <div class="sl"><div class="sh"><span class="sn">Cantidad de cuotas</span><span class="sv o" id="amNv">60</span></div>
+            <input type="range" class="o" id="amN" min="6" max="120" step="1" value="60" oninput="amPaint()"></div>
+        </div>
+        <div class="hr" style="margin:13px 0"></div>
+        <div class="kpi">
+          <div class="kv v"><div class="kl">Cuota</div><div class="kn" id="amC">14.351,60</div><div class="ks">constante</div></div>
+          <div class="kv o"><div class="kl">Total de intereses</div><div class="kn" id="amInt">391.096,24</div><div class="ks">sobre el capital</div></div>
+          <div class="kv c"><div class="kl">Se pagan en total</div><div class="kn" id="amTot">861.096,24</div><div class="ks">capital más intereses</div></div>
+        </div>
+      </div>
+      <div class="card aqua"><h3>El cruce</h3>
+        <p class="sub" id="amCruce" style="margin-top:7px"></p></div>
+      <div class="box warn"><p class="sub"><strong>La trampa del enunciado.</strong> "Cancelar en cinco años pagando cuotas mensuales" son <strong>60 períodos</strong>, no 5, y la tasa que corresponde es la <strong>mensual</strong>. Probá poner 5 cuotas en el deslizador y mirá cómo se dispara la cuota: ese es el error, hecho visible.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== T3 · TABLA DEL FONDO ============================== -->
+<section class="slide" data-sec="Matemática financiera" data-title="✋ La tabla del fondo de bonos, año por año">
+  <div class="row" style="justify-content:space-between;align-items:flex-end;gap:14px">
+    <div><span class="eyebrow">✋ Consignas f y g</span><h2>Cómo crece el fondo, y cuándo alcanza el daño</h2></div>
+    <div class="wrap">
+      <button class="chip sm sel" id="fo-C" onclick="foSet('k','C')">C · 120 t</button>
+      <button class="chip sm" id="fo-D" onclick="foSet('k','D')">D · 98 t</button>
+      <button class="chip sm sel" id="fo-100" onclick="foSet('s',100)">Daño provincial</button>
+      <button class="chip sm" id="fo-25" onclick="foSet('s',2.5)">Sólo el 2,5 % del prototipo</button>
+    </div>
+  </div>
+  <div class="aplic">
+    <div><h5>El concepto</h5><p>Un <strong>fondo</strong> crece por dos vías: el depósito de cada año y el interés que gana lo ya acumulado. Por eso el saldo no avanza en línea recta.</p></div>
+    <div><h5>Qué resuelve</h5><p>Convierte "en cuántos años se reúne el monto" en algo que se puede recorrer fila por fila, en vez de aceptar de memoria el resultado de un logaritmo.</p></div>
+    <div><h5>Dónde se aplica</h5><p><span class="mono">e3</span> el depósito anual necesario · <span class="mono">f</span> y <span class="mono">g</span> el plazo, con la mejor opción ambiental y con la mejor financiera.</p></div>
+  </div>
+  <div class="row fill" style="gap:15px;align-items:stretch;min-height:0">
+    <div class="card" style="flex:1.45;display:flex;flex-direction:column;min-width:0">
+      <div class="row" style="justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h3 id="foTit" style="font-size:13px">Opción C · depósito anual de 36.000 USD al 5 %</h3>
+        <span class="tiny">La barra muestra qué porción de la meta lleva reunida el fondo</span>
+      </div>
+      <div class="tfw fill" id="foTabla" style="margin-top:11px"></div>
+    </div>
+    <div class="col sc" style="flex:.66;gap:11px">
+      <div class="card"><h3 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)">Parámetros</h3>
+        <div class="col" style="gap:13px;margin-top:11px">
+          <div class="sl"><div class="sh"><span class="sn">Precio del carbono</span><span class="sv" id="foPv">30 USD/t</span></div>
+            <input type="range" id="foP" min="10" max="60" step="1" value="30" oninput="foPaint()"></div>
+          <div class="sl"><div class="sh"><span class="sn">Tasa del fondo</span><span class="sv o" id="foIv">5,0 %</span></div>
+            <input type="range" class="o" id="foI" min="1" max="15" step="0.5" value="5" oninput="foPaint()"></div>
+        </div>
+        <div class="hr" style="margin:13px 0"></div>
+        <div class="kpi">
+          <div class="kv o"><div class="kl">Meta a reunir</div><div class="kn" id="foF">43.393.752,86</div><div class="ks">daño capitalizado</div></div>
+          <div class="kv v"><div class="kl">Depósito anual</div><div class="kn" id="foA">36.000,00</div><div class="ks">venta de bonos</div></div>
+          <div class="kv c"><div class="kl">Años necesarios</div><div class="kn" id="foN">84,3</div><div class="ks">despejando n</div></div>
+        </div>
+      </div>
+      <div class="card oro"><h3>Qué muestra la tabla</h3>
+        <p class="sub" id="foTxt" style="margin-top:7px"></p></div>
     </div>
   </div>
 </section>
@@ -2724,7 +2921,7 @@ document.getElementById('ov-x').onclick = closeOv;
 
 
 /* ==================================================================== ÍNDICE LATERAL */
-var MIN = {'Apertura':5,'Las consignas':16,'Consignas cualitativas':19,'Leer el caso':18,'Matemática financiera':26,'Planteo financiero':28,'Ambiente y externalidad':22,'Instrumentos financieros':20,'Multicriterio':24,'Cierre':18};
+var MIN = {'Apertura':5,'Las consignas':16,'Consignas cualitativas':19,'Leer el caso':18,'Matemática financiera':40,'Planteo financiero':28,'Ambiente y externalidad':22,'Instrumentos financieros':20,'Multicriterio':24,'Cierre':18};
 var BLOCKS = [];
 (function(){
   var last=null;
@@ -3884,6 +4081,9 @@ var ASK = {
  'Las seis equivalencias y cuándo se usa cada una':['¿Qué dos preguntas hay que contestar para elegir el factor?','¿Por qué el Manual las nombra por su aplicación y no por un nombre de factor?'],
  'Elegí el factor':['¿Cuál es la diferencia entre el factor 3 y el factor 5?','Cuando la incógnita es n, ¿cambia el factor o cambia el despeje?'],
  'Calculadora de equivalencias':['¿Qué pasa si la tasa es anual y n está en meses?','¿Por qué conviene escribir el reemplazo completo y no sólo el resultado?'],
+ 'La tabla del flujo, período por período':['¿Por qué la columna del período cero no cambia al actualizar?','Si la fila Factor fuera toda 1, ¿qué estaríamos afirmando sobre el tiempo?'],
+ 'La tabla del crédito, cuota por cuota':['La cuota es siempre igual. ¿Por qué el interés baja y la amortización sube?','¿Sobre qué saldo se calcula el interés de la cuota 30?'],
+ 'La tabla del fondo de bonos, año por año':['El depósito es siempre el mismo. ¿Por qué el saldo no crece en línea recta?','¿Cuál de los dos plazos informarían: el del daño provincial o el del 2,5 %?'],
  'Ordenar la tasa antes de usarla':['¿12 % efectivo anual cuánto es por mes?','¿Por qué el 12 % de la TMAR y el 12 % del crédito no son la misma tasa?'],
  'Los tres flujos del EP_12, resueltos':['¿Cuál de los tres flujos aparece más veces en el ejercicio?','¿Por qué h1 y h3 usan tasas distintas si es el mismo crédito?'],
  'Por qué VAC y no VAN':['Si alguien entrega esta resolución con cuatro VAN calculados, ¿qué le señalarían primero?','¿En qué caso sí habría que calcular el VAN acá?'],
@@ -4664,6 +4864,238 @@ reg('vzVac', function(){
   });
   leyenda('vzVacLeg', TER.map(function(t){ return [t[0], t[1]]; }));
 });
+
+
+/* ==================================================================== T1 · TABLA DEL FLUJO */
+var TF = {alt:'A', vista:'nom', err:null};
+
+function tfAlt(k){
+  TF.alt=k; TF.vista='nom'; TF.err=null;
+  /* la consigna i1 se descuenta a la TEA equivalente al 12 % nominal capitalizable mensualmente */
+  document.getElementById('tfI').value = (k==='van') ? 12.6825 : 12;
+  tfPaint();
+}
+function tfVista(){ TF.vista = TF.vista==='nom' ? 'act' : 'nom'; tfPaint(); }
+function tfErr(e){ TF.err = (TF.err===e ? null : e); if(TF.err) TF.vista='act'; tfPaint(); }
+function tfReset(){
+  TF={alt:TF.alt, vista:'nom', err:null};
+  document.getElementById('tfI').value=12; document.getElementById('tfN').value=10;
+  tfPaint();
+}
+var TFERR = {
+  nodesc:['Sumar sin actualizar',
+    'La fila <strong>Factor</strong> queda en 1,0000000 en todas las columnas: es como declarar que un peso del año 10 vale lo mismo que uno de hoy. Si el tiempo no vale, no hace falta ninguna tasa — y entonces todo el análisis financiero sobra.'],
+  vranual:['Residual con a(n; i)',
+    'El valor residual ocurre <strong>una sola vez</strong>, en el último período. Aplicarle el factor de una serie es cobrarlo en todos los años: mirá cómo aparece repetido a lo largo de toda la fila.'],
+  novr:['Omitir el residual',
+    'La fila del residual desaparece y el VAC queda <strong>sobreestimado</strong>. No cambia el orden entre las cuatro opciones, porque el residual es proporcional a la inversión, pero la cifra que se informa deja de ser la del enunciado.']
+};
+
+function tfDatos(){
+  var i=num(document.getElementById('tfI').value)/100;
+  var n=Math.round(num(document.getElementById('tfN').value));
+  var van = TF.alt==='van';
+  var inv = van ? 4700000 : DAT[TF.alt].inv;
+  var ser = van ? 29400 : DAT[TF.alt].opex;
+  var vr  = van ? 0 : 0.10*inv;
+  if(TF.err==='novr') vr=0;
+  var fac=[], t;
+  for(t=0;t<=n;t++) fac.push(TF.err==='nodesc' ? 1 : Math.pow(1+i,-t));
+  return {i:i, n:n, van:van, inv:inv, ser:ser, vr:vr, fac:fac};
+}
+
+function tfPaint(){
+  var d=tfDatos(), n=d.n;
+  ['A','B','C','D','van'].forEach(function(k){
+    var b=document.getElementById('tf-'+k); if(b) b.classList.toggle('sel', k===TF.alt); });
+  ['nodesc','vranual','novr'].forEach(function(e){
+    var b=document.getElementById('tfe-'+e); if(b) b.classList.toggle('sel', e===TF.err); });
+  document.getElementById('tfIv').textContent=nf(d.i*100, d.van?4:1)+' %';
+  document.getElementById('tfNv').textContent=n+' años';
+  document.getElementById('tfTit').textContent = d.van
+    ? 'Consigna i1 · diez módulos de la opción D con venta de bonos'
+    : 'Opción '+TF.alt+' · '+DAT[TF.alt].nom+' · flujo de costos';
+  document.getElementById('tfRl').textContent = d.van ? 'VAN · suma actualizada' : 'VAC · suma actualizada';
+  var act = TF.vista==='act';
+  document.getElementById('tfBtn').textContent = act ? '◀ Volver a los montos nominales' : 'Actualizar los montos ▶';
+
+  /* filas de montos, con signo economico: en el VAC los egresos son positivos */
+  var t, neto=[], filas=[];
+  var fInv=[], fSer=[], fVr=[];
+  for(t=0;t<=n;t++){
+    fInv.push(t===0 ? d.inv : 0);
+    fSer.push(t===0 ? 0 : d.ser);
+    if(d.van) fVr.push(0);
+    else if(TF.err==='vranual') fVr.push(t===0 ? 0 : -d.vr);
+    else fVr.push(t===n ? -d.vr : 0);
+  }
+  for(t=0;t<=n;t++) neto.push(fInv[t]+fSer[t]+fVr[t]);
+
+  var actz=neto.map(function(v,t){ return v*d.fac[t]; });
+  var total=actz.reduce(function(a,b){ return a+b; },0);
+  var resultado = d.van ? -total : total;   /* en i1 la inversion es egreso y la serie ingreso */
+  if(d.van){
+    /* recomponer con signos de VAN */
+    var netoV=[], actV=[];
+    for(t=0;t<=n;t++) netoV.push(t===0 ? -d.inv : d.ser);
+    actV=netoV.map(function(v,t){ return v*d.fac[t]; });
+    neto=netoV; actz=actV;
+    total=actV.reduce(function(a,b){ return a+b; },0);
+    resultado=total;
+  }
+
+  var h='<table class="tf"><thead><tr><th class="rh">Período</th>';
+  for(t=0;t<=n;t++) h+='<th>'+t+'</th>';
+  h+='<th class="tot">Total</th></tr></thead><tbody>';
+
+  function fila(cls, rot, vals, dec, mostrar, tot, tipCb){
+    if(!mostrar) return '';
+    var r='<tr class="'+cls+'"><th class="rh">'+rot+'</th>';
+    for(var t=0;t<vals.length;t++){
+      var v=vals[t];
+      r+='<td'+(v===0?' class="z"':'')+' data-tip="'+(tipCb?esc(tipCb(t,v)):'')+'">'+
+         (v===0 ? '·' : nf(v,dec))+'</td>';
+    }
+    r+='<td class="tot">'+(tot===undefined?'':tot)+'</td></tr>';
+    return r;
+  }
+
+  if(d.van){
+    h+=fila('r-inv','Inversión · 10 módulos', neto.map(function(v,t){ return t===0?v:0; }), 0, true, '',
+      function(t,v){ return t===0 ? 'Egreso del momento cero: '+nf(Math.abs(v),2)+' USD. No se actualiza.' : ''; });
+    h+=fila('r-ser','Ingreso por venta de bonos', neto.map(function(v,t){ return t===0?0:v; }), 0, true, '',
+      function(t,v){ return t===0?'':'980 t CO₂e × 30,00 USD = '+nf(v,2)+' USD en el período '+t; });
+  }else{
+    h+=fila('r-inv','Inversión inicial', fInv, 0, true, '',
+      function(t,v){ return t===0 ? 'Ocurre hoy: se suma tal cual, sin ningún factor.' : ''; });
+    h+=fila('r-ser','Costo operativo', fSer, 0, true, '',
+      function(t,v){ return t===0?'':'Egreso de fin del período '+t+': '+nf(v,2)+' USD'; });
+    h+=fila('r-vr','Valor residual (se resta)', fVr, 0, d.vr>0 || TF.err==='novr', '',
+      function(t,v){ return v===0?'':'Ingreso de '+nf(Math.abs(v),2)+' USD · 10 % de la inversión'; });
+  }
+  h+=fila('r-net','Flujo neto del período', neto, 0, true, '',
+    function(t,v){ return 'Suma de la columna '+t+': '+nf(v,2)+' USD'; });
+  h+=fila('r-fac','Factor  (1 + i)⁻ᵗ', d.fac, 7, act, '',
+    function(t,v){ return TF.err==='nodesc'
+      ? 'Error aplicado: el factor quedó en 1, o sea que no se actualiza nada.'
+      : '(1 + '+nf(d.i,4)+')⁻'+t+' = '+nf(v,7); });
+  h+=fila('r-act','Flujo actualizado', actz, 2, act, '<b>'+nf(resultado,2)+'</b>',
+    function(t,v){ return nf(neto[t],2)+' × '+nf(d.fac[t],7)+' = '+nf(v,2)+' USD'; });
+  h+='</tbody></table>';
+
+  var cont=document.getElementById('tfTabla');
+  cont.innerHTML=h;
+  cont.querySelectorAll('td[data-tip]').forEach(function(td){
+    var tp=td.getAttribute('data-tip'); if(!tp) return;
+    hov(td, '<b>Período '+td.cellIndex+'</b>'+tp);
+  });
+
+  document.getElementById('tfR').textContent = act ? nf(resultado,2) : '—';
+  document.getElementById('tfPie').innerHTML = act
+    ? 'La columna <strong>Total</strong> es la suma de la fila actualizada: ese número es el que se informa en la resolución. Pasá el mouse por cualquier celda para ver de dónde sale.'
+    : 'Estos son los montos <strong>tal como los da el enunciado</strong>, cada uno en su período. Todavía no se pueden sumar entre sí: están en momentos distintos del tiempo. Apretá «Actualizar los montos».';
+  var et=document.getElementById('tfErrTxt');
+  et.innerHTML = TF.err
+    ? '<strong>'+TFERR[TF.err][0]+'.</strong> '+TFERR[TF.err][1]
+    : 'Elegí un error y mirá qué fila de la tabla se rompe. Volvé a apretarlo para quitarlo.';
+}
+
+/* ==================================================================== T2 · AMORTIZACIÓN */
+var AM={caso:'h3'};
+function amCaso(c){
+  AM.caso=c;
+  if(c==='h3'){ document.getElementById('amI').value=2.25; document.getElementById('amN').value=60; }
+  else { document.getElementById('amI').value=3.05; document.getElementById('amN').value=6; }
+  amPaint();
+}
+function amPaint(){
+  ['h3','an'].forEach(function(c){
+    var b=document.getElementById('am-'+c); if(b) b.classList.toggle('sel', c===AM.caso); });
+  var P=num(document.getElementById('amP').value);
+  var i=num(document.getElementById('amI').value)/100;
+  var n=Math.round(num(document.getElementById('amN').value));
+  document.getElementById('amPv').textContent=nf(P,0);
+  document.getElementById('amIv').textContent=nf(i*100,4)+' %';
+  document.getElementById('amNv').textContent=n;
+  var per = AM.caso==='h3' ? 'mensuales' : 'anuales';
+  document.getElementById('amTit').textContent='Crédito de '+nf(P,0)+' USD · '+n+' cuotas '+per;
+
+  var c = i===0 ? P/n : P*i/(1-Math.pow(1+i,-n));
+  var saldo=P, tInt=0, cruce=0, intExacto=c*n-P;
+  var h='<table class="tf"><thead><tr><th class="rh">Cuota</th><th>Saldo inicial</th><th>Interés</th>'+
+        '<th>Amortización</th><th>Cuota</th><th>Saldo final</th><th style="min-width:120px">Composición</th></tr></thead><tbody>';
+  for(var k=1;k<=n;k++){
+    var it=saldo*i, am=c-it, si=saldo;
+    saldo-=am; if(k===n && Math.abs(saldo)<1) saldo=0;
+    tInt+=it;
+    if(!cruce && am>=it) cruce=k;
+    var pInt=Math.max(0,Math.min(100, it/c*100));
+    h+='<tr'+(cruce===k?' class="cruce"':'')+'><th class="rh">'+k+'</th>'+
+       '<td>'+nf(si,2)+'</td><td class="int">'+nf(it,2)+'</td><td class="amo">'+nf(am,2)+'</td>'+
+       '<td class="tot2">'+nf(c,2)+'</td><td>'+nf(Math.max(saldo,0),2)+'</td>'+
+       '<td><span class="mix"><i style="width:'+pInt.toFixed(1)+'%"></i></span></td></tr>';
+  }
+  h+='</tbody><tfoot><tr><th class="rh">Totales</th><td>·</td><td class="int">'+nf(intExacto,2)+'</td>'+
+     '<td class="amo">'+nf(P,2)+'</td><td class="tot2">'+nf(c*n,2)+'</td><td>0,00</td><td></td></tr></tfoot></table>';
+  document.getElementById('amTabla').innerHTML=h;
+
+  document.getElementById('amC').textContent=nf(c,2);
+  document.getElementById('amInt').textContent=nf(intExacto,2);
+  document.getElementById('amTot').textContent=nf(c*n,2);
+  var u = AM.caso==='h3' ? 'cuota' : 'año';
+  document.getElementById('amCruce').innerHTML = cruce
+    ? 'Hasta el '+u+' <strong>'+(cruce-1)+'</strong> la mayor parte de la cuota se va en intereses. A partir del '+u+' <strong>'+cruce+
+      '</strong> se da vuelta y empieza a pesar más la amortización. Los intereses totales suman <strong>'+nf(intExacto,2)+
+      ' USD</strong>, un '+nf(intExacto/P*100,1)+' % del capital prestado.'
+    : 'Con esta combinación la amortización supera al interés desde la primera cuota: la tasa es baja respecto del plazo.';
+}
+
+/* ==================================================================== T3 · FONDO DE BONOS */
+var FO={k:'C', s:100};
+function foSet(campo,v){ FO[campo]=v; foPaint(); }
+function foPaint(){
+  ['C','D'].forEach(function(k){
+    var b=document.getElementById('fo-'+k); if(b) b.classList.toggle('sel', k===FO.k); });
+  document.getElementById('fo-100').classList.toggle('sel', FO.s===100);
+  document.getElementById('fo-25').classList.toggle('sel', FO.s===2.5);
+  var p=num(document.getElementById('foP').value);
+  var i=num(document.getElementById('foI').value)/100;
+  document.getElementById('foPv').textContent=nf(p,0)+' USD/t';
+  document.getElementById('foIv').textContent=nf(i*100,1)+' %';
+
+  var A=DAT[FO.k].red*10*p;
+  var F=(106560*30/0.12)*Math.pow(1.05,10)*(FO.s/100);
+  var n=Math.log(1+F*i/A)/Math.log(1+i);
+  document.getElementById('foA').textContent=nf(A,2);
+  document.getElementById('foF').textContent=nf(F,2);
+  document.getElementById('foN').textContent=nf(n,1);
+  document.getElementById('foTit').textContent='Opción '+FO.k+' · depósito anual de '+nf(A,0)+' USD al '+nf(i*100,1)+' %';
+
+  var MAX=26, saldo=0, cruce=0;
+  var filas=Math.min(MAX, Math.ceil(n)+1);
+  var h='<table class="tf"><thead><tr><th class="rh">Año</th><th>Saldo inicial</th><th>Interés ganado</th>'+
+        '<th>Depósito</th><th>Saldo final</th><th>% de la meta</th><th style="min-width:120px">Avance</th></tr></thead><tbody>';
+  for(var k=1;k<=filas;k++){
+    var si=saldo, it=saldo*i;
+    saldo=saldo*(1+i)+A;
+    if(!cruce && saldo>=F) cruce=k;
+    var pct=Math.min(100, saldo/F*100);
+    h+='<tr'+(cruce===k?' class="cruce"':'')+'><th class="rh">'+k+'</th>'+
+       '<td>'+nf(si,2)+'</td><td class="int">'+nf(it,2)+'</td><td class="amo">'+nf(A,2)+'</td>'+
+       '<td class="tot2">'+nf(saldo,2)+'</td><td>'+nf(pct,2)+' %</td>'+
+       '<td><span class="mix ok"><i style="width:'+pct.toFixed(2)+'%"></i></span></td></tr>';
+  }
+  h+='</tbody></table>';
+  document.getElementById('foTabla').innerHTML=h;
+
+  var t;
+  if(cruce) t='El fondo alcanza la meta en el <strong>año '+cruce+'</strong>. Fijate que el interés ganado crece todos los años aunque el depósito sea siempre el mismo: eso es la capitalización trabajando.';
+  else t='Después de '+filas+' años el fondo lleva reunido apenas el <strong>'+nf(saldo/F*100,2)+' %</strong> de la meta. Hacen falta <strong>'+nf(n,1)+' años</strong>, un horizonte sin sentido económico: excede varias veces la vida útil de la tecnología. Ese es el resultado de las consignas f y g, y la conclusión no es el número sino que <strong>la venta de bonos no repara el daño provincial</strong>.';
+  if(FO.s===2.5) t+='<br><br>Acotado al <strong>2,5 %</strong> que efectivamente cubre el prototipo, la cifra baja a <strong>'+nf(n,1)+' años</strong>. Esa es la comparación honesta, y la que hay que informar como principal.';
+  document.getElementById('foTxt').innerHTML=t;
+}
+
+tfPaint(); amPaint(); foPaint();
 
 ltSet("vac"); feBuild(); ceBuild(); paintAll();
 
