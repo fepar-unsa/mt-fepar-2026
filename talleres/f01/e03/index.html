@@ -326,6 +326,17 @@ html[data-theme="light"] .pop-b{background:rgba(255,255,255,.9)}
   @page{margin:16mm}
 }
 
+/* ===================== ANÁLISIS DE CAUSALIDAD ===================== */
+svg.red{width:100%;height:auto;display:block;font-family:var(--ff);min-width:820px}
+svg.red text.nl{fill:var(--tx);font-size:12px}
+.sitn{width:34px;flex:none;font-size:10.5px;font-weight:800;color:var(--tx3);text-align:center;
+  border:1px solid var(--line2);border-radius:7px;padding:5px 0;text-transform:uppercase}
+.lnk{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;
+  padding:6px 9px;background:rgba(255,255,255,.03)}
+.lnk-t{flex:1;min-width:0;font-size:12px;color:var(--tx2);line-height:1.4}
+table.tb tr.cen td{background:rgba(0,160,90,.12)}
+table.tb tr.cen td:first-child{box-shadow:inset 2px 0 0 var(--verde)}
+
 /* ===================== ESQUEMAS SVG ===================== */
 svg.esq{width:100%;height:auto;display:block;font-family:var(--ff)}
 svg.esq text{fill:var(--tx)}
@@ -566,6 +577,7 @@ function blank(){
     eap:{fin:'',prop:'',comp:'',act:''},
     mml:{fin:['','','',''],prop:['','','',''],comp:['','','',''],act:['','','','']},
     sup:[{t:'',j:'',pr:'',im:''}],
+    sit:[], lnk:[], sito:{}, lnkok:{},
     f01:{}, ck:[], amb:''
   };
 }
@@ -885,11 +897,11 @@ function applyZoom(){
   s.style.zoom = FIT * ZOOM;
 }
 function fitNow(){
-  var s = SECS[cur].el;
-  if(window.innerWidth <= 760){ s.style.zoom = ''; balance(s); return; }
+  var s = SECS[cur].el, work = !!(SECS[cur] && SECS[cur].work);
+  if(window.innerWidth <= 760){ s.style.zoom = ''; if(!work) balance(s); return; }
   FIT = measureFit(s);
   s.style.zoom = FIT * ZOOM;
-  balance(s);
+  if(!work) balance(s);
 }
 function setZoom(z){ ZOOM = Math.max(.6, Math.min(2.2, Math.round(z*100)/100)); applyZoom(); }
 document.getElementById('b-zi').onclick = function(){ setZoom(ZOOM+.1); };
@@ -1745,6 +1757,563 @@ addSec({block:4, work:true, t:'Planilla de supuestos', build:function(el){
 </script>
 <script>
 "use strict";
+/* ===============================================================
+   ANÁLISIS DE CAUSALIDAD — dos pantallas nuevas que se insertan
+   antes del árbol de problemas y después del árbol de objetivos
+   =============================================================== */
+BLOCKS[2].t = 'Causalidad y árboles';
+
+function addSecBefore(title, o){
+  var i = SECS.findIndex(function(s){ return s.t === title; });
+  if(i < 0) SECS.push(o); else SECS.splice(i, 0, o);
+  return o;
+}
+function addSecAfter(title, o){
+  var i = SECS.findIndex(function(s){ return s.t === title; });
+  if(i < 0) SECS.push(o); else SECS.splice(i+1, 0, o);
+  return o;
+}
+
+/* ---------------- modelo de la red causal ---------------- */
+function sitAll(){ D.sit = D.sit || []; return D.sit; }
+function lnkAll(){ D.lnk = D.lnk || []; return D.lnk; }
+function sitById(id){ return sitAll().filter(function(s){ return s.id === id; })[0]; }
+function newId(){
+  var n = 1; while(sitById('s'+n)) n++;
+  return 's'+n;
+}
+function sitText(id){ var s = sitById(id); return s ? (s.t || '(sin texto)') : '?'; }
+function objText(id){
+  D.sito = D.sito || {};
+  return D.sito[id] || '';
+}
+/* nodo central: el marcado como problema, o el de mayor convergencia */
+function centralId(){
+  var p = sitAll().filter(function(s){ return s.k === 'p'; })[0];
+  return p ? p.id : null;
+}
+function degrees(){
+  var d = {};
+  sitAll().forEach(function(s){ d[s.id] = {in:0, out:0}; });
+  lnkAll().forEach(function(l){
+    if(d[l.a]) d[l.a].out++;
+    if(d[l.b]) d[l.b].in++;
+  });
+  return d;
+}
+/* niveles: 0 = central · 1,2,3… hacia abajo (causas) · −1,−2… hacia arriba (efectos) */
+function levels(){
+  var c = centralId(), lv = {};
+  if(!c) return lv;
+  lv[c] = 0;
+  var q = [c], guard = 0;
+  while(q.length && guard++ < 400){                    /* causas: quién produce a quién ya alcanzado */
+    var cur = q.shift();
+    lnkAll().forEach(function(l){
+      if(l.b === cur && lv[l.a] === undefined){ lv[l.a] = lv[cur] + 1; q.push(l.a); }
+    });
+  }
+  q = [c]; guard = 0;
+  while(q.length && guard++ < 400){                    /* efectos: qué produce lo ya alcanzado */
+    var cur2 = q.shift();
+    lnkAll().forEach(function(l){
+      if(l.a === cur2 && lv[l.b] === undefined){ lv[l.b] = lv[cur2] - 1; q.push(l.b); }
+    });
+  }
+  return lv;
+}
+function creaCiclo(a, b){                              /* ¿agregar a→b cerraría un círculo? */
+  var seen = {}, q = [b], guard = 0;
+  while(q.length && guard++ < 400){
+    var cur = q.shift();
+    if(cur === a) return true;
+    if(seen[cur]) continue;
+    seen[cur] = 1;
+    lnkAll().forEach(function(l){ if(l.a === cur) q.push(l.b); });
+  }
+  return false;
+}
+
+/* ---------------- diagrama SVG de la red ---------------- */
+function redSVG(modo){
+  var lv = levels(), c = centralId();
+  if(!c) return '<p class="tiny">Marcá una situación como <strong>problema central</strong> para ver el diagrama.</p>';
+  var byLv = {};
+  Object.keys(lv).forEach(function(id){ (byLv[lv[id]] = byLv[lv[id]] || []).push(id); });
+  var ks = Object.keys(byLv).map(Number).sort(function(a,b){ return a - b; });  /* efectos arriba, causas abajo */
+  var W = 1180, rowH = 92, NH = 58, H = Math.max(170, ks.length * rowH + 34);
+  var col = {1:'--coral',2:'--oro',3:'--violeta',0:'--verde'};
+  var o = '<svg class="red" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet"><defs>';
+  ['--coral','--oro','--violeta','--verde','--celeste'].forEach(function(v,i){
+    o += '<marker id="mk'+i+'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'+
+         '<path d="M0,0 L10,5 L0,10 z" fill="var('+v+')" fill-opacity=".85"/></marker>';
+  });
+  o += '</defs>';
+  var pos = {};
+  ks.forEach(function(k, ri){
+    var ids = byLv[k], n = ids.length;
+    var bw = Math.min(300, (W - 70) / n - 16);
+    ids.forEach(function(id, i){
+      var x = 35 + i * ((W - 70) / n) + ((W - 70) / n - bw) / 2;
+      var y = 17 + ri * rowH;
+      pos[id] = {x:x + bw/2, y:y + NH/2, w:bw, h:NH, x0:x, y0:y};
+    });
+  });
+  /* flechas */
+  lnkAll().forEach(function(l){
+    var A = pos[l.a], B = pos[l.b];
+    if(!A || !B) return;
+    var cv = lv[l.a] > 0 ? (col[Math.min(3, lv[l.a])] || '--oro') : '--celeste';
+    var mi = ['--coral','--oro','--violeta','--verde','--celeste'].indexOf(cv);
+    o += '<path d="M'+A.x+','+(A.y0)+' C'+A.x+','+((A.y0+B.y0+NH)/2)+' '+B.x+','+((A.y0+B.y0+NH)/2)+' '+B.x+','+(B.y0+NH)+'" '+
+         'fill="none" stroke="var('+cv+')" stroke-opacity=".55" stroke-width="1.6" marker-end="url(#mk'+(mi<0?1:mi)+')"/>';
+  });
+  /* nodos */
+  Object.keys(pos).forEach(function(id){
+    var p = pos[id], k = lv[id];
+    var cv = k === 0 ? '--verde' : (k > 0 ? (col[Math.min(3,k)] || '--oro') : '--celeste');
+    var txt = modo === 'obj' ? (objText(id) || '(sin pasar a positivo)') : sitText(id);
+    o += '<g><rect x="'+p.x0+'" y="'+p.y0+'" width="'+p.w+'" height="'+NH+'" rx="10" fill="var('+cv+')" fill-opacity="'+(k===0?'.24':'.12')+'" '+
+         'stroke="var('+cv+')" stroke-opacity="'+(k===0?'.95':'.6')+'" stroke-width="'+(k===0?2:1.2)+'"/>';
+    var maxc = Math.floor(p.w / 6.2);
+    var lines = wrapTxt(txt, maxc).slice(0,3);
+    lines.forEach(function(L, j){
+      o += '<text class="nl" x="'+p.x+'" y="'+(p.y0 + (lines.length===1?34:(lines.length===2?25:19)) + j*13)+'" text-anchor="middle">'+esc(L)+'</text>';
+    });
+    o += '</g>';
+  });
+  return o + '</svg>';
+}
+
+/* ---------------- volcado a los árboles ---------------- */
+function volcarArbol(){
+  var lv = levels(), c = centralId();
+  if(!c){ toast('Primero marcá cuál es el problema central.'); return; }
+  var cau = [], efe = [];
+  Object.keys(lv).forEach(function(id){
+    var k = lv[id];
+    if(k > 0) cau.push({t:sitText(id), lv:Math.min(3, k), sid:id});
+    else if(k < 0) efe.push({t:sitText(id), lv:Math.min(2, -k), sid:id});
+  });
+  cau.sort(function(a,b){ return a.lv - b.lv; });
+  efe.sort(function(a,b){ return a.lv - b.lv; });
+  if(cau.length) D.cau = cau;
+  if(efe.length) D.efe = efe;
+  D.pc = sitText(c);
+  touch();
+  toast(cau.length + ' causas y ' + efe.length + ' efectos volcados al árbol.');
+}
+function volcarObjetivos(){
+  var lv = levels(), c = centralId();
+  if(!c){ toast('Primero marcá cuál es el problema central.'); return; }
+  D.sito = D.sito || {};
+  var med = [], fin = [];
+  Object.keys(lv).forEach(function(id){
+    var k = lv[id], t = objText(id) || sitText(id);
+    if(k > 0) med.push({t:t, lv:Math.min(3, k), sid:id});
+    else if(k < 0) fin.push({t:t, lv:Math.min(2, -k), sid:id});
+  });
+  med.sort(function(a,b){ return a.lv - b.lv; });
+  fin.sort(function(a,b){ return a.lv - b.lv; });
+  if(med.length) D.med = med;
+  if(fin.length) D.fin = fin;
+  if(objText(c)) D.obj = objText(c);
+  touch();
+  toast(med.length + ' medios y ' + fin.length + ' fines volcados al árbol de objetivos.');
+}
+
+/* ---------------- textos derivados de la red ---------------- */
+function cadenaTexto(modo){
+  var lv = levels(), c = centralId();
+  if(!c) return '';
+  var T = function(id){ return modo === 'obj' ? (objText(id) || sitText(id)) : sitText(id); };
+  var out = [];
+  var dn = Object.keys(lv).filter(function(id){ return lv[id] > 0; }).sort(function(a,b){ return lv[a]-lv[b]; });
+  var up = Object.keys(lv).filter(function(id){ return lv[id] < 0; }).sort(function(a,b){ return lv[b]-lv[a]; });
+  out.push((modo === 'obj' ? 'Objetivo central: ' : 'Problema central: ') + T(c));
+  if(dn.length){
+    out.push('');
+    out.push(modo === 'obj' ? 'Medios, por nivel:' : 'Causas, por nivel:');
+    dn.forEach(function(id){ out.push('  · [nivel ' + lv[id] + '] ' + T(id)); });
+  }
+  if(up.length){
+    out.push('');
+    out.push(modo === 'obj' ? 'Fines, por nivel:' : 'Efectos, por nivel:');
+    up.forEach(function(id){ out.push('  · [nivel ' + (-lv[id]) + '] ' + T(id)); });
+  }
+  if(lnkAll().length){
+    out.push('');
+    out.push(modo === 'obj' ? 'Relaciones verificadas en positivo:' : 'Relaciones de causalidad:');
+    lnkAll().forEach(function(l){
+      out.push('  · ' + T(l.a) + (modo === 'obj' ? ' → permite → ' : ' → produce → ') + T(l.b));
+    });
+  }
+  return out.join('\n');
+}
+
+/* ===============================================================
+   PANTALLA · IDENTIFICACIÓN DE CAUSAS Y ANÁLISIS DE CAUSALIDAD
+   =============================================================== */
+addSecBefore('Árbol de problemas', {block:2, work:true, t:'Análisis de causalidad', build:function(el){
+  head(el,'Bloque 3 · antes del árbol','Identificación de causas y análisis de causalidad',
+    'El problema central no se elige: se descubre. Primero se listan todas las situaciones negativas del escenario, después se prueba cuál produce cuál, y recién entonces se ve cuál está en el medio de la red.');
+
+  var top = E('div','wrap');
+  top.appendChild(btn('⇄ Volcar al árbol de problemas','', volcarArbol));
+  top.appendChild(btn('Sembrar desde las evidencias del caso','ghost sm', function(){
+    var n = 0;
+    (ESC.ev || []).forEach(function(t){
+      if(sitAll().some(function(s){ return s.t === t; })) return;
+      sitAll().push({id:newId(), t:t, k:''}); n++;
+    });
+    touch(); render(cur); toast(n ? n+' situaciones agregadas para clasificar.' : 'Ya estaban todas.');
+  }));
+  el.appendChild(top);
+
+  var r = E('div','row');
+
+  /* ---- 1 · situaciones ---- */
+  var c1 = card('coral','① Situaciones negativas detectadas');
+  c1.style.flex = '1.15';
+  c1.appendChild(E('p','tiny','Todo lo que en el escenario está mal. Sin ordenar todavía: causas, problema y efectos entran mezclados. Después de listarlas, clasificá cada una.'));
+  var box = E('div','col'); box.style.gap='6px'; box.style.marginTop='9px';
+  sitAll().forEach(function(s, i){
+    var row = E('div','frow'); row.style.alignItems='center';
+    var tag = E('span','sitn'); tag.textContent = s.id.toUpperCase().replace('S','S');
+    tag.style.flex='none';
+    row.appendChild(tag);
+    var inp = cell(s,'t','Situación negativa…');
+    inp.style.flex='1';
+    row.appendChild(inp);
+    var sel = E('select','fs'); sel.style.flex='none'; sel.style.width='150px'; sel.style.fontSize='12px';
+    [['','sin clasificar'],['c','causa'],['p','PROBLEMA CENTRAL'],['e','efecto']].forEach(function(o){
+      var op = E('option',null,o[1]); op.value = o[0]; sel.appendChild(op);
+    });
+    sel.value = s.k || '';
+    sel.onchange = function(){
+      if(sel.value === 'p') sitAll().forEach(function(x){ if(x !== s && x.k === 'p') x.k = 'c'; });
+      s.k = sel.value; touch(); render(cur);
+    };
+    row.appendChild(sel);
+    var del = E('button','fdel','✕'); del.type='button';
+    del.onclick = function(){
+      D.lnk = lnkAll().filter(function(l){ return l.a !== s.id && l.b !== s.id; });
+      D.sit = sitAll().filter(function(x){ return x !== s; });
+      touch(); render(cur);
+    };
+    row.appendChild(del);
+    box.appendChild(row);
+  });
+  c1.appendChild(box);
+  var add = btn('+ Situación','ghost sm', function(){
+    sitAll().push({id:newId(), t:'', k:''}); touch(); render(cur);
+  });
+  add.style.marginTop='9px'; add.style.alignSelf='flex-start';
+  c1.appendChild(add);
+  r.appendChild(c1);
+
+  /* ---- 2 · vínculos ---- */
+  var c2 = card('oro','② ¿Cuál produce cuál?');
+  c2.style.flex = '.95';
+  c2.appendChild(E('p','tiny','Un vínculo por vez: «esto produce esto otro». Es la prueba del <strong>¿pero por qué?</strong> leída al revés.'));
+  var mk = E('div','col'); mk.style.gap='7px'; mk.style.marginTop='9px';
+  var sa = E('select','fs'), sb = E('select','fs');
+  [sa, sb].forEach(function(s){
+    var op0 = E('option',null,'— elegir —'); op0.value=''; s.appendChild(op0);
+    sitAll().forEach(function(x){
+      var op = E('option',null, x.id.toUpperCase()+' · '+(x.t||'(sin texto)').slice(0,52)); op.value = x.id; s.appendChild(op);
+    });
+    s.style.fontSize='12px';
+  });
+  var l1 = E('div'); l1.appendChild(E('label','fl','Esto…')); l1.appendChild(sa);
+  var l2 = E('div'); l2.appendChild(E('label','fl','…produce esto')); l2.appendChild(sb);
+  mk.appendChild(l1);
+  var arrow = E('p','tiny'); arrow.style.textAlign='center'; arrow.style.margin='0'; arrow.innerHTML='↓ <em>produce</em>';
+  mk.appendChild(arrow);
+  mk.appendChild(l2);
+  var addl = btn('+ Agregar vínculo','sm', function(){
+    var a = sa.value, b = sb.value;
+    if(!a || !b) { toast('Elegí las dos situaciones.'); return; }
+    if(a === b){ toast('Una situación no puede producirse a sí misma.'); return; }
+    if(lnkAll().some(function(l){ return l.a===a && l.b===b; })){ toast('Ese vínculo ya está.'); return; }
+    if(creaCiclo(a, b)){ toast('Ese vínculo cierra un círculo: A produce B y B produce A. Revisá la dirección.'); return; }
+    lnkAll().push({a:a, b:b}); touch(); render(cur);
+  });
+  addl.style.marginTop='4px';
+  mk.appendChild(addl);
+  c2.appendChild(mk);
+
+  c2.appendChild(E('div','hr')).style.margin='11px 0';
+  c2.appendChild(E('h4',null,'Vínculos cargados'));
+  var lb = E('div','col'); lb.style.gap='5px'; lb.style.marginTop='7px';
+  if(!lnkAll().length) lb.appendChild(E('p','tiny','Todavía no hay ninguno.'));
+  lnkAll().forEach(function(l, i){
+    var d = E('div','lnk');
+    d.appendChild(E('span','lnk-t','<strong>'+esc(sitText(l.a).slice(0,40))+'</strong> <span class="g">→</span> '+esc(sitText(l.b).slice(0,40))));
+    var x = E('button','fdel','✕'); x.type='button';
+    x.onclick = function(){ D.lnk.splice(i,1); touch(); render(cur); };
+    d.appendChild(x);
+    lb.appendChild(d);
+  });
+  c2.appendChild(lb);
+  r.appendChild(c2);
+
+  /* ---- 3 · convergencia ---- */
+  var c3 = card('vio','③ Dónde converge la red');
+  c3.style.flex = '1';
+  c3.appendChild(E('p','tiny','El problema central es el que <strong>recibe muchas causas y genera muchos efectos</strong>. Si un nodo sólo recibe, es un efecto final; si sólo produce, es una causa raíz.'));
+  var conv = E('div'); conv.style.marginTop='9px';
+  var d = degrees(), c = centralId();
+  var rank = sitAll().slice().sort(function(a,b){
+    return (d[b.id].in + d[b.id].out) - (d[a.id].in + d[a.id].out);
+  });
+  if(!sitAll().length){
+    conv.appendChild(E('p','tiny','Cargá situaciones y vínculos para ver el diagnóstico.'));
+  } else {
+    var t = E('table','tb');
+    t.innerHTML = '<thead><tr><th style="width:66%">Situación y rol en la red</th>'+
+      '<th style="width:17%;text-align:center">Recibe</th><th style="width:17%;text-align:center">Produce</th></tr></thead>';
+    var tb = E('tbody');
+    rank.forEach(function(s){
+      var dd = d[s.id];
+      var rol = dd.in && dd.out ? 'intermedia' : (dd.out && !dd.in ? 'causa raíz' : (dd.in && !dd.out ? 'efecto final' : 'suelta'));
+      var tr = E('tr');
+      if(s.id === c) tr.className = 'cen';
+      var pc = rol === 'causa raíz' ? 'o' : (rol === 'efecto final' ? 'a' : (rol === 'suelta' ? 'c' : ''));
+      tr.innerHTML = '<td>'+esc((s.t||'(sin texto)').slice(0,70))+
+        '<div style="margin-top:4px"><span class="pill '+(s.id===c?'v':pc)+'">'+(s.id===c?'problema central':rol)+'</span></div></td>'+
+        '<td style="text-align:center;font-variant-numeric:tabular-nums">'+dd.in+'</td>'+
+        '<td style="text-align:center;font-variant-numeric:tabular-nums">'+dd.out+'</td>';
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+    conv.appendChild(t);
+    var best = rank.filter(function(s){ return d[s.id].in > 0 && d[s.id].out > 0; })[0];
+    if(best && best.id !== c){
+      var sug = E('div','box warn'); sug.style.marginTop='10px';
+      sug.appendChild(E('p','tiny','La red converge en <strong>«'+esc(best.t.slice(0,70))+'»</strong>: recibe '+d[best.id].in+' causa(s) y produce '+d[best.id].out+' efecto(s). ¿No es ese el problema central?'));
+      var b = btn('Marcarlo como problema central','sm', function(){
+        sitAll().forEach(function(x){ if(x.k==='p') x.k='c'; });
+        best.k = 'p'; D.pc = best.t; touch(); render(cur);
+      });
+      b.style.marginTop='7px';
+      sug.appendChild(b);
+      conv.appendChild(sug);
+    } else if(c){
+      var ok = E('div','box ok'); ok.style.marginTop='10px';
+      ok.appendChild(E('p','tiny','✓ El problema central está marcado y la red converge en él. Ya podés volcarlo al árbol.'));
+      var b2 = btn('Usar este texto como problema central del F01','ghost sm', function(){
+        D.pc = sitText(c); touch(); toast('Ítem D actualizado.');
+      });
+      b2.style.marginTop='7px';
+      ok.appendChild(b2);
+      conv.appendChild(ok);
+    }
+  }
+  c3.appendChild(conv);
+  r.appendChild(c3);
+  el.appendChild(r);
+
+  /* ---- 4 · la cadena y el diagrama ---- */
+  var r2 = E('div','row');
+  var cd = card('cel','④ La cadena, leída en los dos sentidos');
+  cd.style.flex='1';
+  cd.classList.add('nofit');
+  var lv = levels();
+  var cha = E('div','col'); cha.style.gap='0'; cha.style.marginTop='9px';
+  if(!c){
+    cha.appendChild(E('p','tiny','Marcá el problema central para ver la cadena.'));
+  } else {
+    var ups = Object.keys(lv).filter(function(id){ return lv[id] < 0; }).sort(function(a,b){ return lv[a]-lv[b]; });
+    var dns = Object.keys(lv).filter(function(id){ return lv[id] > 0; }).sort(function(a,b){ return lv[a]-lv[b]; });
+    var mkline = function(txt, cls, lab){
+      var b = E('div','box'+(cls?' '+cls:''));
+      if(lab) b.appendChild(E('div','tiny','<strong style="letter-spacing:.1em;text-transform:uppercase">'+lab+'</strong>'));
+      b.appendChild(E('p','sub',esc(txt)));
+      cha.appendChild(b);
+    };
+    var q = E('p','tiny'); q.style.textAlign='center'; q.style.margin='4px 0';
+    ups.slice().reverse().forEach(function(id, i){
+      mkline(sitText(id), 'info', 'efecto de nivel '+(-lv[id]));
+      var a = E('p','tiny'); a.style.textAlign='center'; a.style.margin='4px 0';
+      a.innerHTML = '↑ <em>¿y esto qué provoca?</em>';
+      cha.insertBefore(a, cha.lastChild);
+    });
+    mkline(sitText(c), 'ok', 'problema central');
+    dns.forEach(function(id){
+      var a = E('p','tiny'); a.style.textAlign='center'; a.style.margin='4px 0';
+      a.innerHTML = '↑ <em>¿pero por qué?</em>';
+      cha.appendChild(a);
+      mkline(sitText(id), lv[id]>=3?'':'warn', 'causa de nivel '+lv[id]);
+    });
+    var sueltas = sitAll().filter(function(s){ return lv[s.id] === undefined; });
+    if(sueltas.length){
+      var w = E('div','box bad'); w.style.marginTop='9px';
+      w.appendChild(E('p','tiny','⚠ '+sueltas.length+' situación(es) quedaron fuera de la red: no producen ni son producidas por nada. O les falta un vínculo, o no pertenecen a este problema.'));
+      cha.appendChild(w);
+    }
+  }
+  cd.appendChild(cha);
+  r2.appendChild(cd);
+
+  el.appendChild(r2);
+
+  var dg = card('aqua','⑤ La red causal completa');
+  dg.classList.add('nofit');
+  var dbox = E('div','esqbox'); dbox.style.marginTop='9px';
+  dbox.innerHTML = redSVG('prob');
+  dg.appendChild(dbox);
+  dg.appendChild(E('p','tiny','Efectos arriba, problema central en el medio, causas abajo. Las flechas van de lo que produce hacia lo producido. Si algún nodo queda suelto o alguna flecha apunta al revés, se ve acá antes que en ningún otro lado.')).style.marginTop='8px';
+  el.appendChild(dg);
+
+}, fields:function(){ return sitAll().map(function(s){ return s.t; }); }});
+
+/* ===============================================================
+   PANTALLA · CAUSALIDAD EN EL ÁRBOL DE OBJETIVOS
+   =============================================================== */
+addSecAfter('Árbol de objetivos', {block:2, work:true, t:'Causalidad de los objetivos', build:function(el){
+  head(el,'Bloque 3 · el espejo, nodo por nodo','La misma causalidad, leída en positivo',
+    'Cada situación negativa se convierte en una situación deseada, y cada «esto produce esto» se convierte en «si logro esto, entonces consigo esto otro». Si alguna relación no se sostiene en positivo, el error está en el árbol de problemas.');
+
+  var top = E('div','wrap');
+  top.appendChild(btn('⇄ Volcar al árbol de objetivos','', volcarObjetivos));
+  top.appendChild(btn('Copiar todos los textos para reescribirlos','ghost sm', function(){
+    D.sito = D.sito || {};
+    sitAll().forEach(function(s){ if(!D.sito[s.id]) D.sito[s.id] = s.t; });
+    touch(); render(cur); toast('Textos copiados: ahora pasalos a positivo.');
+  }));
+  el.appendChild(top);
+
+  var c = centralId();
+  if(!c){
+    var w = E('div','box warn');
+    w.appendChild(E('p','sub','Todavía no hay un problema central marcado en la pantalla de análisis de causalidad. Volvé ahí, armá la red y marcá cuál es el problema central.'));
+    el.appendChild(w);
+    var b = btn('↗ Ir al análisis de causalidad','ghost sm', function(){
+      var i = SECS.findIndex(function(s){ return s.t === 'Análisis de causalidad'; });
+      if(i >= 0) show(i);
+    });
+    el.appendChild(b);
+    return;
+  }
+
+  var r = E('div','row');
+
+  /* ---- 1 · traducción nodo por nodo ---- */
+  var c1 = card('vio','① De la situación negativa a la situación deseada');
+  c1.style.flex='1.3';
+  c1.classList.add('nofit');
+  c1.appendChild(E('p','tiny','En positivo y en futuro. No es negar la frase: es describir el estado al que se quiere llegar.'));
+  var lv = levels();
+  var t = E('table','tb'); t.style.marginTop='9px';
+  t.innerHTML = '<thead><tr><th style="width:12%">Nivel</th><th style="width:42%">Situación negativa</th><th style="width:46%">Situación deseada</th></tr></thead>';
+  var tb = E('tbody');
+  var orden = sitAll().slice().sort(function(a,b){
+    var la = lv[a.id], lb = lv[b.id];
+    if(la === undefined) return 1; if(lb === undefined) return -1;
+    return lb - la;
+  });
+  D.sito = D.sito || {};
+  orden.forEach(function(s){
+    var k = lv[s.id];
+    var rol = k === undefined ? '<span class="pill c">fuera de la red</span>'
+      : (k === 0 ? '<span class="pill v">objetivo central</span>'
+      : (k > 0 ? '<span class="pill o">medio '+k+'</span>' : '<span class="pill a">fin '+(-k)+'</span>'));
+    var tr = E('tr');
+    var td1 = E('td',null,rol);
+    var td2 = E('td'); td2.appendChild(E('span','sub', esc(s.t || '(sin texto)')));
+    var td3 = E('td');
+    var ta = E('textarea');
+    ta.value = D.sito[s.id] || '';
+    ta.placeholder = 'En positivo…';
+    ta.addEventListener('input', function(){ D.sito[s.id] = ta.value;
+      if(k === 0) D.obj = ta.value;
+      touch(); });
+    td3.appendChild(ta);
+    tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  c1.appendChild(t);
+  r.appendChild(c1);
+
+  /* ---- 2 · validación de cada vínculo ---- */
+  var c2 = card('oro','② «Si logro esto, entonces aquello»');
+  c2.style.flex='1';
+  c2.classList.add('nofit');
+  c2.appendChild(E('p','tiny','Cada vínculo del árbol de problemas, releído en positivo. Tildá el que se sostiene. El que no se sostiene señala una causa mal identificada.'));
+  D.lnkok = D.lnkok || {};
+  var lc = E('div','col'); lc.style.gap='6px'; lc.style.marginTop='9px';
+  if(!lnkAll().length) lc.appendChild(E('p','tiny','No hay vínculos cargados.'));
+  lnkAll().forEach(function(l, i){
+    var key = l.a+'>'+l.b;
+    var lab = E('label','chk'+(D.lnkok[key]?' on':''));
+    var inp = E('input'); inp.type='checkbox'; inp.checked = !!D.lnkok[key];
+    inp.onchange = function(){ D.lnkok[key] = inp.checked; lab.classList.toggle('on', inp.checked); touch(); paintLnk(); };
+    lab.appendChild(inp);
+    var A = objText(l.a) || '⟨'+sitText(l.a)+'⟩';
+    var B = objText(l.b) || '⟨'+sitText(l.b)+'⟩';
+    lab.appendChild(E('span',null,'Si logro <strong>'+esc(A.slice(0,52))+'</strong>, entonces <strong class="g">'+esc(B.slice(0,52))+'</strong>'));
+    lc.appendChild(lab);
+  });
+  c2.appendChild(lc);
+  var st = E('div'); st.id='lnk-st'; st.style.marginTop='10px';
+  c2.appendChild(st);
+  r.appendChild(c2);
+  el.appendChild(r);
+
+  /* ---- 3 · diagnóstico y diagrama ---- */
+  var r2 = E('div','row');
+  var c3 = card('cel','③ Control del espejo');
+  c3.style.flex='1';
+  var out = E('div'); out.id='esp-st'; out.style.marginTop='9px';
+  c3.appendChild(out);
+  r2.appendChild(c3);
+
+  el.appendChild(r2);
+
+  var c4 = card('aqua','④ La red de medios y fines');
+  c4.classList.add('nofit');
+  var db = E('div','esqbox'); db.style.marginTop='9px';
+  db.innerHTML = redSVG('obj');
+  c4.appendChild(db);
+  c4.appendChild(E('p','tiny','La misma red, con los textos en positivo: fines arriba, objetivo central en el medio, medios abajo. De los medios de la base salen las alternativas de proyecto.')).style.marginTop='8px';
+  el.appendChild(c4);
+
+  paintLnk(); paintEsp();
+}, fields:function(){ return sitAll().map(function(s){ return (D.sito||{})[s.id] || ''; }); }});
+
+function paintLnk(){
+  var e = document.getElementById('lnk-st'); if(!e) return;
+  D.lnkok = D.lnkok || {};
+  var tot = lnkAll().length;
+  var ok = lnkAll().filter(function(l){ return D.lnkok[l.a+'>'+l.b]; }).length;
+  e.innerHTML = tot
+    ? '<div class="box '+(ok===tot?'ok':'warn')+'"><p class="tiny">'+(ok===tot?'✓ ':'⚠ ')+ok+' de '+tot+
+      ' relaciones se sostienen en positivo.'+(ok===tot?' El espejo es consistente.':' Revisá las que no tildaste: ahí suele haber una causa que en realidad era una solución ausente.')+'</p></div>'
+    : '';
+}
+function paintEsp(){
+  var e = document.getElementById('esp-st'); if(!e) return;
+  var lv = levels(), c = centralId();
+  D.sito = D.sito || {};
+  var enRed = sitAll().filter(function(s){ return lv[s.id] !== undefined; });
+  var trad = enRed.filter(function(s){ return String(D.sito[s.id]||'').trim(); }).length;
+  var med = enRed.filter(function(s){ return lv[s.id] > 0; });
+  var fin = enRed.filter(function(s){ return lv[s.id] < 0; });
+  var d = degrees();
+  var huerf = med.filter(function(s){ return d[s.id].out === 0; });
+  var msgs = [];
+  msgs.push('<div class="box '+(trad===enRed.length&&enRed.length?'ok':'warn')+'"><p class="tiny">'+
+    (trad===enRed.length&&enRed.length?'✓ ':'⚠ ')+trad+' de '+enRed.length+' nodos pasados a positivo.</p></div>');
+  msgs.push('<div class="box"><p class="tiny">'+med.length+' medios y '+fin.length+' fines, espejo exacto de las causas y los efectos.</p></div>');
+  if(huerf.length) msgs.push('<div class="box warn"><p class="tiny">⚠ '+huerf.length+' medio(s) no llevan a ningún otro: revisá si les falta el vínculo hacia arriba.</p></div>');
+  msgs.push('<div class="box info"><p class="tiny">Los medios de la base —los de nivel más profundo— son las <strong>estrategias posibles</strong>. De ahí sale la tabla de alternativas de la pantalla siguiente.</p></div>');
+  e.innerHTML = msgs.join('');
+}
+</script>
+<script>
+"use strict";
 /* =============================================================== DERIVACIONES DESDE LAS HERRAMIENTAS */
 function joinL(arr, f){ return arr.map(f).filter(function(x){ return String(x||'').trim(); }).join('\n'); }
 function altSel(){ return D.alt.filter(function(a,i){ return (a.id||String.fromCharCode(65+i)) === D.altSel; })[0]; }
@@ -1767,11 +2336,11 @@ var SRC = {
  J:function(){ return D.ctx.norm; },
  K:function(){ return joinL(D.cau, function(c){ return c.t ? '· [nivel '+(c.lv||1)+'] '+c.t : ''; }); },
  L:function(){ return joinL(D.efe, function(c){ return c.t ? '· [nivel '+(c.lv||1)+'] '+c.t : ''; }); },
- M:function(){ return D.arM || ''; },
+ M:function(){ return D.arM || (typeof cadenaTexto === 'function' ? cadenaTexto('prob') : ''); },
  N:function(){ return joinL(D.med, function(c){ return c.t ? '· [nivel '+(c.lv||1)+'] '+c.t : ''; }); },
  O:function(){ return joinL(D.fin, function(c){ return c.t ? '· '+c.t : ''; }); },
  P:function(){ return D.obj; },
- Q:function(){ return D.arQ || ''; },
+ Q:function(){ return D.arQ || (typeof cadenaTexto === 'function' ? cadenaTexto('obj') : ''); },
  R:function(){ var a = altSel();
       return (a ? 'Estrategia elegida ('+a.id+'): '+(a.med||'')+'\nActividad: '+(a.act||'')+'\n\n' : '') + (D.altJus||''); },
  S:function(){ return 'Fin: '+(D.eap.fin||'—')+'\nPropósito: '+(D.eap.prop||'—')+
@@ -1783,7 +2352,13 @@ var SRC = {
  U:function(){ return D.mmlU || ''; },
  V:function(){ return D.f01.V || ''; }
 };
-var SEC_OF = {A:1,B:1,C:1,D:6,E:7,F:7,G:8,H:8,I:8,J:8,K:9,L:9,M:9,N:10,O:10,P:10,Q:10,R:11,S:12,T:13,U:13,V:15};
+var SEC_T = {A:'El caso y tu equipo',B:'El caso y tu equipo',C:'El caso y tu equipo',
+ D:'El problema central',E:'La línea de base',F:'La línea de base',
+ G:'Población y actores',H:'Población y actores',I:'Población y actores',J:'Población y actores',
+ K:'Árbol de problemas',L:'Árbol de problemas',M:'Análisis de causalidad',
+ N:'Árbol de objetivos',O:'Árbol de objetivos',P:'Árbol de objetivos',Q:'Causalidad de los objetivos',
+ R:'Estrategia y actividad',S:'La EAP',T:'Matriz de Marco Lógico',U:'Matriz de Marco Lógico'};
+function secIdx(t){ return SECS.findIndex(function(s){ return s.t === t; }); }
 
 /* =============================================================== 15 · FORMULARIO 01 */
 var f01cur = 0;
@@ -1819,8 +2394,9 @@ addSec({block:5, work:true, t:'Formulario 01 · ítems A a V', build:function(el
       D.f01[it.L] = src; touch(); render(cur); toast('Ítem '+it.L+' cargado.');
     }));
   }
-  if(SEC_OF[it.L] != null && SEC_OF[it.L] < SECS.length){
-    acts.appendChild(btn('↗ Ir a la herramienta','ghost sm', function(){ show(SEC_OF[it.L]-1); }));
+  var si = SEC_T[it.L] ? secIdx(SEC_T[it.L]) : -1;
+  if(si >= 0){
+    acts.appendChild(btn('↗ Ir a la herramienta','ghost sm', function(){ show(si); }));
   }
   work.appendChild(acts);
 
@@ -2049,8 +2625,37 @@ function docBody(){
              '</td><td>'+nl2br(a.ven)+'</td><td>'+nl2br(a.des)+'</td></tr>';
     }).join('') || '<tr><td colspan="5"><em>Sin alternativas cargadas.</em></td></tr>')+'</table>';
 
+  /* anexo de causalidad */
+  var sit = (D.sit || []).filter(function(x){ return String(x.t||'').trim(); });
+  if(sit.length){
+    var lv = (typeof levels === 'function') ? levels() : {};
+    var deg = (typeof degrees === 'function') ? degrees() : {};
+    var rolTxt = function(id){
+      var k = lv[id];
+      if(k === 0) return 'problema central';
+      if(k > 0) return 'causa de nivel ' + k;
+      if(k < 0) return 'efecto de nivel ' + (-k);
+      return 'fuera de la red';
+    };
+    h += '<h2>Anexo VI · Identificación de causas y análisis de causalidad</h2>'+
+      '<table><tr><th>Situación negativa</th><th>Rol en la red</th><th>Recibe</th><th>Produce</th><th>En positivo</th></tr>'+
+      sit.map(function(x){
+        var d = deg[x.id] || {in:0,out:0};
+        return '<tr><td>'+esc(x.t)+'</td><td>'+rolTxt(x.id)+'</td><td>'+d.in+'</td><td>'+d.out+
+               '</td><td>'+esc((D.sito||{})[x.id] || '')+'</td></tr>';
+      }).join('')+'</table>';
+    var lk = D.lnk || [];
+    if(lk.length){
+      h += '<h3>Relaciones de causalidad verificadas</h3><table><tr><th>Esto…</th><th></th><th>…produce esto</th><th>Se sostiene en positivo</th></tr>'+
+        lk.map(function(l){
+          var st = (D.lnkok||{})[l.a+'>'+l.b] ? 'sí' : '—';
+          return '<tr><td>'+esc(sitText(l.a))+'</td><td style="text-align:center">→</td><td>'+esc(sitText(l.b))+'</td><td style="text-align:center">'+st+'</td></tr>';
+        }).join('')+'</table>';
+    }
+  }
+
   var ckn = CK.filter(function(_,i){ return D.ck[i]; }).length;
-  h += '<h2>Anexo V · Autocontrol</h2><p>'+ckn+' de '+CK.length+' puntos verificados por el equipo.</p><table>'+
+  h += '<h2>Anexo VII · Autocontrol</h2><p>'+ckn+' de '+CK.length+' puntos verificados por el equipo.</p><table>'+
     CK.map(function(q,i){ return '<tr><td style="width:22px">'+(D.ck[i]?'✔':'—')+'</td><td>'+esc(q)+'</td></tr>'; }).join('')+
     '</table>';
   return h;
