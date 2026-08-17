@@ -1,0 +1,2118 @@
+<!doctype html>
+<html lang="es" data-theme="dark" data-rail="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FEPAR 2026 · Escenario 1 — Producción de esponjas vegetales (Luffa cylindrica) · Taller de Formulario 01</title>
+<meta name="description" content="Visor de trabajo del Escenario 1 de FEPAR 2026: presentación del caso y herramientas para desarrollar el Formulario 01.">
+<style>
+:root{
+  --bg:#06110d; --bg2:#0a1a14; --panel:#0e2019; --panel2:#0b1a15;
+  --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.19);
+  --tx:#eaf5f0; --tx2:#b9cfc6; --tx3:#7f9a90;
+  --verde:#00a05a; --verde-l:#22c97f; --aqua:#12b5a0; --celeste:#39b6d8;
+  --oro:#eda100; --violeta:#7b6bd6; --coral:#ef6a4b; --ok:#00c06a; --bad:#ef5350;
+  --ff:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --fh:var(--ff);
+  --r:16px; --r-s:12px; --rail:300px;
+  --shadow:0 22px 60px -26px rgba(0,0,0,.85);
+}
+html[data-theme="light"]{
+  --bg:#f2f6f4; --bg2:#e8efec; --panel:#fff; --panel2:#f7faf9;
+  --line:rgba(16,36,29,.12); --line2:rgba(16,36,29,.24);
+  --tx:#10241d; --tx2:#3c554c; --tx3:#6b8279;
+  --shadow:0 22px 60px -30px rgba(16,36,29,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--ff);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(1100px 700px at 12% -6%, rgba(0,160,90,.16), transparent 60%),
+   radial-gradient(900px 560px at 94% 6%, rgba(237,161,0,.11), transparent 60%),
+   radial-gradient(1000px 700px at 55% 112%, rgba(123,107,214,.10), transparent 62%)}
+html[data-theme="light"] body::before{
+  background:
+   radial-gradient(1100px 700px at 12% -6%, rgba(0,160,90,.10), transparent 60%),
+   radial-gradient(900px 560px at 94% 6%, rgba(237,161,0,.09), transparent 60%)}
+::selection{background:rgba(0,160,90,.35)}
+
+/* scrollbars visibles en los dos ejes */
+*{scrollbar-width:thin;scrollbar-color:rgba(0,192,106,.7) rgba(255,255,255,.05)}
+*::-webkit-scrollbar{width:12px;height:12px}
+*::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:12px}
+*::-webkit-scrollbar-thumb{background:rgba(0,192,106,.7);border-radius:12px;
+  border:3px solid transparent;background-clip:padding-box}
+*::-webkit-scrollbar-thumb:hover{background:var(--verde-l);background-clip:padding-box;border:3px solid transparent}
+*::-webkit-scrollbar-corner{background:transparent}
+html[data-theme="light"] *{scrollbar-color:rgba(0,140,80,.55) rgba(0,0,0,.06)}
+html[data-theme="light"] *::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
+
+/* ===================== ESTRUCTURA ===================== */
+#top{position:fixed;top:0;left:var(--rail);right:0;height:4px;z-index:40;background:rgba(255,255,255,.06);
+  transition:left .3s cubic-bezier(.22,.9,.28,1)}
+#bar{height:100%;width:0;background:linear-gradient(90deg,var(--verde),var(--aqua) 45%,var(--oro));
+  transition:width .45s cubic-bezier(.22,.9,.28,1)}
+#stage{position:fixed;top:4px;right:0;bottom:0;left:var(--rail);z-index:1;
+  transition:left .3s cubic-bezier(.22,.9,.28,1)}
+.sec{position:absolute;inset:0;display:none;flex-direction:column;gap:clamp(10px,1.4vh,18px);
+  padding:clamp(16px,2.6vh,34px) clamp(18px,3.4vw,64px) 78px;overflow:auto;
+  opacity:0;transform:translateY(14px)}
+.sec.on{display:flex;animation:in .38s cubic-bezier(.22,.9,.28,1) forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.fill{flex:1;min-height:0}
+/* pantallas de trabajo: los paneles conservan su alto natural y la pantalla se desplaza */
+.sec.work>*{flex:none!important}
+.sec.work .fill{flex:none!important;min-height:0}
+
+/* ===================== HUD ===================== */
+#hud{position:fixed;bottom:0;left:var(--rail);right:0;height:58px;z-index:40;display:flex;align-items:center;
+  gap:9px;padding:0 clamp(12px,2.4vw,34px);backdrop-filter:blur(8px);
+  background:linear-gradient(0deg,rgba(0,0,0,.5),transparent);transition:left .3s cubic-bezier(.22,.9,.28,1)}
+html[data-theme="light"] #hud{background:linear-gradient(0deg,rgba(255,255,255,.8),transparent)}
+.hud-b{border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--tx2);
+  border-radius:999px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:var(--ff);
+  transition:.18s;white-space:nowrap}
+.hud-b:hover{color:var(--tx);border-color:var(--verde);background:rgba(0,160,90,.14)}
+.hud-b.pri{background:var(--verde);border-color:var(--verde);color:#04150e;font-weight:650}
+.hud-b.pri:hover{background:var(--verde-l);color:#04150e}
+html[data-theme="light"] .hud-b{background:rgba(255,255,255,.85)}
+#counter{font-size:12px;color:var(--tx3);font-variant-numeric:tabular-nums;margin-left:auto;flex:none}
+#saved{font-size:11.5px;color:var(--tx3);flex:none}
+#saved.on{color:var(--verde-l)}
+#zwrap{display:inline-flex;align-items:center;gap:4px;flex:none}
+#zlabel{font-size:12px;color:var(--tx3);font-variant-numeric:tabular-nums;min-width:44px;text-align:center;cursor:pointer}
+
+/* ===================== ÍNDICE LATERAL ===================== */
+#rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);z-index:50;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,var(--panel),var(--bg2));border-right:1px solid var(--line)}
+#rail.off{display:none}
+#rail-h{padding:15px 16px 11px;border-bottom:1px solid var(--line);flex:none}
+#rail-h .rt{font-size:14.5px;font-weight:800;line-height:1.2}
+#rail-h .rs{font-size:11px;color:var(--tx3);margin-top:3px}
+#rail-b{flex:1;overflow:auto;padding:9px 9px 14px}
+#rail-f{flex:none;padding:9px 13px 13px;border-top:1px solid var(--line)}
+.rg{margin-bottom:5px;border-radius:11px;overflow:hidden;border:1px solid transparent}
+.rg.cur{border-color:var(--line2);background:rgba(255,255,255,.035)}
+.rg-h{display:flex;align-items:center;gap:9px;padding:8px 9px;cursor:pointer;transition:.16s}
+.rg-h:hover{background:rgba(255,255,255,.05)}
+.rg-n{flex:none;width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;font-weight:800;border:1px solid var(--line2);color:var(--tx3)}
+.rg.cur .rg-n{background:var(--verde);border-color:var(--verde);color:#04150e}
+.rg.done .rg-n{border-color:var(--verde);color:var(--verde-l)}
+.rg-t{flex:1;min-width:0}
+.rg-t b{display:block;font-size:12.5px;color:var(--tx2);font-weight:650;line-height:1.25}
+.rg.cur .rg-t b{color:var(--tx)}
+.rg-t span{font-size:10.5px;color:var(--tx3)}
+.rg-p{height:3px;border-radius:3px;background:rgba(255,255,255,.08);margin:0 9px 7px;overflow:hidden}
+.rg-p i{display:block;height:100%;background:linear-gradient(90deg,var(--verde),var(--aqua));border-radius:3px;
+  transition:width .4s cubic-bezier(.22,.9,.28,1)}
+.rg-l{display:none}
+.rg.open .rg-l{display:block;padding:0 6px 6px}
+.ri{display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:8px;cursor:pointer;
+  font-size:11.5px;color:var(--tx3);line-height:1.3;transition:.14s}
+.ri:hover{background:rgba(255,255,255,.06);color:var(--tx2)}
+.ri.cur{background:rgba(0,160,90,.16);color:var(--tx);font-weight:600;box-shadow:inset 2px 0 0 var(--verde-l)}
+.ri .rn{flex:none;width:16px;font-size:10px;opacity:.7;text-align:right}
+.ri .rk{flex:none;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--line2)}
+.ri.ok .rk{background:var(--verde);border-color:var(--verde)}
+.ri.part .rk{background:var(--oro);border-color:var(--oro)}
+#rail-toggle{border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--tx2);
+  border-radius:8px;padding:5px 9px;font-size:11px;cursor:pointer;font-family:var(--ff)}
+
+/* ===================== TIPOGRAFÍA ===================== */
+h1{font-size:clamp(26px,3.4vw,44px);line-height:1.05;letter-spacing:-.03em;margin:0;font-weight:800}
+h2{font-size:clamp(21px,2.5vw,33px);line-height:1.1;letter-spacing:-.025em;margin:0;font-weight:800}
+h3{font-size:15px;margin:0;font-weight:700;letter-spacing:-.01em}
+h4{font-size:12.5px;margin:0;font-weight:700;color:var(--tx2)}
+p{margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--verde-l);font-weight:700}
+.eyebrow::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--verde),transparent);border-radius:2px}
+.lead{font-size:clamp(14px,1.15vw,17px);color:var(--tx2);line-height:1.5;max-width:88ch}
+.sub{font-size:13px;color:var(--tx2);line-height:1.5}
+.tiny{font-size:11.5px;color:var(--tx3);line-height:1.45}
+.mono{font-family:ui-monospace,Consolas,monospace}
+.g{color:var(--verde-l)} .o{color:var(--oro)} .c{color:var(--coral)}
+.hl{background:linear-gradient(180deg,transparent 62%,rgba(237,161,0,.35) 0);padding:0 2px}
+.kbd{font-family:ui-monospace,Consolas,monospace;font-size:11px;border:1px solid var(--line2);
+  border-radius:5px;padding:1px 5px;color:var(--tx2);background:rgba(255,255,255,.05)}
+
+/* ===================== LAYOUT ===================== */
+.row{display:flex;gap:clamp(10px,1.3vw,18px)}
+.col{display:flex;flex-direction:column;gap:clamp(9px,1.2vh,16px)}
+.grid{display:grid;gap:clamp(10px,1.1vw,16px)}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+.wrap{display:flex;flex-wrap:wrap;gap:8px}
+.scrolly{overflow:auto;min-height:0}
+
+/* ===================== COMPONENTES ===================== */
+.card{background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:var(--r);padding:clamp(12px,1.3vw,20px);position:relative;overflow:auto;
+  overflow-wrap:break-word;transition:.22s}
+.card>.tag{position:absolute;top:0;left:0;width:100%;height:3px;background:var(--verde);opacity:.85}
+.card.oro>.tag{background:var(--oro)} .card.vio>.tag{background:var(--violeta)}
+.card.coral>.tag{background:var(--coral)} .card.cel>.tag{background:var(--celeste)}
+.card.aqua>.tag{background:var(--aqua)}
+.box{border:1px solid var(--line);border-radius:var(--r-s);padding:11px 13px;background:rgba(255,255,255,.035)}
+.box.ok{border-color:rgba(0,192,106,.45);background:rgba(0,192,106,.09)}
+.box.bad{border-color:rgba(239,83,80,.45);background:rgba(239,83,80,.09)}
+.box.warn{border-color:rgba(237,161,0,.45);background:rgba(237,161,0,.09)}
+.box.info{border-color:rgba(57,182,216,.45);background:rgba(57,182,216,.09)}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);border-radius:999px;
+  padding:3px 10px;font-size:11.5px;color:var(--tx2)}
+.pill.v{border-color:rgba(0,160,90,.5);color:var(--verde-l);background:rgba(0,160,90,.10)}
+.pill.o{border-color:rgba(237,161,0,.5);color:var(--oro);background:rgba(237,161,0,.10)}
+.pill.p{border-color:rgba(123,107,214,.5);color:var(--violeta);background:rgba(123,107,214,.12)}
+.pill.c{border-color:rgba(239,106,75,.5);color:var(--coral);background:rgba(239,106,75,.10)}
+.pill.a{border-color:rgba(57,182,216,.5);color:var(--celeste);background:rgba(57,182,216,.10)}
+.btn{border:1px solid var(--verde);background:rgba(0,160,90,.16);color:var(--verde-l);
+  border-radius:999px;padding:8px 15px;font-size:13px;cursor:pointer;font-family:var(--ff);
+  font-weight:600;transition:.18s}
+.btn:hover{background:var(--verde-l);color:#04150e}
+.btn.ghost{border-color:var(--line2);color:var(--tx2);background:transparent}
+.btn.ghost:hover{border-color:var(--oro);color:var(--oro);background:rgba(237,161,0,.1)}
+.btn.sm{padding:5px 11px;font-size:12px}
+.btn.xs{padding:3px 9px;font-size:11.5px}
+.num{font-size:clamp(22px,2.3vw,34px);line-height:1;color:var(--verde-l);font-weight:800}
+.hr{height:1px;background:var(--line);margin:2px 0}
+
+/* ===================== FORMULARIO ===================== */
+label.fl{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tx3);
+  font-weight:700;margin-bottom:5px}
+input.fi,textarea.fa,select.fs{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  border-radius:10px;color:var(--tx);font-family:var(--ff);font-size:13.5px;padding:9px 11px;
+  line-height:1.5;transition:.16s;resize:vertical}
+html[data-theme="light"] input.fi,html[data-theme="light"] textarea.fa,html[data-theme="light"] select.fs{background:#fff}
+input.fi:focus,textarea.fa:focus,select.fs:focus{outline:none;border-color:var(--verde);
+  background:rgba(0,160,90,.08);box-shadow:0 0 0 3px rgba(0,160,90,.14)}
+textarea.fa{min-height:88px}
+textarea.fa.tall{min-height:150px}
+textarea.fa.short{min-height:56px}
+select.fs option{background:var(--panel);color:var(--tx)}
+html[data-theme="light"] select.fs option{background:#fff;color:#10241d}
+.fcount{font-size:10.5px;color:var(--tx3);text-align:right;margin-top:3px;font-variant-numeric:tabular-nums}
+.fcount.warn{color:var(--oro)} .fcount.ok{color:var(--verde-l)}
+.frow{display:flex;gap:9px;align-items:flex-start}
+.frow>*{flex:1;min-width:0}
+.fdel{flex:none!important;width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);
+  background:rgba(255,255,255,.05);color:var(--tx3);cursor:pointer;font-size:13px;line-height:1}
+.fdel:hover{border-color:var(--coral);color:var(--coral)}
+
+/* ===================== TABLAS ===================== */
+table.tb{width:100%;border-collapse:collapse;font-size:12.5px}
+table.tb th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);
+  font-weight:700;padding:7px 9px;border-bottom:1px solid var(--line2);vertical-align:bottom}
+table.tb td{padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--tx2)}
+table.tb tr:last-child td{border-bottom:none}
+table.tb input,table.tb textarea,table.tb select{width:100%;background:transparent;border:none;
+  border-bottom:1px dashed var(--line2);color:var(--tx);font-family:var(--ff);font-size:12.5px;
+  padding:4px 2px;resize:vertical}
+table.tb input:focus,table.tb textarea:focus,table.tb select:focus{outline:none;border-bottom-color:var(--verde)}
+table.tb select{border-bottom:1px dashed var(--line2)}
+table.tb select option{background:var(--panel);color:var(--tx)}
+html[data-theme="light"] table.tb select option{background:#fff;color:#10241d}
+
+/* MML */
+table.mml{width:100%;border-collapse:collapse;font-size:12px;min-width:820px}
+table.mml th{background:rgba(0,160,90,.14);color:var(--verde-l);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;padding:8px;text-align:left;border:1px solid var(--line2);font-weight:700}
+table.mml td{border:1px solid var(--line);padding:5px;vertical-align:top}
+table.mml td textarea{width:100%;min-height:66px;background:transparent;border:none;color:var(--tx);
+  font-family:var(--ff);font-size:12px;padding:4px;resize:vertical;line-height:1.45}
+table.mml td textarea:focus{outline:none;background:rgba(0,160,90,.08);border-radius:6px}
+table.mml td.lv{background:rgba(255,255,255,.04);width:15%}
+table.mml .lvn{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--verde-l);font-weight:800}
+
+/* árbol */
+.tnode{display:flex;align-items:flex-start;gap:7px;border:1px solid var(--line2);border-radius:10px;
+  padding:6px 9px;background:rgba(255,255,255,.045);transition:.16s}
+.tnode.lv1{border-left:3px solid var(--coral)}
+.tnode.lv2{border-left:3px solid var(--oro);margin-left:18px}
+.tnode.lv3{border-left:3px solid var(--violeta);margin-left:36px}
+.tnode.ef1{border-left:3px solid var(--celeste)}
+.tnode.ef2{border-left:3px solid var(--aqua);margin-left:18px}
+.tnode input{flex:1;min-width:0;background:transparent;border:none;color:var(--tx);font-size:12.5px;
+  font-family:var(--ff);padding:2px}
+.tnode input:focus{outline:none}
+.tnode .lvb{flex:none;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tx3);
+  border:1px solid var(--line2);border-radius:6px;padding:1px 6px;cursor:pointer;background:transparent;
+  font-family:var(--ff)}
+.tnode .lvb:hover{border-color:var(--verde);color:var(--verde-l)}
+.trunk{border:2px solid var(--verde);border-radius:13px;padding:11px 15px;background:rgba(0,160,90,.15)}
+.trunk .lb{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--verde-l);font-weight:800}
+.trunk .tx{font-size:14px;font-weight:700;line-height:1.35;margin-top:4px}
+.mirror{display:grid;grid-template-columns:1fr 34px 1fr;gap:8px;align-items:center}
+.mirror .ar{text-align:center;color:var(--verde-l);font-size:16px}
+
+/* semáforo / progreso */
+.meter{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:5px}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--verde),var(--aqua));
+  border-radius:6px;transition:width .45s cubic-bezier(.22,.9,.28,1)}
+.meter.o i{background:linear-gradient(90deg,var(--oro),var(--coral))}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--line2);flex:none}
+.dot.ok{background:var(--verde)} .dot.part{background:var(--oro)}
+.chk{display:flex;align-items:flex-start;gap:9px;padding:8px 10px;border:1px solid var(--line);
+  border-radius:10px;background:rgba(255,255,255,.03);cursor:pointer;transition:.16s;font-size:12.5px;
+  line-height:1.45;color:var(--tx2)}
+.chk:hover{border-color:var(--line2)}
+.chk input{margin-top:2px;accent-color:var(--verde);flex:none}
+.chk.on{border-color:rgba(0,192,106,.45);background:rgba(0,192,106,.08);color:var(--tx)}
+
+/* ítems del F01 */
+.f01nav{display:flex;flex-wrap:wrap;gap:5px}
+.f01b{width:33px;height:33px;border-radius:9px;border:1px solid var(--line2);background:rgba(255,255,255,.045);
+  color:var(--tx2);font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--ff);position:relative;
+  transition:.16s}
+.f01b:hover{border-color:var(--verde);color:var(--verde-l)}
+.f01b.on{background:var(--verde);border-color:var(--verde);color:#04150e}
+.f01b.done::after{content:"";position:absolute;right:3px;bottom:3px;width:6px;height:6px;border-radius:50%;
+  background:var(--verde-l)}
+.f01b.on.done::after{background:#04150e}
+.f01b.s2{border-color:rgba(237,161,0,.45)} .f01b.s2.on{background:var(--oro);border-color:var(--oro)}
+.f01b.s3{border-color:rgba(123,107,214,.45)} .f01b.s3.on{background:var(--violeta);border-color:var(--violeta)}
+.f01b.s4{border-color:rgba(57,182,216,.45)} .f01b.s4.on{background:var(--celeste);border-color:var(--celeste)}
+.tk{list-style:none;padding:0;margin:0}
+.tk li{position:relative;padding-left:16px;margin-top:5px;font-size:12.5px;color:var(--tx2);line-height:1.45}
+.tk li::before{content:"◆";position:absolute;left:0;top:0;color:var(--verde-l);font-size:8px;line-height:1.9}
+.tk.o li::before{color:var(--oro)} .tk.c li::before{color:var(--coral)}
+
+/* esquema svg */
+.esq{border:1px solid var(--line);border-radius:var(--r-s);padding:12px;background:rgba(255,255,255,.03);
+  overflow:auto}
+svg.esq-s{width:100%;height:auto;display:block;min-width:640px}
+
+/* overlays */
+.ov{position:fixed;inset:0;z-index:60;background:rgba(3,10,8,.9);backdrop-filter:blur(9px);
+  display:none;flex-direction:column;padding:0}
+html[data-theme="light"] .ov{background:rgba(240,246,243,.95)}
+.ov.on{display:flex;animation:in .22s ease forwards}
+.ov-bar{flex:none;display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:9px clamp(12px,2vw,26px);
+  border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--panel2))}
+.ov-bar .t{flex:1;min-width:120px;font-size:12px;color:var(--tx3);letter-spacing:.09em;text-transform:uppercase}
+.ov-in{flex:1;min-height:0;overflow:auto;padding:clamp(12px,2.2vw,28px);display:flex;align-items:flex-start}
+.ov-in>*{margin:0 auto;width:100%;max-width:1500px}
+.pop-b{position:absolute;top:5px;right:5px;z-index:7;width:26px;height:26px;border-radius:8px;
+  border:1px solid var(--line2);background:rgba(9,20,16,.78);color:var(--tx3);cursor:pointer;
+  font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;opacity:0;
+  transition:.18s;font-family:var(--ff);padding:0}
+html[data-theme="light"] .pop-b{background:rgba(255,255,255,.9)}
+.card:hover>.pop-b,.pop-b:focus{opacity:1}
+.pop-b:hover{border-color:var(--verde);color:var(--verde-l);background:rgba(0,160,90,.22)}
+.pop-ph{display:none!important}
+.card.popped{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+.card.popped>.pop-b{display:none}
+.toast{position:fixed;left:50%;bottom:74px;transform:translate(-50%,16px);z-index:70;opacity:0;
+  background:var(--panel);border:1px solid var(--verde);border-radius:999px;padding:9px 20px;
+  font-size:13px;color:var(--tx);box-shadow:var(--shadow);pointer-events:none;transition:.28s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* impresión */
+#print{display:none}
+@media print{
+  body{overflow:visible;background:#fff}
+  body::before,#rail,#hud,#top,#stage,.ov,.toast{display:none!important}
+  #print{display:block!important;position:static;color:#111;font-size:11pt}
+  #print h1{font-size:18pt;color:#0e5c3a} #print h2{font-size:13pt;color:#0e5c3a;margin-top:14pt}
+  #print h3{font-size:11pt;margin-top:10pt}
+  #print .p-i{margin-top:9pt;page-break-inside:avoid}
+  #print .p-l{font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;color:#5a6b64}
+  #print .p-v{white-space:pre-wrap;border-left:2px solid #cfd8d4;padding-left:8pt;margin-top:2pt}
+  #print table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:5pt}
+  #print th,#print td{border:1px solid #b9c6c1;padding:4pt;text-align:left;vertical-align:top}
+  #print th{background:#eef4f1}
+  @page{margin:16mm}
+}
+
+/* ===================== ESQUEMAS SVG ===================== */
+svg.esq{width:100%;height:auto;display:block;font-family:var(--ff)}
+svg.esq text{fill:var(--tx)}
+svg.esq .zl{fill:var(--tx3);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+svg.esq .al{fill:var(--tx2);font-size:11px}
+svg.esq .ns{font-size:10.5px}
+svg.mini{width:100%;height:auto;display:block;margin-top:2px}
+svg.mini text{fill:var(--tx2);font-size:9px;font-family:var(--ff)}
+.esq-wrap{border:1px solid var(--line);border-radius:var(--r-s);padding:14px 16px 10px;
+  background:rgba(255,255,255,.03)}
+.esq-cap{font-size:11.5px;color:var(--tx3);margin-top:9px;line-height:1.45}
+.esqbox{overflow:auto}
+svg.esq{min-width:620px}
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:1400px){
+  #hud{gap:7px;padding:0 12px}
+  .hud-b{padding:5px 10px;font-size:11.5px}
+}
+@media (max-width:1180px){
+  html[data-rail="on"]{--rail:0px}
+  #rail{box-shadow:14px 0 60px -20px rgba(0,0,0,.9)}
+  #hud{overflow-x:auto;overflow-y:hidden;justify-content:flex-start;scrollbar-width:none}
+  #hud::-webkit-scrollbar{display:none}
+  #hud>*{flex:none}
+  #counter{margin-left:8px}
+}
+@media (max-width:860px){
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr!important}
+  .row{flex-direction:column}
+  .fill{flex:none!important;min-height:auto!important}
+  .mirror{grid-template-columns:1fr;gap:5px}
+  .mirror .ar{transform:rotate(90deg)}
+}
+@media (max-width:760px){
+  #rail{width:min(90vw,320px)}
+  .sec{padding:14px 13px 118px;gap:10px}
+  h1{font-size:clamp(23px,7vw,34px)} h2{font-size:clamp(19px,5.4vw,26px)}
+  .lead{font-size:14px}
+  .card{padding:12px 13px}
+  #hud{height:54px}
+  .tnode.lv2,.tnode.ef2{margin-left:10px} .tnode.lv3{margin-left:20px}
+  .esq{padding:9px}
+  .pop-b{opacity:.7;width:30px;height:30px}
+  .frow{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div id="top"><div id="bar"></div></div>
+
+<aside id="rail">
+  <div id="rail-h">
+    <div class="rt">Escenario 1 · F01</div>
+    <div class="rs" id="rail-sub">Urbano y periurbano</div>
+    <div class="meter" style="margin-top:9px"><i id="rail-all"></i></div>
+    <p class="tiny" style="margin-top:5px"><span id="rail-pct">0</span> % del formulario cargado</p>
+  </div>
+  <div id="rail-b"></div>
+  <div id="rail-f">
+    <button id="rail-toggle">◧ Ocultar índice</button>
+    <p class="tiny" style="margin-top:8px">El avance se guarda solo en este navegador. Descargá el archivo de avance para seguir en otra computadora.</p>
+  </div>
+</aside>
+
+<div id="stage"></div>
+
+<div id="hud">
+  <button class="hud-b" id="b-prev" title="Anterior (←)">◀</button>
+  <button class="hud-b" id="b-next" title="Siguiente (→)">▶</button>
+  <button class="hud-b" id="b-rail" title="Índice (I)">▤ Índice</button>
+  <button class="hud-b pri" id="b-word" title="Exportar el F01 a Word">⬇ Word</button>
+  <button class="hud-b" id="b-save" title="Descargar archivo de avance">💾 Avance</button>
+  <button class="hud-b" id="b-load" title="Cargar un archivo de avance">📂 Cargar</button>
+  <button class="hud-b" id="b-print" title="Imprimir o guardar como PDF">🖨 PDF</button>
+  <span id="zwrap" title="Zoom (+ − 0)">
+    <button class="hud-b" id="b-zo">−</button><span id="zlabel">100%</span><button class="hud-b" id="b-zi">+</button>
+  </span>
+  <button class="hud-b" id="b-th" title="Tema (T)">◐</button>
+  <span id="saved">·</span>
+  <span id="counter">1 / 1</span>
+</div>
+
+<div class="ov" id="pop">
+  <div class="ov-bar">
+    <span class="t" id="pop-t">Panel ampliado</span>
+    <button class="hud-b" id="pop-zo">−</button><span class="tiny" id="pop-z" style="min-width:44px;text-align:center">100%</span>
+    <button class="hud-b" id="pop-zi">+</button>
+    <button class="hud-b" id="pop-x">✕ Cerrar (Esc)</button>
+  </div>
+  <div class="ov-in" id="pop-in"></div>
+</div>
+
+<div class="ov" id="help">
+  <div class="ov-bar"><span class="t">Cómo se usa este visor</span><button class="hud-b" id="help-x">✕ Cerrar</button></div>
+  <div class="ov-in"><div id="help-c"></div></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="print"></div>
+<input type="file" id="fileIn" accept=".json,application/json" style="display:none">
+<script>
+"use strict";
+/* =============================================================== DATOS DEL CASO */
+var ESC = {"n": 1, "t": "Producción de esponjas vegetales (Luffa cylindrica)", "lug": "Localidades urbanas y periurbanas de la provincia de Salta", "ent": "Urbano y periurbano", "tags": ["Urbano", "Producción", "Economía circular"], "amb": "Economía circular · producción de recursos naturales renovables", "res": "Productos de higiene y limpieza fabricados con plásticos de un solo uso, frente a una demanda creciente de alternativas biodegradables cuya oferta local es discontinua.", "sit": "Esponjas sintéticas, cepillos y elementos similares se fabrican con materiales plásticos o derivados del petróleo y tienen vida útil corta. Comercios especializados, ferias de emprendedores y consumidores manifiestan preferencia creciente por productos naturales y biodegradables, pero la disponibilidad local es variable en oferta, continuidad de abastecimiento y accesibilidad. La Luffa cylindrica es una cucurbitácea anual cuyo fruto seco desarrolla una red de fibras naturales aplicable a esponjas de baño y de vajilla, limpieza doméstica, cosmética natural y artesanías.", "ev": ["Se incrementaron las ferias de productos sustentables y los espacios para emprendedores en distintas localidades.", "Comercios de productos naturales incorporan progresivamente artículos reutilizables y biodegradables.", "Campañas de educación ambiental promueven la reducción del plástico de un solo uso.", "No se dispone de información que permita determinar si la oferta actual satisface la demanda potencial ni cuál sería la escala adecuada."], "con": ["Condiciones agroclimáticas diferentes según la región de la provincia.", "Existencia de pequeños productores y emprendimientos familiares con experiencia agrícola.", "Necesidad de desarrollar canales de comercialización y distribución.", "Disponibilidad variable de infraestructura de producción, procesamiento y almacenamiento."], "pre": ["¿Existe oportunidad para una iniciativa productiva vinculada a productos sustentables que responda a la situación planteada?", "¿Qué información habría que relevar para evaluar la viabilidad técnica, comercial, ambiental y económica?"], "alc": "La producción de esponja vegetal es <strong>una</strong> de las muchas alternativas que pueden surgir del árbol de problemas y objetivos: el equipo no debe necesariamente centrarse en ese recurso."};
+var F01 = [{"L": "A", "s": 1, "t": "Nombre de fantasía del equipo de trabajo", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "Un nombre que represente las motivaciones del equipo, aporte identidad y permita identificarlo durante toda la cursada.", "como": ["Corto: una sigla, o dos o tres palabras como máximo.", "Preferentemente vinculado a la futura actividad profesional o al ámbito de actuación del proyecto.", "Se elige como si se estuviera iniciando una actividad económica real: el nombre de una empresa es parte de su capital y puede valorarse económicamente.", "Por ahora no hace falta definir el tipo societario: se asume una sociedad de hecho (S.H.)."], "error": "Confundir el nombre del equipo con el nombre del proyecto de inversión. Son dos cosas distintas y el segundo se define recién en el ítem V.", "ej": "La Guía cita consultoras del registro de la Secretaría de Ambiente de Salta como referencia de estilo: Knight Piésold Argentina, PACHA Consultora, EC y asociados, DYNAMIK S.A.S., Ambiental Argentina, URBIS, GT, AUSENCO VECTOR.", "guia": "Guía 01 · «Nombre de fantasía del equipo de trabajo»"}, {"L": "B", "s": 1, "t": "Integrantes del equipo y dedicación al entregable", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "Tabla con apellido y nombre, función en el equipo, perfil y dedicación en horas de cada integrante que trabajó en esta entrega.", "como": ["Identificar el coordinador general; la coordinación puede ser rotativa y removible por mayoría, informando a la cátedra por correo.", "Definir la función o rol de cada integrante: buscar información, procesar datos, redactar informes, completar formularios, consultar expertos.", "Acordar metodología de trabajo (día, frecuencia, dedicación individual, presencial o virtual) y medios de comunicación.", "Declarar sólo horas realmente trabajadas, sin tiempos muertos."], "error": "Incluir a integrantes que no aportaron a la entrega. La Guía es explícita: reconocer a quien no trabajó desincentiva a los que sí lo hicieron.", "ej": "Coordinación general · Búsqueda y sistematización de información secundaria · Redacción y edición del informe · Cartografía y paratextos · Enlace institucional y consultas a expertos.", "guia": "Guía 01 · ítem A · «Integrantes del equipo de trabajo y dedicación al entregable»"}, {"L": "C", "s": 1, "t": "Ámbito de actuación", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "El eje temático en el que se inscribe la situación problemática asignada al equipo.", "como": ["Elegir entre los ámbitos que propone la Guía: saneamiento ambiental, producción de recursos naturales renovables, gestión de residuos, gestión de espacios recreativos, restauración ecológica, producción de servicios ecosistémicos, conservación de ecosistemas o especies, restauración urbana, economía circular, gestión ambiental de proyectos de inversión, ecoeficiencia.", "Las categorías no son mutuamente excluyentes: un proyecto puede quedar representado en más de una.", "Justificar brevemente por qué el escenario cae en ese ámbito."], "error": "Elegir el ámbito antes de tener claro el problema. Conviene volver sobre este ítem después de escribir el D.", "ej": "Escenario 4 (residuos de poda urbana) puede inscribirse simultáneamente en <strong>gestión de residuos</strong> y en <strong>economía circular</strong>; declarar ambos y explicar el énfasis elegido es una respuesta correcta.", "guia": "Guía 01 · ítem B · «Ámbito de actuación»"}, {"L": "D", "s": 1, "t": "El problema identificado", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "La descripción de la situación conflictiva que constituye el tema central de la intervención, usando como mínimo los cinco criterios.", "como": ["Enunciarlo como una <strong>situación negativa que debe ser revertida</strong>, en una sola oración.", "Describirlo respondiendo identidad, ubicación, tiempo, mensurabilidad y magnitud.", "Darle dimensión espacial y revisar información secundaria sobre el problema asignado.", "Controlar que no se haya confundido una causa o un efecto con el problema central."], "error": "Enunciar el problema como «falta de…». Si la solución se deduce del enunciado, el análisis de alternativas ya está condicionado.", "ej": "Caso guía. Incorrecto: «Falta de riego en las forestaciones del municipio». Correcto: <strong>«Alta mortandad de los plantines nativos plantados en los espacios públicos del municipio»</strong>. · Otro ejemplo de la Guía: incorrecto «Falta de un puente sobre el río Arenales»; correcto «Dificultades de conectividad norte–sur del municipio Capital».", "guia": "Guía 01 · ítem C · «El problema identificado»"}, {"L": "E", "s": 1, "t": "Medición del problema", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "Cómo se mide el problema y el valor estimado del indicador en la situación <strong>sin proyecto</strong>.", "como": ["Construir el indicador respetando el esquema: cantidad o porcentaje + variable + lugar + plazo + medio de verificación.", "Puede ser cuantitativo o cualitativo, y se pueden usar varios indicadores o construir un índice.", "Verificar los criterios SMART: específico, mensurable, alcanzable, relevante y temporal.", "Completar el cuadro «valor del indicador en situación sin proyecto», aunque sea una primera aproximación."], "error": "Dejar el valor de línea de base en blanco o escribir «no se dispone de datos» sin adoptar un supuesto. Si el dato no existe, se asume uno, se numera y se declara la fuente del criterio.", "ej": "Caso guía: «Supervivencia del <strong>38 %</strong> de los plantines nativos <strong>a los 12 meses</strong> de plantados, en los <strong>espacios públicos del municipio</strong>, según el <strong>censo de arbolado 2025</strong>.» El 38 % es el valor sin proyecto.", "guia": "Guía 01 · ítem D · «Medición del problema»"}, {"L": "F", "s": 1, "t": "Contexto de intervención — línea de base", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "La descripción del contexto geográfico, social, económico y ambiental donde el proyecto desarrollará su acción.", "como": ["Recurrir a toda la información secundaria disponible: censos, informes sectoriales, estudios previos, cartografía.", "Responder la pregunta que ordena la sección: ¿qué características del contexto potencian el problema o contribuyen a su solución?", "Se admiten paratextos iconográficos: mapas, imágenes satelitales, fotografías, esquemas.", "Declarar la fuente y el año de cada dato."], "error": "Convertir la línea de base en una monografía geográfica del departamento. Se describe lo que tiene relación con el problema, no todo lo que existe.", "ej": "Escenario 11 (postura de huevos, Cerrillos): entorno rural de transición con la mayor tasa provincial de transformación de suelo rural a urbano, parcelas de tabaco y hortalizas, viviendas abastecidas por perforación y otras granjas en un radio de pocos kilómetros generando las mismas corrientes.", "guia": "Guía 01 · ítem E · «Contexto de intervención del proyecto – línea de base»"}, {"L": "G", "s": 1, "t": "Población destinataria de los resultados", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "Definir y cuantificar la población que recibirá en forma directa los beneficios del proyecto.", "como": ["Distinguir <strong>población potencial</strong> (la afectada por el problema) de <strong>población objetivo</strong> (los beneficiarios directos que el proyecto puede atender realmente).", "Responder: ¿quiénes internalizan el problema? ¿Quiénes son los destinatarios de los bienes y servicios que ofrecerá el proyecto?", "Cuantificar: personas, familias, productores, empresas o instituciones, con fuente.", "Si ambas poblaciones coinciden, decirlo y justificar por qué el proyecto alcanza al 100 % de la potencial."], "error": "Declarar como población objetivo a «toda la comunidad». Si el proyecto no puede atender al 100 % de la población potencial, la objetivo es una fracción y hay que decir cuál.", "ej": "Escenario 9: población potencial, los habitantes del borde este; población objetivo, los aproximadamente 4.000 habitantes de los barrios del extremo oeste con NBI de entre 40 % y 78 %.", "guia": "Guía 01 · ítem F · «Población destinataria» (Aldunate &amp; Córdoba, CEPAL, 2011)"}, {"L": "H", "s": 1, "t": "Análisis de los involucrados", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "Todos los actores vinculados al problema que pueden contribuir a su solución o poner palos en la rueda. Una fila por actor.", "como": ["Completar las cinco columnas: actor, grupo, posición, fuerza e importancia.", "Grupo: pública, privada, sociedad civil, ONG ambiental u otra institución.", "Posición: si influye de manera positiva o negativa sobre el problema y su solución.", "Fuerza e importancia: escala cualitativa (alta–media–baja) o numérica (0 a 1), <strong>la misma para ambas</strong>."], "error": "Listar sólo a los aliados. El análisis sirve precisamente para anticipar a quienes pueden bloquear el proyecto y diseñar estrategias hacia ellos.", "ej": "Comunidad aborigen · Agrupación social · Influye de manera positiva · Fuerza 0,9: el proyecto se desarrolla en propiedad de la comunidad y puede resolver no apoyarlo · Importancia 1: son los principales beneficiarios.", "guia": "Guía 01 · ítem G · «Análisis de los involucrados»"}, {"L": "I", "s": 1, "t": "Dependencia institucional del proyecto", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "La organización u organizaciones de las cuales depende directamente la realización del proyecto.", "como": ["Pensar en habilitaciones, permisos y vinculaciones necesarias para que el proyecto exista.", "Puede tratarse de gobierno municipal, provincial, nacional, organismos internacionales, empresas de bienes o servicios, ONG u organismos financistas.", "Estos actores también deben aparecer en el análisis de involucrados (ítem H): controlá la coherencia entre ambos ítems.", "En esta instancia sólo se identifican; los acuerdos, comodatos y autorizaciones llegan al pasar de perfil a prefactibilidad."], "error": "Anticipar gestiones. Todavía no hay que tramitar nada: hay que saber ante quién habría que tramitarlo.", "ej": "Un proyecto sobre residuos sólidos urbanos en la ciudad de Salta depende de la Municipalidad y de la empresa prestadora del servicio; uno de energía solar involucra a la Secretaría de Minería provincial; uno de restauración urbana en Vaqueros requiere autorización municipal.", "guia": "Guía 01 · ítem H · «Dependencia institucional del proyecto»"}, {"L": "J", "s": 1, "t": "Marco normativo de referencia", "cap": "Capítulo 1 · Presentación del equipo y el problema", "pide": "El relevamiento de las leyes y normativas que dan marco legal a la idea proyectual.", "como": ["Construir la <strong>matriz de cumplimiento legal</strong>: toda la normativa que el proyecto debe cumplir durante todas sus etapas.", "Seleccionar las que el equipo considere más importantes para ejecutar el proyecto, no un listado exhaustivo del derecho ambiental.", "Incluir convenios marco, leyes nacionales y provinciales, decretos, resoluciones y ordenanzas municipales.", "Verificar vigencia y texto ordenado de cada norma citada."], "error": "Copiar la normativa del escenario sin verificar. Varios escenarios advierten que el marco citado es anterior a modificaciones recientes.", "ej": "Escenario 9: el ordenamiento territorial de bosques nativos fue actualizado recientemente y el código de planeamiento urbano ambiental convive con normativas municipales dispares dentro del área metropolitana.", "guia": "Guía 01 · ítem I · «Marco normativo de referencia»"}, {"L": "K", "s": 2, "t": "Causas — raíces del árbol", "cap": "Capítulo 2 · El árbol de problemas", "pide": "Identificar y describir brevemente las causas primarias, secundarias y sucesivas que determinan el problema central.", "como": ["Preguntarse: ¿qué es lo que origina el problema identificado?", "Aplicar la técnica «¿pero por qué?» hasta llegar a causas primarias e independientes entre sí.", "Ordenarlas jerárquicamente en la tabla: causa 1 → causa 1.1 → causa 1.1.A → causa 1.1.A.1.", "Verificar la coherencia leyendo de derecha a izquierda: ¿la causa 1.1.A genera la 1.1? ¿La 1.1 produce la causa 1? ¿La causa 1 produce el problema?"], "error": "Quedarse en el primer nivel. Cuantas más raíces se detecten, más cerca se está de las soluciones posibles; con causas superficiales sólo salen alternativas superficiales.", "ej": "Caso guía: alta mortandad de plantines → el plantín no recibe cuidados después de plantado → nadie tiene asignada la tarea de riego → la campaña termina el día de la plantación → el programa municipal no prevé etapa de mantenimiento.", "guia": "Guía 01 · ítem J · «Causas (raíces del árbol)»"}, {"L": "L", "s": 2, "t": "Efectos — ramas del árbol", "cap": "Capítulo 2 · El árbol de problemas", "pide": "Identificar y describir los efectos que derivan del problema central, de manera ordenada, interrelacionada y jerárquica.", "como": ["Preguntarse: ¿qué cosas negativas se asocian al problema y persistirán mientras no se lo resuelva?", "Ordenarlos de izquierda a derecha: efecto 1 → efecto 1.1 → efecto 1.1.A.", "Puede haber más de un efecto secundario vinculado a un efecto primario.", "Verificar la coherencia leyendo de izquierda a derecha: ¿el efecto 1 produce el efecto 1.1?"], "error": "Confundir efectos con causas por escribirlos en la columna equivocada. El sentido de lectura del árbol es lo que distingue una tabla de la otra.", "ej": "Caso guía: alta mortandad de plantines → menor cobertura arbórea lograda por campaña → más calor y menos sombra en veredas y plazas → menor uso de los espacios públicos en verano. En paralelo: pérdida de la inversión municipal → reducción del presupuesto de las campañas siguientes.", "guia": "Guía 01 · ítem K · «Efectos (ramas del árbol)»"}, {"L": "M", "s": 2, "t": "Construyendo el árbol de problemas", "cap": "Capítulo 2 · El árbol de problemas", "pide": "El diagrama de síntesis que integra causas, problema central y efectos en un mismo esquema.", "como": ["Ubicar el problema central en el tronco, las causas hacia abajo y los efectos hacia arriba.", "Usar la información de los ítems K y L: el árbol no agrega elementos nuevos, los ordena.", "Revisar la secuencia lógica ascendente causas → problema → efectos.", "Repetir el procedimiento las veces que haga falta hasta que todo el equipo acuerde la secuencia."], "error": "Dibujar el árbol antes de completar las tablas. El diagrama es la síntesis del análisis, no un sustituto del análisis.", "ej": "En esta instancia el árbol es un conjunto de <strong>hipótesis de trabajo</strong>. Al avanzar a perfil, prefactibilidad y factibilidad, cada componente deberá ponerse a prueba con estudios específicos, consulta a expertos y trabajo participativo con los involucrados.", "guia": "Guía 01 · ítem L · «Construyendo el árbol de problema»"}, {"L": "N", "s": 3, "t": "Medios — raíces del árbol de objetivos", "cap": "Capítulo 3 · El árbol de objetivos", "pide": "Los medios, expresando de manera positiva las causas identificadas en el árbol de problemas.", "como": ["Transformar cada causa en su condición positiva equivalente, respetando la misma estructura jerárquica.", "Mantener el paralelismo: si hay cuatro niveles de causas, hay cuatro niveles de medios.", "Identificar los medios que quedan <strong>fuera del alcance del proyecto</strong> y decirlo explícitamente.", "Analizar las limitaciones del equipo y del proyecto antes de avanzar."], "error": "Reescribir la causa agregando «mejorar» o «promover». El medio es un estado alcanzado, no una acción: «calles con mantenimiento adecuado», no «mejorar el mantenimiento de las calles».", "ej": "Causa «nadie tiene asignada la tarea de riego» → medio «responsable del riego posterior asignado». Causa «el vivero no rustifica los plantines» → medio «el vivero rustifica los plantines antes de entregarlos».", "guia": "Guía 01 · ítem M · «Medios (raíces del árbol)»"}, {"L": "O", "s": 3, "t": "Fines — ramas del árbol de objetivos", "cap": "Capítulo 3 · El árbol de objetivos", "pide": "Los fines, expresando como situaciones positivas o deseadas los efectos del árbol de problemas.", "como": ["Transformar cada efecto en la situación deseada equivalente.", "Conservar el encadenamiento: los fines de segundo nivel derivan de los de primer nivel.", "Los fines más altos del árbol son los que después alimentarán el nivel «Fin» de la EAP y de la MML."], "error": "Inventar fines que no son el espejo de ningún efecto. Si aparece un fin sin efecto correspondiente, o falta un efecto en el ítem L o sobra un deseo en el ítem O.", "ej": "Efecto «pérdida de la inversión municipal de cada campaña» → fin «aprovechamiento de la inversión municipal de cada campaña». Efecto «más calor y menos sombra en veredas» → fin «mayor sombra y mejor confort térmico en veredas».", "guia": "Guía 01 · ítem N · «Fines (ramas del árbol)»"}, {"L": "P", "s": 3, "t": "Objetivo central, propósito o meta", "cap": "Capítulo 3 · El árbol de objetivos", "pide": "La meta, expresando de manera positiva el problema central.", "como": ["Completar el cuadro con el problema central arriba y el propósito o meta debajo.", "Mantener la misma variable, el mismo lugar y el mismo sujeto: sólo cambia el signo.", "Este enunciado será el propósito de la EAP y de la MML, y su indicador será el mismo del ítem E."], "error": "Cambiar el alcance al transformar. Si el problema estaba localizado en un barrio, la meta no puede estar localizada en toda la ciudad.", "ej": "«Alta mortandad de los plantines nativos plantados en los espacios públicos del municipio» → «Baja mortandad de los plantines nativos plantados en los espacios públicos del municipio». · «Demanda insatisfecha de proteína de pescado de río» → «Demanda satisfecha de proteína de pescado de río».", "guia": "Guía 01 · ítem O · «Objetivo central o propósito del proyecto (meta)»"}, {"L": "Q", "s": 3, "t": "Construyendo el árbol de objetivos", "cap": "Capítulo 3 · El árbol de objetivos", "pide": "El diagrama de síntesis que integra medios, meta y fines.", "como": ["Ordenar el diagrama con la misma estructura del árbol de problemas: medios abajo, meta en el tronco, fines arriba.", "Controlar que cada nodo del árbol de objetivos tenga su contraparte en el árbol de problemas.", "Marcar visualmente los medios sobre los que el proyecto podría actuar."], "error": "Que el árbol de objetivos tenga más o menos ramas que el de problemas. La asimetría es la señal de que algo se perdió o se agregó por el camino.", "ej": "Una incorrecta definición del árbol de problemas determina inevitablemente una incorrecta definición del árbol de objetivos: por eso conviene volver sobre el ítem M antes de dar por cerrado el Q.", "guia": "Guía 01 · ítem P · «Construyendo el árbol de objetivos»"}, {"L": "R", "s": 4, "t": "Selección de la estrategia y la actividad", "cap": "Capítulo 4 · La idea del proyecto", "pide": "Las estrategias que surgen del árbol de objetivos, la actividad seleccionada y la descripción de ambas.", "como": ["Partir de los medios <strong>más bajos</strong> del árbol y preguntarse qué hay que hacer para materializarlos.", "Agregar tantas tablas de estrategias como el equipo considere, en concordancia con el árbol de objetivos.", "Para cada estrategia, listar las actividades (proyectos) que contribuyen a lograr el medio; deben ser <strong>mutuamente excluyentes</strong>.", "Identificar y descartar las actividades fuera del alcance, documentando el criterio.", "Seleccionar una estrategia y, dentro de ella, la actividad que será la idea fuerza del proyecto."], "error": "Que la actividad elegida no salga del árbol de objetivos. Si aparece de la nada, o el árbol está incompleto o la decisión ya estaba tomada de antemano.", "ej": "Caso guía · Estrategia B · Medio: cuidados posteriores a la plantación asegurados · Actividades: (1) programa de padrinazgo de árboles con vecinos e instituciones, (2) cuadrilla municipal de mantenimiento post-plantación. Se selecciona la primera y se escribe por qué se descarta la segunda.", "guia": "Guía 01 · ítem Q · «Selección de la estrategia y la actividad (proyecto)»"}, {"L": "S", "s": 4, "t": "Estructura Analítica del Proyecto (EAP)", "cap": "Capítulo 4 · La idea del proyecto", "pide": "El esquema del proyecto con sus cuatro niveles jerárquicos: actividad, componente, objetivo central y fin.", "como": ["Fin: tomar los niveles superiores del árbol de objetivos.", "Propósito: el problema central transformado en condición positiva (el ítem P).", "Componente: el medio expresado en términos de <strong>producto obtenido</strong>.", "Actividad: el proyecto de inversión a desarrollar, cuyo resultado es la componente."], "error": "Escribir la componente como una acción. «Capacitar a los vecinos» es una actividad; «adecuadas capacitaciones viales logradas» es la componente.", "ej": "Medio «cuidados posteriores a la plantación asegurados» → Componente «mantenimiento post-plantación implementado». · Medio «implementación de un programa de reciclaje» → Componente «programa de reciclaje implementado».", "guia": "Guía 01 · ítem R · «Estructura Analítica del Proyecto (EAP)»"}, {"L": "T", "s": 4, "t": "Matriz de Marco Lógico", "cap": "Capítulo 4 · La idea del proyecto", "pide": "La MML completa: resumen narrativo de objetivos, indicadores, medios de verificación y supuestos, para los cuatro niveles.", "como": ["Primera columna: el resumen narrativo, en plena concordancia con la EAP.", "Indicadores: uno por nivel, respetando la ecuación cantidad + variable + lugar + plazo + medio de verificación, y los criterios SMART o C4 de CEPAL.", "Medios de verificación: de dónde y cómo se obtiene la información, y dónde queda disponible.", "Supuestos: factores externos, fuera del control del proyecto, cuya no ocurrencia pone en riesgo el nivel siguiente."], "error": "Escribir como supuesto algo que el proyecto sí controla. Si la decisión está dentro del proyecto, no es un supuesto: es una tarea que hay que planificar.", "ej": "Indicador del propósito: «Supervivencia del 85 % de los plantines a los 12 meses de plantados, en los espacios públicos del municipio, según el relevamiento anual de la Dirección de Espacios Verdes». Supuesto asociado: «El vivero sostiene la provisión de plantines nativos en cantidad y calidad».", "guia": "Guía 01 · ítem S · «Matriz de Marco Lógico»"}, {"L": "U", "s": 4, "t": "Las lógicas dentro de la MML", "cap": "Capítulo 4 · La idea del proyecto", "pide": "La verificación de las lógicas vertical, horizontal y zigzag, con un resumen narrativo para cada una.", "como": ["<strong>Vertical:</strong> narrar de abajo hacia arriba la cadena actividad → componente → propósito → fin, y comprobar que se sostiene.", "<strong>Horizontal:</strong> preguntar, fila por fila, si los medios de verificación son necesarios y suficientes para calcular el indicador y si el indicador permite evaluar el logro del objetivo.", "<strong>Zigzag:</strong> comprobar que cada nivel, sumado a los supuestos del nivel inferior, permite alcanzar el nivel superior.", "Si alguna lógica no cierra, reformular los niveles y volver a verificar."], "error": "Declarar que las lógicas se cumplen sin escribir el resumen narrativo. El ítem pide el relato, porque es en el relato donde aparecen los saltos lógicos.", "ej": "«Si implementamos el programa de padrinazgo aseguraremos el mantenimiento posterior a la plantación, lo que bajará la mortandad de los plantines nativos y aumentará la cobertura arbórea y el confort térmico de los espacios públicos.»", "guia": "Guía 01 · ítem T · «Cumplimiento de las lógicas dentro de la MML»"}, {"L": "V", "s": 4, "t": "Nombre del proyecto", "cap": "Capítulo 4 · La idea del proyecto", "pide": "El nombre sintético del proyecto que se desarrollará para resolver el problema.", "como": ["Tomar como base la EAP: el nombre debe ser representativo de la alternativa seleccionada.", "Construirlo con tres piezas: qué se hace + para qué + dónde.", "Este nombre acompañará al equipo en los formularios F02, F03 y F04."], "error": "Poner el nombre del problema en lugar del nombre del proyecto, o un nombre publicitario que no dice qué se va a hacer.", "ej": "«Programa de padrinazgo de árboles para la reducción de la mortandad de plantines nativos en los espacios públicos del municipio.»", "guia": "Guía 01 · ítem U · «Nombre del proyecto»"}];
+var CK = ["El problema está escrito como una situación negativa y no como la falta de una solución.", "El problema responde a los cinco criterios: identidad, ubicación, tiempo, mensurabilidad y magnitud.", "Hay un indicador de línea de base con cantidad, variable, lugar, plazo y medio de verificación.", "La población potencial y la objetivo están distinguidas y cuantificadas, con fuente.", "Cada actor del análisis de involucrados tiene posición, fuerza e importancia en la misma escala.", "Toda norma citada fue verificada en su vigencia y texto ordenado.", "Las causas llegan a un nivel de raíz independiente y resisten la pregunta «¿pero por qué?».", "El árbol de objetivos es el espejo exacto del árbol de problemas: misma cantidad de nodos.", "Las estrategias y actividades salen del árbol de objetivos y son mutuamente excluyentes.", "Las alternativas descartadas están documentadas con el criterio aplicado.", "Las componentes de la EAP están escritas como productos obtenidos, no como acciones.", "Las tres lógicas de la MML están verificadas y narradas por escrito."];
+var ESQ = {"cap": "La cadena de sustitución: un producto de vida corta que termina en residuo, frente a una demanda que la oferta local no cubre con continuidad. La luffa es <em>una</em> respuesta posible, no la única.", "mini": ["Plástico", "Demanda sin cubrir", "Fibra vegetal"], "mc": "v", "e": {"w": 1000, "h": 330, "n": [{"id": "a", "x": 30, "y": 30, "w": 250, "h": 62, "l": "Productos de higiene y limpieza de plástico", "c": "r"}, {"id": "b", "x": 360, "y": 30, "w": 180, "h": 62, "l": "Vida útil corta", "c": "r"}, {"id": "c", "x": 620, "y": 30, "w": 240, "h": 62, "l": "Residuo de difícil degradación", "c": "r"}, {"id": "d", "x": 30, "y": 145, "w": 250, "h": 66, "l": "Demanda de alternativas biodegradables", "c": "o"}, {"id": "e", "x": 400, "y": 140, "w": 330, "h": 76, "l": "Oferta local discontinua e incierta", "s": "¿cuánta demanda? ¿qué escala? — sin datos", "c": "r", "k": "hot"}, {"id": "f", "x": 30, "y": 255, "w": 200, "h": 56, "l": "Cultivo de Luffa cylindrica", "c": "v"}, {"id": "g", "x": 290, "y": 255, "w": 200, "h": 56, "l": "Secado y extracción de la fibra", "c": "v"}, {"id": "h", "x": 550, "y": 255, "w": 250, "h": 56, "l": "Esponjas, cosmética y artesanías", "c": "v"}], "a": [{"f": "a", "t": "b", "c": "r"}, {"f": "b", "t": "c", "c": "r"}, {"f": "d", "t": "e", "c": "o", "l": "no encuentra"}, {"f": "f", "t": "g", "c": "v"}, {"f": "g", "t": "h", "c": "v"}, {"f": "h", "t": "e", "c": "v", "l": "¿alcanza?"}], "t": [{"x": 860, "y": 180, "l": "← el problema", "c": "r", "fs": 12}]}};
+
+var CVAR = {v:'--verde',o:'--oro',p:'--violeta',c:'--celeste',r:'--coral',a:'--aqua',g:'--tx3'};
+function CC(k){ return 'var('+(CVAR[k]||'--tx3')+')'; }
+function wrapTxt(t, maxc){
+  var w = String(t).split(' '), out=[], cur='';
+  w.forEach(function(x){
+    if((cur+' '+x).trim().length > maxc && cur){ out.push(cur); cur=x; }
+    else cur = (cur? cur+' ':'')+x;
+  });
+  if(cur) out.push(cur);
+  return out;
+}
+function esqSVG(e){
+  var W = e.w||1000, H = e.h||340;
+  var map={}; (e.n||[]).forEach(function(n){ map[n.id]=n; });
+  var used = {};
+  (e.a||[]).forEach(function(a){ used[a.c||'g']=1; });
+  var o = '<svg class="esq" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet" role="img"><defs>';
+  Object.keys(used).forEach(function(k){
+    o += '<marker id="ah-'+k+'" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">'+
+         '<path d="M0,0 L10,5 L0,10 z" fill="'+CC(k)+'"/></marker>';
+  });
+  o += '</defs>';
+  /* zonas */
+  (e.z||[]).forEach(function(z){
+    o += '<rect x="'+z.x+'" y="'+z.y+'" width="'+z.w+'" height="'+z.h+'" rx="14" fill="'+CC(z.c||'g')+
+         '" fill-opacity="0.06" stroke="'+CC(z.c||'g')+'" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="6 5"/>';
+    if(z.l) o += '<text class="zl" x="'+(z.x+14)+'" y="'+(z.y+19)+'">'+esc(z.l)+'</text>';
+  });
+  /* flechas */
+  (e.a||[]).forEach(function(a){
+    var f=map[a.f], t=map[a.t]; if(!f||!t) return;
+    var fc = [f.x+f.w/2, f.y+f.h/2], tc = [t.x+t.w/2, t.y+t.h/2];
+    var x1,y1,x2,y2;
+    var horiz = Math.abs(tc[0]-fc[0]) >= Math.abs(tc[1]-fc[1]);
+    if(a.v) horiz=false; if(a.h) horiz=true;
+    if(horiz){
+      if(tc[0]>fc[0]){ x1=f.x+f.w; x2=t.x; } else { x1=f.x; x2=t.x+t.w; }
+      y1=fc[1]; y2=tc[1];
+    } else {
+      if(tc[1]>fc[1]){ y1=f.y+f.h; y2=t.y; } else { y1=f.y; y2=t.y+t.h; }
+      x1=fc[0]; x2=tc[0];
+    }
+    var col = CC(a.c||'g');
+    var mx=(x1+x2)/2, my=(y1+y2)/2;
+    var path = 'M'+x1+','+y1+' L'+x2+','+y2;
+    if(a.bend){ path = 'M'+x1+','+y1+' Q'+(mx+a.bend)+','+my+' '+x2+','+y2; }
+    if(a.el){
+      if(horiz){ path = 'M'+x1+','+y1+' L'+mx+','+y1+' L'+mx+','+y2+' L'+x2+','+y2; }
+      else { path = 'M'+x1+','+y1+' L'+x1+','+my+' L'+x2+','+my+' L'+x2+','+y2; }
+    }
+    o += '<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="1.8" stroke-opacity="0.85"'+
+         (a.d?' stroke-dasharray="6 5"':'')+' marker-end="url(#ah-'+(a.c||'g')+')"/>';
+    if(a.b){
+      o += '<path d="'+ (Math.abs(tc[0]-fc[0])>=Math.abs(tc[1]-fc[1]) ?
+            'M'+x2+','+y2+' L'+x1+','+y1 : 'M'+x2+','+y2+' L'+x1+','+y1) +
+            '" fill="none" stroke="'+col+'" stroke-width="0" marker-end="url(#ah-'+(a.c||'g')+')"/>';
+    }
+    if(a.l){
+      var lw = a.l.length*5.6+12;
+      o += '<rect x="'+(mx-lw/2)+'" y="'+(my-10+(a.ly||0))+'" width="'+lw+'" height="17" rx="8" fill="var(--panel)" stroke="'+col+'" stroke-opacity=".35"/>'+
+           '<text class="al" x="'+mx+'" y="'+(my+2+(a.ly||0))+'" text-anchor="middle">'+esc(a.l)+'</text>';
+    }
+  });
+  /* nodos */
+  (e.n||[]).forEach(function(n){
+    var col = CC(n.c||'g');
+    var strong = n.k==='hot';
+    o += '<rect x="'+n.x+'" y="'+n.y+'" width="'+n.w+'" height="'+n.h+'" rx="11" fill="'+col+
+         '" fill-opacity="'+(strong?0.24:0.12)+'" stroke="'+col+'" stroke-width="'+(strong?2.2:1.4)+'"'+
+         (n.dash?' stroke-dasharray="7 5"':'')+'/>';
+    var maxc = Math.max(8, Math.floor(n.w/6.6));
+    var lines = wrapTxt(n.l, maxc);
+    var subl = n.s ? wrapTxt(n.s, Math.max(8, Math.floor(n.w/5.8))) : [];
+    var lh = 15, slh = 13;
+    var total = lines.length*lh + (subl.length?subl.length*slh+3:0);
+    var y0 = n.y + n.h/2 - total/2 + 11;
+    lines.forEach(function(L,i){
+      o += '<text x="'+(n.x+n.w/2)+'" y="'+(y0+i*lh)+'" text-anchor="middle" font-size="12.5" font-weight="'+(strong?700:600)+'">'+esc(L)+'</text>';
+    });
+    subl.forEach(function(L,i){
+      o += '<text class="ns" x="'+(n.x+n.w/2)+'" y="'+(y0+lines.length*lh+3+i*slh)+'" text-anchor="middle" fill="'+col+'">'+esc(L)+'</text>';
+    });
+  });
+  /* notas libres */
+  (e.t||[]).forEach(function(t){
+    o += '<text class="al" x="'+t.x+'" y="'+t.y+'"'+(t.anchor?' text-anchor="'+t.anchor+'"':'')+
+         (t.c?' fill="'+CC(t.c)+'"':'')+' font-size="'+(t.fs||11.5)+'">'+esc(t.l)+'</text>';
+  });
+  return o+'</svg>';
+}
+function miniSVG(arr, c){
+  var W=300, H=42, n=arr.length, gap=6, ar=13;
+  var bw = (W - (gap+ar)*(n-1))/n;
+  var maxc = Math.floor(bw/5.3);
+  var o = '<svg class="mini" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet">';
+  arr.forEach(function(t,i){
+    var x = i*(bw+gap+ar);
+    o += '<rect x="'+x+'" y="4" width="'+bw+'" height="34" rx="8" fill="'+CC(c)+'" fill-opacity=".14" stroke="'+CC(c)+'" stroke-opacity=".55" stroke-width="1"/>';
+    var lines = wrapTxt(t, maxc);
+    if(lines.length>2) lines = [lines[0], lines[1].slice(0, maxc-1)+'…'];
+    lines.forEach(function(L,j){
+      o += '<text x="'+(x+bw/2)+'" y="'+(lines.length===1?25:19+j*11)+'" text-anchor="middle">'+esc(L)+'</text>';
+    });
+    if(i<n-1){
+      var ax = x+bw+3;
+      o += '<path d="M'+ax+',21 L'+(ax+8)+',21" stroke="'+CC(c)+'" stroke-opacity=".75" stroke-width="1.4"/>'+
+           '<path d="M'+(ax+5.5)+',17.5 L'+(ax+10)+',21 L'+(ax+5.5)+',24.5 z" fill="'+CC(c)+'" fill-opacity=".85"/>';
+    }
+  });
+  return o+'</svg>';
+}
+
+/* =============================================================== ESTADO */
+var KEY = 'fepar2026_f01_e' + ESC.n;
+function blank(){
+  return {
+    v:1, esc:ESC.n, ts:'',
+    eq:{nombre:'',coord:'',met:'',com:''},
+    ints:[{ap:'',fun:'',perf:'',hs:''},{ap:'',fun:'',perf:'',hs:''},{ap:'',fun:'',perf:'',hs:''}],
+    pre:[], cri:{id:'',ub:'',ti:'',me:'',mg:''},
+    pcv:['','',''], pcsel:-1, pc:'',
+    lb:{c:'',v:'',l:'',p:'',mv:''},
+    ctx:{amb:'',soc:'',ec:'',pobP:'',pobO:'',dep:'',norm:''},
+    inv:[{n:'',pos:'',fue:'',imp:''},{n:'',pos:'',fue:'',imp:''},{n:'',pos:'',fue:'',imp:''}],
+    cau:[{t:'',lv:1},{t:'',lv:1},{t:'',lv:2}],
+    efe:[{t:'',lv:1},{t:'',lv:1}],
+    med:[], fin:[], obj:'',
+    alt:[{id:'A',med:'',act:'',ven:'',des:''},{id:'B',med:'',act:'',ven:'',des:''},{id:'C',med:'',act:'',ven:'',des:''}],
+    altSel:'', altJus:'',
+    eap:{fin:'',prop:'',comp:'',act:''},
+    mml:{fin:['','','',''],prop:['','','',''],comp:['','','',''],act:['','','','']},
+    sup:[{t:'',j:'',pr:'',im:''}],
+    f01:{}, ck:[], amb:''
+  };
+}
+var D = blank();
+
+function get(p){ var o=D, a=p.split('.'); for(var i=0;i<a.length;i++){ if(o==null) return ''; o=o[a[i]]; } return o==null?'':o; }
+function set(p,v){ var o=D, a=p.split('.'); for(var i=0;i<a.length-1;i++){ if(o[a[i]]==null) o[a[i]]={}; o=o[a[i]]; } o[a[a.length-1]]=v; }
+
+var saveT=null, savedEl=null;
+function touch(){
+  clearTimeout(saveT);
+  saveT = setTimeout(function(){
+    D.ts = nowStr();
+    try{ localStorage.setItem(KEY, JSON.stringify(D)); flagSaved('guardado ' + D.ts.slice(11,16)); }
+    catch(e){ flagSaved('sin guardado automático'); }
+  }, 500);
+  paintProgress();
+}
+function flagSaved(t){ if(!savedEl) savedEl=document.getElementById('saved');
+  savedEl.textContent = t; savedEl.classList.add('on');
+  setTimeout(function(){ savedEl.classList.remove('on'); }, 1600); }
+function nowStr(){
+  var d=new Date(), z=function(n){return (n<10?'0':'')+n;};
+  return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes());
+}
+function loadLocal(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(!raw) return false;
+    var o = JSON.parse(raw);
+    if(o && o.esc === ESC.n){ merge(o); return true; }
+  }catch(e){}
+  return false;
+}
+function merge(o){
+  var b = blank();
+  Object.keys(b).forEach(function(k){ if(o[k] !== undefined && o[k] !== null) b[k] = o[k]; });
+  D = b;
+}
+
+/* =============================================================== UTILIDADES DOM */
+function E(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls;
+  if(html!=null) e.innerHTML=html; return e; }
+function esc(t){ return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function toast(msg){ var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._h); t._h=setTimeout(function(){ t.classList.remove('on'); }, 2200); }
+
+/* campo enlazado al estado */
+function field(path, opts){
+  opts = opts || {};
+  var wrap = E('div');
+  if(opts.label) wrap.appendChild(E('label','fl',opts.label));
+  var inp;
+  if(opts.type === 'select'){
+    inp = E('select','fs');
+    (opts.options||[]).forEach(function(o){
+      var op=E('option',null,esc(o)); op.value=o; inp.appendChild(op);
+    });
+  } else if(opts.type === 'input'){
+    inp = E('input','fi'); inp.type='text';
+  } else {
+    inp = E('textarea','fa'+(opts.tall?' tall':'')+(opts.short?' short':''));
+  }
+  if(opts.ph) inp.placeholder = opts.ph;
+  inp.value = get(path);
+  inp.dataset.path = path;
+  var cnt = null;
+  if(opts.min){
+    cnt = E('div','fcount');
+    var upd = function(){
+      var n = inp.value.trim().length;
+      cnt.textContent = n + ' / ' + opts.min + ' caracteres sugeridos';
+      cnt.className = 'fcount' + (n === 0 ? '' : (n < opts.min ? ' warn' : ' ok'));
+    };
+    inp._upd = upd;
+  }
+  inp.addEventListener('input', function(){
+    set(path, inp.value);
+    if(inp._upd) inp._upd();
+    if(opts.on) opts.on(inp.value);
+    touch();
+  });
+  wrap.appendChild(inp);
+  if(cnt){ wrap.appendChild(cnt); inp._upd(); }
+  if(opts.help) wrap.appendChild(E('p','tiny',opts.help));
+  wrap._input = inp;
+  return wrap;
+}
+/* campo suelto dentro de una tabla */
+function cell(obj, key, ph, tag){
+  var inp = E(tag || 'input');
+  if(!tag || tag === 'input') inp.type = 'text';
+  inp.value = obj[key] || '';
+  if(ph) inp.placeholder = ph;
+  inp.addEventListener('input', function(){ obj[key] = inp.value; touch(); });
+  return inp;
+}
+function selCell(obj, key, options){
+  var s = E('select');
+  options.forEach(function(o){ var op=E('option',null,esc(o)); op.value=o; s.appendChild(op); });
+  s.value = obj[key] || '';
+  s.addEventListener('change', function(){ obj[key]=s.value; touch(); });
+  return s;
+}
+function btn(txt, cls, fn){ var b=E('button','btn '+(cls||''),txt); b.type='button'; b.onclick=fn; return b; }
+
+/* =============================================================== SECCIONES */
+var SECS = [], cur = 0, stage = null;
+function addSec(o){ SECS.push(o); return o; }
+
+function buildAll(){
+  stage = document.getElementById('stage');
+  stage.innerHTML = '';
+  SECS.forEach(function(s,i){
+    var d = E('section','sec'+(s.work?' work':'')); d.id = 'sec'+i; d.dataset.i = i;
+    stage.appendChild(d);
+    s.el = d; s.built = false;
+  });
+  railBuild();
+}
+function render(i){
+  var s = SECS[i];
+  s.el.innerHTML = '';
+  s.build(s.el);
+  s.built = true;
+  popArm(s.el);
+}
+function show(i){
+  if(i < 0 || i >= SECS.length) return;
+  cur = i;
+  SECS.forEach(function(s,k){ s.el.classList.toggle('on', k===i); });
+  render(i);
+  SECS[i].el.scrollTop = 0;
+  document.getElementById('bar').style.width = ((i+1)/SECS.length*100)+'%';
+  document.getElementById('counter').textContent = (i+1)+' / '+SECS.length;
+  railPaint();
+  if(location.hash !== '#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  requestAnimationFrame(fitNow);
+}
+function next(){ show(Math.min(cur+1, SECS.length-1)); }
+function prev(){ show(Math.max(cur-1, 0)); }
+
+/* =============================================================== PROGRESO */
+function pctOf(s){
+  if(!s.fields) return null;
+  var f = s.fields(), n = 0;
+  f.forEach(function(v){ if(String(v||'').trim().length > 2) n++; });
+  return f.length ? Math.round(n/f.length*100) : 0;
+}
+function paintProgress(){
+  var blocks = {}, all = [], allN = 0;
+  SECS.forEach(function(s,i){
+    var p = pctOf(s);
+    s.pct = p;
+    if(p != null){ all.push(p); allN++; }
+    var ri = document.querySelector('.ri[data-i="'+i+'"]');
+    if(ri){ ri.classList.toggle('ok', p === 100); ri.classList.toggle('part', p != null && p > 0 && p < 100); }
+  });
+  var tot = allN ? Math.round(all.reduce(function(a,b){return a+b;},0)/allN) : 0;
+  var el = document.getElementById('rail-all'); if(el) el.style.width = tot+'%';
+  var pe = document.getElementById('rail-pct'); if(pe) pe.textContent = tot;
+  BLOCKS.forEach(function(b,bi){
+    var ps = SECS.map(function(s,i){ return s.block===bi ? s.pct : null; }).filter(function(x){ return x!=null; });
+    var v = ps.length ? Math.round(ps.reduce(function(a,c){return a+c;},0)/ps.length) : 0;
+    var bar = document.querySelector('.rg[data-b="'+bi+'"] .rg-p i');
+    if(bar) bar.style.width = v+'%';
+    var g = document.querySelector('.rg[data-b="'+bi+'"]');
+    if(g) g.classList.toggle('done', v === 100);
+  });
+}
+
+/* =============================================================== ÍNDICE LATERAL */
+var BLOCKS = [];
+function railBuild(){
+  var b = document.getElementById('rail-b'); b.innerHTML = '';
+  BLOCKS.forEach(function(bl, bi){
+    var g = E('div','rg'); g.dataset.b = bi;
+    var h = E('div','rg-h');
+    h.appendChild(E('div','rg-n', String(bi+1)));
+    var t = E('div','rg-t'); t.appendChild(E('b',null,bl.t));
+    t.appendChild(E('span',null, SECS.filter(function(s){return s.block===bi;}).length + ' pantallas'));
+    h.appendChild(t);
+    h.onclick = function(){
+      var first = SECS.findIndex(function(s){ return s.block===bi; });
+      if(first >= 0) show(first);
+    };
+    g.appendChild(h);
+    var p = E('div','rg-p'); p.appendChild(E('i')); g.appendChild(p);
+    var l = E('div','rg-l');
+    SECS.forEach(function(s,i){
+      if(s.block !== bi) return;
+      var it = E('div','ri'); it.dataset.i = i;
+      it.appendChild(E('span','rn', String(i+1)));
+      it.appendChild(E('span','rk'));
+      it.appendChild(E('span',null, s.t));
+      it.onclick = function(){ show(i); };
+      l.appendChild(it);
+    });
+    g.appendChild(l);
+    b.appendChild(g);
+  });
+}
+function railPaint(){
+  document.querySelectorAll('.rg').forEach(function(g){
+    var bi = +g.dataset.b;
+    var isCur = SECS[cur].block === bi;
+    g.classList.toggle('cur', isCur);
+    g.classList.toggle('open', isCur);
+  });
+  document.querySelectorAll('.ri').forEach(function(e){ e.classList.toggle('cur', +e.dataset.i === cur); });
+  paintProgress();
+  var c = document.querySelector('.ri.cur');
+  if(c) c.scrollIntoView({block:'nearest'});
+}
+document.getElementById('b-rail').onclick = railToggle;
+document.getElementById('rail-toggle').onclick = railToggle;
+function railToggle(){
+  var r = document.getElementById('rail');
+  var off = r.classList.toggle('off');
+  document.documentElement.dataset.rail = off ? 'off' : 'on';
+  document.documentElement.style.setProperty('--rail', off ? '0px' : '300px');
+  document.getElementById('rail-toggle').textContent = off ? '◨ Mostrar índice' : '◧ Ocultar índice';
+}
+
+/* =============================================================== AUTOAJUSTE */
+var FITMIN = .76, FITMAX = 1.14;
+function overflowPx(s){
+  var n = Math.max(0, s.scrollHeight - s.clientHeight - 3);
+  s.querySelectorAll('.card,.scrolly').forEach(function(e){
+    if(e.classList.contains('nofit') || getComputedStyle(e).display === 'none') return;
+    var dy = e.scrollHeight - e.clientHeight - 6;
+    var dx = e.scrollWidth - e.clientWidth - 14;
+    if(dy > 0) n += dy;
+    if(dx > 0) n += dx;
+  });
+  return n;
+}
+function nofitOver(s){
+  var t = false;
+  s.querySelectorAll('.nofit').forEach(function(e){
+    if(e.scrollHeight > e.clientHeight + 6 || e.scrollWidth > e.clientWidth + 14) t = true; });
+  return t;
+}
+function measureFit(s){
+  var z = 1, g = 0;
+  s.style.zoom = 1;
+  /* pantallas de trabajo (tablas largas, editores): escala fija, se desplazan */
+  if(SECS[cur] && SECS[cur].work) return 1;
+  var base = overflowPx(s);
+  if(base === 0){
+    while(z < FITMAX - 1e-6 && g++ < 14 && !nofitOver(s)){
+      var nz = Math.min(FITMAX, Math.round((z + .04)*100)/100);
+      s.style.zoom = nz;
+      if(overflowPx(s) > 0 || nofitOver(s)){ s.style.zoom = z; break; }
+      z = nz;
+    }
+  } else {
+    var best = z, bestN = base;
+    while(z - .03 > FITMIN - 1e-6 && g++ < 18){
+      z = Math.round((z - .03)*100)/100;
+      s.style.zoom = z;
+      var n = overflowPx(s);
+      if(n < bestN){ bestN = n; best = z; }
+      if(n === 0) break;
+    }
+    if(bestN > 0 && bestN > base * .75) best = 1;
+    z = best; s.style.zoom = z;
+  }
+  return z;
+}
+/* reparte el aire sobrante dentro de cada panel */
+function balUndo(e){
+  if(!e.dataset.bal) return;
+  e.style.paddingTop = '';
+  [].forEach.call(e.children, function(c){ if(c.dataset && c.dataset.bal){ c.style.marginTop=''; delete c.dataset.bal; } });
+  delete e.dataset.bal;
+}
+function balance(root){
+  root.querySelectorAll('.card').forEach(function(e){
+    balUndo(e);
+    var cs = getComputedStyle(e);
+    if(cs.display === 'none') return;
+    var er = e.getBoundingClientRect();
+    if(er.height < 130) return;
+    var padT = parseFloat(cs.paddingTop), padB = parseFloat(cs.paddingBottom);
+    var bot = er.top + padT, kids = [];
+    [].forEach.call(e.children, function(c){
+      if(c.classList.contains('pop-b') || c.classList.contains('tag')) return;
+      var r = c.getBoundingClientRect();
+      if(r.height === 0) return;
+      kids.push(c); if(r.bottom > bot) bot = r.bottom;
+    });
+    if(!kids.length) return;
+    var gap = (er.bottom - padB - parseFloat(cs.borderBottomWidth)) - bot;
+    if(gap < 46) return;
+    var extra = Math.min(gap / (kids.length + 1), 60);
+    if(extra < 12) return;
+    var h0 = e.offsetHeight;
+    e.style.paddingTop = (padT + extra) + 'px';
+    for(var k = 1; k < kids.length; k++){
+      var m = parseFloat(getComputedStyle(kids[k]).marginTop) || 0;
+      kids[k].style.marginTop = (m + extra) + 'px';
+      kids[k].dataset.bal = '1';
+    }
+    e.dataset.bal = '1';
+    if(e.offsetHeight > h0 + 2) balUndo(e);
+  });
+}
+
+/* =============================================================== ZOOM */
+var ZOOM = 1, FIT = 1;
+function applyZoom(){
+  document.getElementById('zlabel').textContent = Math.round(ZOOM*100)+'%';
+  var s = SECS[cur] && SECS[cur].el;
+  if(!s) return;
+  if(window.innerWidth <= 760){ s.style.zoom = ''; return; }
+  s.style.zoom = FIT * ZOOM;
+}
+function fitNow(){
+  var s = SECS[cur].el;
+  if(window.innerWidth <= 760){ s.style.zoom = ''; balance(s); return; }
+  FIT = measureFit(s);
+  s.style.zoom = FIT * ZOOM;
+  balance(s);
+}
+function setZoom(z){ ZOOM = Math.max(.6, Math.min(2.2, Math.round(z*100)/100)); applyZoom(); }
+document.getElementById('b-zi').onclick = function(){ setZoom(ZOOM+.1); };
+document.getElementById('b-zo').onclick = function(){ setZoom(ZOOM-.1); };
+document.getElementById('zlabel').onclick = function(){ setZoom(1); };
+
+/* =============================================================== ABRIR PANEL */
+var POP = {node:null, ph:null, z:1};
+function popArm(root){
+  root.querySelectorAll('.card').forEach(function(e){
+    if(e.classList.contains('nopop') || e.querySelector(':scope > .pop-b')) return;
+    var b = E('button','pop-b','⤢'); b.type='button';
+    b.title = 'Abrir este panel a pantalla completa';
+    b.addEventListener('click', function(ev){ ev.stopPropagation(); ev.preventDefault(); popOpen(e); });
+    e.appendChild(b);
+  });
+}
+function popOpen(e){
+  if(POP.node) return;
+  POP.ph = E('div','pop-ph');
+  e.parentNode.insertBefore(POP.ph, e);
+  POP.node = e; e.classList.add('popped');
+  var h = e.querySelector('h2,h3,h4');
+  document.getElementById('pop-t').textContent = h ? h.textContent.trim().slice(0,70) : 'Panel ampliado';
+  document.getElementById('pop-in').appendChild(e);
+  POP.z = 1; popZ(0);
+  document.getElementById('pop').classList.add('on');
+}
+function popClose(){
+  if(!POP.node) return;
+  POP.node.classList.remove('popped');
+  POP.ph.parentNode.insertBefore(POP.node, POP.ph);
+  POP.ph.parentNode.removeChild(POP.ph);
+  POP.node = null; POP.ph = null;
+  document.getElementById('pop').classList.remove('on');
+  document.getElementById('pop-in').style.zoom = '';
+}
+function popZ(d){
+  POP.z = Math.max(.6, Math.min(2.4, Math.round((POP.z+d)*100)/100));
+  document.getElementById('pop-in').style.zoom = POP.z;
+  document.getElementById('pop-z').textContent = Math.round(POP.z*100)+'%';
+}
+document.getElementById('pop-x').onclick = popClose;
+document.getElementById('pop-zi').onclick = function(){ popZ(.1); };
+document.getElementById('pop-zo').onclick = function(){ popZ(-.1); };
+document.getElementById('pop').addEventListener('mousedown', function(ev){
+  if(ev.target.id === 'pop-in' || ev.target.id === 'pop') popClose(); });
+
+/* =============================================================== TEMA Y TECLADO */
+document.getElementById('b-th').onclick = function(){
+  var h = document.documentElement;
+  h.dataset.theme = h.dataset.theme === 'light' ? 'dark' : 'light';
+};
+document.addEventListener('keydown', function(e){
+  var t = e.target.tagName;
+  var editing = (t==='INPUT'||t==='TEXTAREA'||t==='SELECT');
+  var po = document.getElementById('pop').classList.contains('on');
+  if(e.key === 'Escape'){ popClose(); document.getElementById('help').classList.remove('on'); return; }
+  if(editing) return;
+  if(e.key==='+'||e.key==='='){ e.preventDefault(); po?popZ(.1):setZoom(ZOOM+.1); return; }
+  if(e.key==='-'||e.key==='_'){ e.preventDefault(); po?popZ(-.1):setZoom(ZOOM-.1); return; }
+  if(e.key==='0'){ e.preventDefault(); if(po){POP.z=1;popZ(0);} else setZoom(1); return; }
+  if(po) return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){ e.preventDefault(); next(); }
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); prev(); }
+  else if(e.key==='i'||e.key==='I'){ railToggle(); }
+  else if(e.key==='t'||e.key==='T'){ document.getElementById('b-th').click(); }
+});
+document.getElementById('b-next').onclick = next;
+document.getElementById('b-prev').onclick = prev;
+var rzT=null;
+window.addEventListener('resize', function(){ clearTimeout(rzT); rzT=setTimeout(fitNow,220); });
+</script>
+<script>
+"use strict";
+/* =============================================================== BLOQUES */
+BLOCKS = [
+ {t:'El escenario'},
+ {t:'El problema'},
+ {t:'Los dos árboles'},
+ {t:'La estrategia'},
+ {t:'MML y supuestos'},
+ {t:'El F01 y la entrega'}
+];
+
+/* ---------- helpers de contenido ---------- */
+function head(el, eyebrow, title, lead){
+  var d = E('div');
+  d.appendChild(E('span','eyebrow',eyebrow));
+  d.appendChild(E('h2',null,title));
+  el.appendChild(d);
+  if(lead) el.appendChild(E('p','lead',lead));
+}
+function card(cls, title){
+  var c = E('div','card'+(cls?' '+cls:''));
+  c.appendChild(E('div','tag'));
+  if(title) c.appendChild(E('h3',null,title));
+  return c;
+}
+function listUl(items, cls){
+  var u = E('ul','tk'+(cls?' '+cls:''));
+  items.forEach(function(x){ u.appendChild(E('li',null,x)); });
+  return u;
+}
+/* lista repetible genérica */
+function repeater(arr, cols, mk, addLabel){
+  var wrap = E('div','col');
+  var box = E('div','col'); box.style.gap = '7px';
+  function paint(){
+    box.innerHTML = '';
+    arr.forEach(function(o,i){
+      var r = mk(o, i);
+      var del = E('button','fdel','✕'); del.type='button'; del.title='Quitar';
+      del.onclick = function(){ arr.splice(i,1); paint(); touch(); };
+      r.appendChild(del);
+      box.appendChild(r);
+    });
+  }
+  paint();
+  wrap.appendChild(box);
+  var b = btn('+ '+addLabel, 'ghost sm', function(){ arr.push(cols()); paint(); touch(); });
+  b.style.alignSelf = 'flex-start';
+  wrap.appendChild(b);
+  wrap._paint = paint;
+  return wrap;
+}
+/* tabla editable */
+function tableEd(arr, headers, mkRow, blankRow, addLabel){
+  var c = E('div','col');
+  var sc = E('div','scrolly');
+  var t = E('table','tb');
+  var th = E('tr');
+  headers.forEach(function(h){ th.appendChild(E('th',null,h)); });
+  var thead = E('thead'); thead.appendChild(th); t.appendChild(thead);
+  var tb = E('tbody'); t.appendChild(tb);
+  function paint(){
+    tb.innerHTML = '';
+    arr.forEach(function(o,i){
+      var tr = E('tr');
+      mkRow(o, i).forEach(function(node){ var td = E('td'); td.appendChild(node); tr.appendChild(td); });
+      var td = E('td'); var del = E('button','fdel','✕'); del.type='button';
+      del.onclick = function(){ arr.splice(i,1); paint(); touch(); };
+      td.appendChild(del); tr.appendChild(td);
+      tb.appendChild(tr);
+    });
+  }
+  paint();
+  sc.appendChild(t); c.appendChild(sc);
+  var b = btn('+ '+addLabel,'ghost sm', function(){ arr.push(blankRow()); paint(); touch(); });
+  b.style.alignSelf = 'flex-start';
+  c.appendChild(b);
+  return c;
+}
+
+/* =============================================================== 1 · PORTADA */
+addSec({block:0, t:'El caso y tu equipo', build:function(el){
+  var top = E('div','row'); top.style.alignItems='flex-end'; top.style.justifyContent='space-between';
+  top.style.flexWrap='wrap';
+  var l = E('div');
+  l.appendChild(E('span','eyebrow','FEPAR 2026 · Formulario 01 · Escenario '+ESC.n));
+  l.appendChild(E('h1',null,ESC.t));
+  l.appendChild(E('p','lead',ESC.res));
+  top.appendChild(l);
+  el.appendChild(top);
+
+  var w = E('div','wrap');
+  w.appendChild(E('span','pill v','📍 '+ESC.lug));
+  w.appendChild(E('span','pill a',ESC.ent));
+  ESC.tags.forEach(function(t){ w.appendChild(E('span','pill',t)); });
+  el.appendChild(w);
+
+  var g = E('div','grid g2 fill');
+
+  var c1 = card(null,'Datos del equipo');
+  c1.appendChild(E('p','tiny','Se copian solos a los ítems A y B del Formulario 01.'));
+  var b1 = E('div','col'); b1.style.marginTop='10px';
+  b1.appendChild(field('eq.nombre',{label:'Nombre de fantasía del equipo (ítem A)',type:'input',ph:'p. ej. PACHA Consultora'}));
+  b1.appendChild(field('eq.coord',{label:'Coordinador/a general',type:'input',ph:'Apellido y nombre'}));
+  b1.appendChild(E('label','fl','Integrantes y dedicación (ítem B)'));
+  b1.appendChild(tableEd(D.ints, ['Apellido y nombre','Función en el equipo','Perfil','Horas',''],
+    function(o){ return [cell(o,'ap','Apellido y nombre'), cell(o,'fun','p. ej. redacción'),
+                        cell(o,'perf','p. ej. estudiante avanzado'), cell(o,'hs','hs')]; },
+    function(){ return {ap:'',fun:'',perf:'',hs:''}; }, 'Integrante'));
+  b1.appendChild(field('eq.met',{label:'Metodología de trabajo acordada',short:true,
+    ph:'Día, frecuencia, dedicación individual, presencial o virtual.'}));
+  b1.appendChild(field('eq.com',{label:'Medio de comunicación del equipo',type:'input',ph:'p. ej. grupo de WhatsApp + carpeta compartida'}));
+  c1.appendChild(b1);
+  g.appendChild(c1);
+
+  var c2 = card('oro','Cómo se usa este visor');
+  var st = E('div','col'); st.style.marginTop='10px';
+  [['1','Leé el escenario completo en las dos pantallas siguientes y respondé las preguntas orientadoras.'],
+   ['2','Trabajá el problema: los cinco criterios, la redacción, la línea de base y el contexto.'],
+   ['3','Armá el árbol de problemas y su espejo de objetivos. Elegí la estrategia.'],
+   ['4','Completá la EAP y la Matriz de Marco Lógico, y numerá los supuestos.'],
+   ['5','Revisá el Formulario 01 ítem por ítem: casi todo llega ya cargado desde las herramientas.'],
+   ['6','Pasá el autocontrol y exportá a Word para la entrega.']
+  ].forEach(function(p){
+    var r = E('div','row'); r.style.gap='10px'; r.style.alignItems='flex-start';
+    var n = E('div','num',p[0]); n.style.fontSize='19px'; n.style.flex='none'; n.style.minWidth='22px';
+    r.appendChild(n); r.appendChild(E('p','sub',p[1]));
+    st.appendChild(r);
+  });
+  st.appendChild(E('div','hr'));
+  var bx = E('div','box info');
+  bx.appendChild(E('p','sub','<strong>El avance se guarda solo</strong> en este navegador, en esta computadora. Para seguir en otra, o para pasarle el trabajo a un compañero, usá <strong>💾 Avance</strong> y después <strong>📂 Cargar</strong>.'));
+  st.appendChild(bx);
+  var bx2 = E('div','box warn'); bx2.style.marginTop='8px';
+  bx2.appendChild(E('p','sub','<strong>Uso responsable de IA.</strong> Está permitida y declarada. Un dato que la IA aportó y nadie verificó es un supuesto: va a la planilla de supuestos, numerado y justificado. Todo lo entregado se defiende oralmente.'));
+  st.appendChild(bx2);
+  c2.appendChild(st);
+  g.appendChild(c2);
+
+  el.appendChild(g);
+}, fields:function(){ return [D.eq.nombre, D.eq.coord, D.ints[0]?D.ints[0].ap:'', D.eq.met]; }});
+
+/* =============================================================== 2 · SITUACIÓN */
+addSec({block:0, t:'La situación problemática', build:function(el){
+  head(el,'Escenario '+ESC.n+' · el punto de partida','La situación problemática',
+    'Este es el texto oficial del caso. Leelo completo antes de escribir una sola línea del formulario: todo lo que sigue tiene que poder rastrearse hasta acá.');
+  var r = E('div','row fill');
+  var c1 = card(null,null);
+  c1.style.flex = '1.25'; c1.classList.add('scrolly');
+  c1.appendChild(E('h3',null,'Qué dice el escenario'));
+  c1.appendChild(E('p','sub',ESC.sit)).style.marginTop='9px';
+  c1.appendChild(E('div','hr')).style.margin='14px 0';
+  c1.appendChild(E('h4',null,'Ámbito de actuación sugerido'));
+  c1.appendChild(E('p','sub',ESC.amb)).style.marginTop='4px';
+  var bx = E('div','box warn'); bx.style.marginTop='12px';
+  bx.appendChild(E('p','sub','<strong>Alcance.</strong> '+ESC.alc));
+  c1.appendChild(bx);
+  r.appendChild(c1);
+
+  var c2 = E('div','col'); c2.style.flex='1';
+  var e = card('cel','El caso, esquematizado');
+  var box = E('div','esqbox'); box.style.marginTop='10px';
+  box.innerHTML = ESQ && ESQ.e ? esqSVG(ESQ.e) : '<p class="tiny">Sin esquema.</p>';
+  e.appendChild(box);
+  if(ESQ && ESQ.cap) e.appendChild(E('p','tiny',ESQ.cap)).style.marginTop='8px';
+  c2.appendChild(e);
+  var n = card('vio','Tu lectura del caso');
+  n.appendChild(E('p','tiny','Anotá lo que te llama la atención. No es parte del F01: es tu cuaderno de campo.'));
+  var f = field('notas',{short:true,ph:'Lo que me llama la atención, lo que no entiendo, lo que habría que averiguar…'});
+  f.style.marginTop='8px';
+  n.appendChild(f);
+  c2.appendChild(n);
+  r.appendChild(c2);
+  el.appendChild(r);
+}});
+
+/* =============================================================== 3 · EVIDENCIAS */
+addSec({block:0, t:'Evidencias y condiciones', build:function(el){
+  head(el,'Escenario '+ESC.n+' · qué sabemos y qué falta','Evidencias, condiciones y lo que no está',
+    'Las evidencias son los datos que el escenario te da. Las condiciones acotan lo que se puede hacer. Todo lo demás —lo que falta— se transforma en supuesto o en información a relevar.');
+  var g = E('div','grid g3 fill');
+
+  var c1 = card('cel','Evidencias disponibles');
+  c1.classList.add('scrolly');
+  c1.appendChild(listUl(ESC.ev)).style.marginTop='9px';
+  g.appendChild(c1);
+
+  var c2 = card('oro','Condiciones del contexto');
+  c2.classList.add('scrolly');
+  c2.appendChild(listUl(ESC.con,'o')).style.marginTop='9px';
+  g.appendChild(c2);
+
+  var c3 = card('coral','Información que falta');
+  c3.appendChild(E('p','tiny','Cada línea que cargues acá es candidata a supuesto numerado en la planilla del bloque 5.'));
+  var rep = repeater(D.falta = (D.falta||[{t:''}]), function(){ return {t:''}; },
+    function(o){
+      var r = E('div','frow');
+      r.appendChild(cell(o,'t','p. ej. no se conoce la demanda anual real'));
+      return r;
+    }, 'Dato faltante');
+  rep.style.marginTop = '9px';
+  c3.appendChild(rep);
+  g.appendChild(c3);
+
+  el.appendChild(g);
+}, fields:function(){ return (D.falta||[]).map(function(x){return x.t;}); }});
+
+/* =============================================================== 4 · PREGUNTAS */
+addSec({block:0, t:'Preguntas orientadoras', build:function(el){
+  head(el,'Escenario '+ESC.n+' · la consigna de la cátedra','Preguntas orientadoras del caso',
+    'Son las preguntas con las que la cátedra entrega el escenario. Respondelas en equipo, en borrador: de acá sale el primer enunciado del problema.');
+  var col = E('div','col fill scrolly');
+  if(!D.pre.length) D.pre = ESC.pre.map(function(){ return ''; });
+  ESC.pre.forEach(function(q,i){
+    var c = card(i%2 ? 'oro' : null, null);
+    c.appendChild(E('h3',null,'<span class="o">'+(i+1)+'.</span> '+q));
+    var f = field('pre.'+i,{ph:'Respuesta del equipo…',min:180});
+    f.style.marginTop = '10px';
+    c.appendChild(f);
+    col.appendChild(c);
+  });
+  var extra = card('vio','La pregunta que siempre conviene hacerse');
+  extra.appendChild(E('p','sub','¿La situación que describe el escenario es <strong>un problema</strong> o es <strong>la ausencia de una solución</strong> que alguien ya decidió? Escribí la respuesta en una oración: es el borrador cero del problema central.'));
+  var f2 = field('pre0',{short:true,ph:'En una oración…'}); f2.style.marginTop='9px';
+  extra.appendChild(f2);
+  col.appendChild(extra);
+  el.appendChild(col);
+}, fields:function(){ return D.pre.concat([D.pre0||'']); }});
+
+/* =============================================================== 5 · CRITERIOS */
+addSec({block:1, t:'Los cinco criterios', build:function(el){
+  head(el,'Bloque 2 · ítems D y E','Los cinco criterios del problema',
+    'Un problema bien descripto responde a los cinco. Si alguno queda vacío, todavía no conocés el problema: lo estás intuyendo.');
+  var CR = [
+    ['cri.id','Identidad','¿Cuál es el problema? ¿Puedo explicarlo en forma sencilla? ¿Es realmente un problema?','',''],
+    ['cri.ub','Ubicación','¿Dónde se observa? ¿Puedo localizarlo con precisión y acotarlo a un espacio?','oro',''],
+    ['cri.ti','Tiempo','¿Desde cuándo ocurre? ¿Desde cuándo se percibe? ¿Cuándo se observó por primera vez?','vio',''],
+    ['cri.me','Mensurabilidad','¿Puedo medirlo? ¿Hay un indicador que defina la situación problemática?','cel',''],
+    ['cri.mg','Magnitud','¿Cuántas familias, empresas o sectores están afectados y qué tan afectados están?','coral','']
+  ];
+  var g = E('div','grid g5 fill');
+  CR.forEach(function(c){
+    var k = card(c[2] ? c[3] : null, null);
+    k.classList.add('scrolly');
+    k.appendChild(E('h3',null,'<span class="'+(c[3]==='oro'?'o':(c[3]==='coral'?'c':'g'))+'">'+c[1]+'</span>'));
+    k.appendChild(E('p','tiny',c[2])).style.marginTop='6px';
+    var f = field(c[0],{ph:'Para este escenario…',min:90});
+    f.style.marginTop='9px';
+    k.appendChild(f);
+    g.appendChild(k);
+  });
+  el.appendChild(g);
+  var bx = E('div','box bad');
+  bx.appendChild(E('p','sub','<strong>La trampa.</strong> «Falta de…», «ausencia de…», «no hay…» no son problemas: son soluciones ausentes. Si al leer el enunciado la solución aparece sola, ya elegiste el proyecto sin analizar el problema.'));
+  el.appendChild(bx);
+}, fields:function(){ return [D.cri.id,D.cri.ub,D.cri.ti,D.cri.me,D.cri.mg]; }});
+
+/* =============================================================== 6 · PROBLEMA CENTRAL */
+addSec({block:1, t:'El problema central', build:function(el){
+  head(el,'Bloque 2 · ítem D','Escribí el problema central',
+    'Tres versiones, un solo elegido. Escribir tres obliga a discutir; quedarse con el primero es quedarse con el prejuicio del que habló más fuerte.');
+  var r = E('div','row fill');
+  var left = E('div','col'); left.style.flex='1.15';
+  var c = card(null,'Tres versiones posibles');
+  var box = E('div','col'); box.style.marginTop='10px';
+  [0,1,2].forEach(function(i){
+    var w = E('div');
+    var lb = E('div','row'); lb.style.alignItems='center'; lb.style.gap='8px'; lb.style.marginBottom='4px';
+    lb.appendChild(E('label','fl','Versión '+'ABC'[i]));
+    var use = btn('Elegir esta','ghost xs', function(){
+      D.pcsel = i; D.pc = D.pcv[i] || ''; touch(); render(cur);
+    });
+    use.style.marginLeft='auto';
+    if(D.pcsel === i){ use.textContent = '✓ Elegida'; use.className = 'btn xs'; }
+    lb.appendChild(use);
+    w.appendChild(lb);
+    var f = field('pcv.'+i,{short:true,ph:'Situación negativa, con lugar y con magnitud…'});
+    w.appendChild(f);
+    box.appendChild(w);
+  });
+  c.appendChild(box);
+  left.appendChild(c);
+
+  var ctrl = card('oro','Los tres controles');
+  var chk = E('div','col'); chk.style.marginTop='9px'; chk.style.gap='7px';
+  [['¿Es una situación negativa, y no la falta de una solución?'],
+   ['¿Se puede medir? ¿Con qué variable?'],
+   ['¿Tiene lugar y población afectada?']].forEach(function(q,i){
+    var l = E('label','chk'+((D.pcck||[])[i]?' on':''));
+    var inp = E('input'); inp.type='checkbox'; inp.checked = (D.pcck||[])[i] || false;
+    inp.onchange = function(){ D.pcck = D.pcck||[]; D.pcck[i] = inp.checked; l.classList.toggle('on',inp.checked); touch(); };
+    l.appendChild(inp); l.appendChild(E('span',null,q[0]));
+    chk.appendChild(l);
+  });
+  ctrl.appendChild(chk);
+  left.appendChild(ctrl);
+  r.appendChild(left);
+
+  var right = E('div','col'); right.style.flex='1';
+  var fin = card('vio','El problema central del proyecto');
+  fin.appendChild(E('p','tiny','Este texto viaja al ítem D del F01, al tronco del árbol y —en positivo— al propósito de la MML.'));
+  var ff = field('pc',{tall:true,ph:'Escribí acá la versión definitiva.',min:120,on:function(){ }});
+  ff.style.marginTop='9px';
+  fin.appendChild(ff);
+  right.appendChild(fin);
+
+  var ej = card('coral','Un ejemplo bien escrito y uno mal escrito');
+  var b1 = E('div','box bad'); b1.appendChild(E('p','sub','<strong>Mal:</strong> «Falta un vivero municipal de especies nativas.» — Es la solución que alguien ya eligió, disfrazada de problema.'));
+  var b2 = E('div','box ok'); b2.style.marginTop='8px';
+  b2.appendChild(E('p','sub','<strong>Bien:</strong> «Alta mortandad de los plantines nativos plantados en los espacios públicos del municipio: sólo el 38 % sobrevive a los 12 meses.» — Situación negativa, medida, ubicada.'));
+  ej.appendChild(b1); ej.appendChild(b2);
+  right.appendChild(ej);
+  r.appendChild(right);
+  el.appendChild(r);
+}, fields:function(){ return [D.pc, D.pcv[0], D.pcv[1]]; }});
+
+/* =============================================================== 7 · LÍNEA DE BASE */
+addSec({block:1, t:'La línea de base', build:function(el){
+  head(el,'Bloque 2 · ítems E y F','Medir el problema: el indicador de línea de base',
+    'Un indicador que sirve tiene cinco piezas. Si falta una, no es un indicador: es una impresión.');
+  var r = E('div','row fill');
+  var c = card(null,'Armá el indicador pieza por pieza');
+  c.style.flex='1.1';
+  var g = E('div','col'); g.style.marginTop='10px';
+  [['lb.c','Cantidad','38 % · 1.500 · 0,8'],
+   ['lb.v','Variable','supervivencia de plantines a los 12 meses'],
+   ['lb.l','Lugar','espacios públicos del municipio'],
+   ['lb.p','Plazo o momento','año 2025 · a los 12 meses de plantados'],
+   ['lb.mv','Medio de verificación','censo municipal de arbolado']
+  ].forEach(function(x){
+    g.appendChild(field(x[0],{label:x[1],type:'input',ph:'p. ej. '+x[2],on:paintLB}));
+  });
+  c.appendChild(g);
+  r.appendChild(c);
+
+  var right = E('div','col'); right.style.flex='1';
+  var out = card('vio','Así queda escrito');
+  var pv = E('div','box ok'); pv.id='lb-out'; pv.style.marginTop='9px';
+  out.appendChild(pv);
+  var miss = E('p','tiny'); miss.id='lb-miss'; miss.style.marginTop='8px';
+  out.appendChild(miss);
+  right.appendChild(out);
+
+  var ctx = card('oro','Contexto de intervención (ítem F)');
+  ctx.appendChild(E('p','tiny','La línea de base no es sólo el indicador: es la foto del lugar antes del proyecto.'));
+  var cc = E('div','col'); cc.style.marginTop='9px';
+  cc.appendChild(field('ctx.amb',{label:'Caracterización ambiental',short:true,ph:'Clima, suelos, agua, vegetación, fauna, riesgos…'}));
+  cc.appendChild(field('ctx.soc',{label:'Caracterización socioeconómica',short:true,ph:'Población, actividades, servicios, infraestructura…'}));
+  ctx.appendChild(cc);
+  right.appendChild(ctx);
+  r.appendChild(right);
+  el.appendChild(r);
+  paintLB();
+}, fields:function(){ return [D.lb.c,D.lb.v,D.lb.l,D.lb.p,D.lb.mv,D.ctx.amb,D.ctx.soc]; }});
+
+function lbText(){
+  var l = D.lb;
+  if(!l.c && !l.v) return '';
+  return (l.c?l.c+' de ':'') + (l.v||'…') + (l.l?', en '+l.l:'') + (l.p?', '+l.p:'') +
+         (l.mv?', según '+l.mv:'') + '.';
+}
+function paintLB(){
+  var o = document.getElementById('lb-out'); if(!o) return;
+  var t = lbText();
+  o.innerHTML = t ? '<p class="sub" style="font-size:14px">'+esc(t)+'</p>'
+                  : '<p class="tiny">Completá los campos y el indicador se arma solo.</p>';
+  var names = {c:'cantidad',v:'variable',l:'lugar',p:'plazo',mv:'medio de verificación'};
+  var falta = Object.keys(names).filter(function(k){ return !String(D.lb[k]||'').trim(); })
+                     .map(function(k){ return names[k]; });
+  var m = document.getElementById('lb-miss');
+  m.innerHTML = falta.length ? '⚠ Todavía falta: <strong class="o">'+falta.join(' · ')+'</strong>'
+                             : '✓ El indicador tiene las cinco piezas.';
+}
+
+/* =============================================================== 8 · CONTEXTO Y ACTORES */
+addSec({block:1, work:true, t:'Población y actores', build:function(el){
+  head(el,'Bloque 2 · ítems G, H, I y J','El problema no flota: población, actores e instituciones',
+    'Población potencial es toda la que sufre el problema. Población objetivo es la que el proyecto va a atender. Si son iguales, casi seguro no se pensó el recorte.');
+  var g = E('div','grid g2 fill');
+
+  var c1 = card(null,'Población (ítem G)');
+  var cc = E('div','col'); cc.style.marginTop='9px';
+  cc.appendChild(field('ctx.pobP',{label:'Población potencial · cuántos y con qué fuente',short:true,ph:'p. ej. 210.000 habitantes del ejido urbano, según censo 2022'}));
+  cc.appendChild(field('ctx.pobO',{label:'Población objetivo · a quién atiende el proyecto',short:true,ph:'p. ej. los 12 barrios del sector norte, 34.000 personas'}));
+  c1.appendChild(cc);
+  var b = E('div','box info'); b.style.marginTop='9px';
+  b.appendChild(E('p','tiny','El criterio de recorte entre una y otra hay que poder explicarlo: por territorio, por gravedad, por factibilidad, por acuerdo institucional.'));
+  c1.appendChild(b);
+  g.appendChild(c1);
+
+  var c2 = card('oro','Dependencia institucional y marco normativo (ítems I y J)');
+  var dd = E('div','col'); dd.style.marginTop='9px';
+  dd.appendChild(field('ctx.dep',{label:'De qué organismo dependería el proyecto',short:true,ph:'Municipio, secretaría, organismo provincial, ONG, privado…'}));
+  dd.appendChild(field('ctx.norm',{label:'Normas que lo enmarcan',tall:true,ph:'Ley, decreto, ordenanza, resolución. Verificá vigencia y texto ordenado antes de citarla.'}));
+  c2.appendChild(dd);
+  g.appendChild(c2);
+  el.appendChild(g);
+
+  var c3 = card('vio','Análisis de involucrados (ítem H)'); c3.classList.add('nofit');
+  c3.appendChild(E('p','tiny','Todos los actores se miden en la misma escala. Posición: a favor, en contra, indiferente. Fuerza e importancia: alta, media o baja.'));
+  var t = tableEd(D.inv, ['Actor o grupo','Posición','Fuerza','Importancia','Interés o expectativa',''],
+    function(o){ return [cell(o,'n','p. ej. Secretaría de Ambiente'),
+                         selCell(o,'pos',['','A favor','En contra','Indiferente']),
+                         selCell(o,'fue',['','Alta','Media','Baja']),
+                         selCell(o,'imp',['','Alta','Media','Baja']),
+                         cell(o,'int','Qué espera del proyecto','textarea')]; },
+    function(){ return {n:'',pos:'',fue:'',imp:'',int:''}; }, 'Actor');
+  t.style.marginTop='9px';
+  c3.appendChild(t);
+  el.appendChild(c3);
+}, fields:function(){ return [D.ctx.pobP,D.ctx.pobO,D.ctx.dep,D.ctx.norm, D.inv[0]?D.inv[0].n:'']; }});
+
+/* =============================================================== 9 · ÁRBOL DE PROBLEMAS */
+addSec({block:2, t:'Árbol de problemas', build:function(el){
+  head(el,'Bloque 3 · ítems K, L y M','El árbol de problemas',
+    'Abajo las causas, en niveles: la de primer nivel es la que explica directamente el problema; la de tercer nivel es la raíz sobre la que se actúa. Arriba los efectos, encadenados.');
+  var r = E('div','row fill');
+
+  var left = E('div','col'); left.style.flex='1';
+  var ce = card('cel','Efectos · ramas (ítem L)');
+  ce.appendChild(E('p','tiny','Se leen de abajo hacia arriba: el problema produce esto, y esto produce aquello.'));
+  var repE = repeater(D.efe, function(){ return {t:'',lv:1}; }, function(o){
+    var n = E('div','tnode ef'+(o.lv||1));
+    var lv = E('button','lvb','nivel '+(o.lv||1)); lv.type='button';
+    lv.onclick = function(){ o.lv = (o.lv||1)===1?2:1; touch(); render(cur); };
+    n.appendChild(lv);
+    n.appendChild(cell(o,'t','Efecto…'));
+    return n;
+  }, 'Efecto');
+  repE.style.marginTop='9px';
+  ce.appendChild(repE);
+  left.appendChild(ce);
+  r.appendChild(left);
+
+  var mid = E('div','col'); mid.style.flex='1.05';
+  var tr = E('div','trunk');
+  tr.appendChild(E('div','lb','Problema central · tronco'));
+  tr.appendChild(E('div','tx', esc(D.pc || 'Todavía no lo escribiste — volvé a la pantalla 6')));
+  mid.appendChild(tr);
+
+  var cc = card('coral','Causas · raíces (ítem K)');
+  cc.appendChild(E('p','tiny','Tocá «nivel» para bajar una causa un escalón. Preguntá «¿pero por qué?» hasta llegar a algo sobre lo que se pueda actuar.'));
+  var repC = repeater(D.cau, function(){ return {t:'',lv:1}; }, function(o){
+    var n = E('div','tnode lv'+(o.lv||1));
+    var lv = E('button','lvb','nivel '+(o.lv||1)); lv.type='button';
+    lv.onclick = function(){ o.lv = ((o.lv||1)%3)+1; touch(); render(cur); };
+    n.appendChild(lv);
+    n.appendChild(cell(o,'t','Causa…'));
+    return n;
+  }, 'Causa');
+  repC.style.marginTop='9px';
+  cc.appendChild(repC);
+  mid.appendChild(cc);
+  r.appendChild(mid);
+
+  var right = E('div','col'); right.style.flex='.85';
+  var ctl = card('oro','Control de calidad del árbol');
+  var ul = E('div','col'); ul.style.marginTop='9px'; ul.style.gap='7px';
+  [['Ninguna causa está escrita como «falta de…».','falta'],
+   ['Las causas de tercer nivel son independientes entre sí.',''],
+   ['Se lee de abajo hacia arriba y la cadena cierra.',''],
+   ['Los efectos no repiten el problema con otras palabras.','']
+  ].forEach(function(q,i){
+    var l = E('label','chk'+((D.arck||[])[i]?' on':''));
+    var inp = E('input'); inp.type='checkbox'; inp.checked=(D.arck||[])[i]||false;
+    inp.onchange = function(){ D.arck=D.arck||[]; D.arck[i]=inp.checked; l.classList.toggle('on',inp.checked); touch(); };
+    l.appendChild(inp); l.appendChild(E('span',null,q[0]));
+    ul.appendChild(l);
+  });
+  ctl.appendChild(ul);
+  var warn = E('div'); warn.id='ar-warn'; warn.style.marginTop='9px';
+  ctl.appendChild(warn);
+  right.appendChild(ctl);
+
+  var sint = card('vio','Síntesis del árbol (ítem M)');
+  sint.appendChild(E('p','tiny','Un párrafo que explique la lógica del árbol en palabras: qué causa qué.'));
+  var f = field('arM',{tall:true,ph:'La cadena principal del árbol es…'}); f.style.marginTop='9px';
+  sint.appendChild(f);
+  right.appendChild(sint);
+  r.appendChild(right);
+  el.appendChild(r);
+  checkArbol();
+}, fields:function(){ return D.cau.map(function(x){return x.t;}).concat(D.efe.map(function(x){return x.t;}), [D.arM||'']); }});
+
+function checkArbol(){
+  var w = document.getElementById('ar-warn'); if(!w) return;
+  var bad = D.cau.filter(function(c){ return /^\s*(falta|ausencia|no hay|carencia|escasez de infraestructura|inexistencia)/i.test(c.t||''); });
+  var n3 = D.cau.filter(function(c){ return (c.lv||1) === 3; }).length;
+  var msgs = [];
+  if(bad.length) msgs.push('<div class="box bad"><p class="tiny">⚠ '+bad.length+' causa(s) empiezan con «falta / no hay / ausencia». Reescribilas como un hecho del sistema: <em>qué pasa</em>, no <em>qué no hay</em>.</p></div>');
+  if(!n3) msgs.push('<div class="box warn"><p class="tiny">⚠ Todavía no hay ninguna causa de tercer nivel. Sin raíz, el proyecto va a atacar síntomas.</p></div>');
+  if(!msgs.length && D.cau.filter(function(c){return c.t.trim();}).length)
+    msgs.push('<div class="box ok"><p class="tiny">✓ El árbol pasa los controles automáticos.</p></div>');
+  w.innerHTML = msgs.join('');
+}
+
+/* =============================================================== 10 · ÁRBOL DE OBJETIVOS */
+addSec({block:2, t:'Árbol de objetivos', build:function(el){
+  head(el,'Bloque 3 · ítems N, O, P y Q','El árbol de objetivos es el espejo del de problemas',
+    'Misma cantidad de nodos, en positivo y en futuro. Si el espejo no cierra, el error está en el árbol de problemas, no acá.');
+  var top = E('div','row'); top.style.gap='9px'; top.style.flexWrap='wrap'; top.style.alignItems='center';
+  top.appendChild(btn('⇄ Traer del árbol de problemas','', function(){
+    D.med = D.cau.map(function(c){ return {t:c.t, lv:c.lv, src:c.t}; });
+    D.fin = D.efe.map(function(e){ return {t:e.t, lv:e.lv, src:e.t}; });
+    if(!D.obj) D.obj = D.pc;
+    touch(); render(cur); toast('Espejo generado: ahora pasalo a positivo.');
+  }));
+  top.appendChild(E('p','tiny','Trae cada nodo tal cual está; el trabajo del equipo es pasarlo a positivo.'));
+  el.appendChild(top);
+
+  var r = E('div','row fill');
+
+  var c1 = card('cel','Fines · ramas (ítem O)');
+  c1.classList.add('scrolly'); c1.style.flex='1';
+  var repF = repeater(D.fin, function(){ return {t:'',lv:1}; }, function(o){
+    var n = E('div','tnode ef'+(o.lv||1));
+    n.appendChild(cell(o,'t','Fin…'));
+    if(o.src){ var s=E('span','tiny'); s.style.flex='none'; s.style.maxWidth='34%'; s.style.opacity='.6';
+      s.textContent='← '+o.src.slice(0,44); n.appendChild(s); }
+    return n;
+  }, 'Fin');
+  repF.style.marginTop='9px';
+  c1.appendChild(repF);
+  r.appendChild(c1);
+
+  var mid = E('div','col'); mid.style.flex='1.05';
+  var oc = card('vio','Objetivo central, propósito o meta (ítem P)');
+  oc.appendChild(E('p','tiny','Es el problema central en positivo. <strong>Uno solo</strong>: si hay dos, hay dos proyectos.'));
+  var bp = E('div','box'); bp.style.marginTop='8px';
+  bp.appendChild(E('p','tiny','Problema central: <em>'+esc(D.pc||'sin cargar')+'</em>'));
+  oc.appendChild(bp);
+  var fo = field('obj',{tall:true,ph:'En positivo y en futuro…',min:80}); fo.style.marginTop='8px';
+  oc.appendChild(fo);
+  mid.appendChild(oc);
+
+  var cm = card('coral','Medios · raíces (ítem N)');
+  var repM = repeater(D.med, function(){ return {t:'',lv:1}; }, function(o){
+    var n = E('div','tnode lv'+(o.lv||1));
+    var lv = E('button','lvb','nivel '+(o.lv||1)); lv.type='button';
+    lv.onclick = function(){ o.lv = ((o.lv||1)%3)+1; touch(); render(cur); };
+    n.appendChild(lv);
+    n.appendChild(cell(o,'t','Medio…'));
+    return n;
+  }, 'Medio');
+  repM.style.marginTop='9px';
+  cm.appendChild(repM);
+  mid.appendChild(cm);
+  r.appendChild(mid);
+
+  var right = E('div','col'); right.style.flex='.85';
+  var esp = card('oro','Control del espejo');
+  var st = E('div'); st.id='mir-st'; st.style.marginTop='9px';
+  esp.appendChild(st);
+  right.appendChild(esp);
+  var sq = card(null,'Síntesis del árbol de objetivos (ítem Q)');
+  var f2 = field('arQ',{tall:true,ph:'La cadena de medios y fines se lee así…'}); f2.style.marginTop='9px';
+  sq.appendChild(f2);
+  right.appendChild(sq);
+  r.appendChild(right);
+  el.appendChild(r);
+  mirState();
+}, fields:function(){ return [D.obj].concat(D.med.map(function(x){return x.t;}), D.fin.map(function(x){return x.t;}), [D.arQ||'']); }});
+
+function mirState(){
+  var s = document.getElementById('mir-st'); if(!s) return;
+  var nc = D.cau.filter(function(x){return x.t.trim();}).length;
+  var nm = D.med.filter(function(x){return x.t.trim();}).length;
+  var ne = D.efe.filter(function(x){return x.t.trim();}).length;
+  var nf = D.fin.filter(function(x){return x.t.trim();}).length;
+  var rows = [['Causas → medios', nc, nm], ['Efectos → fines', ne, nf]];
+  s.innerHTML = rows.map(function(r){
+    var ok = r[1] === r[2] && r[1] > 0;
+    return '<div class="box '+(ok?'ok':'warn')+'" style="margin-bottom:7px"><p class="tiny">'+
+      (ok?'✓ ':'⚠ ')+r[0]+': <strong>'+r[1]+'</strong> y <strong>'+r[2]+'</strong>'+
+      (ok?' — el espejo cierra.':' — el espejo no cierra: falta pasar nodos.')+'</p></div>';
+  }).join('') +
+  '<p class="tiny">Un nodo sin espejo casi siempre significa que en el árbol de problemas había una solución disfrazada de causa.</p>';
+}
+
+/* =============================================================== 11 · ESTRATEGIA */
+addSec({block:3, work:true, t:'Estrategia y actividad', build:function(el){
+  head(el,'Bloque 4 · ítem R','De los medios profundos a la idea de proyecto',
+    'Cada medio de la base del árbol de objetivos es una estrategia posible. Dentro de una estrategia las actividades son mutuamente excluyentes: o una cosa o la otra, no las dos.');
+  var c = card(null,'Alternativas sobre la mesa'); c.classList.add('nofit');
+  var t = tableEd(D.alt, ['#','Medio del árbol de objetivos','Actividad o proyecto posible','A favor','En contra',''],
+    function(o,i){ return [E('span','pill v',o.id || String.fromCharCode(65+i)),
+                           cell(o,'med','Medio de la base del árbol','textarea'),
+                           cell(o,'act','Qué habría que hacer','textarea'),
+                           cell(o,'ven','Ventajas','textarea'),
+                           cell(o,'des','Desventajas','textarea')]; },
+    function(){ return {id:String.fromCharCode(65+D.alt.length),med:'',act:'',ven:'',des:''}; }, 'Alternativa');
+  t.style.marginTop='9px';
+  c.appendChild(t);
+  el.appendChild(c);
+
+  var r = E('div','row fill');
+  var c2 = card('vio','La elegida y por qué');
+  c2.style.flex='1';
+  var w = E('div','wrap'); w.style.marginTop='9px';
+  D.alt.forEach(function(a,i){
+    var id = a.id || String.fromCharCode(65+i);
+    var b = btn(id + (a.med? ' · '+a.med.slice(0,30) : ''), D.altSel===id ? '' : 'ghost sm', function(){
+      D.altSel = id; touch(); render(cur);
+    });
+    w.appendChild(b);
+  });
+  c2.appendChild(w);
+  var f = field('altJus',{label:'Fundamento de la selección',tall:true,
+    ph:'Por qué esta y no las otras: criterios técnicos, ambientales, económicos, institucionales.',min:200});
+  f.style.marginTop='10px';
+  c2.appendChild(f);
+  r.appendChild(c2);
+
+  var c3 = card('oro','Si esto ocurre, entonces aquello');
+  c3.appendChild(E('p','tiny','Control de la cadena elegida, leído de abajo hacia arriba. Si algún «entonces» suena forzado, falta un escalón.'));
+  var ch = E('div','col'); ch.style.marginTop='10px'; ch.style.gap='0';
+  var sel = D.alt.filter(function(a,i){ return (a.id||String.fromCharCode(65+i)) === D.altSel; })[0];
+  [['Actividad ejecutada · el proyecto', sel? sel.act : ''],
+   ['Medio logrado', sel? sel.med : ''],
+   ['Causa eliminada', ''],
+   ['Problema resuelto', D.obj]
+  ].forEach(function(p,i,arr){
+    var b = E('div','box'+(i===3?' ok':(i===0?' info':'')));
+    b.appendChild(E('div','tiny','<strong style="letter-spacing:.1em;text-transform:uppercase">'+p[0]+'</strong>'));
+    b.appendChild(E('p','sub', esc(p[1] || '—')));
+    ch.appendChild(b);
+    if(i < 3){ var a = E('p','tiny'); a.style.textAlign='center'; a.style.margin='4px 0'; a.innerHTML='↑ <em>entonces</em>'; ch.appendChild(a); }
+  });
+  c3.appendChild(ch);
+  r.appendChild(c3);
+  el.appendChild(r);
+}, fields:function(){ return [D.altSel, D.altJus].concat(D.alt.map(function(a){return a.med;})); }});
+
+/* =============================================================== 12 · EAP */
+addSec({block:3, t:'La EAP', build:function(el){
+  head(el,'Bloque 4 · ítem S','Estructura Analítica del Proyecto',
+    'Cuatro niveles, se lee de abajo hacia arriba. Es el puente entre el árbol de objetivos y la Matriz de Marco Lógico.');
+  var top = E('div','row'); top.style.gap='9px'; top.style.flexWrap='wrap'; top.style.alignItems='center';
+  top.appendChild(btn('⇄ Traer de lo ya cargado','', function(){
+    var sel = D.alt.filter(function(a,i){ return (a.id||String.fromCharCode(65+i)) === D.altSel; })[0];
+    D.eap.fin = (D.fin[0]&&D.fin[0].t) || D.eap.fin;
+    D.eap.prop = D.obj || D.eap.prop;
+    D.eap.comp = (sel && sel.med) || D.eap.comp;
+    D.eap.act = (sel && sel.act) || D.eap.act;
+    touch(); render(cur); toast('EAP armada desde el árbol y la estrategia.');
+  }));
+  top.appendChild(E('p','tiny','Trae el fin, el propósito, la componente y la actividad desde lo que ya cargaste.'));
+  el.appendChild(top);
+
+  var r = E('div','row fill');
+  var c = card(null,null); c.style.flex='1.1';
+  var st = E('div','col'); st.style.gap='9px';
+  [['eap.fin','Fin','A qué objetivo mayor contribuye el proyecto. Puede haber varios; el proyecto sólo contribuye.','v'],
+   ['eap.prop','Propósito o meta','El problema central en positivo. Uno solo.','p'],
+   ['eap.comp','Componente','El medio expresado como producto obtenido, en participio: «logrado», «implementado», «producido».','o'],
+   ['eap.act','Actividad','El proyecto de inversión a desarrollar. Su resultado es la componente.','c']
+  ].reverse().forEach(function(x){
+    var b = E('div','box');
+    b.appendChild(E('span','pill '+x[3], x[1]));
+    b.appendChild(E('p','tiny',x[2])).style.marginTop='5px';
+    var f = field(x[0],{short:true,ph:'…'}); f.style.marginTop='6px';
+    b.appendChild(f);
+    st.appendChild(b);
+  });
+  c.appendChild(st);
+  r.appendChild(c);
+
+  var c2 = card('oro','Medio → Componente: el cambio de forma');
+  c2.classList.add('scrolly'); c2.style.flex='.9';
+  var tb = E('table','tb'); tb.style.marginTop='9px';
+  tb.innerHTML = '<thead><tr><th>Medio</th><th>Componente</th></tr></thead><tbody>'+
+   '<tr><td>Cuidados posteriores a la plantación asegurados</td><td><strong>Mantenimiento post-plantación implementado</strong></td></tr>'+
+   '<tr><td>Plantines rustificados y de calidad</td><td><strong>Plantines rustificados producidos</strong></td></tr>'+
+   '<tr><td>Implementación de un programa de reciclaje</td><td><strong>Programa de reciclaje implementado</strong></td></tr>'+
+   '<tr><td>Biorremediación de un sitio contaminado</td><td><strong>Sitio remediado</strong></td></tr></tbody>';
+  c2.appendChild(tb);
+  var b = E('div','box warn'); b.style.marginTop='10px';
+  b.appendChild(E('p','tiny','Regla práctica: la componente siempre se escribe como algo <strong>ya terminado</strong>. Si podés decir «logrado», «producido», «implementado» o «remediado», está bien redactada.'));
+  c2.appendChild(b);
+  r.appendChild(c2);
+  el.appendChild(r);
+}, fields:function(){ return [D.eap.fin,D.eap.prop,D.eap.comp,D.eap.act]; }});
+
+/* =============================================================== 13 · MML */
+addSec({block:4, work:true, t:'Matriz de Marco Lógico', build:function(el){
+  head(el,'Bloque 5 · ítems T y U','La Matriz de Marco Lógico',
+    'Cuatro filas por cuatro columnas. Cada indicador necesita cantidad, variable, lugar, plazo y su medio de verificación.');
+  var top = E('div','row'); top.style.gap='9px'; top.style.flexWrap='wrap'; top.style.alignItems='center';
+  top.appendChild(btn('⇄ Traer el resumen narrativo de la EAP','', function(){
+    D.mml.fin[0] = D.eap.fin || D.mml.fin[0];
+    D.mml.prop[0] = D.eap.prop || D.mml.prop[0];
+    D.mml.comp[0] = D.eap.comp || D.mml.comp[0];
+    D.mml.act[0] = D.eap.act || D.mml.act[0];
+    touch(); render(cur); toast('Primera columna cargada desde la EAP.');
+  }));
+  top.appendChild(btn('Revisar indicadores','ghost', function(){ checkMML(); toast('Revisión hecha.'); }));
+  el.appendChild(top);
+
+  var c = card(null,null); c.classList.add('scrolly','nofit');
+  var t = E('table','mml'); t.style.marginTop='4px';
+  t.innerHTML = '<thead><tr><th style="width:15%"></th><th style="width:24%">Resumen narrativo de objetivos</th>'+
+    '<th style="width:25%">Indicadores</th><th style="width:18%">Medios de verificación</th><th style="width:18%">Supuestos</th></tr></thead>';
+  var tb = E('tbody');
+  [['fin','Fin'],['prop','Propósito'],['comp','Componente'],['act','Actividad']].forEach(function(row){
+    var tr = E('tr');
+    var td0 = E('td','lv'); td0.appendChild(E('div','lvn',row[1])); tr.appendChild(td0);
+    [0,1,2,3].forEach(function(j){
+      var td = E('td');
+      var ta = E('textarea');
+      ta.value = D.mml[row[0]][j] || '';
+      ta.placeholder = ['Objetivo…','cantidad + variable + lugar + plazo','de dónde sale el dato','riesgo externo al proyecto'][j];
+      ta.addEventListener('input', function(){ D.mml[row[0]][j] = ta.value; touch(); checkMML(); });
+      td.appendChild(ta);
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  c.appendChild(t);
+  el.appendChild(c);
+
+  var r = E('div','row');
+  var v = card('oro','Revisión automática de los indicadores'); v.style.flex='1.1';
+  var out = E('div'); out.id='mml-out'; out.style.marginTop='9px';
+  v.appendChild(out);
+  r.appendChild(v);
+  var u = card('vio','Las tres lógicas (ítem U)');
+  u.style.flex='1';
+  u.appendChild(E('p','tiny','Contá con tus palabras cómo se verifica cada una en tu matriz.'));
+  var f = field('mmlU',{tall:true,ph:'Lógica vertical: … · Lógica horizontal: … · Lógica del zigzag: …'});
+  f.style.marginTop='9px'; u.appendChild(f);
+  r.appendChild(u);
+  el.appendChild(r);
+  checkMML();
+}, fields:function(){ var o=[]; ['fin','prop','comp','act'].forEach(function(k){ o=o.concat(D.mml[k]); }); return o.concat([D.mmlU||'']); }});
+
+function checkMML(){
+  var o = document.getElementById('mml-out'); if(!o) return;
+  var rows = [['fin','Fin'],['prop','Propósito'],['comp','Componente'],['act','Actividad']];
+  var html = rows.map(function(r){
+    var ind = D.mml[r[0]][1] || '', mv = D.mml[r[0]][2] || '', sup = D.mml[r[0]][3] || '';
+    if(!ind.trim()) return '<div class="box" style="margin-bottom:6px"><p class="tiny">'+r[1]+': sin indicador cargado.</p></div>';
+    var faltan = [];
+    if(!/\d/.test(ind)) faltan.push('cantidad');
+    if(ind.trim().length < 40) faltan.push('detalle (variable y lugar)');
+    if(!/(año|meses|mes|plazo|primer|semestre|20\d\d|anual)/i.test(ind)) faltan.push('plazo');
+    if(!mv.trim()) faltan.push('medio de verificación');
+    var extra = (r[0] !== 'fin' && !sup.trim()) ? ' · sin supuesto' : '';
+    return '<div class="box '+(faltan.length?'warn':'ok')+'" style="margin-bottom:6px"><p class="tiny">'+
+      (faltan.length?'⚠ ':'✓ ')+'<strong>'+r[1]+'</strong>: '+
+      (faltan.length ? 'falta '+faltan.join(' · ') : 'el indicador está completo') + extra + '</p></div>';
+  }).join('');
+  o.innerHTML = html + '<p class="tiny" style="margin-top:6px">Es una revisión mecánica, no reemplaza el criterio: un indicador puede tener las cinco piezas y aun así no medir lo que importa.</p>';
+}
+
+/* =============================================================== 14 · SUPUESTOS */
+addSec({block:4, work:true, t:'Planilla de supuestos', build:function(el){
+  head(el,'Bloque 5 · planilla de supuestos','Todo lo que asumimos, numerado',
+    'Un supuesto es un hecho externo al proyecto, necesario para que la cadena funcione y sobre el que el equipo no tiene control. Todo dato que no pudieron verificar entra acá.');
+  var c = card(null,null); c.classList.add('fill','scrolly','nofit');
+  var t = tableEd(D.sup, ['N°','Supuesto','Justificación o fuente','Probabilidad','Efecto si no ocurre',''],
+    function(o,i){ return [E('span','pill o','S'+(i+1)),
+                           cell(o,'t','Qué asumimos','textarea'),
+                           cell(o,'j','Por qué es razonable asumirlo','textarea'),
+                           selCell(o,'pr',['','Alta','Media','Baja']),
+                           cell(o,'im','Qué pasaría si no se cumple','textarea')]; },
+    function(){ return {t:'',j:'',pr:'',im:''}; }, 'Supuesto');
+  t.style.marginTop='6px';
+  c.appendChild(t);
+  el.appendChild(c);
+  var g = E('div','grid g2');
+  var b1 = E('div','box info');
+  b1.appendChild(E('p','sub','<strong>De dónde salen.</strong> De la lista de información faltante del bloque 1, de la columna de supuestos de la MML, y de cada cifra que la IA o una fuente secundaria aportó y nadie verificó.'));
+  var b2 = E('div','box warn');
+  b2.appendChild(E('p','sub','<strong>Cómo se escriben.</strong> En positivo, como algo que <em>sí</em> ocurre: «el municipio sostiene la campaña anual durante el período», no «el municipio podría no sostenerla».'));
+  g.appendChild(b1); g.appendChild(b2);
+  el.appendChild(g);
+}, fields:function(){ return D.sup.map(function(s){ return s.t; }); }});
+</script>
+<script>
+"use strict";
+/* =============================================================== DERIVACIONES DESDE LAS HERRAMIENTAS */
+function joinL(arr, f){ return arr.map(f).filter(function(x){ return String(x||'').trim(); }).join('\n'); }
+function altSel(){ return D.alt.filter(function(a,i){ return (a.id||String.fromCharCode(65+i)) === D.altSel; })[0]; }
+
+var SRC = {
+ A:function(){ return D.eq.nombre; },
+ B:function(){ return joinL(D.ints, function(p){
+      return p.ap ? '· '+p.ap+(p.fun?' — '+p.fun:'')+(p.perf?' ('+p.perf+')':'')+(p.hs?' — '+p.hs+' h':'') : ''; })
+      + (D.eq.coord ? '\nCoordinación general: '+D.eq.coord : '')
+      + (D.eq.met ? '\nMetodología: '+D.eq.met : ''); },
+ C:function(){ return D.amb || ESC.amb; },
+ D:function(){ return D.pc; },
+ E:function(){ return lbText(); },
+ F:function(){ return [D.ctx.amb, D.ctx.soc].filter(Boolean).join('\n\n'); },
+ G:function(){ return (D.ctx.pobP? 'Población potencial: '+D.ctx.pobP : '') +
+      (D.ctx.pobO? '\nPoblación objetivo: '+D.ctx.pobO : ''); },
+ H:function(){ return joinL(D.inv, function(a){
+      return a.n ? '· '+a.n+' — posición: '+(a.pos||'?')+' · fuerza: '+(a.fue||'?')+' · importancia: '+(a.imp||'?')+(a.int? ' — '+a.int : '') : ''; }); },
+ I:function(){ return D.ctx.dep; },
+ J:function(){ return D.ctx.norm; },
+ K:function(){ return joinL(D.cau, function(c){ return c.t ? '· [nivel '+(c.lv||1)+'] '+c.t : ''; }); },
+ L:function(){ return joinL(D.efe, function(c){ return c.t ? '· [nivel '+(c.lv||1)+'] '+c.t : ''; }); },
+ M:function(){ return D.arM || ''; },
+ N:function(){ return joinL(D.med, function(c){ return c.t ? '· [nivel '+(c.lv||1)+'] '+c.t : ''; }); },
+ O:function(){ return joinL(D.fin, function(c){ return c.t ? '· '+c.t : ''; }); },
+ P:function(){ return D.obj; },
+ Q:function(){ return D.arQ || ''; },
+ R:function(){ var a = altSel();
+      return (a ? 'Estrategia elegida ('+a.id+'): '+(a.med||'')+'\nActividad: '+(a.act||'')+'\n\n' : '') + (D.altJus||''); },
+ S:function(){ return 'Fin: '+(D.eap.fin||'—')+'\nPropósito: '+(D.eap.prop||'—')+
+      '\nComponente: '+(D.eap.comp||'—')+'\nActividad: '+(D.eap.act||'—'); },
+ T:function(){ var L=[['fin','Fin'],['prop','Propósito'],['comp','Componente'],['act','Actividad']];
+      return L.map(function(r){ var m=D.mml[r[0]];
+        return r[1]+'\n  Resumen: '+(m[0]||'—')+'\n  Indicador: '+(m[1]||'—')+
+               '\n  Medio de verificación: '+(m[2]||'—')+'\n  Supuesto: '+(m[3]||'—'); }).join('\n\n'); },
+ U:function(){ return D.mmlU || ''; },
+ V:function(){ return D.f01.V || ''; }
+};
+var SEC_OF = {A:1,B:1,C:1,D:6,E:7,F:7,G:8,H:8,I:8,J:8,K:9,L:9,M:9,N:10,O:10,P:10,Q:10,R:11,S:12,T:13,U:13,V:15};
+
+/* =============================================================== 15 · FORMULARIO 01 */
+var f01cur = 0;
+addSec({block:5, work:true, t:'Formulario 01 · ítems A a V', build:function(el){
+  head(el,'Bloque 6 · el entregable','El Formulario 01, ítem por ítem',
+    'Cada ítem trae su ayuda de la Guía 01 y el contenido que ya cargaste en las herramientas. Revisá la redacción: lo que quede acá es lo que se entrega.');
+
+  var nav = E('div','f01nav');
+  F01.forEach(function(it,i){
+    var b = E('button','f01b s'+it.s+(i===f01cur?' on':'')+(String(D.f01[it.L]||'').trim().length>3?' done':''), it.L);
+    b.type='button'; b.title = it.t;
+    b.onclick = function(){ f01cur = i; render(cur); };
+    nav.appendChild(b);
+  });
+  el.appendChild(nav);
+
+  var it = F01[f01cur];
+  var r = E('div','row fill');
+
+  /* --- panel de trabajo --- */
+  var work = card(null,null); work.style.flex='1.35'; work.classList.add('scrolly','nofit');
+  var hd = E('div','row'); hd.style.justifyContent='space-between'; hd.style.alignItems='flex-start'; hd.style.gap='10px';
+  var hl = E('div');
+  hl.appendChild(E('span','pill '+(['','v','o','p','a'][it.s]||'v'), it.cap));
+  hl.appendChild(E('h3',null,'<span class="g" style="font-size:20px">'+it.L+'</span> · '+it.t)).style.marginTop='6px';
+  hd.appendChild(hl);
+  work.appendChild(hd);
+
+  var src = SRC[it.L] ? SRC[it.L]() : '';
+  var acts = E('div','wrap'); acts.style.margin='11px 0 8px';
+  if(src && src.trim()){
+    acts.appendChild(btn('⇄ Traer lo cargado en las herramientas','sm', function(){
+      D.f01[it.L] = src; touch(); render(cur); toast('Ítem '+it.L+' cargado.');
+    }));
+  }
+  if(SEC_OF[it.L] != null && SEC_OF[it.L] < SECS.length){
+    acts.appendChild(btn('↗ Ir a la herramienta','ghost sm', function(){ show(SEC_OF[it.L]-1); }));
+  }
+  work.appendChild(acts);
+
+  if(src && src.trim()){
+    var pv = E('div','box info');
+    pv.appendChild(E('div','tiny','<strong>Lo que ya cargaste</strong>'));
+    var p = E('p','sub'); p.style.whiteSpace='pre-wrap'; p.style.marginTop='4px';
+    p.textContent = src;
+    pv.appendChild(p);
+    work.appendChild(pv);
+  }
+
+  var ta = E('textarea','fa tall');
+  ta.style.marginTop = '10px';
+  ta.value = D.f01[it.L] || '';
+  ta.placeholder = 'Redacción final del ítem '+it.L+'…';
+  ta.addEventListener('input', function(){ D.f01[it.L] = ta.value; touch(); });
+  work.appendChild(ta);
+  var cnt = E('div','fcount'); work.appendChild(cnt);
+  var upd = function(){ var n = ta.value.trim().length;
+    cnt.textContent = n + ' caracteres'; cnt.className = 'fcount' + (n>0 ? ' ok' : ''); };
+  ta.addEventListener('input', upd); upd();
+
+  var navb = E('div','wrap'); navb.style.marginTop='10px';
+  navb.appendChild(btn('◀ Ítem anterior','ghost sm', function(){ f01cur = Math.max(0,f01cur-1); render(cur); }));
+  navb.appendChild(btn('Ítem siguiente ▶','ghost sm', function(){ f01cur = Math.min(F01.length-1,f01cur+1); render(cur); }));
+  work.appendChild(navb);
+  r.appendChild(work);
+
+  /* --- ayuda de la Guía --- */
+  var help = E('div','col'); help.style.flex='1';
+  var h1 = card('oro','Qué pide la Guía');
+  h1.appendChild(E('p','sub',it.pide)).style.marginTop='7px';
+  help.appendChild(h1);
+
+  var h2 = card('cel','Cómo se hace');
+  h2.classList.add('scrolly');
+  h2.appendChild(listUl(it.como)).style.marginTop='7px';
+  help.appendChild(h2);
+
+  var h3 = card('coral','Error frecuente');
+  h3.appendChild(E('p','sub',it.error)).style.marginTop='7px';
+  if(it.ej){
+    var b = E('div','box'); b.style.marginTop='9px';
+    b.appendChild(E('div','tiny','<strong>Referencia</strong>'));
+    b.appendChild(E('p','tiny',it.ej)).style.marginTop='3px';
+    h3.appendChild(b);
+  }
+  h3.appendChild(E('p','tiny','📖 '+it.guia)).style.marginTop='9px';
+  help.appendChild(h3);
+  r.appendChild(help);
+  el.appendChild(r);
+}, fields:function(){ return F01.map(function(it){ return D.f01[it.L] || ''; }); }});
+
+/* =============================================================== 16 · AUTOCONTROL */
+addSec({block:5, t:'Autocontrol', build:function(el){
+  head(el,'Bloque 6 · antes de entregar','Autocontrol del Formulario 01',
+    'Doce puntos. Si alguno queda sin tildar, el equipo sabe exactamente qué le falta revisar.');
+  var r = E('div','row fill');
+  var c = card(null,null); c.style.flex='1.25'; c.classList.add('scrolly');
+  var col = E('div','col'); col.style.gap='7px';
+  CK.forEach(function(q,i){
+    var l = E('label','chk'+(D.ck[i]?' on':''));
+    var inp = E('input'); inp.type='checkbox'; inp.checked = !!D.ck[i];
+    inp.onchange = function(){ D.ck[i] = inp.checked; l.classList.toggle('on', inp.checked); touch(); paintCk(); };
+    l.appendChild(inp);
+    l.appendChild(E('span',null,'<strong class="g">'+(i+1)+'.</strong> '+q));
+    col.appendChild(l);
+  });
+  c.appendChild(col);
+  r.appendChild(c);
+
+  var right = E('div','col'); right.style.flex='.8';
+  var st = card('vio','Estado del entregable');
+  var out = E('div'); out.id='ck-out'; out.style.marginTop='9px';
+  st.appendChild(out);
+  right.appendChild(st);
+
+  var miss = card('oro','Qué falta cargar');
+  var mo = E('div'); mo.id='miss-out'; mo.style.marginTop='9px';
+  miss.appendChild(mo);
+  right.appendChild(miss);
+  r.appendChild(right);
+  el.appendChild(r);
+  paintCk();
+}, fields:function(){ return CK.map(function(_,i){ return D.ck[i] ? 'x' : ''; }); }});
+
+function paintCk(){
+  var o = document.getElementById('ck-out'); if(!o) return;
+  var n = CK.filter(function(_,i){ return D.ck[i]; }).length;
+  var p = Math.round(n/CK.length*100);
+  o.innerHTML = '<div class="num">'+n+' <span style="font-size:16px;color:var(--tx3)">de '+CK.length+'</span></div>'+
+    '<div class="meter'+(p<100?' o':'')+'"><i style="width:'+p+'%"></i></div>'+
+    '<p class="tiny" style="margin-top:7px">'+(p===100
+      ? '✓ El equipo revisó los doce puntos. Exportá a Word y entregá.'
+      : 'Faltan '+(CK.length-n)+' puntos por revisar.')+'</p>';
+  var m = document.getElementById('miss-out'); if(!m) return;
+  var falt = F01.filter(function(it){ return String(D.f01[it.L]||'').trim().length < 4; });
+  m.innerHTML = falt.length
+    ? '<p class="tiny">Ítems del F01 todavía vacíos:</p><div class="wrap" style="margin-top:7px">'+
+      falt.map(function(it){ return '<span class="pill c">'+it.L+'</span>'; }).join('')+'</div>'
+    : '<div class="box ok"><p class="tiny">✓ Los 22 ítems tienen contenido cargado.</p></div>';
+}
+
+/* =============================================================== 17 · ENTREGA */
+addSec({block:5, t:'Entrega', build:function(el){
+  head(el,'Bloque 6 · cierre','Llevarse el trabajo',
+    'Nada de esto vive en un servidor: el trabajo está en este navegador. Descargalo siempre antes de cerrar.');
+  var g = E('div','grid g3 fill');
+
+  var c1 = card(null,'Exportar a Word');
+  c1.appendChild(E('p','sub','Genera el Formulario 01 completo con todo lo cargado, listo para abrir en Word, darle formato final y entregar.')).style.marginTop='7px';
+  var b1 = btn('⬇ Descargar el F01 en Word','', expWord); b1.style.marginTop='11px';
+  c1.appendChild(b1);
+  c1.appendChild(E('p','tiny','El archivo se abre en Word, Google Docs o LibreOffice.')).style.marginTop='8px';
+  g.appendChild(c1);
+
+  var c2 = card('oro','Guardar y continuar después');
+  c2.appendChild(E('p','sub','El archivo de avance guarda todo el estado del visor. Sirve para seguir en otra computadora o para pasarle el trabajo a un compañero.')).style.marginTop='7px';
+  var w = E('div','wrap'); w.style.marginTop='11px';
+  w.appendChild(btn('💾 Descargar avance','ghost', expJSON));
+  w.appendChild(btn('📂 Cargar avance','ghost', function(){ document.getElementById('fileIn').click(); }));
+  c2.appendChild(w);
+  c2.appendChild(E('p','tiny','<strong>Ojo:</strong> cargar un avance reemplaza todo lo que haya en pantalla.')).style.marginTop='8px';
+  g.appendChild(c2);
+
+  var c3 = card('vio','Imprimir o guardar en PDF');
+  c3.appendChild(E('p','sub','Vista limpia del formulario con todo lo cargado. En el diálogo de impresión elegí «Guardar como PDF».')).style.marginTop='7px';
+  var b3 = btn('🖨 Imprimir / PDF','ghost', doPrint); b3.style.marginTop='11px';
+  c3.appendChild(b3);
+  g.appendChild(c3);
+  el.appendChild(g);
+
+  var r = E('div','row');
+  var res = card('cel','Resumen del trabajo');
+  res.style.flex='1.2';
+  var o = E('div'); o.style.marginTop='9px';
+  var done = F01.filter(function(it){ return String(D.f01[it.L]||'').trim().length > 3; }).length;
+  var nck = CK.filter(function(_,i){ return D.ck[i]; }).length;
+  o.innerHTML =
+   '<div class="grid g4" style="gap:12px">'+
+   ['<div><div class="num">'+done+'/'+F01.length+'</div><p class="tiny">ítems del F01</p></div>',
+    '<div><div class="num o">'+D.cau.filter(function(c){return c.t.trim();}).length+'</div><p class="tiny">causas</p></div>',
+    '<div><div class="num" style="color:var(--violeta)">'+D.sup.filter(function(s){return s.t.trim();}).length+'</div><p class="tiny">supuestos</p></div>',
+    '<div><div class="num" style="color:var(--celeste)">'+nck+'/'+CK.length+'</div><p class="tiny">autocontrol</p></div>'
+   ].join('')+'</div>';
+  res.appendChild(o);
+  var bx = E('div','box warn'); bx.style.marginTop='12px';
+  bx.appendChild(E('p','sub','<strong>Antes de entregar:</strong> el F01 se defiende oralmente. Si un integrante no puede explicar un párrafo del informe, ese párrafo todavía no está terminado.'));
+  res.appendChild(bx);
+  r.appendChild(res);
+
+  var nx = card('coral','Qué sigue');
+  nx.style.flex='.9';
+  nx.appendChild(listUl([
+    'El F01 se entrega en el aula virtual en la fecha indicada por la cátedra.',
+    'El F02 retoma este mismo escenario: dimensionamiento y estudio técnico.',
+    'La planilla de supuestos se arrastra y se actualiza en las cinco entregas.',
+    'Guardá el archivo de avance: el F02 parte de lo que definiste hoy.'
+  ],'c')).style.marginTop='8px';
+  r.appendChild(nx);
+  el.appendChild(r);
+}});
+</script>
+<script>
+"use strict";
+/* =============================================================== SALIDA */
+function dl(name, mime, content){
+  var b = new Blob([content], {type:mime});
+  var u = URL.createObjectURL(b);
+  var a = document.createElement('a');
+  a.href = u; a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(u); }, 400);
+}
+function slug(t){
+  return String(t||'equipo').normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,40) || 'equipo';
+}
+function nl2br(t){ return esc(t).replace(/\n/g,'<br>'); }
+
+function docBody(){
+  var eq = D.eq.nombre || 'Equipo sin nombre';
+  var h = '<h1>Formulario 01 · FEPAR 2026</h1>'+
+    '<p><strong>Escenario '+ESC.n+' — '+esc(ESC.t)+'</strong><br>'+esc(ESC.lug)+'</p>'+
+    '<p><strong>Equipo:</strong> '+esc(eq)+
+    (D.eq.coord? ' · <strong>Coordinación:</strong> '+esc(D.eq.coord) : '')+
+    '<br><span style="font-size:9pt;color:#5a6b64">Generado el '+nowStr()+' desde el visor del Escenario '+ESC.n+'</span></p>';
+
+  var caps = {}, order = [];
+  F01.forEach(function(it){ if(!caps[it.cap]){ caps[it.cap]=[]; order.push(it.cap); } caps[it.cap].push(it); });
+  order.forEach(function(cp){
+    h += '<h2>'+esc(cp)+'</h2>';
+    caps[cp].forEach(function(it){
+      var v = D.f01[it.L] || (SRC[it.L] ? SRC[it.L]() : '') || '';
+      h += '<div class="p-i"><h3>'+it.L+' · '+esc(it.t)+'</h3>'+
+           '<div class="p-v">'+(String(v).trim()? nl2br(v) : '<em style="color:#8a9a94">— sin completar —</em>')+'</div></div>';
+    });
+  });
+
+  /* anexos tabulares */
+  h += '<h2>Anexo I · Matriz de Marco Lógico</h2>'+
+    '<table><tr><th></th><th>Resumen narrativo</th><th>Indicadores</th><th>Medios de verificación</th><th>Supuestos</th></tr>'+
+    [['fin','Fin'],['prop','Propósito'],['comp','Componente'],['act','Actividad']].map(function(r){
+      var m = D.mml[r[0]];
+      return '<tr><th>'+r[1]+'</th>'+[0,1,2,3].map(function(j){ return '<td>'+nl2br(m[j]||'')+'</td>'; }).join('')+'</tr>';
+    }).join('')+'</table>';
+
+  h += '<h2>Anexo II · Planilla de supuestos</h2>'+
+    '<table><tr><th>N°</th><th>Supuesto</th><th>Justificación</th><th>Probabilidad</th><th>Efecto si no ocurre</th></tr>'+
+    (D.sup.filter(function(s){return String(s.t||'').trim();}).map(function(s,i){
+      return '<tr><td>S'+(i+1)+'</td><td>'+nl2br(s.t)+'</td><td>'+nl2br(s.j)+'</td><td>'+esc(s.pr)+'</td><td>'+nl2br(s.im)+'</td></tr>';
+    }).join('') || '<tr><td colspan="5"><em>Sin supuestos cargados.</em></td></tr>')+'</table>';
+
+  h += '<h2>Anexo III · Análisis de involucrados</h2>'+
+    '<table><tr><th>Actor</th><th>Posición</th><th>Fuerza</th><th>Importancia</th><th>Interés</th></tr>'+
+    (D.inv.filter(function(a){return String(a.n||'').trim();}).map(function(a){
+      return '<tr><td>'+esc(a.n)+'</td><td>'+esc(a.pos)+'</td><td>'+esc(a.fue)+'</td><td>'+esc(a.imp)+'</td><td>'+nl2br(a.int||'')+'</td></tr>';
+    }).join('') || '<tr><td colspan="5"><em>Sin actores cargados.</em></td></tr>')+'</table>';
+
+  h += '<h2>Anexo IV · Alternativas evaluadas</h2>'+
+    '<table><tr><th>#</th><th>Medio</th><th>Actividad</th><th>A favor</th><th>En contra</th></tr>'+
+    (D.alt.filter(function(a){return String(a.med||'').trim()||String(a.act||'').trim();}).map(function(a,i){
+      var id = a.id || String.fromCharCode(65+i);
+      return '<tr><td>'+esc(id)+(D.altSel===id?' ✔':'')+'</td><td>'+nl2br(a.med)+'</td><td>'+nl2br(a.act)+
+             '</td><td>'+nl2br(a.ven)+'</td><td>'+nl2br(a.des)+'</td></tr>';
+    }).join('') || '<tr><td colspan="5"><em>Sin alternativas cargadas.</em></td></tr>')+'</table>';
+
+  var ckn = CK.filter(function(_,i){ return D.ck[i]; }).length;
+  h += '<h2>Anexo V · Autocontrol</h2><p>'+ckn+' de '+CK.length+' puntos verificados por el equipo.</p><table>'+
+    CK.map(function(q,i){ return '<tr><td style="width:22px">'+(D.ck[i]?'✔':'—')+'</td><td>'+esc(q)+'</td></tr>'; }).join('')+
+    '</table>';
+  return h;
+}
+
+function expWord(){
+  var css = 'body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#111;line-height:1.45}'+
+    'h1{font-size:19pt;color:#0e5c3a;margin:0 0 4pt}h2{font-size:13.5pt;color:#0e5c3a;margin:16pt 0 4pt;'+
+    'border-bottom:1px solid #cfd8d4;padding-bottom:3pt}h3{font-size:11.5pt;margin:11pt 0 2pt}'+
+    '.p-v{white-space:normal;border-left:2px solid #cfd8d4;padding-left:9pt;margin-top:2pt}'+
+    'table{border-collapse:collapse;width:100%;font-size:10pt;margin-top:6pt}'+
+    'th,td{border:1px solid #b9c6c1;padding:5pt;text-align:left;vertical-align:top}th{background:#eef4f1;color:#0e5c3a}';
+  var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'+
+    '<head><meta charset="utf-8"><title>F01 · Escenario '+ESC.n+'</title>'+
+    '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View></w:WordDocument></xml><![endif]-->'+
+    '<style>@page{size:A4;margin:2cm}'+css+'</style></head><body>'+docBody()+'</body></html>';
+  dl('F01_E'+ESC.n+'_'+slug(D.eq.nombre)+'.doc', 'application/msword', '﻿'+html);
+  toast('Formulario 01 descargado en Word.');
+}
+function expJSON(){
+  D.ts = nowStr();
+  dl('avance_F01_E'+ESC.n+'_'+slug(D.eq.nombre)+'.json', 'application/json', JSON.stringify(D, null, 1));
+  toast('Archivo de avance descargado.');
+}
+document.getElementById('fileIn').addEventListener('change', function(ev){
+  var f = ev.target.files[0]; if(!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try{
+      var o = JSON.parse(rd.result);
+      if(o.esc && o.esc !== ESC.n){
+        if(!confirm('Ese archivo de avance es del Escenario '+o.esc+' y este visor es el '+ESC.n+'. ¿Cargarlo igual?')) return;
+      }
+      merge(o); D.esc = ESC.n;
+      touch(); railBuild(); show(cur);
+      toast('Avance cargado' + (o.ts ? ' · guardado el '+o.ts : '') + '.');
+    }catch(e){ toast('No se pudo leer ese archivo.'); }
+  };
+  rd.readAsText(f);
+  ev.target.value = '';
+});
+function doPrint(){
+  document.getElementById('print').innerHTML = docBody();
+  setTimeout(function(){ window.print(); }, 60);
+}
+document.getElementById('b-word').onclick = expWord;
+document.getElementById('b-save').onclick = expJSON;
+document.getElementById('b-load').onclick = function(){ document.getElementById('fileIn').click(); };
+document.getElementById('b-print').onclick = doPrint;
+
+/* =============================================================== AYUDA */
+document.getElementById('help-x').onclick = function(){ document.getElementById('help').classList.remove('on'); };
+
+/* =============================================================== ARRANQUE */
+(function boot(){
+  var had = loadLocal();
+  buildAll();
+  var h = parseInt((location.hash||'').replace('#',''), 10);
+  show(h >= 1 && h <= SECS.length ? h-1 : 0);
+  paintProgress();
+  if(had) toast('Retomamos donde habías dejado' + (D.ts ? ' ('+D.ts+')' : '') + '.');
+})();
+</script>
+</body>
+</html>

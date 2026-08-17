@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FEPAR 2026 · Visores de escenario — Formulario 01</title>
+<meta name="description" content="Los seis escenarios de FEPAR 2026, cada uno con su visor de trabajo para desarrollar el Formulario 01.">
+<style>
+:root{--bg:#06110d;--panel:#0e2019;--panel2:#0b1a15;--line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.19);
+ --tx:#eaf5f0;--tx2:#b9cfc6;--tx3:#7f9a90;--verde:#00a05a;--verde-l:#22c97f;--aqua:#12b5a0;--oro:#eda100;
+ --ff:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--ff);line-height:1.55;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:radial-gradient(1100px 700px at 12% -6%,rgba(0,160,90,.18),transparent 60%),
+ radial-gradient(900px 560px at 94% 4%,rgba(237,161,0,.12),transparent 60%)}
+.w{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:clamp(26px,5vw,64px) clamp(18px,4vw,42px) 70px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.17em;text-transform:uppercase;
+ color:var(--verde-l);font-weight:700}
+.eyebrow::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--verde),transparent);border-radius:2px}
+h1{font-size:clamp(30px,5vw,58px);line-height:1.02;letter-spacing:-.03em;margin:12px 0 0;font-weight:800}
+.grad{background:linear-gradient(100deg,var(--verde-l),var(--aqua) 45%,var(--oro));
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(15px,1.3vw,19px);color:var(--tx2);max-width:76ch;margin-top:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;margin-top:34px}
+.sc{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit;position:relative;
+ background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);
+ border-radius:18px;padding:20px 20px 18px;transition:.22s cubic-bezier(.22,.9,.28,1);overflow:hidden}
+.sc::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--verde);opacity:.85}
+.sc:nth-child(2)::before{background:var(--oro)} .sc:nth-child(3)::before{background:#7b6bd6}
+.sc:nth-child(4)::before{background:#39b6d8} .sc:nth-child(5)::before{background:#ef6a4b}
+.sc:nth-child(6)::before{background:var(--aqua)}
+.sc:hover{transform:translateY(-5px);border-color:var(--verde);box-shadow:0 24px 60px -28px rgba(0,0,0,.85)}
+.sc .n{font-size:32px;font-weight:800;line-height:1;color:var(--verde-l)}
+.sc:nth-child(2) .n{color:var(--oro)} .sc:nth-child(3) .n{color:#7b6bd6}
+.sc:nth-child(4) .n{color:#39b6d8} .sc:nth-child(5) .n{color:#ef6a4b} .sc:nth-child(6) .n{color:var(--aqua)}
+.sc h3{font-size:16.5px;margin:0;line-height:1.3;font-weight:700}
+.sc .lug{font-size:12px;color:var(--tx3);margin:0}
+.sc .d{font-size:12.5px;color:var(--tx2);margin:4px 0 0;line-height:1.5;flex:1}
+.tg{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{border:1px solid var(--line2);border-radius:999px;padding:3px 10px;font-size:11px;color:var(--tx3)}
+.go{font-size:12.5px;color:var(--verde-l);font-weight:650;margin-top:10px}
+.info{margin-top:38px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.box{border:1px solid var(--line);border-radius:14px;padding:15px 17px;background:rgba(255,255,255,.035)}
+.box h4{margin:0 0 6px;font-size:13px;color:var(--verde-l)}
+.box p{margin:0;font-size:12.5px;color:var(--tx2);line-height:1.5}
+.ft{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--tx3)}
+a.lk{color:var(--verde-l)}
+@media (max-width:560px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="w">
+  <span class="eyebrow">FEPAR 2026 · Ingeniería en Recursos Naturales y Medio Ambiente · UNSa</span>
+  <h1>Visores de escenario<br><span class="grad">para armar el Formulario 01</span></h1>
+  <p class="lead">Cada equipo abre el visor de su escenario. Adentro encuentra el caso completo y las herramientas
+  para trabajarlo: los cinco criterios del problema, el constructor de la línea de base, los dos árboles,
+  la selección de estrategia, la EAP, la Matriz de Marco Lógico, la planilla de supuestos y los
+  veintidós ítems del F01 con la ayuda de la Guía 01. Al final, se exporta a Word.</p>
+
+  <div class="grid"><a class="sc" href="e01/"><div class="n">01</div><h3>Producción de esponjas vegetales (Luffa cylindrica)</h3><p class="lug">Localidades urbanas y periurbanas de la provincia de Salta</p><p class="d">Productos de higiene y limpieza fabricados con plásticos de un solo uso, frente a una demanda creciente de alternativas biodegradables cuya oferta local es discontinua.</p><div class="tg"><span class="pill">Urbano</span><span class="pill">Producción</span><span class="pill">Economía circular</span></div><span class="go">Abrir el visor →</span></a><a class="sc" href="e02/"><div class="n">02</div><h3>Restauración de sitios contaminados con hidrocarburos</h3><p class="lug">Área Puesto Guardián, departamento Orán</p><p class="d">Dos piletas de contingencia fuera de servicio desde el incidente del pozo MdT 14 (2007). La autoridad exige el cierre y la restauración; el propietario quiere ampliar la superficie agrícola.</p><div class="tg"><span class="pill">Rural</span><span class="pill">Restauración</span><span class="pill">Residuos</span></div><span class="go">Abrir el visor →</span></a><a class="sc" href="e03/"><div class="n">03</div><h3>Producción de especies forestales nativas</h3><p class="lug">Distintas localidades de la provincia de Salta</p><p class="d">Las campañas de forestación urbana no consiguen plantines nativos en tiempo, cantidad y calidad adecuados, mientras crece la demanda institucional y social de infraestructura verde.</p><div class="tg"><span class="pill">Urbano</span><span class="pill">Producción</span><span class="pill">Restauración</span></div><span class="go">Abrir el visor →</span></a><a class="sc" href="e06/"><div class="n">06</div><h3>Aprovechamiento del agua de lluvia en edificios e instituciones</h3><p class="lug">Departamento Capital · el equipo selecciona un edificio o institución</p><p class="d">Se consume agua potable en usos que no la requieren, mientras la escorrentía de cubiertas se conduce al desagüe pluvial sin aprovechamiento.</p><div class="tg"><span class="pill">Urbano</span><span class="pill">Agua</span><span class="pill">Ecoeficiencia</span></div><span class="go">Abrir el visor →</span></a><a class="sc" href="e09/"><div class="n">09</div><h3>Ochocientas hectáreas fiscales en el borde este de Salta</h3><p class="lug">Departamento Capital · predio fiscal de ~800 ha sobre la RN 9, a 6 km del centro</p><p class="d">Deterioro simultáneo de las condiciones de habitabilidad de la población del borde este y de la base natural que la sostiene, sobre el último remanente continuo de vegetación nativa del sector.</p><div class="tg"><span class="pill">Periurbano</span><span class="pill">Espacios públicos</span><span class="pill">Restauración</span><span class="pill">Agua</span></div><span class="go">Abrir el visor →</span></a><a class="sc" href="e10/"><div class="n">10</div><h3>Gestión integral de residuos en un establecimiento porcino</h3><p class="lug">Departamento Rosario de Lerma · predio rural de ~120 ha del Valle de Lerma</p><p class="d">Tres corrientes de residuos —líquida, sólida y gaseosa— acopladas entre sí, con observaciones de la autoridad en el expediente de renovación del certificado de aptitud ambiental.</p><div class="tg"><span class="pill">Rural</span><span class="pill">Residuos</span><span class="pill">Agua</span><span class="pill">Producción</span></div><span class="go">Abrir el visor →</span></a></div>
+
+  <div class="info">
+    <div class="box"><h4>El avance se guarda solo</h4>
+      <p>Mientras trabajan, el visor guarda todo en ese navegador. Para seguir en otra computadora o pasarle
+      el trabajo a un compañero, usen <strong>💾 Avance</strong> y después <strong>📂 Cargar</strong>.</p></div>
+    <div class="box"><h4>Se entrega en Word</h4>
+      <p>El botón <strong>⬇ Word</strong> arma el Formulario 01 completo con todo lo cargado, más los anexos
+      de MML, supuestos, involucrados y alternativas. Se termina de editar en Word y se entrega.</p></div>
+    <div class="box"><h4>Funciona sin conexión</h4>
+      <p>Cada visor es un archivo único, sin dependencias. Una vez abierto, sigue funcionando aunque se caiga
+      internet. Anda en computadora, tablet y celular.</p></div>
+  </div>
+
+  <p class="ft">Cátedra de Formulación y Evaluación de Proyectos Ambientales y de los Recursos Naturales ·
+  Los escenarios provienen del documento <span style="font-family:ui-monospace,monospace">TFP-2026 · Casos de estudio · R01</span>
+  y fueron elaborados con fines exclusivamente académicos. ·
+  <a class="lk" href="../taller01/">Volver al Taller 01</a></p>
+</div>
+</body>
+</html>
