@@ -1057,6 +1057,67 @@ html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
 
 .cvw.fill{min-height:0}
 
+/* ===================== presentación del caso ===================== */
+.cq4{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+@media(max-width:1100px){ .cq4{grid-template-columns:1fr} }
+.cqi{display:flex;gap:11px;align-items:flex-start}
+.cqn{flex:none;width:26px;height:26px;border-radius:9px;display:grid;place-items:center;
+  font-family:var(--fh);font-weight:800;font-size:13px;color:var(--verde-l);
+  background:rgba(0,160,90,.14);border:1px solid rgba(0,160,90,.38)}
+.cqn.o{color:var(--oro);background:rgba(237,161,0,.13);border-color:rgba(237,161,0,.38)}
+.cqn.a{color:var(--celeste);background:rgba(57,182,216,.13);border-color:rgba(57,182,216,.38)}
+.cqn.c{color:var(--coral);background:rgba(239,106,75,.13);border-color:rgba(239,106,75,.38)}
+.cqi h4{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--tx);margin:2px 0 4px}
+.cqi p{font-size:12.8px;line-height:1.55;color:var(--tx2);margin:0}
+
+/* ===================== panel de consignas ===================== */
+#cons{position:fixed;inset:0;z-index:59;background:rgba(4,12,9,.95);backdrop-filter:blur(12px);
+  display:none;padding:4vh 4vw 90px;overflow:auto}
+html[data-theme="light"] #cons{background:rgba(233,240,236,.96)}
+#cons.on{display:block;animation:in .24s ease forwards}
+.cons-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:12px;align-items:start}
+.citem{border:1px solid var(--line2);border-radius:14px;padding:15px 17px;background:rgba(255,255,255,.035)}
+html[data-theme="light"] .citem{background:rgba(255,255,255,.72)}
+.citem.off{display:none}
+.citem>h4{font-family:var(--fh);font-size:14.5px;font-weight:700;color:var(--tx);
+  margin:0 0 4px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.citem .cid{flex:none;font-family:var(--fh);font-weight:800;font-size:12px;letter-spacing:.04em;
+  padding:3px 9px;border-radius:8px;border:1px solid currentColor;opacity:.95}
+.citem .ctx{font-size:13.2px;line-height:1.6;color:var(--tx2);margin:9px 0 0;
+  border-left:2px solid var(--line2);padding-left:11px}
+.citem .ctx em{color:var(--tx);font-style:normal;font-weight:650}
+.citem dl{display:grid;grid-template-columns:auto 1fr;gap:5px 11px;margin:11px 0 0;font-size:12.2px}
+.citem dt{color:var(--tx3);text-transform:uppercase;letter-spacing:.07em;font-size:10.5px;
+  font-weight:700;padding-top:2px;white-space:nowrap}
+.citem dd{margin:0;color:var(--tx2);line-height:1.5}
+.citem dd b{color:var(--verde-l);font-weight:700}
+.ccat{grid-column:1/-1;font-family:var(--fh);font-size:12px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--tx3);margin:12px 0 -2px;display:flex;align-items:center;gap:11px}
+.ccat:first-child{margin-top:0}
+.ccat:after{content:'';flex:1;height:1px;background:var(--line2)}
+.ccat.off{display:none}
+.cons-pre{grid-column:1/-1;border:1px dashed var(--line2);border-radius:12px;padding:12px 15px;
+  background:rgba(255,255,255,.025);font-size:12.6px;line-height:1.6;color:var(--tx2)}
+html[data-theme="light"] .cons-pre{background:rgba(255,255,255,.6)}
+.cons-pre strong{color:var(--tx)}
+
+/* ===================== barra inferior con el botón de consignas ===================== */
+#hud{gap:6px;padding:0 clamp(12px,1.4vw,22px)}
+#hud .hud-b{padding:7px 10px;font-size:11.6px;gap:6px}
+#hud #sec-label{display:none}
+#hud #zwrap{gap:4px}
+/* franja intermedia: se conservan los rotulos pero todo se comprime */
+@media(max-width:1700px){
+  #hud{gap:4px;padding:0 10px}
+  #hud .hud-b{padding:6px 8px;font-size:11px;gap:5px}
+}
+/* pantallas angostas: quedan los iconos y el rotulo vive en el title */
+@media(max-width:1500px){
+  #hud{gap:6px;padding:0 clamp(10px,1.2vw,20px)}
+  #hud .hud-b .hudl{display:none}
+  #hud .hud-b{padding:7px 11px;font-size:13px}
+}
+
 </style>
 </head>
 <body>
@@ -1082,17 +1143,92 @@ html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
     </p>
     <div class="wrap" style="margin-top:4px">
       <span class="pill v">Primer Parcial · TPO obligatorio</span>
-      <span class="pill o">17 actividades en vivo · 43 pantallas</span>
+      <span class="pill o">17 actividades en vivo · 44 pantallas</span>
       <span class="pill p">Tasa 15 % · horizonte 10 años</span>
       <span class="pill a">2 alternativas · 12 respuestas</span>
     </div>
     <div class="tiny" style="margin-top:12px">
       <span class="kbd">→</span> <span class="kbd">←</span> navegar · <span class="kbd">I</span> índice lateral ·
-      <span class="kbd">G</span> conceptos · <span class="kbd">F</span> fórmulas · <span class="kbd">P</span> preguntas ·
+      <span class="kbd">Q</span> consignas · <span class="kbd">G</span> conceptos · <span class="kbd">F</span> fórmulas · <span class="kbd">P</span> preguntas ·
       <span class="kbd">V</span> votar · <span class="kbd">R</span> sortear equipo · <span class="kbd">K</span> resultados ·
       <span class="kbd">M</span> marcador · <span class="kbd">C</span> cronómetro · <span class="kbd">T</span> tema ·
       <span class="kbd">+</span> <span class="kbd">−</span> <span class="kbd">0</span> zoom ·
       <span class="kbd">⤢</span> abre cualquier panel a pantalla completa
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PRESENTACIÓN DEL EJERCICIO ============================== -->
+<section class="slide" data-sec="Apertura" data-title="De qué se trata el EP_16">
+  <div class="row" style="justify-content:space-between;align-items:flex-end;gap:14px">
+    <div><span class="eyebrow">El caso en dos minutos · antes de cualquier cuenta</span>
+      <h2>Un cultivo andino, un comprador único y una sola decisión</h2></div>
+    <div class="wrap">
+      <span class="pill v">La Caldera · Salta</span>
+      <span class="pill o">20 hectáreas</span>
+      <span class="pill a">10 años</span>
+      <span class="pill c">Tasa 15 %</span>
+    </div>
+  </div>
+  <p class="lead">Si nunca leíste el enunciado, esta pantalla alcanza para entender de qué va. Lo que sigue en el visor es <em class="k">cómo se plantea</em> cada una de las doce respuestas.</p>
+
+  <div class="row fill" style="gap:15px;align-items:stretch;min-height:0">
+    <div class="col sc" style="flex:1.25;gap:11px">
+      <div class="card"><div class="tag"></div>
+        <div class="cq4">
+          <div class="cqi">
+            <span class="cqn">1</span>
+            <div><h4>El contexto</h4>
+              <p>La Provincia y el INTA promueven <strong>cultivos andinos no tradicionales</strong>. De esas reuniones sale la <strong>Ley de Fomento a la Producción y Comercialización de Cultivos Andinos</strong>. En ese marco, un emprendedor de <strong>La Caldera</strong> encara un estudio productivo y de mercado sobre el <strong>yacón</strong>.</p></div>
+          </div>
+          <div class="cqi">
+            <span class="cqn o">2</span>
+            <div><h4>El producto y para quién es</h4>
+              <p>El yacón es un tubérculo que <strong>aumenta la producción de insulina del páncreas</strong> y baja el azúcar en sangre. El estudio de mercado detecta el nicho: la <strong>Asociación de Pacientes con Diabetes de Salta (APADISA)</strong>, que no consigue una oferta estable y quiere comprar <strong>toda</strong> la producción.</p></div>
+          </div>
+          <div class="cqi">
+            <span class="cqn a">3</span>
+            <div><h4>El acuerdo, que es lo que define el caso</h4>
+              <p>Se firma un <strong>Convenio de Cooperación mutua</strong>: APADISA queda como <strong>comprador único</strong>. Eso saca de la mesa el riesgo de no poder vender —el estudio de mercado ya no tiene que estimar demanda— y lo concentra todo en un solo punto: <strong>que el convenio siga vigente</strong>.</p></div>
+          </div>
+          <div class="cqi">
+            <span class="cqn c">4</span>
+            <div><h4>Qué hay que decidir</h4>
+              <p>La escala está fijada por la superficie y por lo que APADISA puede absorber. Lo que <strong>no</strong> está decidido es la <strong>forma de comercializar</strong>: vender todo <strong>en fresco</strong>, o incorporar <strong>diez secaderos solares</strong> del INENCO y vender <strong>deshidratado</strong>, con la inversión y los costos que eso agrega.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="gap:12px;align-items:stretch">
+        <div class="card oro" style="flex:1"><div class="tag"></div>
+          <h3 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)">Opción 1 · vender en fresco</h3>
+          <p class="sub" style="margin-top:7px">432.000 kg de batata a 0,60 USD y 53.820 kg de hoja fresca a 1,50. Sin secaderos: <strong>menos inversión y menos costo operativo</strong>.</p>
+          <div class="kpi" style="margin-top:10px">
+            <div class="kv"><div class="kl">Inversión</div><div class="kn">539.820</div><div class="ks">USD</div></div>
+            <div class="kv"><div class="kl">Ingreso bruto</div><div class="kn">339.930</div><div class="ks">USD por año</div></div>
+          </div></div>
+        <div class="card aqua" style="flex:1"><div class="tag"></div>
+          <h3 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)">Opción 2 · agregar valor con el deshidratado</h3>
+          <p class="sub" style="margin-top:7px">345.600 kg de batata deshidratada a 1,20 USD y 26.910 kg de hoja seca a 2,00. Con secaderos: <strong>140.000 USD más de inversión</strong>.</p>
+          <div class="kpi" style="margin-top:10px">
+            <div class="kv"><div class="kl">Inversión</div><div class="kn">679.820</div><div class="ks">USD</div></div>
+            <div class="kv"><div class="kl">Ingreso bruto</div><div class="kn">468.540</div><div class="ks">USD por año</div></div>
+          </div></div>
+      </div>
+    </div>
+
+    <div class="col sc" style="flex:.85;gap:11px">
+      <div class="card"><div class="tag"></div><h3>Qué te van a pedir</h3>
+        <p class="sub" style="margin-top:6px">Doce respuestas repartidas en cuatro bloques. El botón <span class="kbd">📋 Consignas</span> de la barra de abajo —o la tecla <span class="kbd">Q</span>— abre el texto completo en cualquier momento.</p>
+        <div class="col" style="gap:7px;margin-top:10px">
+          <div class="box"><p class="sub"><strong style="color:var(--verde-l)">a · Marco lógico</strong> — Cuál es el problema que da origen al proyecto, cuál es el propósito (con número), cuáles los fines, qué supuesto y qué indicadores. <em>No lleva una sola cuenta.</em></p></div>
+          <div class="box"><p class="sub"><strong style="color:var(--celeste)">b · La decisión</strong> — Cuál de las dos opciones conviene al 15 %, si cambiaría al 7 %, y cuánto vale el proyecto expresado como renta anual al 6 %.</p></div>
+          <div class="box"><p class="sub"><strong style="color:var(--oro)">c · El financiamiento</strong> — Si se pide un crédito por toda la inversión al 6 %, ¿conviene devolverlo en diez cuotas o en un solo pago al final? ¿Y si sólo se puede pagar el 70 % de la cuota?</p></div>
+          <div class="box"><p class="sub"><strong style="color:var(--coral)">d · Producción y previsión</strong> — Cuánto crece el ingreso si se fertiliza, cuánto hay que apartar por año para reponer los secaderos, y qué precio por kilo cubriría exactamente los costos.</p></div>
+        </div>
+      </div>
+      <div class="mt"><div class="mtt">La pregunta que ordena todo el ejercicio</div>
+        <p>¿Las dos alternativas entregan <strong>el mismo beneficio</strong>? Acá la respuesta es <strong>no</strong> —339.930 contra 468.540— y esa diferencia es justamente lo que se está decidiendo. Por eso el instrumento es el <strong>VAN</strong> y no el valor actualizado de costos. Si te llevás una sola cosa de esta pantalla, que sea ésta.</p></div>
+      <div class="box ok"><p class="sub"><strong>Cómo recorrer el visor.</strong> Con <span class="kbd">→</span> y <span class="kbd">←</span>, o saltando por el temario de la izquierda. Las pantallas marcadas con <strong>✋</strong> son actividades para hacer en clase. <span class="kbd">Q</span> abre las consignas, <span class="kbd">G</span> los conceptos y <span class="kbd">F</span> las fórmulas, sin perder dónde estabas.</p></div>
     </div>
   </div>
 </section>
@@ -2710,14 +2846,15 @@ html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
 <div id="hud">
   <button class="hud-b" id="b-prev">◀</button>
   <button class="hud-b" id="b-next">▶</button>
-  <button class="hud-b" id="b-rail" title="Índice lateral (I)">▤ Temario</button>
-  <button class="hud-b" id="b-ov">☰ Índice</button>
-  <button class="hud-b" id="b-ask" title="Preguntas para el aula (P)">🙋 Preguntar</button>
-  <button class="hud-b" id="b-glos" title="Conceptos y glosario (G)">📖 Conceptos</button>
-  <button class="hud-b" id="b-formu" title="Formulario de cálculo (F)">∑ Fórmulas</button>
-  <button class="hud-b" id="b-vote" title="Votación a mano alzada (V)">🗳 Votar</button>
-  <button class="hud-b" id="b-score" title="Marcador de equipos (M)">🏆 Equipos</button>
-  <button class="hud-b" id="b-res" title="Resultados en vivo (K)">📊 Resultados</button>
+  <button class="hud-b" id="b-rail" title="Índice lateral (I)">▤ <span class="hudl">Temario</span></button>
+  <button class="hud-b" id="b-ov">☰ <span class="hudl">Índice</span></button>
+  <button class="hud-b" id="b-cons" title="Consignas del ejercicio (Q)">📋 <span class="hudl">Consignas</span></button>
+  <button class="hud-b" id="b-ask" title="Preguntas para el aula (P)">🙋 <span class="hudl">Preguntar</span></button>
+  <button class="hud-b" id="b-glos" title="Conceptos y glosario (G)">📖 <span class="hudl">Conceptos</span></button>
+  <button class="hud-b" id="b-formu" title="Formulario de cálculo (F)">∑ <span class="hudl">Fórmulas</span></button>
+  <button class="hud-b" id="b-vote" title="Votación a mano alzada (V)">🗳 <span class="hudl">Votar</span></button>
+  <button class="hud-b" id="b-score" title="Marcador de equipos (M)">🏆 <span class="hudl">Equipos</span></button>
+  <button class="hud-b" id="b-res" title="Resultados en vivo (K)">📊 <span class="hudl">Resultados</span></button>
   <span id="sec-label">Apertura</span>
   <span id="clock" title="Cronómetro (C)">20:00</span>
   <button class="hud-b" id="b-clk">▶</button>
@@ -2726,7 +2863,7 @@ html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
     <span id="zlabel">100%</span>
     <button class="hud-b zb" id="b-zi">+</button>
   </span>
-  <button class="hud-b" id="b-th">◐ Tema</button>
+  <button class="hud-b" id="b-th">◐ <span class="hudl">Tema</span></button>
   <span id="counter">1 / 28</span>
 </div>
 
@@ -2836,6 +2973,18 @@ html[data-theme="light"] .mix.ok{background:rgba(6,40,30,.10)}
   <div class="pcard"><div class="L">C</div><div class="S">FEPAR 2026 · EP_16 · tarjeta de votación</div></div>
   <div class="pcard"><div class="L">D</div><div class="S">FEPAR 2026 · EP_16 · tarjeta de votación</div></div>
 </div>
+
+<!-- ===== CONSIGNAS DEL EJERCICIO ===== -->
+<div id="cons"><div style="max-width:1500px;margin:0 auto">
+  <div class="pane-h">
+    <div><span class="eyebrow">Cuestiones para resolver · texto del GTP 2026</span>
+      <h2 style="margin-top:8px">Consignas del EP_16</h2></div>
+    <div class="row" style="gap:9px;align-items:center">
+      <input class="busca" id="cons-q" placeholder="Buscar consigna, instrumento o resultado…">
+      <button class="btn ghost" id="cons-x">Cerrar ✕</button></div>
+  </div>
+  <div class="cons-g" id="cons-c"></div>
+</div></div>
 
 <!-- ===== CONCEPTOS Y GLOSARIO ===== -->
 <div id="glos"><div style="max-width:1500px;margin:0 auto">
@@ -4330,6 +4479,7 @@ function ckReset(){ ckBuild(); }
 
 /* ==================================================================== PREGUNTAS PARA EL AULA */
 var ASK = {
+ 'De qué se trata el EP_16':['Si el convenio con APADISA elimina el riesgo de no poder vender, ¿qué riesgo queda?','Antes de calcular nada: ¿por qué acá no sirve comparar por el menor costo?'],
  'Los seis movimientos del planteo':['¿Cuál de los seis movimientos les parece que se saltean más seguido?','En este ejercicio, ¿cuál es el movimiento que más trabajo da: separar el dato, o nombrar el instrumento?'],
  'Las doce consignas de un vistazo':['¿Cuáles de estas doce respuestas no llevan ninguna cuenta?','Si tuvieran que empezar por una consigna, ¿por cuál empezarían y por qué?'],
  'Consigna a · texto del GTP':['¿Por qué «falta un productor de yacón» no puede ser el problema central?','¿Qué diferencia hay entre el indicador de eficacia y el indicador de las acciones?'],
@@ -4656,8 +4806,127 @@ function openForm(){ document.getElementById('formu').classList.add('on');
   setTimeout(function(){ document.getElementById('formu-q').focus(); }, 120); }
 function closeForm(){ document.getElementById('formu').classList.remove('on'); }
 
+/* ==================================================================== CONSIGNAS */
+var CPRE = {
+ 'a \u00b7 Enfoque de Marco L\u00f3gico':'Encabezado del GTP: <strong>\u00abUtilizando el EML;\u00bb</strong>. Las tres consignas del bloque se responden con el \u00e1rbol de problemas y el \u00e1rbol de objetivos. <strong>No llevan una sola cuenta.</strong>',
+ 'b \u00b7 La decisi\u00f3n de inversi\u00f3n':'Encabezado del GTP: <strong>\u00abDesde una perspectiva financiera y considerando las siguientes opciones: 1. Vender todo lo producido en fresco \u00b7 2. Vender con el agregado de valor del deshidratado</strong> con las inversiones y costos operativos adicionales para el secado solar, analice,\u00bb. Y en el cuerpo del escenario: <strong>horizonte 10 a\u00f1os, tasa de descuento 15 %</strong>.',
+ 'c \u00b7 El financiamiento':'Encabezado del GTP: <strong>\u00abConsiderando los costos de inversi\u00f3n de la mejor alternativa,\u00bb</strong>. Es decir, sobre los <strong>679.820 USD</strong> de la opci\u00f3n deshidratada, que es la que gan\u00f3 en b1.',
+ 'd \u00b7 Producci\u00f3n, previsi\u00f3n y precio':'Encabezado del GTP: <strong>\u00abConsiderando la producci\u00f3n y venta del yac\u00f3n deshidratado y hojas secas.\u00bb</strong>. Tres consignas independientes entre s\u00ed, cada una con su propia tasa.'
+};
+var CONS = [
+ ['a1','a \u00b7 Enfoque de Marco L\u00f3gico','El problema central','var(--verde-l)',
+  '\u00bfCu\u00e1l considera que es el problema central que da origen al proyecto de inversi\u00f3n?',
+  'Enfoque de Marco L\u00f3gico \u00b7 \u00e1rbol de problemas',
+  'La poblaci\u00f3n diab\u00e9tica de la provincia de Salta <b>no accede de manera continua</b> a productos de yac\u00f3n. Se escribe como estado negativo existente, no como falta de soluci\u00f3n.',
+  'C\u00f3mo se resuelve la consigna a \u00b7 problema'],
+ ['a2','a \u00b7 Enfoque de Marco L\u00f3gico','Prop\u00f3sito, fines y supuesto','var(--verde-l)',
+  'Defina el prop\u00f3sito (<em>cuantifique</em>) y el/los fines del proyecto. Defina un supuesto para el prop\u00f3sito.',
+  '\u00c1rbol de objetivos y verificaci\u00f3n de las tres condiciones del supuesto',
+  'Prop\u00f3sito: abastecer a APADISA con <b>345.600 kg</b> de batata deshidratada y <b>26.910 kg</b> de hoja seca por a\u00f1o. Dos fines \u2014sanitario y productivo\u2014 y el supuesto cr\u00edtico: <b>APADISA mantiene vigente el Convenio</b>.',
+  'C\u00f3mo se resuelve la consigna a \u00b7 prop\u00f3sito'],
+ ['a3','a \u00b7 Enfoque de Marco L\u00f3gico','Indicadores','var(--verde-l)',
+  '\u00bfQu\u00e9 indicador utilizar\u00eda para evaluar la <em>eficacia</em> del proyecto? \u00bfCu\u00e1l es el <em>indicador de las acciones</em>?',
+  'Indicadores ex\u00f3genos (meta y fines) y end\u00f3genos (actividades) de la matriz',
+  'Eficacia: el <b>100 % de la demanda anual de APADISA</b> abastecida durante los diez a\u00f1os, verificado en remitos y actas. Acciones: <b>avance f\u00edsico y presupuestario</b> \u2014hect\u00e1reas implantadas, secaderos instalados, jornales ejecutados sobre los programados.',
+  'C\u00f3mo se resuelve la consigna a \u00b7 indicadores'],
+
+ ['b1','b \u00b7 La decisi\u00f3n de inversi\u00f3n','Qu\u00e9 conviene','var(--celeste)',
+  '\u00bfQu\u00e9 es lo que le conviene al empresario considerando el <em>costo de oportunidad del inversor</em>?',
+  'VAN al 15 % y an\u00e1lisis incremental \u00b7 <b>no</b> corresponde el VAC',
+  'Gana el <b>deshidratado</b>: VAN <b>1.451.136,11</b> contra 971.489,32 del fresco. Diferencia de <b>479.646,79 USD</b> (49,4 %). El proyecto incremental \u2014140.000 de sobreinversi\u00f3n contra 123.465,90 de margen anual\u2014 se repaga en 13,6 meses.',
+  'El resultado y su lectura'],
+ ['b2','b \u00b7 La decisi\u00f3n de inversi\u00f3n','\u00bfCambia al 7 %?','var(--celeste)',
+  '\u00bfCambiar\u00eda su decisi\u00f3n si la TEA que representa el costo de oportunidad del inversor es del <em>7 %</em>?',
+  'An\u00e1lisis de sensibilidad unidimensional sobre la tasa',
+  '<b>No cambia</b>: 2.302.374,46 contra 1.575.201,64, y la ventaja se <b>amplía</b> a 727.172,82 USD. El deshidratado domina en las dos dimensiones a la vez, de modo que las curvas no se cruzan y <b>no existe tasa de indiferencia</b>.',
+  '\u270b Sensibilidad: \u00bfcambia al 7 %?'],
+ ['b3','b \u00b7 La decisi\u00f3n de inversi\u00f3n','Valor equivalente anual','var(--celeste)',
+  'Estime el <em>valor equivalente anual</em> de la alternativa m\u00e1s conveniente al <em>6 % TEA</em>.',
+  'VAE = VAN / a(n; i), con el VAN <b>recalculado a la misma tasa</b>',
+  '<b>332.231,64 USD por a\u00f1o</b> \u00b7 2.445.253,83 / 7,360087. Equivale a 36.914,63 USD por hect\u00e1rea implantada y por a\u00f1o.',
+  'El valor equivalente anual'],
+
+ ['c1','c \u00b7 El financiamiento','Cuotas o pago \u00fanico','var(--oro)',
+  'Si decide solicitar un cr\u00e9dito por el total de la inversi\u00f3n y tiene dos alternativas posibles. <em>A)</em> Devolver el cr\u00e9dito en 10 cuotas uniformes peri\u00f3dicas anuales a una tasa de inter\u00e9s efectiva anual del pr\u00e9stamo de 6 %; <em>B)</em> devolver el pr\u00e9stamo al final del proyecto a la misma tasa de inter\u00e9s de A) \u00bfFinanciera y cuantitativamente cu\u00e1l considera la m\u00e1s apropiada? Justifique.',
+  'Valor actual del servicio de la deuda descontado <b>al 15 %</b>, no al 6 %',
+  'Conviene <b>B</b>: 300.936,03 contra 463.562,36, ventaja de <b>162.626,33 USD</b> (35,1 %). Control previo: al 6 % los dos esquemas valen exactamente 679.820. Reserva: B exige inmovilizar capital de trabajo creciente.',
+  'Las dos modalidades de cr\u00e9dito'],
+ ['c2','c \u00b7 El financiamiento','\u00bfMejora la rentabilidad?','var(--oro)',
+  '\u00bfLa financiaci\u00f3n propuesta por la alternativa B) mejorar\u00eda la <em>rentabilidad del proyecto</em>? Calcule.',
+  'Flujo financiado \u00b7 VAN(fin) = VAN(puro) + P \u2212 VA(servicio)',
+  '<b>S\u00ed, un 26,1 %</b>: 1.830.020,08 contra 1.451.136,11 del flujo puro. Con la modalidad A la mejora ser\u00eda del 14,9 %. El mecanismo: tomar fondos al 6 % y aplicarlos a una actividad cuya TIR es 61,95 %.',
+  '\u00bfMejora la rentabilidad del proyecto?'],
+ ['c3','c \u00b7 El financiamiento','Capacidad de pago','var(--oro)',
+  'Si s\u00f3lo puede pagar el <em>70 % del valor de la cuota</em> calculada en el punto 1 A), \u00bfen cu\u00e1nto tiempo podr\u00eda devolver el cr\u00e9dito solicitado? Si s\u00f3lo paga <em>los intereses</em> de la deuda \u00bfen cu\u00e1nto tiempo lo podr\u00eda devolver?',
+  'Suma presente de una anualidad, despejando n con logaritmo',
+  'Con el 70 % de la cuota (64.656,03 USD): <b>17,1 a\u00f1os</b>. Pagando s\u00f3lo el inter\u00e9s (40.789,20 USD): <b>nunca</b> \u2014 la amortizaci\u00f3n es nula y la deuda se vuelve una perpetuidad. Umbral cr\u00edtico en el <b>44,2 %</b> de la cuota.',
+  '\u270b Capacidad de pago y plazo'],
+
+ ['d1','d \u00b7 Producci\u00f3n, previsi\u00f3n y precio','Fertilizaci\u00f3n','var(--coral)',
+  'Si se eval\u00faa una posibilidad de realizar fertilizaci\u00f3n del campo en producci\u00f3n a fin de mejorar los rendimientos con efectos medibles en los indicadores de rentabilidad, logrando un incremento del <em>1 % anual de la productividad por hect\u00e1rea</em>. \u00bfEn cu\u00e1nto estima el <em>ingreso bruto</em> de la actividad a los 10 a\u00f1os?',
+  'Capitalizaci\u00f3n de un pago \u00fanico al 1 % \u00b7 los precios se mantienen constantes',
+  '<b>517.559,65 USD</b> \u00b7 468.540 \u00d7 (1,01)\u00b9\u2070 = \u00d7 1,104622. Incremento acumulado de 49.019,65 USD (10,46 %). Con nueve capitalizaciones dar\u00eda 512.435,30: el criterio se declara.',
+  '\u270b Fertilizaci\u00f3n y crecimiento del ingreso'],
+ ['d2','d \u00b7 Producci\u00f3n, previsi\u00f3n y precio','Previsi\u00f3n de reposici\u00f3n','var(--coral)',
+  'Considerando que a los 10 a\u00f1os es necesario reinvertir en el equipo solar para el secado, y analizando una <em>inflaci\u00f3n anual del sector proveedor del 10 % efectiva</em>, \u00bfcu\u00e1l ser\u00eda la <em>previsi\u00f3n</em> que deber\u00eda realizar el emprendimiento para que, al fin de la vida \u00fatil del equipo, se pueda reunir el dinero para su <em>reposici\u00f3n a nuevo</em>?',
+  'Dos pasos: inflar el costo al 10 %, despu\u00e9s A = F \u00b7 i / [(1+i)\u207f \u2212 1]',
+  'Meta: 140.000 \u00d7 (1,10)\u00b9\u2070 = <b>363.123,94 USD</b>. Previsi\u00f3n anual con el fondo colocado al 15 %: <b>17.884,60 USD</b>, el 4,2 % del flujo operativo. Sin rendimiento ser\u00eda 36.312,39: m\u00e1s del doble.',
+  'Previsi\u00f3n para reponer el equipo solar'],
+ ['d3','d \u00b7 Producci\u00f3n, previsi\u00f3n y precio','Precio de equilibrio','var(--coral)',
+  'Considerando el <em>VAC</em> del emprendimiento \u00bfcu\u00e1l deber\u00eda ser el valor de mercado por kilo de productos ofrecidos en el mercado <em>en promedio</em>, para lograr cubrir el VAC?',
+  'VAC \u2192 costo anual equivalente \u2192 dividir por la cantidad anual vendida',
+  '<b>0,4816 USD por kilogramo</b> \u00b7 179.398,14 / 372.510. Contra un precio percibido de 1,2578: el proyecto tolera una ca\u00edda del <b>61,7 %</b> en el nivel de precios antes de dejar de cubrir sus costos.',
+  '\u270b El precio de equilibrio']
+];
+function consBuild(){
+  var c=document.getElementById('cons-c'); if(!c) return; c.innerHTML='';
+  var cats=[], seen={};
+  CONS.forEach(function(g){ if(!seen[g[1]]){ seen[g[1]]=1; cats.push(g[1]); } });
+  cats.forEach(function(cat){
+    var h=document.createElement('div'); h.className='ccat'; h.dataset.cat=cat; h.textContent=cat;
+    c.appendChild(h);
+    if(CPRE[cat]){
+      var pre=document.createElement('div'); pre.className='cons-pre citem-pre';
+      pre.dataset.cat=cat; pre.innerHTML=CPRE[cat]; c.appendChild(pre);
+    }
+    CONS.filter(function(g){ return g[1]===cat; }).forEach(function(g){
+      var d=document.createElement('div'); d.className='citem'; d.dataset.cat=cat;
+      d.dataset.k=(g[0]+' '+g[2]+' '+g[4]+' '+g[5]+' '+g[6]).replace(/<[^>]+>/g,'').toLowerCase();
+      d.innerHTML='<h4><span class="cid" style="color:'+g[3]+'">'+g[0]+'</span>'+g[2]+'</h4>'+
+        '<p class="ctx">'+g[4]+'</p>'+
+        '<dl><div style="display:contents"><dt>Instrumento</dt><dd>'+g[5]+'</dd></div>'+
+        '<div style="display:contents"><dt>Resultado</dt><dd>'+g[6]+'</dd></div></dl>'+
+        '<button class="chip sm" style="margin-top:11px" data-go="'+esc(g[7])+'">Ir a la pantalla \u2192</button>';
+      d.querySelector('button[data-go]').onclick=function(){
+        var t=this.getAttribute('data-go'), k=-1;
+        for(var i=0;i<slides.length;i++) if((slides[i].dataset.title||'')===t) k=i;
+        closeCons();
+        if(k>=0) show(k);
+      };
+      c.appendChild(d);
+    });
+  });
+}
+function consFiltra(){
+  var q=(document.getElementById('cons-q').value||'').trim().toLowerCase();
+  var vivos={};
+  document.querySelectorAll('#cons-c .citem').forEach(function(d){
+    var on = !q || d.dataset.k.indexOf(q)>=0;
+    d.classList.toggle('off', !on);
+    if(on) vivos[d.dataset.cat]=1;
+  });
+  document.querySelectorAll('#cons-c .ccat, #cons-c .citem-pre').forEach(function(h){
+    h.classList.toggle('off', !vivos[h.dataset.cat]);
+  });
+}
+function openCons(){ document.getElementById('cons').classList.add('on');
+  setTimeout(function(){ document.getElementById('cons-q').focus(); }, 120); }
+function closeCons(){ document.getElementById('cons').classList.remove('on'); }
+
 /* ==================================================================== ENLACES */
-glosBuild(); formBuild();
+glosBuild(); formBuild(); consBuild();
+document.getElementById('b-cons').onclick = function(){
+  document.getElementById('cons').classList.contains('on') ? closeCons() : openCons(); };
 document.getElementById('b-glos').onclick = function(){
   document.getElementById('glos').classList.contains('on') ? closeGlos() : openGlos(); };
 document.getElementById('b-formu').onclick = function(){
@@ -4668,8 +4937,10 @@ document.getElementById('ask-x').onclick = closeAsk;
 document.getElementById('ask').onclick = function(e){ if(e.target.id==='ask') closeAsk(); };
 document.getElementById('sc-x').onclick = function(){
   document.getElementById('score').classList.remove('on'); };
+document.getElementById('cons-x').onclick = closeCons;
 document.getElementById('glos-x').onclick = closeGlos;
 document.getElementById('formu-x').onclick = closeForm;
+document.getElementById('cons-q').addEventListener('input', consFiltra);
 document.getElementById('glos-q').addEventListener('input', glosFiltra);
 document.getElementById('formu-q').addEventListener('input', formFiltra);
 
@@ -4677,16 +4948,18 @@ document.addEventListener('keydown', function(e){
   var t=e.target.tagName;
   var gOn=document.getElementById('glos').classList.contains('on');
   var fOn=document.getElementById('formu').classList.contains('on');
+  var cOn=document.getElementById('cons').classList.contains('on');
   if(t==='INPUT'||t==='SELECT'||t==='TEXTAREA'){
-    if(e.key==='Escape'){ e.target.blur(); if(gOn) closeGlos(); if(fOn) closeForm(); }
+    if(e.key==='Escape'){ e.target.blur(); if(gOn) closeGlos(); if(fOn) closeForm(); if(cOn) closeCons(); }
     return;
   }
-  if(e.key==='Escape'){ closeGlos(); closeForm();
+  if(e.key==='Escape'){ closeGlos(); closeForm(); closeCons();
     document.getElementById('score').classList.remove('on');
-    if(gOn||fOn){ e.stopImmediatePropagation(); return; } }
-  if(e.key==='g'||e.key==='G'){ e.stopImmediatePropagation(); closeForm(); gOn?closeGlos():openGlos(); return; }
-  if(e.key==='f'||e.key==='F'){ e.stopImmediatePropagation(); closeGlos(); fOn?closeForm():openForm(); return; }
-  if(gOn||fOn){ e.stopImmediatePropagation(); e.preventDefault(); }
+    if(gOn||fOn||cOn){ e.stopImmediatePropagation(); return; } }
+  if(e.key==='q'||e.key==='Q'){ e.stopImmediatePropagation(); closeGlos(); closeForm(); cOn?closeCons():openCons(); return; }
+  if(e.key==='g'||e.key==='G'){ e.stopImmediatePropagation(); closeForm(); closeCons(); gOn?closeGlos():openGlos(); return; }
+  if(e.key==='f'||e.key==='F'){ e.stopImmediatePropagation(); closeGlos(); closeCons(); fOn?closeForm():openForm(); return; }
+  if(gOn||fOn||cOn){ e.stopImmediatePropagation(); e.preventDefault(); }
 }, true);
 
 
