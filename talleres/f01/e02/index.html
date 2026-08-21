@@ -1960,6 +1960,11 @@ addSecBefore('Árbol de problemas', {block:2, work:true, t:'Análisis de causali
 
   var top = E('div','wrap');
   top.appendChild(btn('⇄ Volcar al árbol de problemas','', volcarArbol));
+  var lab = E('a','btn ghost sm','🔬 Laboratorio de causalidad');
+  lab.href = 'causalidad/'; lab.target = '_blank'; lab.rel = 'noopener';
+  lab.style.textDecoration = 'none';
+  lab.title = 'Seis dimensiones, escalas, profundidad y rúbrica, para llenar esta pantalla con criterio';
+  top.appendChild(lab);
   top.appendChild(btn('Sembrar desde las evidencias del caso','ghost sm', function(){
     var n = 0;
     (ESC.ev || []).forEach(function(t){

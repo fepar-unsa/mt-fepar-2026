@@ -1,0 +1,1660 @@
+<!doctype html>
+<html lang="es" data-theme="dark" data-rail="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FEPAR 2026 · Escenario 2 — Laboratorio de causalidad</title>
+<meta name="description" content="Laboratorio de análisis causal del Escenario 2 de FEPAR 2026: seis dimensiones, escalas, profundidad y rúbrica para construir árboles de problemas y objetivos profesionales.">
+<style>
+:root{
+  --bg:#06110d; --bg2:#0a1a14; --panel:#0e2019; --panel2:#0b1a15;
+  --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.19);
+  --tx:#eaf5f0; --tx2:#b9cfc6; --tx3:#7f9a90;
+  --verde:#00a05a; --verde-l:#22c97f; --aqua:#12b5a0; --celeste:#39b6d8;
+  --oro:#eda100; --violeta:#7b6bd6; --coral:#ef6a4b; --ok:#00c06a; --bad:#ef5350;
+  --ff:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --fh:var(--ff);
+  --r:16px; --r-s:12px; --rail:300px;
+  --shadow:0 22px 60px -26px rgba(0,0,0,.85);
+}
+html[data-theme="light"]{
+  --bg:#f2f6f4; --bg2:#e8efec; --panel:#fff; --panel2:#f7faf9;
+  --line:rgba(16,36,29,.12); --line2:rgba(16,36,29,.24);
+  --tx:#10241d; --tx2:#3c554c; --tx3:#6b8279;
+  --shadow:0 22px 60px -30px rgba(16,36,29,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--ff);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(1100px 700px at 12% -6%, rgba(0,160,90,.16), transparent 60%),
+   radial-gradient(900px 560px at 94% 6%, rgba(237,161,0,.11), transparent 60%),
+   radial-gradient(1000px 700px at 55% 112%, rgba(123,107,214,.10), transparent 62%)}
+html[data-theme="light"] body::before{
+  background:
+   radial-gradient(1100px 700px at 12% -6%, rgba(0,160,90,.10), transparent 60%),
+   radial-gradient(900px 560px at 94% 6%, rgba(237,161,0,.09), transparent 60%)}
+::selection{background:rgba(0,160,90,.35)}
+
+/* scrollbars visibles en los dos ejes */
+*{scrollbar-width:thin;scrollbar-color:rgba(0,192,106,.7) rgba(255,255,255,.05)}
+*::-webkit-scrollbar{width:12px;height:12px}
+*::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:12px}
+*::-webkit-scrollbar-thumb{background:rgba(0,192,106,.7);border-radius:12px;
+  border:3px solid transparent;background-clip:padding-box}
+*::-webkit-scrollbar-thumb:hover{background:var(--verde-l);background-clip:padding-box;border:3px solid transparent}
+*::-webkit-scrollbar-corner{background:transparent}
+html[data-theme="light"] *{scrollbar-color:rgba(0,140,80,.55) rgba(0,0,0,.06)}
+html[data-theme="light"] *::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
+
+/* ===================== ESTRUCTURA ===================== */
+#top{position:fixed;top:0;left:var(--rail);right:0;height:4px;z-index:40;background:rgba(255,255,255,.06);
+  transition:left .3s cubic-bezier(.22,.9,.28,1)}
+#bar{height:100%;width:0;background:linear-gradient(90deg,var(--verde),var(--aqua) 45%,var(--oro));
+  transition:width .45s cubic-bezier(.22,.9,.28,1)}
+#stage{position:fixed;top:4px;right:0;bottom:0;left:var(--rail);z-index:1;
+  transition:left .3s cubic-bezier(.22,.9,.28,1)}
+.sec{position:absolute;inset:0;display:none;flex-direction:column;gap:clamp(10px,1.4vh,18px);
+  padding:clamp(16px,2.6vh,34px) clamp(18px,3.4vw,64px) 78px;overflow:auto;
+  opacity:0;transform:translateY(14px)}
+.sec.on{display:flex;animation:in .38s cubic-bezier(.22,.9,.28,1) forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.fill{flex:1;min-height:0}
+/* pantallas de trabajo: los paneles conservan su alto natural y la pantalla se desplaza */
+.sec.work>*{flex:none!important}
+.sec.work .fill{flex:none!important;min-height:0}
+
+/* ===================== HUD ===================== */
+#hud{position:fixed;bottom:0;left:var(--rail);right:0;height:58px;z-index:40;display:flex;align-items:center;
+  gap:9px;padding:0 clamp(12px,2.4vw,34px);backdrop-filter:blur(8px);
+  background:linear-gradient(0deg,rgba(0,0,0,.5),transparent);transition:left .3s cubic-bezier(.22,.9,.28,1)}
+html[data-theme="light"] #hud{background:linear-gradient(0deg,rgba(255,255,255,.8),transparent)}
+.hud-b{border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--tx2);
+  border-radius:999px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:var(--ff);
+  transition:.18s;white-space:nowrap}
+.hud-b:hover{color:var(--tx);border-color:var(--verde);background:rgba(0,160,90,.14)}
+.hud-b.pri{background:var(--verde);border-color:var(--verde);color:#04150e;font-weight:650}
+.hud-b.pri:hover{background:var(--verde-l);color:#04150e}
+html[data-theme="light"] .hud-b{background:rgba(255,255,255,.85)}
+#counter{font-size:12px;color:var(--tx3);font-variant-numeric:tabular-nums;margin-left:auto;flex:none}
+#saved{font-size:11.5px;color:var(--tx3);flex:none}
+#saved.on{color:var(--verde-l)}
+#zwrap{display:inline-flex;align-items:center;gap:4px;flex:none}
+#zlabel{font-size:12px;color:var(--tx3);font-variant-numeric:tabular-nums;min-width:44px;text-align:center;cursor:pointer}
+
+/* ===================== ÍNDICE LATERAL ===================== */
+#rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);z-index:50;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,var(--panel),var(--bg2));border-right:1px solid var(--line)}
+#rail.off{display:none}
+#rail-h{padding:15px 16px 11px;border-bottom:1px solid var(--line);flex:none}
+#rail-h .rt{font-size:14.5px;font-weight:800;line-height:1.2}
+#rail-h .rs{font-size:11px;color:var(--tx3);margin-top:3px}
+#rail-b{flex:1;overflow:auto;padding:9px 9px 14px}
+#rail-f{flex:none;padding:9px 13px 13px;border-top:1px solid var(--line)}
+.rg{margin-bottom:5px;border-radius:11px;overflow:hidden;border:1px solid transparent}
+.rg.cur{border-color:var(--line2);background:rgba(255,255,255,.035)}
+.rg-h{display:flex;align-items:center;gap:9px;padding:8px 9px;cursor:pointer;transition:.16s}
+.rg-h:hover{background:rgba(255,255,255,.05)}
+.rg-n{flex:none;width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;font-weight:800;border:1px solid var(--line2);color:var(--tx3)}
+.rg.cur .rg-n{background:var(--verde);border-color:var(--verde);color:#04150e}
+.rg.done .rg-n{border-color:var(--verde);color:var(--verde-l)}
+.rg-t{flex:1;min-width:0}
+.rg-t b{display:block;font-size:12.5px;color:var(--tx2);font-weight:650;line-height:1.25}
+.rg.cur .rg-t b{color:var(--tx)}
+.rg-t span{font-size:10.5px;color:var(--tx3)}
+.rg-p{height:3px;border-radius:3px;background:rgba(255,255,255,.08);margin:0 9px 7px;overflow:hidden}
+.rg-p i{display:block;height:100%;background:linear-gradient(90deg,var(--verde),var(--aqua));border-radius:3px;
+  transition:width .4s cubic-bezier(.22,.9,.28,1)}
+.rg-l{display:none}
+.rg.open .rg-l{display:block;padding:0 6px 6px}
+.ri{display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:8px;cursor:pointer;
+  font-size:11.5px;color:var(--tx3);line-height:1.3;transition:.14s}
+.ri:hover{background:rgba(255,255,255,.06);color:var(--tx2)}
+.ri.cur{background:rgba(0,160,90,.16);color:var(--tx);font-weight:600;box-shadow:inset 2px 0 0 var(--verde-l)}
+.ri .rn{flex:none;width:16px;font-size:10px;opacity:.7;text-align:right}
+.ri .rk{flex:none;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--line2)}
+.ri.ok .rk{background:var(--verde);border-color:var(--verde)}
+.ri.part .rk{background:var(--oro);border-color:var(--oro)}
+#rail-toggle{border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--tx2);
+  border-radius:8px;padding:5px 9px;font-size:11px;cursor:pointer;font-family:var(--ff)}
+
+/* ===================== TIPOGRAFÍA ===================== */
+h1{font-size:clamp(26px,3.4vw,44px);line-height:1.05;letter-spacing:-.03em;margin:0;font-weight:800}
+h2{font-size:clamp(21px,2.5vw,33px);line-height:1.1;letter-spacing:-.025em;margin:0;font-weight:800}
+h3{font-size:15px;margin:0;font-weight:700;letter-spacing:-.01em}
+h4{font-size:12.5px;margin:0;font-weight:700;color:var(--tx2)}
+p{margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--verde-l);font-weight:700}
+.eyebrow::before{content:"";width:24px;height:2px;background:linear-gradient(90deg,var(--verde),transparent);border-radius:2px}
+.lead{font-size:clamp(14px,1.15vw,17px);color:var(--tx2);line-height:1.5;max-width:88ch}
+.sub{font-size:13px;color:var(--tx2);line-height:1.5}
+.tiny{font-size:11.5px;color:var(--tx3);line-height:1.45}
+.mono{font-family:ui-monospace,Consolas,monospace}
+.g{color:var(--verde-l)} .o{color:var(--oro)} .c{color:var(--coral)}
+.hl{background:linear-gradient(180deg,transparent 62%,rgba(237,161,0,.35) 0);padding:0 2px}
+.kbd{font-family:ui-monospace,Consolas,monospace;font-size:11px;border:1px solid var(--line2);
+  border-radius:5px;padding:1px 5px;color:var(--tx2);background:rgba(255,255,255,.05)}
+
+/* ===================== LAYOUT ===================== */
+.row{display:flex;gap:clamp(10px,1.3vw,18px)}
+.col{display:flex;flex-direction:column;gap:clamp(9px,1.2vh,16px)}
+.grid{display:grid;gap:clamp(10px,1.1vw,16px)}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+.wrap{display:flex;flex-wrap:wrap;gap:8px}
+.scrolly{overflow:auto;min-height:0}
+
+/* ===================== COMPONENTES ===================== */
+.card{background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:var(--r);padding:clamp(12px,1.3vw,20px);position:relative;overflow:auto;
+  overflow-wrap:break-word;transition:.22s}
+.card>.tag{position:absolute;top:0;left:0;width:100%;height:3px;background:var(--verde);opacity:.85}
+.card.oro>.tag{background:var(--oro)} .card.vio>.tag{background:var(--violeta)}
+.card.coral>.tag{background:var(--coral)} .card.cel>.tag{background:var(--celeste)}
+.card.aqua>.tag{background:var(--aqua)}
+.box{border:1px solid var(--line);border-radius:var(--r-s);padding:11px 13px;background:rgba(255,255,255,.035)}
+.box.ok{border-color:rgba(0,192,106,.45);background:rgba(0,192,106,.09)}
+.box.bad{border-color:rgba(239,83,80,.45);background:rgba(239,83,80,.09)}
+.box.warn{border-color:rgba(237,161,0,.45);background:rgba(237,161,0,.09)}
+.box.info{border-color:rgba(57,182,216,.45);background:rgba(57,182,216,.09)}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);border-radius:999px;
+  padding:3px 10px;font-size:11.5px;color:var(--tx2)}
+.pill.v{border-color:rgba(0,160,90,.5);color:var(--verde-l);background:rgba(0,160,90,.10)}
+.pill.o{border-color:rgba(237,161,0,.5);color:var(--oro);background:rgba(237,161,0,.10)}
+.pill.p{border-color:rgba(123,107,214,.5);color:var(--violeta);background:rgba(123,107,214,.12)}
+.pill.c{border-color:rgba(239,106,75,.5);color:var(--coral);background:rgba(239,106,75,.10)}
+.pill.a{border-color:rgba(57,182,216,.5);color:var(--celeste);background:rgba(57,182,216,.10)}
+.btn{border:1px solid var(--verde);background:rgba(0,160,90,.16);color:var(--verde-l);
+  border-radius:999px;padding:8px 15px;font-size:13px;cursor:pointer;font-family:var(--ff);
+  font-weight:600;transition:.18s}
+.btn:hover{background:var(--verde-l);color:#04150e}
+.btn.ghost{border-color:var(--line2);color:var(--tx2);background:transparent}
+.btn.ghost:hover{border-color:var(--oro);color:var(--oro);background:rgba(237,161,0,.1)}
+.btn.sm{padding:5px 11px;font-size:12px}
+.btn.xs{padding:3px 9px;font-size:11.5px}
+.num{font-size:clamp(22px,2.3vw,34px);line-height:1;color:var(--verde-l);font-weight:800}
+.hr{height:1px;background:var(--line);margin:2px 0}
+
+/* ===================== FORMULARIO ===================== */
+label.fl{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tx3);
+  font-weight:700;margin-bottom:5px}
+input.fi,textarea.fa,select.fs{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  border-radius:10px;color:var(--tx);font-family:var(--ff);font-size:13.5px;padding:9px 11px;
+  line-height:1.5;transition:.16s;resize:vertical}
+html[data-theme="light"] input.fi,html[data-theme="light"] textarea.fa,html[data-theme="light"] select.fs{background:#fff}
+input.fi:focus,textarea.fa:focus,select.fs:focus{outline:none;border-color:var(--verde);
+  background:rgba(0,160,90,.08);box-shadow:0 0 0 3px rgba(0,160,90,.14)}
+textarea.fa{min-height:88px}
+textarea.fa.tall{min-height:150px}
+textarea.fa.short{min-height:56px}
+select.fs option{background:var(--panel);color:var(--tx)}
+html[data-theme="light"] select.fs option{background:#fff;color:#10241d}
+.fcount{font-size:10.5px;color:var(--tx3);text-align:right;margin-top:3px;font-variant-numeric:tabular-nums}
+.fcount.warn{color:var(--oro)} .fcount.ok{color:var(--verde-l)}
+.frow{display:flex;gap:9px;align-items:flex-start}
+.frow>*{flex:1;min-width:0}
+.fdel{flex:none!important;width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);
+  background:rgba(255,255,255,.05);color:var(--tx3);cursor:pointer;font-size:13px;line-height:1}
+.fdel:hover{border-color:var(--coral);color:var(--coral)}
+
+/* ===================== TABLAS ===================== */
+table.tb{width:100%;border-collapse:collapse;font-size:12.5px}
+table.tb th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);
+  font-weight:700;padding:7px 9px;border-bottom:1px solid var(--line2);vertical-align:bottom}
+table.tb td{padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--tx2)}
+table.tb tr:last-child td{border-bottom:none}
+table.tb input,table.tb textarea,table.tb select{width:100%;background:transparent;border:none;
+  border-bottom:1px dashed var(--line2);color:var(--tx);font-family:var(--ff);font-size:12.5px;
+  padding:4px 2px;resize:vertical}
+table.tb input:focus,table.tb textarea:focus,table.tb select:focus{outline:none;border-bottom-color:var(--verde)}
+table.tb select{border-bottom:1px dashed var(--line2)}
+table.tb select option{background:var(--panel);color:var(--tx)}
+html[data-theme="light"] table.tb select option{background:#fff;color:#10241d}
+
+/* MML */
+table.mml{width:100%;border-collapse:collapse;font-size:12px;min-width:820px}
+table.mml th{background:rgba(0,160,90,.14);color:var(--verde-l);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;padding:8px;text-align:left;border:1px solid var(--line2);font-weight:700}
+table.mml td{border:1px solid var(--line);padding:5px;vertical-align:top}
+table.mml td textarea{width:100%;min-height:66px;background:transparent;border:none;color:var(--tx);
+  font-family:var(--ff);font-size:12px;padding:4px;resize:vertical;line-height:1.45}
+table.mml td textarea:focus{outline:none;background:rgba(0,160,90,.08);border-radius:6px}
+table.mml td.lv{background:rgba(255,255,255,.04);width:15%}
+table.mml .lvn{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--verde-l);font-weight:800}
+
+/* árbol */
+.tnode{display:flex;align-items:flex-start;gap:7px;border:1px solid var(--line2);border-radius:10px;
+  padding:6px 9px;background:rgba(255,255,255,.045);transition:.16s}
+.tnode.lv1{border-left:3px solid var(--coral)}
+.tnode.lv2{border-left:3px solid var(--oro);margin-left:18px}
+.tnode.lv3{border-left:3px solid var(--violeta);margin-left:36px}
+.tnode.ef1{border-left:3px solid var(--celeste)}
+.tnode.ef2{border-left:3px solid var(--aqua);margin-left:18px}
+.tnode input{flex:1;min-width:0;background:transparent;border:none;color:var(--tx);font-size:12.5px;
+  font-family:var(--ff);padding:2px}
+.tnode input:focus{outline:none}
+.tnode .lvb{flex:none;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tx3);
+  border:1px solid var(--line2);border-radius:6px;padding:1px 6px;cursor:pointer;background:transparent;
+  font-family:var(--ff)}
+.tnode .lvb:hover{border-color:var(--verde);color:var(--verde-l)}
+.trunk{border:2px solid var(--verde);border-radius:13px;padding:11px 15px;background:rgba(0,160,90,.15)}
+.trunk .lb{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--verde-l);font-weight:800}
+.trunk .tx{font-size:14px;font-weight:700;line-height:1.35;margin-top:4px}
+.mirror{display:grid;grid-template-columns:1fr 34px 1fr;gap:8px;align-items:center}
+.mirror .ar{text-align:center;color:var(--verde-l);font-size:16px}
+
+/* semáforo / progreso */
+.meter{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:5px}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--verde),var(--aqua));
+  border-radius:6px;transition:width .45s cubic-bezier(.22,.9,.28,1)}
+.meter.o i{background:linear-gradient(90deg,var(--oro),var(--coral))}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--line2);flex:none}
+.dot.ok{background:var(--verde)} .dot.part{background:var(--oro)}
+.chk{display:flex;align-items:flex-start;gap:9px;padding:8px 10px;border:1px solid var(--line);
+  border-radius:10px;background:rgba(255,255,255,.03);cursor:pointer;transition:.16s;font-size:12.5px;
+  line-height:1.45;color:var(--tx2)}
+.chk:hover{border-color:var(--line2)}
+.chk input{margin-top:2px;accent-color:var(--verde);flex:none}
+.chk.on{border-color:rgba(0,192,106,.45);background:rgba(0,192,106,.08);color:var(--tx)}
+
+/* ítems del F01 */
+.f01nav{display:flex;flex-wrap:wrap;gap:5px}
+.f01b{width:33px;height:33px;border-radius:9px;border:1px solid var(--line2);background:rgba(255,255,255,.045);
+  color:var(--tx2);font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--ff);position:relative;
+  transition:.16s}
+.f01b:hover{border-color:var(--verde);color:var(--verde-l)}
+.f01b.on{background:var(--verde);border-color:var(--verde);color:#04150e}
+.f01b.done::after{content:"";position:absolute;right:3px;bottom:3px;width:6px;height:6px;border-radius:50%;
+  background:var(--verde-l)}
+.f01b.on.done::after{background:#04150e}
+.f01b.s2{border-color:rgba(237,161,0,.45)} .f01b.s2.on{background:var(--oro);border-color:var(--oro)}
+.f01b.s3{border-color:rgba(123,107,214,.45)} .f01b.s3.on{background:var(--violeta);border-color:var(--violeta)}
+.f01b.s4{border-color:rgba(57,182,216,.45)} .f01b.s4.on{background:var(--celeste);border-color:var(--celeste)}
+.tk{list-style:none;padding:0;margin:0}
+.tk li{position:relative;padding-left:16px;margin-top:5px;font-size:12.5px;color:var(--tx2);line-height:1.45}
+.tk li::before{content:"◆";position:absolute;left:0;top:0;color:var(--verde-l);font-size:8px;line-height:1.9}
+.tk.o li::before{color:var(--oro)} .tk.c li::before{color:var(--coral)}
+
+/* esquema svg */
+.esq{border:1px solid var(--line);border-radius:var(--r-s);padding:12px;background:rgba(255,255,255,.03);
+  overflow:auto}
+svg.esq-s{width:100%;height:auto;display:block;min-width:640px}
+
+/* overlays */
+.ov{position:fixed;inset:0;z-index:60;background:rgba(3,10,8,.9);backdrop-filter:blur(9px);
+  display:none;flex-direction:column;padding:0}
+html[data-theme="light"] .ov{background:rgba(240,246,243,.95)}
+.ov.on{display:flex;animation:in .22s ease forwards}
+.ov-bar{flex:none;display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:9px clamp(12px,2vw,26px);
+  border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--panel2))}
+.ov-bar .t{flex:1;min-width:120px;font-size:12px;color:var(--tx3);letter-spacing:.09em;text-transform:uppercase}
+.ov-in{flex:1;min-height:0;overflow:auto;padding:clamp(12px,2.2vw,28px);display:flex;align-items:flex-start}
+.ov-in>*{margin:0 auto;width:100%;max-width:1500px}
+.pop-b{position:absolute;top:5px;right:5px;z-index:7;width:26px;height:26px;border-radius:8px;
+  border:1px solid var(--line2);background:rgba(9,20,16,.78);color:var(--tx3);cursor:pointer;
+  font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;opacity:0;
+  transition:.18s;font-family:var(--ff);padding:0}
+html[data-theme="light"] .pop-b{background:rgba(255,255,255,.9)}
+.card:hover>.pop-b,.pop-b:focus{opacity:1}
+.pop-b:hover{border-color:var(--verde);color:var(--verde-l);background:rgba(0,160,90,.22)}
+.pop-ph{display:none!important}
+.card.popped{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+.card.popped>.pop-b{display:none}
+.toast{position:fixed;left:50%;bottom:74px;transform:translate(-50%,16px);z-index:70;opacity:0;
+  background:var(--panel);border:1px solid var(--verde);border-radius:999px;padding:9px 20px;
+  font-size:13px;color:var(--tx);box-shadow:var(--shadow);pointer-events:none;transition:.28s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* impresión */
+#print{display:none}
+@media print{
+  body{overflow:visible;background:#fff}
+  body::before,#rail,#hud,#top,#stage,.ov,.toast{display:none!important}
+  #print{display:block!important;position:static;color:#111;font-size:11pt}
+  #print h1{font-size:18pt;color:#0e5c3a} #print h2{font-size:13pt;color:#0e5c3a;margin-top:14pt}
+  #print h3{font-size:11pt;margin-top:10pt}
+  #print .p-i{margin-top:9pt;page-break-inside:avoid}
+  #print .p-l{font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;color:#5a6b64}
+  #print .p-v{white-space:pre-wrap;border-left:2px solid #cfd8d4;padding-left:8pt;margin-top:2pt}
+  #print table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:5pt}
+  #print th,#print td{border:1px solid #b9c6c1;padding:4pt;text-align:left;vertical-align:top}
+  #print th{background:#eef4f1}
+  @page{margin:16mm}
+}
+
+/* ===================== ANÁLISIS DE CAUSALIDAD ===================== */
+svg.red{width:100%;height:auto;display:block;font-family:var(--ff);min-width:820px}
+svg.red text.nl{fill:var(--tx);font-size:12px}
+.sitn{width:34px;flex:none;font-size:10.5px;font-weight:800;color:var(--tx3);text-align:center;
+  border:1px solid var(--line2);border-radius:7px;padding:5px 0;text-transform:uppercase}
+.lnk{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;
+  padding:6px 9px;background:rgba(255,255,255,.03)}
+.lnk-t{flex:1;min-width:0;font-size:12px;color:var(--tx2);line-height:1.4}
+table.tb tr.cen td{background:rgba(0,160,90,.12)}
+table.tb tr.cen td:first-child{box-shadow:inset 2px 0 0 var(--verde)}
+
+
+/* ===================== LABORATORIO DE CAUSALIDAD ===================== */
+.g6{grid-template-columns:repeat(6,1fr)}
+.num.c{color:var(--coral)} .num.o{color:var(--oro)} .num.v{color:var(--violeta)}
+.pill.aq{border-color:rgba(18,181,160,.5);color:var(--aqua);background:rgba(18,181,160,.12)}
+a.lk{color:var(--verde-l)}
+a.hud-b{text-decoration:none;display:inline-flex;align-items:center}
+/* pestañas de dimensión */
+.dimb{border:1px solid var(--line2);background:rgba(255,255,255,.045);color:var(--tx2);
+  border-radius:999px;padding:7px 14px;font-size:12.5px;cursor:pointer;font-family:var(--ff);
+  transition:.18s;display:inline-flex;align-items:center;gap:7px}
+.dimb:hover{border-color:var(--verde);color:var(--tx)}
+.dimb .cnt{font-size:10.5px;background:rgba(255,255,255,.12);border-radius:999px;padding:1px 7px;
+  font-variant-numeric:tabular-nums}
+.dimb.on{color:#04150e;font-weight:700}
+.dimb.on .cnt{background:rgba(0,0,0,.22);color:inherit}
+.dimb.v.on{background:var(--verde);border-color:var(--verde)}
+.dimb.a.on{background:var(--celeste);border-color:var(--celeste)}
+.dimb.o.on{background:var(--oro);border-color:var(--oro)}
+.dimb.p.on{background:var(--violeta);border-color:var(--violeta);color:#fff}
+.dimb.c.on{background:var(--coral);border-color:var(--coral);color:#fff}
+.dimb.aq.on{background:var(--aqua);border-color:var(--aqua)}
+/* fila de situación */
+.nrow{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:10px;
+  padding:6px 8px;background:rgba(255,255,255,.035)}
+.nrow:focus-within{border-color:var(--verde);background:rgba(0,160,90,.07)}
+.ntipo{flex:none;width:62px;border-radius:7px;border:1px solid var(--line2);cursor:pointer;
+  font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:5px 0;
+  font-family:var(--ff);background:transparent;transition:.16s}
+.ntipo.ca{color:var(--coral);border-color:rgba(239,106,75,.5);background:rgba(239,106,75,.1)}
+.ntipo.ef{color:var(--celeste);border-color:rgba(57,182,216,.5);background:rgba(57,182,216,.1)}
+.ntipo:hover{filter:brightness(1.25)}
+input.ntxt{flex:1;min-width:0;background:transparent;border:none;border-bottom:1px dashed var(--line2);
+  color:var(--tx);font-family:var(--ff);font-size:13px;padding:4px 2px}
+input.ntxt:focus{outline:none;border-bottom-color:var(--verde)}
+select.nsel{flex:none;width:150px;background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  border-radius:8px;color:var(--tx2);font-family:var(--ff);font-size:11.5px;padding:5px 7px}
+html[data-theme="light"] select.nsel{background:#fff}
+select.nsel:focus{outline:none;border-color:var(--verde)}
+select.nsel option{background:var(--panel);color:var(--tx)}
+html[data-theme="light"] select.nsel option{background:#fff;color:#10241d}
+/* tablas del control */
+table.tb tr.vac td{background:rgba(239,83,80,.09)}
+table.tb td.lvl{transition:.16s;border-left:1px solid var(--line)}
+table.tb td.lvl:hover{background:rgba(255,255,255,.05)}
+table.tb td.lvl.sel{background:rgba(0,160,90,.16);box-shadow:inset 0 0 0 1px var(--verde)}
+@media (max-width:860px){
+  .g6{grid-template-columns:repeat(2,1fr)!important}
+  .nrow{flex-wrap:wrap}
+  select.nsel{width:100%}
+  input.ntxt{flex:1 1 100%;order:-1}
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:1400px){
+  #hud{gap:7px;padding:0 12px}
+  .hud-b{padding:5px 10px;font-size:11.5px}
+}
+@media (max-width:1180px){
+  html[data-rail="on"]{--rail:0px}
+  #rail{box-shadow:14px 0 60px -20px rgba(0,0,0,.9)}
+  #hud{overflow-x:auto;overflow-y:hidden;justify-content:flex-start;scrollbar-width:none}
+  #hud::-webkit-scrollbar{display:none}
+  #hud>*{flex:none}
+  #counter{margin-left:8px}
+}
+@media (max-width:860px){
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr!important}
+  .row{flex-direction:column}
+  .fill{flex:none!important;min-height:auto!important}
+  .mirror{grid-template-columns:1fr;gap:5px}
+  .mirror .ar{transform:rotate(90deg)}
+}
+@media (max-width:760px){
+  #rail{width:min(90vw,320px)}
+  .sec{padding:14px 13px 118px;gap:10px}
+  h1{font-size:clamp(23px,7vw,34px)} h2{font-size:clamp(19px,5.4vw,26px)}
+  .lead{font-size:14px}
+  .card{padding:12px 13px}
+  #hud{height:54px}
+  .tnode.lv2,.tnode.ef2{margin-left:10px} .tnode.lv3{margin-left:20px}
+  .esq{padding:9px}
+  .pop-b{opacity:.7;width:30px;height:30px}
+  .frow{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div id="top"><div id="bar"></div></div>
+
+<aside id="rail">
+  <div id="rail-h">
+    <div class="rt">Escenario 2 · causalidad</div>
+    <div class="rs" id="rail-sub">Laboratorio de análisis integral</div>
+    <div class="meter" style="margin-top:9px"><i id="rail-all"></i></div>
+    <p class="tiny" style="margin-top:5px"><span id="rail-pct">0</span> % del recorrido</p>
+  </div>
+  <div id="rail-b"></div>
+  <div id="rail-f">
+    <button id="rail-toggle">◧ Ocultar índice</button>
+    <p class="tiny" style="margin-top:8px">Lo que cargues acá se guarda en este navegador y se puede enviar al visor del Formulario 01.</p>
+  </div>
+</aside>
+
+<div id="stage"></div>
+
+<div id="hud">
+  <button class="hud-b" id="b-prev" title="Anterior (←)">◀</button>
+  <button class="hud-b" id="b-next" title="Siguiente (→)">▶</button>
+  <button class="hud-b" id="b-rail" title="Índice (I)">▤ Índice</button>
+  <button class="hud-b pri" id="b-send" title="Enviar causas y efectos al visor del F01">➜ Enviar al F01</button>
+  <a class="hud-b" id="b-f01" href="../" title="Abrir el visor del Formulario 01">↗ Visor F01</a>
+  <button class="hud-b" id="b-save" title="Descargar el trabajo">💾 Descargar</button>
+  <button class="hud-b" id="b-load" title="Cargar un archivo">📂 Cargar</button>
+  <button class="hud-b" id="b-print" title="Imprimir o guardar en PDF">🖨 PDF</button>
+  <span id="zwrap" title="Zoom (+ − 0)">
+    <button class="hud-b" id="b-zo">−</button><span id="zlabel">100%</span><button class="hud-b" id="b-zi">+</button>
+  </span>
+  <button class="hud-b" id="b-th" title="Tema (T)">◐</button>
+  <span id="saved">·</span>
+  <span id="counter">1 / 1</span>
+</div>
+
+<div class="ov" id="pop">
+  <div class="ov-bar">
+    <span class="t" id="pop-t">Panel ampliado</span>
+    <button class="hud-b" id="pop-zo">−</button><span class="tiny" id="pop-z" style="min-width:44px;text-align:center">100%</span>
+    <button class="hud-b" id="pop-zi">+</button>
+    <button class="hud-b" id="pop-x">✕ Cerrar (Esc)</button>
+  </div>
+  <div class="ov-in" id="pop-in"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="print"></div>
+<input type="file" id="fileIn" accept=".json,application/json" style="display:none">
+<script>
+"use strict";
+/* =============================================================== DATOS DEL CASO */
+var ESC  = {"n": 2, "t": "Restauración de sitios contaminados con hidrocarburos", "lug": "Área Puesto Guardián, departamento Orán", "ent": "Rural · área hidrocarburífera", "tags": ["Rural", "Restauración", "Residuos"], "amb": "Gestión ambiental de proyectos de inversión · restauración ecológica", "res": "Dos piletas de contingencia fuera de servicio desde el incidente del pozo MdT 14 (2007). La autoridad exige el cierre y la restauración; el propietario quiere ampliar la superficie agrícola.", "sit": "En 2007 se produjo el descontrol del pozo MdT 14, con emanación de petróleo y agua de formación de alto contenido salino. La empresa implementó un manejo de fluidos en tres etapas: separación de fases líquido/sólido en piletas, separación en piletas API con inyección de parte del agua en pozos sumideros, y acopio temporal del hidrocarburo en dos piletas en la Batería Puesto Guardián —una habilitada en la contingencia sin impermeabilizar, de 50 × 30 m y 1,5 a 2,5 m de profundidad, y otra construida por orden de la autoridad, impermeabilizada, de 50 × 50 × 3,5 m. El pozo fue controlado y el sector saneado; hoy la autoridad solicita el cierre y restauración del sector de piletas.", "ev": ["Las piletas se construyeron para una contingencia y no son instalaciones permanentes del proceso productivo.", "Ambas estructuras permanecen fuera de servicio.", "Hay información histórica del incidente, de los trabajos ejecutados y de las dimensiones generales de las piletas.", "Existen antecedentes de monitoreos ambientales en distintas etapas posteriores a la contingencia.", "El propietario pretende ampliar la superficie agropecuaria una vez finalizada la remediación."], "con": ["La empresa gestionó las autorizaciones provinciales para habilitar un sector de tratamiento de residuos peligrosos dentro de la batería.", "El establecimiento desarrolla hoy actividades agrícolas y ganaderas que coexisten con la infraestructura hidrocarburífera."], "pre": ["¿Cuál es el problema principal que plantea el escenario?", "¿Qué información adicional habría que relevar antes de definir una alternativa de intervención?", "¿Qué criterios deberían considerarse para determinar el destino futuro del sector intervenido?"], "alc": "La información presentada es sólo el punto de partida: el equipo debe identificar la información faltante, definir el problema central y fundamentar la alternativa seleccionada."};
+var LAB  = {"foco": "El incidente fue en 2007 y ya se saneó. El problema de hoy es lo que quedó: dos piletas fuera de servicio que impiden cerrar el sector. Confundir el accidente con el problema actual es el error más caro de este caso.", "dims": {"amb": ["¿Qué hay hoy en cada pileta y qué hay en el suelo debajo: hidrocarburo, sales, los dos?", "La pileta habilitada en la contingencia no se impermeabilizó. ¿Qué implica eso para el suelo y el agua subterránea?", "¿Qué dicen los monitoreos posteriores a la contingencia, y qué no llegaron a medir?"], "soc": ["¿Quién vive o trabaja alrededor y quién quedaría expuesto durante los trabajos de remediación?", "¿Qué expectativas hay sobre el uso futuro del sector, y son compatibles entre sí?", "¿La comunidad conoce el estado del sitio o se enteró por el incidente?"], "eco": ["¿Quién asume el costo del cierre y con qué previsión contable?", "¿Cuánto vale la superficie agrícola que se pretende recuperar, y justifica el nivel de remediación?", "¿El costo de no hacer nada —multas, pasivo, restricción de uso— está estimado?"], "ins": ["¿Qué exige exactamente la autoridad para dar por cerrado el sector de piletas?", "¿Qué habilita y qué limita la autorización de tratamiento de residuos peligrosos dentro de la batería?", "¿Quién controla, con qué frecuencia y qué pasa si el estándar de cierre no se define con precisión?"], "tec": ["¿Qué volumen y qué tipo de material hay que tratar en cada pileta?", "¿Biorremediación, disposición externa, encapsulado? ¿Qué determina la elección además del costo?", "¿Cuál es el criterio de «sitio remediado»: un valor de referencia, un uso futuro, un plazo?"], "ter": ["¿Cómo conviven hoy la actividad hidrocarburífera y la agropecuaria dentro del establecimiento?", "¿Qué usos son realmente compatibles con el sector una vez remediado?", "¿El sector está aislado o es parte de un paisaje productivo mayor?"]}, "esp": ["Las dos piletas y el suelo inmediato", "La Batería Puesto Guardián y el establecimiento", "El área de influencia: napa, escurrimiento, vecinos", "El departamento Orán y el marco provincial de pasivos"], "tmp": ["2007: el incidente y el manejo de fluidos en tres etapas. ¿Qué decisión de entonces condiciona hoy?", "Hoy: dos estructuras fuera de servicio y una exigencia de cierre en curso.", "Si no se interviene, ¿el pasivo se estabiliza, se degrada o se disemina?"], "raices": ["La decisión de habilitar en la urgencia una pileta sin impermeabilizar: una causa que está en el pasado pero produce el problema de hoy.", "La ausencia de un criterio de cierre definido: sin estándar acordado, no hay proyecto que pueda terminarse.", "La superposición de dos usos —extractivo y agropecuario— sobre el mismo predio, sin una regla de compatibilidad."], "trampas": [{"mal": "El descontrol del pozo MdT 14 en 2007", "por": "Es un hecho del pasado, no una situación negativa presente. El árbol de problemas describe lo que pasa hoy; el incidente entra como causa, no como problema central.", "bien": "Dos piletas de contingencia fuera de servicio mantienen inutilizable el sector e impiden el cierre exigido por la autoridad"}, {"mal": "Contaminación con hidrocarburos", "por": "No responde ubicación, tiempo ni magnitud. Sirve para cualquier caso del mundo, y por eso no sirve para ninguno.", "bien": "Permanencia de hidrocarburo y agua de formación de alto contenido salino acopiados desde 2007 en dos piletas de 1.500 y 2.500 m² de la Batería Puesto Guardián"}, {"mal": "Falta de una planta de tratamiento de suelos", "por": "Solución disfrazada de problema, y además prematura: todavía no se sabe qué volumen ni qué tipo de material hay que tratar.", "bien": "El material acopiado no tiene destino de tratamiento definido ni criterio de cierre acordado con la autoridad"}]};
+var DIMS = [{"k": "amb", "n": "Ambiental", "c": "v", "q": "Qué le pasa al ambiente y qué del ambiente condiciona el problema."}, {"k": "soc", "n": "Social", "c": "a", "q": "Quién sufre el problema, quién lo produce y quién lo sostiene."}, {"k": "eco", "n": "Económica", "c": "o", "q": "Qué costos, precios, márgenes e incentivos están detrás."}, {"k": "ins", "n": "Institucional y normativa", "c": "p", "q": "Quién tiene la responsabilidad, qué norma aplica y quién controla."}, {"k": "tec", "n": "Técnica y operativa", "c": "c", "q": "Qué falla en el diseño, la operación o el mantenimiento."}, {"k": "ter", "n": "Territorial", "c": "aq", "q": "Dónde ocurre, hasta dónde llega y qué cambia según el lugar."}];
+var RUB  = [{"t": "Enunciado del problema central", "n1": "Está escrito como falta de una solución o como un juicio.", "n2": "Es una situación negativa, pero le falta lugar, plazo o magnitud.", "n3": "Situación negativa, ubicada, acotada en el tiempo y medida con un indicador."}, {"t": "Amplitud de las causas", "n1": "Todas las causas son de la misma dimensión, casi siempre técnica.", "n2": "Aparecen dos o tres dimensiones, pero desbalanceadas.", "n3": "Al menos cuatro dimensiones representadas, y las ausencias están justificadas."}, {"t": "Profundidad", "n1": "Las causas se quedan en el primer nivel: son síntomas.", "n2": "Hay un segundo nivel, pero las raíces siguen siendo genéricas.", "n3": "Se llega a causas raíz independientes entre sí, accionables o declaradas como supuesto."}, {"t": "Encadenamiento", "n1": "Las causas son una lista, no una cadena: no se sabe qué produce qué.", "n2": "Hay cadena en algunas ramas y en otras no.", "n3": "Toda la red se lee de abajo hacia arriba y cada eslabón resiste el «¿pero por qué?»."}, {"t": "Efectos", "n1": "Un solo efecto, inmediato y de la misma dimensión que el problema.", "n2": "Varios efectos, pero sin encadenar y sin horizonte temporal.", "n3": "Efectos encadenados, en más de una dimensión, con corto, medio y largo plazo distinguidos."}, {"t": "Escala", "n1": "Todo se analiza en una sola escala espacial.", "n2": "Se menciona más de una escala, pero sin consecuencias para el análisis.", "n3": "Se distingue qué causas son del sitio, cuáles del territorio y cuáles estructurales."}, {"t": "Espejo de objetivos", "n1": "El árbol de objetivos no coincide en cantidad de nodos con el de problemas.", "n2": "Coincide en cantidad, pero algunos nodos son la solución y no el estado deseado.", "n3": "Espejo exacto, en positivo y en futuro, y cada relación se sostiene al leerla como «si logro X, entonces Y»."}, {"t": "Trazabilidad", "n1": "No se puede saber de dónde salió cada afirmación.", "n2": "Algunas causas tienen respaldo y otras son supuestos sin declarar.", "n3": "Cada causa remite a una evidencia del escenario o a un supuesto numerado en la planilla."}];
+
+/* =============================================================== ESTADO */
+var KEY = 'fepar2026_lab_e' + ESC.n;
+var KEY_F01 = 'fepar2026_f01_e' + ESC.n;
+function blank(){
+  return {
+    v:1, esc:ESC.n, ts:'', eq:'',
+    nodos:[],          /* {id,t,tipo:'c'|'e',dim,esp,tmp,nivel,evid} */
+    pc:'',             /* borrador del problema central */
+    porq:{},           /* escalera del «pero por qué» por nodo */
+    raiz:{},           /* marca de causa raíz accionable */
+    rub:[],            /* autoevaluación 0-3 por criterio */
+    notas:{}
+  };
+}
+var D = blank();
+function nodos(){ D.nodos = D.nodos || []; return D.nodos; }
+function nodoById(id){ return nodos().filter(function(n){ return n.id === id; })[0]; }
+function nuevoId(){ var k = 1; while(nodoById('n'+k)) k++; return 'n'+k; }
+function addNodo(o){
+  var n = {id:nuevoId(), t:'', tipo:'c', dim:'', esp:'', tmp:'', nivel:1, evid:''};
+  Object.keys(o||{}).forEach(function(k){ n[k] = o[k]; });
+  nodos().push(n); return n;
+}
+function delNodo(id){
+  D.nodos = nodos().filter(function(n){ return n.id !== id; });
+  delete D.porq[id]; delete D.raiz[id];
+}
+function causas(){ return nodos().filter(function(n){ return n.tipo === 'c'; }); }
+function efectos(){ return nodos().filter(function(n){ return n.tipo === 'e'; }); }
+
+function get(p){ var o=D, a=p.split('.'); for(var i=0;i<a.length;i++){ if(o==null) return ''; o=o[a[i]]; } return o==null?'':o; }
+function set(p,v){ var o=D, a=p.split('.'); for(var i=0;i<a.length-1;i++){ if(o[a[i]]==null) o[a[i]]={}; o=o[a[i]]; } o[a[a.length-1]]=v; }
+
+var saveT=null, savedEl=null;
+function touch(){
+  clearTimeout(saveT);
+  saveT = setTimeout(function(){
+    D.ts = nowStr();
+    try{ localStorage.setItem(KEY, JSON.stringify(D)); flagSaved('guardado ' + D.ts.slice(11,16)); }
+    catch(e){ flagSaved('sin guardado automático'); }
+  }, 500);
+  paintProgress();
+}
+function flagSaved(t){ if(!savedEl) savedEl=document.getElementById('saved');
+  savedEl.textContent = t; savedEl.classList.add('on');
+  setTimeout(function(){ savedEl.classList.remove('on'); }, 1600); }
+function nowStr(){
+  var d=new Date(), z=function(n){return (n<10?'0':'')+n;};
+  return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes());
+}
+function loadLocal(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(!raw) return false;
+    var o = JSON.parse(raw);
+    if(o && o.esc === ESC.n){ merge(o); return true; }
+  }catch(e){}
+  return false;
+}
+function merge(o){
+  var b = blank();
+  Object.keys(b).forEach(function(k){ if(o[k] !== undefined && o[k] !== null) b[k] = o[k]; });
+  D = b;
+}
+
+/* =============================================================== UTILIDADES DOM */
+function E(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls;
+  if(html!=null) e.innerHTML=html; return e; }
+function esc(t){ return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function toast(msg){ var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._h); t._h=setTimeout(function(){ t.classList.remove('on'); }, 2200); }
+
+/* campo enlazado al estado */
+function field(path, opts){
+  opts = opts || {};
+  var wrap = E('div');
+  if(opts.label) wrap.appendChild(E('label','fl',opts.label));
+  var inp;
+  if(opts.type === 'select'){
+    inp = E('select','fs');
+    (opts.options||[]).forEach(function(o){
+      var op=E('option',null,esc(o)); op.value=o; inp.appendChild(op);
+    });
+  } else if(opts.type === 'input'){
+    inp = E('input','fi'); inp.type='text';
+  } else {
+    inp = E('textarea','fa'+(opts.tall?' tall':'')+(opts.short?' short':''));
+  }
+  if(opts.ph) inp.placeholder = opts.ph;
+  inp.value = get(path);
+  inp.dataset.path = path;
+  var cnt = null;
+  if(opts.min){
+    cnt = E('div','fcount');
+    var upd = function(){
+      var n = inp.value.trim().length;
+      cnt.textContent = n + ' / ' + opts.min + ' caracteres sugeridos';
+      cnt.className = 'fcount' + (n === 0 ? '' : (n < opts.min ? ' warn' : ' ok'));
+    };
+    inp._upd = upd;
+  }
+  inp.addEventListener('input', function(){
+    set(path, inp.value);
+    if(inp._upd) inp._upd();
+    if(opts.on) opts.on(inp.value);
+    touch();
+  });
+  wrap.appendChild(inp);
+  if(cnt){ wrap.appendChild(cnt); inp._upd(); }
+  if(opts.help) wrap.appendChild(E('p','tiny',opts.help));
+  wrap._input = inp;
+  return wrap;
+}
+/* campo suelto dentro de una tabla */
+function cell(obj, key, ph, tag){
+  var inp = E(tag || 'input');
+  if(!tag || tag === 'input') inp.type = 'text';
+  inp.value = obj[key] || '';
+  if(ph) inp.placeholder = ph;
+  inp.addEventListener('input', function(){ obj[key] = inp.value; touch(); });
+  return inp;
+}
+function selCell(obj, key, options){
+  var s = E('select');
+  options.forEach(function(o){ var op=E('option',null,esc(o)); op.value=o; s.appendChild(op); });
+  s.value = obj[key] || '';
+  s.addEventListener('change', function(){ obj[key]=s.value; touch(); });
+  return s;
+}
+function btn(txt, cls, fn){ var b=E('button','btn '+(cls||''),txt); b.type='button'; b.onclick=fn; return b; }
+
+/* =============================================================== SECCIONES */
+var SECS = [], cur = 0, stage = null;
+function addSec(o){ SECS.push(o); return o; }
+
+function buildAll(){
+  stage = document.getElementById('stage');
+  stage.innerHTML = '';
+  SECS.forEach(function(s,i){
+    var d = E('section','sec'+(s.work?' work':'')); d.id = 'sec'+i; d.dataset.i = i;
+    stage.appendChild(d);
+    s.el = d; s.built = false;
+  });
+  railBuild();
+}
+function render(i){
+  var s = SECS[i];
+  s.el.innerHTML = '';
+  s.build(s.el);
+  s.built = true;
+  popArm(s.el);
+}
+function show(i){
+  if(i < 0 || i >= SECS.length) return;
+  cur = i;
+  SECS.forEach(function(s,k){ s.el.classList.toggle('on', k===i); });
+  render(i);
+  SECS[i].el.scrollTop = 0;
+  document.getElementById('bar').style.width = ((i+1)/SECS.length*100)+'%';
+  document.getElementById('counter').textContent = (i+1)+' / '+SECS.length;
+  railPaint();
+  if(location.hash !== '#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  requestAnimationFrame(fitNow);
+}
+function next(){ show(Math.min(cur+1, SECS.length-1)); }
+function prev(){ show(Math.max(cur-1, 0)); }
+
+/* =============================================================== PROGRESO */
+function pctOf(s){
+  if(!s.fields) return null;
+  var f = s.fields(), n = 0;
+  f.forEach(function(v){ if(String(v||'').trim().length > 2) n++; });
+  return f.length ? Math.round(n/f.length*100) : 0;
+}
+function paintProgress(){
+  var blocks = {}, all = [], allN = 0;
+  SECS.forEach(function(s,i){
+    var p = pctOf(s);
+    s.pct = p;
+    if(p != null){ all.push(p); allN++; }
+    var ri = document.querySelector('.ri[data-i="'+i+'"]');
+    if(ri){ ri.classList.toggle('ok', p === 100); ri.classList.toggle('part', p != null && p > 0 && p < 100); }
+  });
+  var tot = allN ? Math.round(all.reduce(function(a,b){return a+b;},0)/allN) : 0;
+  var el = document.getElementById('rail-all'); if(el) el.style.width = tot+'%';
+  var pe = document.getElementById('rail-pct'); if(pe) pe.textContent = tot;
+  BLOCKS.forEach(function(b,bi){
+    var ps = SECS.map(function(s,i){ return s.block===bi ? s.pct : null; }).filter(function(x){ return x!=null; });
+    var v = ps.length ? Math.round(ps.reduce(function(a,c){return a+c;},0)/ps.length) : 0;
+    var bar = document.querySelector('.rg[data-b="'+bi+'"] .rg-p i');
+    if(bar) bar.style.width = v+'%';
+    var g = document.querySelector('.rg[data-b="'+bi+'"]');
+    if(g) g.classList.toggle('done', v === 100);
+  });
+}
+
+/* =============================================================== ÍNDICE LATERAL */
+var BLOCKS = [];
+function railBuild(){
+  var b = document.getElementById('rail-b'); b.innerHTML = '';
+  BLOCKS.forEach(function(bl, bi){
+    var g = E('div','rg'); g.dataset.b = bi;
+    var h = E('div','rg-h');
+    h.appendChild(E('div','rg-n', String(bi+1)));
+    var t = E('div','rg-t'); t.appendChild(E('b',null,bl.t));
+    t.appendChild(E('span',null, SECS.filter(function(s){return s.block===bi;}).length + ' pantallas'));
+    h.appendChild(t);
+    h.onclick = function(){
+      var first = SECS.findIndex(function(s){ return s.block===bi; });
+      if(first >= 0) show(first);
+    };
+    g.appendChild(h);
+    var p = E('div','rg-p'); p.appendChild(E('i')); g.appendChild(p);
+    var l = E('div','rg-l');
+    SECS.forEach(function(s,i){
+      if(s.block !== bi) return;
+      var it = E('div','ri'); it.dataset.i = i;
+      it.appendChild(E('span','rn', String(i+1)));
+      it.appendChild(E('span','rk'));
+      it.appendChild(E('span',null, s.t));
+      it.onclick = function(){ show(i); };
+      l.appendChild(it);
+    });
+    g.appendChild(l);
+    b.appendChild(g);
+  });
+}
+function railPaint(){
+  document.querySelectorAll('.rg').forEach(function(g){
+    var bi = +g.dataset.b;
+    var isCur = SECS[cur].block === bi;
+    g.classList.toggle('cur', isCur);
+    g.classList.toggle('open', isCur);
+  });
+  document.querySelectorAll('.ri').forEach(function(e){ e.classList.toggle('cur', +e.dataset.i === cur); });
+  paintProgress();
+  var c = document.querySelector('.ri.cur');
+  if(c) c.scrollIntoView({block:'nearest'});
+}
+document.getElementById('b-rail').onclick = railToggle;
+document.getElementById('rail-toggle').onclick = railToggle;
+function railToggle(){
+  var r = document.getElementById('rail');
+  var off = r.classList.toggle('off');
+  document.documentElement.dataset.rail = off ? 'off' : 'on';
+  document.documentElement.style.setProperty('--rail', off ? '0px' : '300px');
+  document.getElementById('rail-toggle').textContent = off ? '◨ Mostrar índice' : '◧ Ocultar índice';
+}
+
+/* =============================================================== AUTOAJUSTE */
+var FITMIN = .76, FITMAX = 1.14;
+function overflowPx(s){
+  var n = Math.max(0, s.scrollHeight - s.clientHeight - 3);
+  s.querySelectorAll('.card,.scrolly').forEach(function(e){
+    if(e.classList.contains('nofit') || getComputedStyle(e).display === 'none') return;
+    var dy = e.scrollHeight - e.clientHeight - 6;
+    var dx = e.scrollWidth - e.clientWidth - 14;
+    if(dy > 0) n += dy;
+    if(dx > 0) n += dx;
+  });
+  return n;
+}
+function nofitOver(s){
+  var t = false;
+  s.querySelectorAll('.nofit').forEach(function(e){
+    if(e.scrollHeight > e.clientHeight + 6 || e.scrollWidth > e.clientWidth + 14) t = true; });
+  return t;
+}
+function measureFit(s){
+  var z = 1, g = 0;
+  s.style.zoom = 1;
+  /* pantallas de trabajo (tablas largas, editores): escala fija, se desplazan */
+  if(SECS[cur] && SECS[cur].work) return 1;
+  var base = overflowPx(s);
+  if(base === 0){
+    while(z < FITMAX - 1e-6 && g++ < 14 && !nofitOver(s)){
+      var nz = Math.min(FITMAX, Math.round((z + .04)*100)/100);
+      s.style.zoom = nz;
+      if(overflowPx(s) > 0 || nofitOver(s)){ s.style.zoom = z; break; }
+      z = nz;
+    }
+  } else {
+    var best = z, bestN = base;
+    while(z - .03 > FITMIN - 1e-6 && g++ < 18){
+      z = Math.round((z - .03)*100)/100;
+      s.style.zoom = z;
+      var n = overflowPx(s);
+      if(n < bestN){ bestN = n; best = z; }
+      if(n === 0) break;
+    }
+    if(bestN > 0 && bestN > base * .75) best = 1;
+    z = best; s.style.zoom = z;
+  }
+  return z;
+}
+/* reparte el aire sobrante dentro de cada panel */
+function balUndo(e){
+  if(!e.dataset.bal) return;
+  e.style.paddingTop = '';
+  [].forEach.call(e.children, function(c){ if(c.dataset && c.dataset.bal){ c.style.marginTop=''; delete c.dataset.bal; } });
+  delete e.dataset.bal;
+}
+function balance(root){
+  root.querySelectorAll('.card').forEach(function(e){
+    balUndo(e);
+    var cs = getComputedStyle(e);
+    if(cs.display === 'none') return;
+    var er = e.getBoundingClientRect();
+    if(er.height < 130) return;
+    var padT = parseFloat(cs.paddingTop), padB = parseFloat(cs.paddingBottom);
+    var bot = er.top + padT, kids = [];
+    [].forEach.call(e.children, function(c){
+      if(c.classList.contains('pop-b') || c.classList.contains('tag')) return;
+      var r = c.getBoundingClientRect();
+      if(r.height === 0) return;
+      kids.push(c); if(r.bottom > bot) bot = r.bottom;
+    });
+    if(!kids.length) return;
+    var gap = (er.bottom - padB - parseFloat(cs.borderBottomWidth)) - bot;
+    if(gap < 46) return;
+    var extra = Math.min(gap / (kids.length + 1), 60);
+    if(extra < 12) return;
+    var h0 = e.offsetHeight;
+    e.style.paddingTop = (padT + extra) + 'px';
+    for(var k = 1; k < kids.length; k++){
+      var m = parseFloat(getComputedStyle(kids[k]).marginTop) || 0;
+      kids[k].style.marginTop = (m + extra) + 'px';
+      kids[k].dataset.bal = '1';
+    }
+    e.dataset.bal = '1';
+    if(e.offsetHeight > h0 + 2) balUndo(e);
+  });
+}
+
+/* =============================================================== ZOOM */
+var ZOOM = 1, FIT = 1;
+function applyZoom(){
+  document.getElementById('zlabel').textContent = Math.round(ZOOM*100)+'%';
+  var s = SECS[cur] && SECS[cur].el;
+  if(!s) return;
+  if(window.innerWidth <= 760){ s.style.zoom = ''; return; }
+  s.style.zoom = FIT * ZOOM;
+}
+function fitNow(){
+  var s = SECS[cur].el, work = !!(SECS[cur] && SECS[cur].work);
+  if(window.innerWidth <= 760){ s.style.zoom = ''; if(!work) balance(s); return; }
+  FIT = measureFit(s);
+  s.style.zoom = FIT * ZOOM;
+  if(!work) balance(s);
+}
+function setZoom(z){ ZOOM = Math.max(.6, Math.min(2.2, Math.round(z*100)/100)); applyZoom(); }
+document.getElementById('b-zi').onclick = function(){ setZoom(ZOOM+.1); };
+document.getElementById('b-zo').onclick = function(){ setZoom(ZOOM-.1); };
+document.getElementById('zlabel').onclick = function(){ setZoom(1); };
+
+/* =============================================================== ABRIR PANEL */
+var POP = {node:null, ph:null, z:1};
+function popArm(root){
+  root.querySelectorAll('.card').forEach(function(e){
+    if(e.classList.contains('nopop') || e.querySelector(':scope > .pop-b')) return;
+    var b = E('button','pop-b','⤢'); b.type='button';
+    b.title = 'Abrir este panel a pantalla completa';
+    b.addEventListener('click', function(ev){ ev.stopPropagation(); ev.preventDefault(); popOpen(e); });
+    e.appendChild(b);
+  });
+}
+function popOpen(e){
+  if(POP.node) return;
+  POP.ph = E('div','pop-ph');
+  e.parentNode.insertBefore(POP.ph, e);
+  POP.node = e; e.classList.add('popped');
+  var h = e.querySelector('h2,h3,h4');
+  document.getElementById('pop-t').textContent = h ? h.textContent.trim().slice(0,70) : 'Panel ampliado';
+  document.getElementById('pop-in').appendChild(e);
+  POP.z = 1; popZ(0);
+  document.getElementById('pop').classList.add('on');
+}
+function popClose(){
+  if(!POP.node) return;
+  POP.node.classList.remove('popped');
+  POP.ph.parentNode.insertBefore(POP.node, POP.ph);
+  POP.ph.parentNode.removeChild(POP.ph);
+  POP.node = null; POP.ph = null;
+  document.getElementById('pop').classList.remove('on');
+  document.getElementById('pop-in').style.zoom = '';
+}
+function popZ(d){
+  POP.z = Math.max(.6, Math.min(2.4, Math.round((POP.z+d)*100)/100));
+  document.getElementById('pop-in').style.zoom = POP.z;
+  document.getElementById('pop-z').textContent = Math.round(POP.z*100)+'%';
+}
+document.getElementById('pop-x').onclick = popClose;
+document.getElementById('pop-zi').onclick = function(){ popZ(.1); };
+document.getElementById('pop-zo').onclick = function(){ popZ(-.1); };
+document.getElementById('pop').addEventListener('mousedown', function(ev){
+  if(ev.target.id === 'pop-in' || ev.target.id === 'pop') popClose(); });
+
+/* =============================================================== TEMA Y TECLADO */
+document.getElementById('b-th').onclick = function(){
+  var h = document.documentElement;
+  h.dataset.theme = h.dataset.theme === 'light' ? 'dark' : 'light';
+};
+document.addEventListener('keydown', function(e){
+  var t = e.target.tagName;
+  var editing = (t==='INPUT'||t==='TEXTAREA'||t==='SELECT');
+  var po = document.getElementById('pop').classList.contains('on');
+  if(e.key === 'Escape'){ popClose(); document.getElementById('help').classList.remove('on'); return; }
+  if(editing) return;
+  if(e.key==='+'||e.key==='='){ e.preventDefault(); po?popZ(.1):setZoom(ZOOM+.1); return; }
+  if(e.key==='-'||e.key==='_'){ e.preventDefault(); po?popZ(-.1):setZoom(ZOOM-.1); return; }
+  if(e.key==='0'){ e.preventDefault(); if(po){POP.z=1;popZ(0);} else setZoom(1); return; }
+  if(po) return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){ e.preventDefault(); next(); }
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); prev(); }
+  else if(e.key==='i'||e.key==='I'){ railToggle(); }
+  else if(e.key==='t'||e.key==='T'){ document.getElementById('b-th').click(); }
+});
+document.getElementById('b-next').onclick = next;
+document.getElementById('b-prev').onclick = prev;
+var rzT=null;
+window.addEventListener('resize', function(){ clearTimeout(rzT); rzT=setTimeout(fitNow,220); });
+</script>
+<script>
+"use strict";
+BLOCKS = [
+ {t:'Por qué fallan los árboles'},
+ {t:'Los tres lentes'},
+ {t:'Control de calidad'},
+ {t:'Llevarlo al F01'}
+];
+
+/* ---------- helpers ---------- */
+function head(el, eyebrow, title, lead){
+  var d = E('div');
+  d.appendChild(E('span','eyebrow',eyebrow));
+  d.appendChild(E('h2',null,title));
+  el.appendChild(d);
+  if(lead) el.appendChild(E('p','lead',lead));
+}
+function card(cls, title){
+  var c = E('div','card'+(cls?' '+cls:''));
+  c.appendChild(E('div','tag'));
+  if(title) c.appendChild(E('h3',null,title));
+  return c;
+}
+function listUl(items, cls){
+  var u = E('ul','tk'+(cls?' '+cls:''));
+  items.forEach(function(x){ u.appendChild(E('li',null,x)); });
+  return u;
+}
+function dimOf(k){ return DIMS.filter(function(d){ return d.k===k; })[0] || {n:'sin dimensión',c:''}; }
+function pillDim(k){
+  var d = dimOf(k);
+  return '<span class="pill '+(d.c||'')+'">'+esc(d.n)+'</span>';
+}
+/* fila editable de nodo: texto + tipo + dimensión + escala + evidencia */
+function nodoRow(n, opts){
+  opts = opts || {};
+  var row = E('div','nrow');
+  var tp = E('button','ntipo '+(n.tipo==='e'?'ef':'ca')); tp.type='button';
+  tp.textContent = n.tipo==='e' ? 'efecto' : 'causa';
+  tp.title = 'Cambiar entre causa y efecto';
+  tp.onclick = function(){ n.tipo = n.tipo==='e' ? 'c' : 'e'; touch(); render(cur); };
+  row.appendChild(tp);
+
+  var inp = cell(n,'t','Escribí la situación…');
+  inp.className = 'ntxt';
+  row.appendChild(inp);
+
+  if(!opts.hideDim){
+    var sd = E('select','nsel');
+    var o0 = E('option',null,'— dimensión —'); o0.value=''; sd.appendChild(o0);
+    DIMS.forEach(function(d){ var o=E('option',null,d.n); o.value=d.k; sd.appendChild(o); });
+    sd.value = n.dim || '';
+    sd.onchange = function(){ n.dim = sd.value; touch(); render(cur); };
+    row.appendChild(sd);
+  }
+  if(opts.esp){
+    var se = E('select','nsel');
+    var e0 = E('option',null,'— escala —'); e0.value=''; se.appendChild(e0);
+    LAB.esp.forEach(function(t,i){ var o=E('option',null,t); o.value=String(i); se.appendChild(o); });
+    se.value = n.esp===''||n.esp==null ? '' : String(n.esp);
+    se.onchange = function(){ n.esp = se.value; touch(); render(cur); };
+    row.appendChild(se);
+  }
+  if(opts.tmp){
+    var st = E('select','nsel');
+    var t0 = E('option',null,'— horizonte —'); t0.value=''; st.appendChild(t0);
+    ['Corto plazo','Mediano plazo','Largo plazo'].forEach(function(t,i){ var o=E('option',null,t); o.value=String(i); st.appendChild(o); });
+    st.value = n.tmp===''||n.tmp==null ? '' : String(n.tmp);
+    st.onchange = function(){ n.tmp = st.value; touch(); render(cur); };
+    row.appendChild(st);
+  }
+  var del = E('button','fdel','✕'); del.type='button';
+  del.onclick = function(){ delNodo(n.id); touch(); render(cur); };
+  row.appendChild(del);
+  return row;
+}
+
+/* =============================================================== 1 · PORTADA */
+addSec({block:0, t:'Por qué fallan los árboles', build:function(el){
+  var top = E('div');
+  top.appendChild(E('span','eyebrow','FEPAR 2026 · Escenario '+ESC.n+' · laboratorio de causalidad'));
+  top.appendChild(E('h1',null,'Antes de dibujar el árbol,<br>pensar el problema'));
+  el.appendChild(top);
+  el.appendChild(E('p','lead',LAB.foco));
+
+  var g = E('div','grid g3 fill');
+  [['①','Se mira una sola dimensión',
+    'La mayoría de los árboles de alumno son técnicos de punta a punta. Faltan la dimensión institucional, la económica y la social, que suelen ser donde está la causa raíz.'],
+   ['②','Se queda en el primer nivel',
+    'La primera causa que aparece casi siempre es un síntoma. Sin bajar dos o tres escalones, el proyecto termina atacando lo que se ve y no lo que lo produce.'],
+   ['③','Se escribe la solución',
+    '«Falta un vivero», «falta una planta», «falta financiamiento». Cuando el problema está escrito como carencia de una solución, el análisis de alternativas ya se perdió.']
+  ].forEach(function(p,i){
+    var c = card(['coral','oro','vio'][i], null);
+    c.appendChild(E('div','num '+['c','o','v'][i], p[0]));
+    c.appendChild(E('h3',null,p[1])).style.marginTop='7px';
+    c.appendChild(E('p','sub',p[2])).style.marginTop='7px';
+    g.appendChild(c);
+  });
+  el.appendChild(g);
+
+  var r = E('div','row');
+  var c1 = card(null,'El recorrido');
+  var st = E('div','col'); st.style.marginTop='10px';
+  [['Lente 1','Seis dimensiones','Una pasada por ambiental, social, económica, institucional, técnica y territorial, con preguntas propias de este caso.'],
+   ['Lente 2','Escalas','Dónde ocurre —del sitio a la provincia— y cuándo: herencia, presente y tendencia.'],
+   ['Lente 3','Profundidad','La escalera del «pero por qué» hasta llegar a una causa raíz sobre la que se pueda actuar.'],
+   ['Control','Cobertura y rúbrica','Dónde quedaron huecos y qué separa un árbol aceptable de uno profesional.']
+  ].forEach(function(p){
+    var b = E('div','box'); b.style.marginBottom='7px';
+    b.appendChild(E('div','tiny','<strong style="letter-spacing:.1em;text-transform:uppercase" class="g">'+p[0]+'</strong> · <strong>'+p[1]+'</strong>'));
+    b.appendChild(E('p','sub',p[2])).style.marginTop='3px';
+    st.appendChild(b);
+  });
+  c1.appendChild(st);
+  r.appendChild(c1);
+
+  var c2 = card('cel','Tu equipo');
+  c2.appendChild(E('p','tiny','Sólo para identificar el archivo que descargues o imprimas.'));
+  var f = field('eq',{label:'Nombre del equipo',type:'input',ph:'p. ej. PACHA Consultora'});
+  f.style.marginTop='9px';
+  c2.appendChild(f);
+  var bx = E('div','box info'); bx.style.marginTop='11px';
+  bx.appendChild(E('p','sub','Este laboratorio <strong>no reemplaza</strong> al visor del Formulario 01: lo alimenta. Acá se generan y se ordenan las causas y los efectos; allá se encadenan, se arma el árbol y se completa el formulario.'));
+  c2.appendChild(bx);
+  var bx2 = E('div','box warn'); bx2.style.marginTop='8px';
+  bx2.appendChild(E('p','sub','El escenario es la fuente. Cada causa que escribas tiene que poder rastrearse hasta una evidencia del caso o declararse como supuesto.'));
+  c2.appendChild(bx2);
+  r.appendChild(c2);
+  el.appendChild(r);
+}, fields:function(){ return [D.eq]; }});
+
+/* =============================================================== 2 · DIMENSIONES */
+var dimCur = 0;
+addSec({block:1, work:true, t:'Lente 1 · Seis dimensiones', build:function(el){
+  head(el,'Lente 1 · amplitud','Las seis dimensiones del problema',
+    'Un problema ambiental nunca es sólo ambiental. Recorré las seis y cargá lo que aparezca en cada una: después vas a ver cuáles quedaron vacías.');
+
+  var nav = E('div','wrap');
+  DIMS.forEach(function(d,i){
+    var n = nodos().filter(function(x){ return x.dim===d.k; }).length;
+    var b = E('button','dimb '+d.c+(i===dimCur?' on':''));
+    b.type='button';
+    b.innerHTML = esc(d.n) + (n? ' <span class="cnt">'+n+'</span>' : '');
+    b.onclick = function(){ dimCur = i; render(cur); };
+    nav.appendChild(b);
+  });
+  el.appendChild(nav);
+
+  var d = DIMS[dimCur];
+  var r = E('div','row');
+
+  var q = card(d.c==='aq'?'aqua':d.c==='v'?null:(d.c==='a'?'cel':(d.c==='o'?'oro':(d.c==='p'?'vio':'coral'))), null);
+  q.style.flex='1';
+  q.appendChild(E('h3',null,'Dimensión '+d.n.toLowerCase()));
+  q.appendChild(E('p','tiny',d.q)).style.marginTop='5px';
+  q.appendChild(E('div','hr')).style.margin='11px 0';
+  q.appendChild(E('h4',null,'Preguntas para este caso'));
+  q.appendChild(listUl(LAB.dims[d.k])).style.marginTop='7px';
+  var nb = E('div','box'); nb.style.marginTop='12px';
+  nb.appendChild(E('div','tiny','<strong>Notas del equipo</strong>'));
+  var fn = field('notas.'+d.k,{short:true,ph:'Lo que discutieron al responder estas preguntas…'});
+  fn.style.marginTop='6px';
+  nb.appendChild(fn);
+  q.appendChild(nb);
+  r.appendChild(q);
+
+  var w = card(null,'Lo que aparece en esta dimensión');
+  w.style.flex='1.25';
+  w.classList.add('nofit');
+  w.appendChild(E('p','tiny','Cada línea es una causa o un efecto. Podés cambiar entre uno y otro con el botón de la izquierda.'));
+  var box = E('div','col'); box.style.gap='6px'; box.style.marginTop='10px';
+  var mios = nodos().filter(function(n){ return n.dim === d.k; });
+  if(!mios.length) box.appendChild(E('p','tiny','Todavía no cargaste nada en esta dimensión.'));
+  mios.forEach(function(n){ box.appendChild(nodoRow(n, {hideDim:true})); });
+  w.appendChild(box);
+  var acts = E('div','wrap'); acts.style.marginTop='10px';
+  acts.appendChild(btn('+ Causa','sm', function(){ addNodo({dim:d.k, tipo:'c'}); touch(); render(cur); }));
+  acts.appendChild(btn('+ Efecto','ghost sm', function(){ addNodo({dim:d.k, tipo:'e'}); touch(); render(cur); }));
+  w.appendChild(acts);
+  r.appendChild(w);
+  el.appendChild(r);
+
+  var res = card('oro','Cómo va el recorrido');
+  var g = E('div','grid g6'); g.style.marginTop='9px';
+  DIMS.forEach(function(x,i){
+    var nc = nodos().filter(function(n){ return n.dim===x.k && n.tipo==='c'; }).length;
+    var ne = nodos().filter(function(n){ return n.dim===x.k && n.tipo==='e'; }).length;
+    var b = E('div','box'+(nc+ne===0?' bad':(nc&&ne?' ok':'')));
+    b.style.cursor='pointer';
+    b.onclick = function(){ dimCur = i; render(cur); };
+    b.appendChild(E('div','tiny','<strong>'+esc(x.n)+'</strong>'));
+    b.appendChild(E('p','tiny', nc+' causa'+(nc===1?'':'s')+' · '+ne+' efecto'+(ne===1?'':'s'))).style.marginTop='3px';
+    g.appendChild(b);
+  });
+  res.appendChild(g);
+  el.appendChild(res);
+}, fields:function(){ return DIMS.map(function(d){
+    return nodos().filter(function(n){ return n.dim===d.k; }).length ? 'x' : ''; }); }});
+
+/* =============================================================== 3 · ESCALAS */
+addSec({block:1, work:true, t:'Lente 2 · Escalas', build:function(el){
+  head(el,'Lente 2 · dónde y cuándo','Escala espacial y horizonte temporal',
+    'La misma situación cambia de sentido según dónde la mires. Una causa del sitio se resuelve con un proyecto; una causa estructural, no: se declara como supuesto o se acota el alcance.');
+
+  var r = E('div','row');
+  var c1 = card('cel','Escala espacial');
+  c1.style.flex='1';
+  c1.appendChild(E('p','tiny','De adentro hacia afuera. Preguntate qué aparece en cada anillo que no aparecía en el anterior.'));
+  var st = E('div','col'); st.style.marginTop='10px';
+  LAB.esp.forEach(function(t,i){
+    var n = nodos().filter(function(x){ return String(x.esp)===String(i); }).length;
+    var b = E('div','box'+(n?' ok':''));
+    b.style.marginBottom='6px';
+    b.appendChild(E('div','tiny','<strong class="g">Nivel '+(i+1)+'</strong> · '+esc(t)+(n? ' — <strong>'+n+'</strong> '+(n===1?'situación':'situaciones') : ' — <em>vacío</em>')));
+    st.appendChild(b);
+  });
+  c1.appendChild(st);
+  r.appendChild(c1);
+
+  var c2 = card('vio','Horizonte temporal');
+  c2.style.flex='1';
+  c2.appendChild(E('p','tiny','Tres preguntas que casi nadie se hace y que cambian el árbol entero.'));
+  var tt = E('div','col'); tt.style.marginTop='10px';
+  ['Herencia','Presente','Tendencia'].forEach(function(lb,i){
+    var b = E('div','box'); b.style.marginBottom='7px';
+    b.appendChild(E('div','tiny','<strong style="letter-spacing:.1em;text-transform:uppercase" class="o">'+lb+'</strong>'));
+    b.appendChild(E('p','sub',LAB.tmp[i])).style.marginTop='3px';
+    var f = field('notas.t'+i,{short:true,ph:'Respuesta del equipo…'});
+    f.style.marginTop='6px';
+    b.appendChild(f);
+    tt.appendChild(b);
+  });
+  c2.appendChild(tt);
+  r.appendChild(c2);
+  el.appendChild(r);
+
+  var w = card(null,'Asigná escala y horizonte a lo que ya cargaste');
+  w.classList.add('nofit');
+  w.appendChild(E('p','tiny','A las causas asignales escala espacial; a los efectos, además, el horizonte en que se manifiestan.'));
+  var box = E('div','col'); box.style.gap='6px'; box.style.marginTop='10px';
+  if(!nodos().length) box.appendChild(E('p','tiny','Volvé al lente 1 y cargá causas y efectos primero.'));
+  nodos().forEach(function(n){ box.appendChild(nodoRow(n, {esp:true, tmp:n.tipo==='e'})); });
+  w.appendChild(box);
+  var a = E('div','wrap'); a.style.marginTop='10px';
+  a.appendChild(btn('+ Situación nueva','ghost sm', function(){ addNodo({}); touch(); render(cur); }));
+  w.appendChild(a);
+  el.appendChild(w);
+}, fields:function(){ return nodos().map(function(n){ return (n.esp===''||n.esp==null) ? '' : 'x'; }); }});
+
+/* =============================================================== 4 · PROFUNDIDAD */
+addSec({block:1, work:true, t:'Lente 3 · Profundidad', build:function(el){
+  head(el,'Lente 3 · la escalera','El «pero por qué» hasta la causa raíz',
+    'Por cada causa, bajá escalones. Una causa es raíz cuando ya no depende de otra de tu árbol y cuando el proyecto puede actuar sobre ella —o cuando queda explícitamente fuera de alcance y pasa a ser un supuesto.');
+
+  var pistas = card('oro','Dónde suelen estar las raíces de este caso');
+  pistas.appendChild(listUl(LAB.raices,'o')).style.marginTop='8px';
+  pistas.appendChild(E('p','tiny','No son las respuestas: son las direcciones en las que conviene cavar.')).style.marginTop='8px';
+  el.appendChild(pistas);
+
+  var cs = causas().filter(function(n){ return String(n.t||'').trim(); });
+  if(!cs.length){
+    var v = E('div','box warn');
+    v.appendChild(E('p','sub','Todavía no hay causas con texto. Volvé al lente 1 y cargá al menos una.'));
+    el.appendChild(v);
+    return;
+  }
+  var col = E('div','col');
+  cs.forEach(function(n){
+    var c = card(null,null);
+    c.classList.add('nofit');
+    var hd = E('div','row'); hd.style.gap='9px'; hd.style.alignItems='flex-start'; hd.style.flexWrap='wrap';
+    var h = E('div'); h.style.flex='1'; h.style.minWidth='min(100%,260px)';
+    h.innerHTML = (n.dim? pillDim(n.dim)+' ' : '') + '<strong>'+esc(n.t)+'</strong>';
+    hd.appendChild(h);
+    var raizOn = !!D.raiz[n.id];
+    var rb = btn(raizOn ? '✓ Causa raíz' : 'Marcar como raíz', raizOn ? 'sm' : 'ghost sm', function(){
+      D.raiz[n.id] = !D.raiz[n.id]; touch(); render(cur);
+    });
+    hd.appendChild(rb);
+    c.appendChild(hd);
+
+    D.porq[n.id] = D.porq[n.id] || ['','',''];
+    var esc2 = E('div','col'); esc2.style.gap='0'; esc2.style.marginTop='10px';
+    [0,1,2].forEach(function(k){
+      var q = E('p','tiny'); q.style.margin='3px 0'; q.innerHTML = '↓ <em>¿pero por qué?</em>';
+      esc2.appendChild(q);
+      var b = E('div','box'+(k===2?' ok':''));
+      var ta = E('textarea','fa short');
+      ta.value = D.porq[n.id][k] || '';
+      ta.placeholder = k===0 ? 'Primer escalón: porque…' : (k===1 ? 'Segundo escalón: y eso porque…' : 'Tercer escalón: la raíz…');
+      ta.addEventListener('input', function(){ D.porq[n.id][k] = ta.value; touch(); });
+      b.appendChild(ta);
+      esc2.appendChild(b);
+    });
+    c.appendChild(esc2);
+
+    var test = E('div','box info'); test.style.marginTop='10px';
+    var llenos = D.porq[n.id].filter(function(x){ return String(x||'').trim(); }).length;
+    test.appendChild(E('p','tiny', llenos < 2
+      ? '⚠ Con menos de dos escalones es muy probable que sigas en el síntoma.'
+      : (D.raiz[n.id]
+         ? '✓ Marcada como raíz. Verificá que sea independiente de las otras raíces y que el proyecto pueda actuar sobre ella; si no puede, va a la planilla de supuestos.'
+         : 'Bajaste '+llenos+' escalones. ¿El último ya es independiente y accionable? Entonces marcalo como raíz.')));
+    c.appendChild(test);
+    col.appendChild(c);
+  });
+  el.appendChild(col);
+}, fields:function(){ return causas().filter(function(n){ return String(n.t||'').trim(); })
+    .map(function(n){ return (D.porq[n.id]||[]).filter(function(x){return String(x||'').trim();}).length >= 2 ? 'x' : ''; }); }});
+
+/* =============================================================== 5 · COBERTURA */
+addSec({block:2, work:true, t:'Mapa de cobertura', build:function(el){
+  head(el,'Control · dónde quedaron los huecos','Mapa de cobertura del análisis',
+    'No se trata de llenar todas las celdas: se trata de saber cuáles quedaron vacías y poder explicar por qué.');
+
+  var t = E('table','tb'); t.style.minWidth='560px';
+  t.innerHTML = '<thead><tr><th style="width:34%">Dimensión</th><th style="text-align:center">Causas</th>'+
+    '<th style="text-align:center">Efectos</th><th style="text-align:center">Con escala</th><th style="text-align:center">Con raíz</th></tr></thead>';
+  var tb = E('tbody');
+  var vacias = [];
+  DIMS.forEach(function(d){
+    var ns = nodos().filter(function(n){ return n.dim===d.k; });
+    var nc = ns.filter(function(n){ return n.tipo==='c'; }).length;
+    var ne = ns.filter(function(n){ return n.tipo==='e'; }).length;
+    var ce = ns.filter(function(n){ return n.esp!==''&&n.esp!=null; }).length;
+    var cr = ns.filter(function(n){ return D.raiz[n.id]; }).length;
+    if(!ns.length) vacias.push(d.n);
+    var tr = E('tr');
+    if(!ns.length) tr.className='vac';
+    tr.innerHTML = '<td>'+pillDim(d.k)+'</td>'+
+      '<td style="text-align:center">'+(nc||'—')+'</td><td style="text-align:center">'+(ne||'—')+'</td>'+
+      '<td style="text-align:center">'+(ce||'—')+'</td><td style="text-align:center">'+(cr||'—')+'</td>';
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  var c = card(null,null); c.classList.add('nofit');
+  var sc = E('div','scrolly'); sc.appendChild(t); c.appendChild(sc);
+  el.appendChild(c);
+
+  var r = E('div','row');
+  var d1 = card(vacias.length ? 'coral' : null, 'Diagnóstico');
+  d1.style.flex='1';
+  var out = E('div'); out.style.marginTop='9px';
+  var tot = nodos().filter(function(n){ return String(n.t||'').trim(); }).length;
+  var nc = causas().filter(function(n){ return String(n.t||'').trim(); }).length;
+  var ne = efectos().filter(function(n){ return String(n.t||'').trim(); }).length;
+  var raices = Object.keys(D.raiz).filter(function(k){ return D.raiz[k]; }).length;
+  var msgs = [];
+  msgs.push('<div class="box"><p class="tiny"><strong>'+tot+'</strong> situaciones cargadas: '+nc+' causas y '+ne+' efectos.</p></div>');
+  if(vacias.length >= 3) msgs.push('<div class="box bad"><p class="tiny">⚠ Quedaron <strong>'+vacias.length+' dimensiones vacías</strong>: '+esc(vacias.join(' · '))+'. Un árbol con esta cobertura casi seguro está mirando el problema desde un solo lado.</p></div>');
+  else if(vacias.length) msgs.push('<div class="box warn"><p class="tiny">Sin nada cargado en: <strong>'+esc(vacias.join(' · '))+'</strong>. Puede estar bien, pero el equipo tiene que poder explicar por qué esa dimensión no aplica.</p></div>');
+  else msgs.push('<div class="box ok"><p class="tiny">✓ Las seis dimensiones tienen al menos una situación.</p></div>');
+  if(!raices) msgs.push('<div class="box warn"><p class="tiny">⚠ Ninguna causa marcada como raíz. Sin raíces, el proyecto va a atacar síntomas.</p></div>');
+  else msgs.push('<div class="box ok"><p class="tiny">'+raices+' causa'+(raices===1?'':'s')+' marcada'+(raices===1?'':'s')+' como raíz.</p></div>');
+  if(ne < 2) msgs.push('<div class="box warn"><p class="tiny">⚠ Con menos de dos efectos, la rama de arriba del árbol va a quedar pobre. Preguntate «¿y esto qué provoca?» al menos dos veces.</p></div>');
+  out.innerHTML = msgs.join('');
+  d1.appendChild(out);
+  r.appendChild(d1);
+
+  var d2 = card('vio','Borrador del problema central');
+  d2.style.flex='1';
+  d2.appendChild(E('p','tiny','Con todo lo anterior a la vista: ¿cuál de estas situaciones está en el medio de la red? Escribila acá y después verificala en el visor del F01.'));
+  var f = field('pc',{tall:true,ph:'Situación negativa, ubicada, acotada en el tiempo y medible…',min:110});
+  f.style.marginTop='9px';
+  d2.appendChild(f);
+  var hint = E('div','box info'); hint.style.marginTop='9px';
+  hint.appendChild(E('p','tiny','No es la que más te indigna ni la más visible: es la que <strong>recibe muchas causas y produce muchos efectos</strong>. El visor del F01 lo calcula por vos cuando cargues los vínculos.'));
+  d2.appendChild(hint);
+  r.appendChild(d2);
+  el.appendChild(r);
+}, fields:function(){ return [D.pc]; }});
+
+/* =============================================================== 6 · EFECTOS */
+addSec({block:2, work:true, t:'Efectos en el tiempo', build:function(el){
+  head(el,'Control · la rama de arriba','Los efectos, encadenados y en el tiempo',
+    'El error habitual es un solo efecto, inmediato y de la misma dimensión que el problema. Un árbol profesional muestra cómo el efecto de hoy produce el de mañana, y en qué otras dimensiones aparece.');
+
+  var g = E('div','grid g3');
+  ['Corto plazo','Mediano plazo','Largo plazo'].forEach(function(lb,i){
+    var c = card(['cel','oro','coral'][i], lb);
+    c.classList.add('nofit');
+    var ns = efectos().filter(function(n){ return String(n.tmp)===String(i) && String(n.t||'').trim(); });
+    var box = E('div','col'); box.style.gap='6px'; box.style.marginTop='9px';
+    if(!ns.length) box.appendChild(E('p','tiny','Sin efectos en este horizonte.'));
+    ns.forEach(function(n){
+      var b = E('div','box');
+      b.innerHTML = (n.dim? pillDim(n.dim)+'<br>' : '') + '<span class="sub">'+esc(n.t)+'</span>';
+      box.appendChild(b);
+    });
+    c.appendChild(box);
+    var a = btn('+ Efecto de '+lb.toLowerCase(),'ghost sm', function(){
+      addNodo({tipo:'e', tmp:String(i)}); touch(); render(cur);
+    });
+    a.style.marginTop='9px'; a.style.alignSelf='flex-start';
+    c.appendChild(a);
+    g.appendChild(c);
+  });
+  el.appendChild(g);
+
+  var w = card(null,'Todos los efectos');
+  w.classList.add('nofit');
+  w.appendChild(E('p','tiny','Asigná dimensión y horizonte a cada uno. Los que queden sin horizonte no van a aparecer arriba.'));
+  var box = E('div','col'); box.style.gap='6px'; box.style.marginTop='10px';
+  var es = efectos();
+  if(!es.length) box.appendChild(E('p','tiny','Todavía no cargaste efectos.'));
+  es.forEach(function(n){ box.appendChild(nodoRow(n, {tmp:true})); });
+  w.appendChild(box);
+  var a2 = btn('+ Efecto','ghost sm', function(){ addNodo({tipo:'e'}); touch(); render(cur); });
+  a2.style.marginTop='10px'; a2.style.alignSelf='flex-start';
+  w.appendChild(a2);
+  el.appendChild(w);
+
+  var bx = E('div','box info');
+  bx.appendChild(E('p','sub','<strong>Prueba de encadenamiento.</strong> Tomá el efecto de corto plazo y preguntá «¿y esto qué provoca?». Si la respuesta es uno de tus efectos de mediano plazo, la cadena cierra. Si no aparece, falta un eslabón.'));
+  el.appendChild(bx);
+}, fields:function(){ return efectos().map(function(n){ return (n.tmp===''||n.tmp==null) ? '' : 'x'; }); }});
+
+/* =============================================================== 7 · TRAMPAS */
+addSec({block:2, work:true, t:'Trampas de este caso', build:function(el){
+  head(el,'Control · los errores que ya conocemos','Las tres trampas de este escenario',
+    'No son errores genéricos: son los que aparecen año tras año en este caso concreto.');
+  var col = E('div','col');
+  LAB.trampas.forEach(function(t,i){
+    var c = card(null,null);
+    c.classList.add('nofit');
+    var g = E('div','grid g3'); g.style.gap='12px';
+
+    var b1 = E('div','box bad');
+    b1.appendChild(E('div','tiny','<strong style="letter-spacing:.1em;text-transform:uppercase">Así lo escriben</strong>'));
+    b1.appendChild(E('p','sub','«'+esc(t.mal)+'»')).style.marginTop='5px';
+    g.appendChild(b1);
+
+    var b2 = E('div','box warn');
+    b2.appendChild(E('div','tiny','<strong style="letter-spacing:.1em;text-transform:uppercase">Por qué está mal</strong>'));
+    b2.appendChild(E('p','sub',t.por)).style.marginTop='5px';
+    g.appendChild(b2);
+
+    var b3 = E('div','box ok');
+    b3.appendChild(E('div','tiny','<strong style="letter-spacing:.1em;text-transform:uppercase">Así se escribe</strong>'));
+    var rev = E('p','sub'); rev.style.marginTop='5px';
+    var abierto = (D.notas['tr'+i] === '1');
+    rev.innerHTML = abierto ? '«'+esc(t.bien)+'»' : '<em class="tiny">Antes de mirar: escribí tu versión corregida y después comparala.</em>';
+    b3.appendChild(rev);
+    var f = field('notas.tv'+i,{short:true,ph:'Tu corrección…'});
+    f.style.marginTop='7px';
+    b3.appendChild(f);
+    var vb = btn(abierto ? 'Ocultar' : 'Ver la corrección','ghost xs', function(){
+      D.notas['tr'+i] = abierto ? '' : '1'; touch(); render(cur);
+    });
+    vb.style.marginTop='7px';
+    b3.appendChild(vb);
+    g.appendChild(b3);
+
+    c.appendChild(g);
+    col.appendChild(c);
+  });
+  el.appendChild(col);
+}, fields:function(){ return LAB.trampas.map(function(_,i){ return D.notas['tv'+i] || ''; }); }});
+
+/* =============================================================== 8 · RÚBRICA */
+addSec({block:2, work:true, t:'Rúbrica profesional', build:function(el){
+  head(el,'Control · el estándar','Qué separa un árbol aceptable de uno profesional',
+    'Ubicá honestamente tu árbol en cada criterio. La columna de la derecha es el estándar con el que la cátedra corrige.');
+  D.rub = D.rub || [];
+  var c = card(null,null); c.classList.add('nofit');
+  var t = E('table','tb'); t.style.minWidth='760px';
+  t.innerHTML = '<thead><tr><th style="width:19%">Criterio</th><th style="width:25%">Básico</th>'+
+    '<th style="width:25%">Aceptable</th><th style="width:25%">Profesional</th><th style="width:6%">Tu nivel</th></tr></thead>';
+  var tb = E('tbody');
+  RUB.forEach(function(r,i){
+    var tr = E('tr');
+    var td0 = E('td',null,'<strong>'+esc(r.t)+'</strong>');
+    tr.appendChild(td0);
+    [1,2,3].forEach(function(k){
+      var td = E('td','lvl'+(D.rub[i]===k?' sel':''));
+      td.style.cursor='pointer';
+      td.appendChild(E('span','sub', r['n'+k]));
+      td.onclick = function(){ D.rub[i] = (D.rub[i]===k? 0 : k); touch(); render(cur); };
+      tr.appendChild(td);
+    });
+    var tdn = E('td'); tdn.style.textAlign='center';
+    tdn.innerHTML = D.rub[i] ? '<span class="pill '+(D.rub[i]===3?'v':(D.rub[i]===2?'o':'c'))+'">'+D.rub[i]+'</span>' : '—';
+    tr.appendChild(tdn);
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  var sc = E('div','scrolly'); sc.appendChild(t); c.appendChild(sc);
+  el.appendChild(c);
+
+  var r = E('div','row');
+  var res = card('vio','Dónde está tu árbol');
+  res.style.flex='1';
+  var n = D.rub.filter(function(x){ return x; }).length;
+  var suma = D.rub.reduce(function(a,b){ return a + (b||0); }, 0);
+  var max = RUB.length * 3;
+  var pct = Math.round(suma/max*100);
+  var out = E('div'); out.style.marginTop='9px';
+  out.innerHTML = '<div class="num">'+suma+' <span style="font-size:16px;color:var(--tx3)">de '+max+'</span></div>'+
+    '<div class="meter'+(pct<70?' o':'')+'"><i style="width:'+pct+'%"></i></div>'+
+    '<p class="tiny" style="margin-top:8px">'+(n<RUB.length
+      ? 'Faltan '+(RUB.length-n)+' criterios por ubicar.'
+      : (pct>=85 ? '✓ El árbol está en estándar profesional. Revisá igual los criterios que quedaron en 2.'
+                 : 'Mirá los criterios donde te ubicaste en 1 o 2: ahí está el trabajo que falta.'))+'</p>';
+  res.appendChild(out);
+  r.appendChild(res);
+
+  var pend = card('oro','Lo que falta trabajar');
+  pend.style.flex='1';
+  var lista = RUB.map(function(x,i){ return {t:x.t, v:D.rub[i]||0, s:x.n3}; })
+                 .filter(function(x){ return x.v && x.v < 3; });
+  var o2 = E('div'); o2.style.marginTop='9px';
+  o2.innerHTML = lista.length
+    ? lista.map(function(x){ return '<div class="box warn" style="margin-bottom:6px"><p class="tiny"><strong>'+esc(x.t)+'</strong> — para llegar a profesional: '+esc(x.s)+'</p></div>'; }).join('')
+    : '<div class="box ok"><p class="tiny">Nada pendiente entre los criterios que ya ubicaste.</p></div>';
+  pend.appendChild(o2);
+  r.appendChild(pend);
+  el.appendChild(r);
+}, fields:function(){ return RUB.map(function(_,i){ return D.rub[i] ? 'x' : ''; }); }});
+</script>
+<script>
+"use strict";
+/* =============================================================== 9 · LLEVARLO AL F01 */
+addSec({block:3, t:'Llevarlo al F01', build:function(el){
+  head(el,'Cierre','Llevar el trabajo al Formulario 01',
+    'Todo lo que cargaste acá puede pasar al visor del F01 de este escenario, donde se encadenan las causas, se arma el árbol y se completa el formulario.');
+
+  var g = E('div','grid g3');
+
+  var c1 = card(null,'Enviar al visor del F01');
+  c1.appendChild(E('p','sub','Carga las causas y los efectos dentro del análisis de causalidad del formulario. <strong>No pisa</strong> lo que el equipo ya tenía: sólo agrega lo que falta.')).style.marginTop='7px';
+  var b1 = btn('➜ Enviar al visor del F01','', enviarF01); b1.style.marginTop='11px';
+  c1.appendChild(b1);
+  var st = E('div'); st.id='send-st'; st.style.marginTop='9px';
+  c1.appendChild(st);
+  c1.appendChild(E('p','tiny','Funciona en esta misma computadora y este mismo navegador, porque los dos comparten el sitio.')).style.marginTop='8px';
+  g.appendChild(c1);
+
+  var c2 = card('oro','Descargar el trabajo');
+  c2.appendChild(E('p','sub','Un archivo con todo el laboratorio, para seguir en otra máquina o para pasárselo a un compañero.')).style.marginTop='7px';
+  var w = E('div','wrap'); w.style.marginTop='11px';
+  w.appendChild(btn('💾 Descargar','ghost', expJSON));
+  w.appendChild(btn('📂 Cargar','ghost', function(){ document.getElementById('fileIn').click(); }));
+  c2.appendChild(w);
+  c2.appendChild(E('p','tiny','Cargar un archivo reemplaza todo lo que haya en pantalla.')).style.marginTop='8px';
+  g.appendChild(c2);
+
+  var c3 = card('vio','Imprimir o guardar en PDF');
+  c3.appendChild(E('p','sub','El informe del análisis: situaciones por dimensión, escaleras del «pero por qué», cobertura y rúbrica.')).style.marginTop='7px';
+  var b3 = btn('🖨 Imprimir / PDF','ghost', doPrint); b3.style.marginTop='11px';
+  c3.appendChild(b3);
+  g.appendChild(c3);
+  el.appendChild(g);
+
+  var r = E('div','row');
+  var res = card('cel','Resumen del análisis');
+  res.style.flex='1.2';
+  var nc = causas().filter(function(n){ return String(n.t||'').trim(); }).length;
+  var ne = efectos().filter(function(n){ return String(n.t||'').trim(); }).length;
+  var dims = DIMS.filter(function(d){ return nodos().some(function(n){ return n.dim===d.k && String(n.t||'').trim(); }); }).length;
+  var raices = Object.keys(D.raiz).filter(function(k){ return D.raiz[k]; }).length;
+  var o = E('div'); o.style.marginTop='9px';
+  o.innerHTML = '<div class="grid g4" style="gap:12px">'+
+   ['<div><div class="num">'+nc+'</div><p class="tiny">causas</p></div>',
+    '<div><div class="num" style="color:var(--celeste)">'+ne+'</div><p class="tiny">efectos</p></div>',
+    '<div><div class="num o">'+dims+'/6</div><p class="tiny">dimensiones</p></div>',
+    '<div><div class="num" style="color:var(--violeta)">'+raices+'</div><p class="tiny">causas raíz</p></div>'
+   ].join('')+'</div>';
+  res.appendChild(o);
+  var bx = E('div','box warn'); bx.style.marginTop='12px';
+  bx.appendChild(E('p','sub','<strong>El paso que sigue.</strong> En el visor del F01, cargá los vínculos «esto produce esto otro» entre las situaciones. Recién ahí se ve cuál está en el medio de la red: ese es el problema central, y no el que más te indigna.'));
+  res.appendChild(bx);
+  r.appendChild(res);
+
+  var nx = card('coral','Antes de cerrar');
+  nx.style.flex='.9';
+  nx.appendChild(listUl([
+    'Cada causa tiene que poder rastrearse hasta una evidencia del escenario.',
+    'Lo que no se pudo verificar va a la planilla de supuestos, numerado.',
+    'Las causas raíz que el proyecto no puede tocar también son supuestos.',
+    'El árbol se defiende oralmente: si nadie del equipo puede explicar un nodo, ese nodo no está terminado.'
+  ],'c')).style.marginTop='8px';
+  r.appendChild(nx);
+  el.appendChild(r);
+}});
+
+/* =============================================================== ENVÍO AL F01 */
+function enviarF01(){
+  var st = document.getElementById('send-st');
+  var listos = nodos().filter(function(n){ return String(n.t||'').trim(); });
+  if(!listos.length){ toast('Todavía no hay nada para enviar.'); return; }
+  var f01, existia = false;
+  try{
+    var raw = localStorage.getItem(KEY_F01);
+    if(raw){ f01 = JSON.parse(raw); existia = true; }
+  }catch(e){}
+  if(!f01 || typeof f01 !== 'object') f01 = {esc:ESC.n};
+  f01.esc = ESC.n;
+  f01.sit = Array.isArray(f01.sit) ? f01.sit : [];
+
+  var norm = function(t){ return String(t||'').trim().toLowerCase().replace(/\s+/g,' '); };
+  var yaHay = {};
+  f01.sit.forEach(function(s){ yaHay[norm(s.t)] = 1; });
+
+  var maxN = 0;
+  f01.sit.forEach(function(s){
+    var m = /^s(\d+)$/.exec(String(s.id||''));
+    if(m) maxN = Math.max(maxN, +m[1]);
+  });
+  var nuevos = 0;
+  listos.forEach(function(n){
+    if(yaHay[norm(n.t)]) return;
+    maxN++;
+    f01.sit.push({id:'s'+maxN, t:n.t.trim(), k:(n.tipo==='e' ? 'e' : 'c')});
+    yaHay[norm(n.t)] = 1;
+    nuevos++;
+  });
+  /* el problema central sólo se propone si allá todavía no hay ninguno marcado */
+  var hayCentral = f01.sit.some(function(s){ return s.k === 'p'; });
+  var pcTxt = String(D.pc||'').trim();
+  var pcPuesto = false;
+  if(!hayCentral && pcTxt){
+    var ya = f01.sit.filter(function(s){ return norm(s.t) === norm(pcTxt); })[0];
+    if(ya){ ya.k = 'p'; }
+    else { maxN++; f01.sit.push({id:'s'+maxN, t:pcTxt, k:'p'}); nuevos++; }
+    pcPuesto = true;
+  }
+  try{
+    localStorage.setItem(KEY_F01, JSON.stringify(f01));
+  }catch(e){
+    st.innerHTML = '<div class="box bad"><p class="tiny">No se pudo escribir en este navegador. Descargá el trabajo y cargalo a mano en el visor.</p></div>';
+    return;
+  }
+  st.innerHTML = '<div class="box ok"><p class="tiny">✓ <strong>'+nuevos+'</strong> '+
+    (nuevos===1?'situación enviada':'situaciones enviadas')+' al visor del F01'+
+    (pcPuesto ? ', incluido tu borrador de problema central' : '')+'. '+
+    (existia ? 'Lo que ya estaba cargado allá se conservó.' : 'Se creó el trabajo del formulario para este escenario.')+
+    '</p><p class="tiny" style="margin-top:6px"><a class="lk" href="../" target="_blank" rel="noopener">Abrir el visor del F01 →</a> y andá a «Análisis de causalidad».</p></div>';
+  toast(nuevos + (nuevos===1 ? ' situación enviada al F01.' : ' situaciones enviadas al F01.'));
+}
+
+/* =============================================================== SALIDA */
+function dl(name, mime, content){
+  var b = new Blob([content], {type:mime});
+  var u = URL.createObjectURL(b);
+  var a = document.createElement('a');
+  a.href = u; a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(u); }, 400);
+}
+function slug(t){
+  return String(t||'equipo').normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,40) || 'equipo';
+}
+function docBody(){
+  var h = '<h1>Laboratorio de causalidad · FEPAR 2026</h1>'+
+    '<p><strong>Escenario '+ESC.n+' — '+esc(ESC.t)+'</strong><br>'+esc(ESC.lug)+'</p>'+
+    '<p><strong>Equipo:</strong> '+esc(D.eq || 'sin nombre')+
+    '<br><span style="font-size:9pt;color:#5a6b64">Generado el '+nowStr()+'</span></p>';
+
+  if(String(D.pc||'').trim()){
+    h += '<h2>Borrador del problema central</h2><div class="p-v">'+esc(D.pc)+'</div>';
+  }
+
+  h += '<h2>Situaciones por dimensión</h2><table><tr><th>Dimensión</th><th>Tipo</th><th>Situación</th>'+
+       '<th>Escala</th><th>Horizonte</th><th>Raíz</th></tr>';
+  var hay = false;
+  DIMS.concat([{k:'',n:'Sin dimensión'}]).forEach(function(d){
+    nodos().filter(function(n){ return (n.dim||'') === d.k && String(n.t||'').trim(); }).forEach(function(n){
+      hay = true;
+      h += '<tr><td>'+esc(d.n)+'</td><td>'+(n.tipo==='e'?'efecto':'causa')+'</td><td>'+esc(n.t)+'</td>'+
+           '<td>'+esc((n.esp!==''&&n.esp!=null) ? LAB.esp[+n.esp] : '—')+'</td>'+
+           '<td>'+((n.tmp!==''&&n.tmp!=null) ? ['Corto','Mediano','Largo'][+n.tmp]+' plazo' : '—')+'</td>'+
+           '<td>'+(D.raiz[n.id] ? 'sí' : '—')+'</td></tr>';
+    });
+  });
+  if(!hay) h += '<tr><td colspan="6"><em>Sin situaciones cargadas.</em></td></tr>';
+  h += '</table>';
+
+  var esc3 = causas().filter(function(n){ return String(n.t||'').trim() &&
+    (D.porq[n.id]||[]).some(function(x){ return String(x||'').trim(); }); });
+  if(esc3.length){
+    h += '<h2>Escaleras del «pero por qué»</h2>';
+    esc3.forEach(function(n){
+      h += '<div class="p-i"><h3>'+esc(n.t)+(D.raiz[n.id]?' — causa raíz':'')+'</h3><table>';
+      (D.porq[n.id]||[]).forEach(function(x,k){
+        if(String(x||'').trim()) h += '<tr><th style="width:24%">Escalón '+(k+1)+'</th><td>'+esc(x)+'</td></tr>';
+      });
+      h += '</table></div>';
+    });
+  }
+
+  h += '<h2>Cobertura del análisis</h2><table><tr><th>Dimensión</th><th>Causas</th><th>Efectos</th></tr>';
+  DIMS.forEach(function(d){
+    var ns = nodos().filter(function(n){ return n.dim===d.k && String(n.t||'').trim(); });
+    h += '<tr><td>'+esc(d.n)+'</td><td>'+ns.filter(function(n){return n.tipo==='c';}).length+
+         '</td><td>'+ns.filter(function(n){return n.tipo==='e';}).length+'</td></tr>';
+  });
+  h += '</table>';
+
+  var suma = (D.rub||[]).reduce(function(a,b){ return a+(b||0); }, 0);
+  h += '<h2>Autoevaluación con la rúbrica</h2><p>'+suma+' de '+(RUB.length*3)+' puntos.</p><table>'+
+    '<tr><th style="width:26%">Criterio</th><th style="width:10%">Nivel</th><th>Estándar profesional</th></tr>'+
+    RUB.map(function(r,i){
+      return '<tr><td>'+esc(r.t)+'</td><td style="text-align:center">'+((D.rub||[])[i] || '—')+'</td><td>'+esc(r.n3)+'</td></tr>';
+    }).join('')+'</table>';
+  return h;
+}
+function expJSON(){
+  D.ts = nowStr();
+  dl('causalidad_E'+ESC.n+'_'+slug(D.eq)+'.json', 'application/json', JSON.stringify(D, null, 1));
+  toast('Trabajo descargado.');
+}
+document.getElementById('fileIn').addEventListener('change', function(ev){
+  var f = ev.target.files[0]; if(!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try{
+      var o = JSON.parse(rd.result);
+      if(o.esc && o.esc !== ESC.n){
+        if(!confirm('Ese archivo es del Escenario '+o.esc+' y este laboratorio es el '+ESC.n+'. ¿Cargarlo igual?')) return;
+      }
+      merge(o); D.esc = ESC.n;
+      touch(); railBuild(); show(cur);
+      toast('Trabajo cargado' + (o.ts ? ' · guardado el '+o.ts : '') + '.');
+    }catch(e){ toast('No se pudo leer ese archivo.'); }
+  };
+  rd.readAsText(f);
+  ev.target.value = '';
+});
+function doPrint(){
+  document.getElementById('print').innerHTML = docBody();
+  setTimeout(function(){ window.print(); }, 60);
+}
+document.getElementById('b-send').onclick = function(){
+  var i = SECS.findIndex(function(s){ return s.t === 'Llevarlo al F01'; });
+  if(i >= 0 && cur !== i){ show(i); setTimeout(enviarF01, 350); }
+  else enviarF01();
+};
+document.getElementById('b-save').onclick = expJSON;
+document.getElementById('b-load').onclick = function(){ document.getElementById('fileIn').click(); };
+document.getElementById('b-print').onclick = doPrint;
+
+/* =============================================================== ARRANQUE */
+(function boot(){
+  var had = loadLocal();
+  buildAll();
+  var h = parseInt((location.hash||'').replace('#',''), 10);
+  show(h >= 1 && h <= SECS.length ? h-1 : 0);
+  paintProgress();
+  if(had) toast('Retomamos donde habías dejado' + (D.ts ? ' ('+D.ts+')' : '') + '.');
+})();
+</script>
+</body>
+</html>
