@@ -1118,6 +1118,10 @@ html[data-theme="light"] .cons-pre{background:rgba(255,255,255,.6)}
   #hud .hud-b{padding:7px 11px;font-size:13px}
 }
 
+/* ===== las tarjetas de una columna con scroll no deben encogerse y recortar su texto ===== */
+.col.sc > .card, .col.sc > .box, .col.sc > .mt, .col.sc > .aplic{flex-shrink:0}
+#qz > .card{flex-shrink:0}
+
 </style>
 </head>
 <body>
@@ -3759,7 +3763,11 @@ function num(s){
   s=String(s==null?'':s).replace(/\s|USD|\$/g,'');
   if(s.indexOf(',')>=0) s=s.replace(/\./g,'').replace(',','.');
   else { var p=s.split('.');
-    if(p.length>2 || (p.length===2 && p[1].length===3 && p[0].length<=3)) s=p.join(''); }
+    /* el punto es separador de miles sólo si la parte entera no arranca en cero:
+       "1.234" son mil doscientos treinta y cuatro, pero "0.665" es un decimal */
+    var ent=p[0].replace(/^[-\u2212]/,'');
+    if(p.length>2 || (p.length===2 && p[1].length===3 && ent.length>0 && ent.length<=3 && ent.charAt(0)!=='0'))
+      s=p.join(''); }
   var v=parseFloat(s); return isFinite(v)?v:0;
 }
 
