@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del árbol de objetivos a la alternativa de proyecto · Caso purines porcinos · FEPAR 2026</title>
+<meta name="description" content="Recurso interactivo del Taller 01 de FEPAR 2026: cómo se construye una alternativa de proyecto a partir del árbol de objetivos, con el caso de la gestión del agua y los efluentes en un establecimiento porcino de Rosario de Lerma, Salta.">
+<meta name="author" content="Cátedra de Formulación y Evaluación de Proyectos Ambientales y de Recursos Naturales · UNSa">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MT FEPAR 2026">
+<meta property="og:title" content="Del árbol de objetivos a la alternativa de proyecto · Taller 01">
+<meta property="og:description" content="Medios fundamentales, acciones, configuración de alternativas y evaluación con VAC, CAE y VAN. Caso: purines porcinos.">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary">
+<style>
+:root{
+  /* paleta de los talleres y escenarios FEPAR */
+  --bg:#f2f2ef; --panel:#fcfcfb; --panel2:#f7f7f4; --ink:#0b0b0b; --muted:#52514e;
+  --line:#dcdbd4; --line2:#e8e8e3;
+  --navy:#0b1222; --navy-tx:#e8eaf0; --navy-sub:#9fb0cd;
+  --verde:#1baf7a; --verde-osc:#12805a; --verde-suave:#e7f7f0;
+  --ambar:#b45309; --ambar-suave:#fff8ec; --ambar-line:#f3ddb4;
+  --azul:#1d4ed8; --azul-osc:#1a3fae; --azul-suave:#f7faff; --azul-line:#cddffa;
+  --rosa:#eb6834; --rosa-suave:#fdeee7;
+  --violeta:#4b5563; --violeta-suave:#eef1f5;
+  --gris-suave:#e8e8e3;
+  --sombra:0 1px 2px rgba(11,18,34,.05),0 8px 24px rgba(11,18,34,.05);
+  --r:10px; --maxw:1280px;
+}
+html[data-tema="oscuro"]{
+  --bg:#0b1222; --panel:#111a2e; --panel2:#16203a; --ink:#e8eaf0; --muted:#9fb0cd;
+  --line:#243250; --line2:#1b2740;
+  --navy:#060c18; --navy-tx:#e8eaf0; --navy-sub:#9fb0cd;
+  --verde:#3fd0a0; --verde-osc:#6fe0bb; --verde-suave:#12302a;
+  --ambar:#e0a75c; --ambar-suave:#2c2415; --ambar-line:#4a3a1c;
+  --azul:#7aa5ff; --azul-osc:#a8c4ff; --azul-suave:#14203a; --azul-line:#2c4270;
+  --rosa:#f59267; --rosa-suave:#33201a;
+  --violeta:#a7b3c6; --violeta-suave:#1c2536;
+  --gris-suave:#1b2740;
+  --sombra:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;font-weight:650;letter-spacing:-.01em}
+p{margin:0 0 .85em}
+a{color:var(--azul)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+header.top{position:sticky;top:0;z-index:50;background:var(--navy);color:var(--navy-tx);border-bottom:2px solid var(--azul)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.marca{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+.marca .sig{width:26px;height:26px;border-radius:7px;background:var(--azul);position:relative;flex:0 0 auto}
+.marca .sig::after{content:"";position:absolute;inset:7px 7px auto 7px;height:4px;border-radius:2px;background:#fff;
+  box-shadow:0 6px 0 rgba(255,255,255,.65)}
+.ruta{color:var(--navy-sub);font-size:13px}
+.top .der{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:8px;
+  padding:6px 11px;font:inherit;font-size:13px;cursor:pointer}
+.btn:hover{border-color:var(--azul);color:var(--azul)}
+.btn.pri{background:var(--azul);border-color:var(--azul);color:#fff}
+.btn.pri:hover{background:var(--azul-osc);color:#fff}
+header.top .btn{background:transparent;border-color:#243250;color:var(--navy-tx)}
+header.top .btn:hover{border-color:var(--azul);background:#16203a;color:#fff}
+
+nav.pasos{position:sticky;top:60px;z-index:40;background:var(--panel2);border-bottom:1px solid var(--line)}
+nav.pasos .wrap{display:flex;gap:4px;overflow-x:auto;padding:8px 22px}
+nav.pasos button{white-space:nowrap;border:1px solid transparent;background:transparent;color:var(--muted);
+  border-radius:999px;padding:6px 13px;font:inherit;font-size:13.5px;cursor:pointer}
+nav.pasos button:hover{color:var(--ink);background:var(--gris-suave)}
+nav.pasos button[aria-current="true"]{background:var(--azul);border-color:var(--azul);color:#fff;font-weight:600}
+nav.pasos b{display:inline-block;width:18px;opacity:.75;font-weight:700}
+
+main{padding:26px 0 90px}
+section.paso{display:none;animation:ap .22s ease}
+section.paso.activo{display:block}
+@keyframes ap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tit{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.tit .n{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--azul)}
+.tit h2{font-size:25px;margin:0}
+.bajada{color:var(--muted);max-width:82ch;margin-bottom:20px}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sombra)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:960px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.dato{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.dato .v{font-size:23px;font-weight:700;letter-spacing:-.02em;color:var(--azul)}
+.dato .k{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+.nota{border-left:3px solid var(--ambar);background:var(--ambar-suave);border:1px solid var(--ambar-line);border-left:3px solid var(--ambar);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0}
+.nota b{color:var(--ambar)}
+.regla{background:var(--azul-suave);border:1px solid var(--azul-line);border-left:3px solid var(--azul);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0}
+.regla b{color:var(--azul)}
+.alerta{border-left:3px solid var(--rosa);background:var(--rosa-suave);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0}
+.alerta b{color:var(--rosa)}
+.fuente{font-size:12.5px;color:var(--muted);margin-top:8px}
+blockquote{margin:10px 0;padding:2px 0 2px 14px;border-left:2px solid var(--azul);font-style:italic}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line2);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:650}
+tbody tr:hover{background:var(--panel2)}
+.tablaWrap{overflow-x:auto}
+
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:2px 8px;border-radius:999px;background:var(--gris-suave);color:var(--muted)}
+.pill.ok{background:var(--verde-suave);color:var(--verde-osc)}
+.pill.no{background:var(--rosa-suave);color:var(--rosa)}
+.pill.imp{background:var(--ambar);color:#fff}
+.pill.exc{background:var(--rosa-suave);color:var(--rosa)}
+.pill.com{background:var(--azul-suave);color:var(--azul)}
+.pill.ind{background:var(--violeta-suave);color:var(--violeta)}
+
+/* árbol */
+.arbol{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;box-shadow:var(--sombra);overflow-x:auto}
+.banda{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:2px 0 8px;font-weight:700}
+.caja{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:13px;line-height:1.4;background:var(--panel2)}
+.finB{background:var(--rosa-suave);border-color:transparent}
+.metaB{background:var(--ambar-suave);border-color:transparent;font-weight:650;text-align:center;padding:13px 16px}
+.medioB{background:var(--verde-suave);border-color:transparent}
+.colsFines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:10px}
+.colFin{display:flex;flex-direction:column;gap:8px}
+.flechaUp{height:15px;position:relative}
+.flechaUp::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line);transform:translateX(-50%)}
+.flechaUp::after{content:"";position:absolute;left:50%;top:0;width:0;height:0;transform:translateX(-50%);
+  border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:5px solid var(--line)}
+.rail{height:20px;position:relative;margin:2px 0 6px}
+.rail::before{content:"";position:absolute;left:8%;right:8%;top:9px;height:2px;background:var(--line)}
+.colsMF{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:start}
+.colMF .caja{width:100%}
+.mfCaja{position:relative}
+.mfCaja.impr{box-shadow:0 0 0 2px var(--ambar)}
+@media(max-width:1100px){.colsMF{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.colsMF{grid-template-columns:1fr}.colsFines{grid-template-columns:1fr}}
+.leyenda{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:14px}
+.leyenda i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* configurador */
+.mfBloque{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;background:var(--panel);margin-bottom:12px}
+.mfBloque.falta{border-color:var(--rosa);box-shadow:0 0 0 1px var(--rosa)}
+.mfBloque.cubierto{border-color:var(--verde)}
+.mfCab{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.mfCab h4{margin:0;font-size:15px}
+.accion{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border-radius:8px;cursor:pointer;border:1px solid transparent}
+.accion:hover{background:var(--panel2);border-color:var(--line)}
+.accion.sel{background:var(--verde-suave);border-color:var(--verde)}
+.accion input{margin-top:4px;accent-color:var(--verde);width:16px;height:16px;flex:0 0 auto}
+.accion .t{font-size:14px;font-weight:600}
+.accion .d{font-size:13px;color:var(--muted)}
+.accion .m{font-size:12px;color:var(--muted);margin-top:3px}
+
+.tablero{position:sticky;top:120px}
+.chk{display:flex;gap:9px;align-items:center;font-size:13.5px;padding:5px 0;border-bottom:1px solid var(--line2)}
+.chk .ic{width:18px;height:18px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff}
+.chk .ic.si{background:var(--verde)}
+.chk .ic.no{background:var(--rosa)}
+.veredicto{border-radius:9px;padding:12px 14px;margin-top:12px;font-size:14px}
+.veredicto.ok{background:var(--verde-suave);color:var(--verde-osc)}
+.veredicto.mal{background:var(--rosa-suave);color:var(--rosa)}
+
+.pesos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+@media(max-width:900px){.pesos{grid-template-columns:1fr 1fr}}
+.peso label{display:block;font-size:12.5px;font-weight:650;margin-bottom:4px}
+.peso input[type=range]{width:100%;accent-color:var(--verde)}
+.peso .val{font-size:12px;color:var(--muted)}
+.barra{height:8px;background:var(--gris-suave);border-radius:99px;overflow:hidden;min-width:80px}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s ease}
+
+/* EAP */
+.nivel{display:grid;grid-template-columns:130px 1fr;gap:16px;align-items:start;padding:14px 0}
+.nivel+.nivel{border-top:1px solid var(--line2)}
+.nivel .et{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.nivel .cont{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:11px 14px}
+.nivel.fin .cont{background:var(--rosa-suave);border-color:transparent}
+.nivel.prop .cont{background:var(--ambar-suave);border-color:transparent}
+.compItem{background:var(--verde-suave);border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.compItem .cn{font-weight:650;font-size:14px}
+.compItem ul{margin:5px 0 0;padding-left:18px;font-size:13.3px;color:var(--muted)}
+.cadena .eslabon{display:flex;gap:12px;align-items:flex-start;padding:9px 0}
+.cadena .eslabon+.eslabon{border-top:1px dashed var(--line)}
+.cadena .si{flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--verde);width:70px;padding-top:2px}
+
+.check{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line2)}
+.check input{margin-top:4px;accent-color:var(--verde);width:16px;height:16px;flex:0 0 auto}
+.ref{padding:12px 0;border-bottom:1px solid var(--line2)}
+.ref .aut{font-weight:650}
+.ref .url{font-size:12.5px;word-break:break-all}
+
+footer.pie{border-top:2px solid var(--azul);background:var(--navy);padding:22px 0;color:var(--navy-sub);font-size:13px}
+.navPie{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+kbd{font:inherit;font-size:11.5px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--muted)}
+@media print{nav.pasos,header.top .der,.navPie{display:none}section.paso{display:block!important;page-break-after:always}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="marca"><span class="sig"></span> FEPAR 2026</div>
+    <span class="ruta">Taller 01 · Del árbol de objetivos a la alternativa de proyecto</span>
+    <div class="der">
+      <button class="btn" id="bTema">Tema</button>
+      <button class="btn" id="bImprimir">Imprimir</button>
+    </div>
+  </div>
+</header>
+
+<nav class="pasos" aria-label="Pasos"><div class="wrap" id="navPasos"></div></nav>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section class="paso activo" id="p1">
+  <div class="tit"><span class="n">Paso 1</span><h2>El caso: purines en un establecimiento porcino</h2></div>
+  <p class="bajada">Ciclo completo en Rosario de Lerma, Salta. Seis galpones, venta en pie, una sola fuente de agua.
+  El recorrido del agua tiene cinco etapas —uso, colección, conducción, tratamiento y destino final— y el problema aparece al final de todas ellas.</p>
+
+  <div class="grid g4" style="margin-bottom:16px">
+    <div class="dato"><div class="v">40 m³/día</div><div class="k">Agua extraída de un pozo de 70 m. Prácticamente todo vuelve a salir como efluente.</div></div>
+    <div class="dato"><div class="v">670 m³</div><div class="k">Fosas bajo las naves, sin rampa ni compartimentos. Se vacían cada una o dos semanas.</div></div>
+    <div class="dato"><div class="v">30 %</div><div class="k">Uso del galpón de compostaje: hay capacidad instalada ociosa.</div></div>
+    <div class="dato"><div class="v">20 + 1</div><div class="k">Viviendas y una escuela de 35 alumnos, todas con pozo sobre el mismo acuífero.</div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">El efluente que se aplica al suelo</h3>
+    <div class="tablaWrap"><table>
+      <thead><tr><th>Parámetro</th><th>Medido</th><th>Límite para volcado en suelo</th><th>Excedencia</th></tr></thead>
+      <tbody>
+        <tr><td>Demanda química de oxígeno</td><td>17.857 mg/L</td><td>500 mg/L</td><td><b>≈ 36×</b></td></tr>
+        <tr><td>Nitrógeno total</td><td>303 mg/L</td><td>30 mg/L</td><td><b>≈ 10×</b></td></tr>
+        <tr><td>Amoníaco</td><td>368 mg/L</td><td>75 mg/L</td><td><b>≈ 5×</b></td></tr>
+        <tr><td>Coliformes fecales</td><td>1.100.000 NMP/100 ml</td><td>2.000 NMP/100 ml</td><td><b>≈ 550×</b></td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card"><h3 style="font-size:16px">Problema central</h3>
+      <p style="margin:0">«Aplicación al suelo de efluentes porcinos con carga orgánica, salina y bacteriológica muy superior a la admitida, en un establecimiento de Rosario de Lerma que comparte acuífero con veinte viviendas y una escuela rural.»</p>
+      <p class="fuente">Situación negativa en curso, con sujeto y lugar. No dice «falta una planta de tratamiento»: eso sería la solución ausente.</p></div>
+    <div class="card"><h3 style="font-size:16px">Objetivo central o meta</h3>
+      <p style="margin:0">«Aplicación al suelo de efluentes porcinos dentro de los límites admitidos, en el establecimiento de Rosario de Lerma, sin afectación del acuífero compartido.»</p>
+      <p class="fuente">El problema central en positivo. Uno solo, y no la enumeración de las obras que se van a hacer.</p></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="paso" id="p2">
+  <div class="tit"><span class="n">Paso 2</span><h2>Del árbol de problemas al árbol de objetivos</h2></div>
+  <p class="bajada">El árbol de objetivos no es un árbol nuevo: es el mismo con el signo cambiado. Las causas se transforman en medios,
+  los efectos en fines y el problema central en la meta. Si el árbol de problemas está mal armado, el de objetivos hereda el error.</p>
+
+  <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
+    <div style="display:inline-flex;background:var(--gris-suave);border-radius:999px;padding:3px;gap:2px">
+      <button class="btn" id="swProb" style="border:0;background:transparent">Árbol de problemas</button>
+      <button class="btn" id="swObj" style="border:0">Árbol de objetivos</button>
+    </div>
+    <span style="color:var(--muted);font-size:13px" id="swTexto"></span>
+  </div>
+
+  <div class="tablaWrap card"><table id="tblEspejo">
+    <thead><tr><th style="width:30%">Nivel del árbol</th><th style="width:35%">Como problema</th><th style="width:35%">Como objetivo</th></tr></thead>
+    <tbody></tbody></table></div>
+
+  <div class="nota"><b>Transformar no es traducir.</b> «No hay plan de aplicación» no se convierte en «hay plan de aplicación»:
+  se convierte en <i>aplicación agronómica planificada</i>, que es una condición del sistema y no la existencia de un papel.</div>
+</section>
+
+<!-- 3 -->
+<section class="paso" id="p3">
+  <div class="tit"><span class="n">Paso 3</span><h2>Los medios fundamentales</h2></div>
+  <p class="bajada">La última fila del árbol de objetivos es la que importa para armar el proyecto: son los medios sobre los que se puede actuar directamente.
+  De ellos, algunos son imprescindibles —constituyen el eje de la solución— y otros son habilitantes o de acompañamiento.</p>
+
+  <div class="arbol">
+    <div class="banda">Fin último</div>
+    <div class="caja finB" style="text-align:center;font-weight:650">Licencia social y ambiental sostenida para producir en el valle</div>
+    <div class="flechaUp" style="transform:rotate(180deg)"></div>
+    <div class="banda">Fines</div>
+    <div class="colsFines" id="colsFines"></div>
+    <div class="flechaUp"></div>
+    <div class="banda">Objetivo central · meta</div>
+    <div class="caja metaB">Aplicación al suelo de efluentes porcinos dentro de los límites admitidos, sin afectación del acuífero compartido</div>
+    <div class="rail"></div>
+    <div class="banda">Medios fundamentales (última fila del árbol)</div>
+    <div class="colsMF" id="colsMF"></div>
+    <div class="leyenda">
+      <span><i style="background:var(--rosa-suave)"></i>Fines</span>
+      <span><i style="background:var(--ambar-suave)"></i>Meta</span>
+      <span><i style="background:var(--verde-suave)"></i>Medios</span>
+      <span><i style="background:var(--ambar)"></i>Imprescindible</span>
+    </div>
+  </div>
+
+  <div class="regla" style="margin-top:18px"><b>De dónde se toman.</b> «Se utiliza como herramienta el árbol de objetivos, seleccionando los medios que están en la parte inferior del árbol,
+  es decir, aquellos que no tienen otro medio que los genere y que están en correspondencia con las causas independientes ubicadas en la parte más baja del árbol del problema.
+  Pueden existir diversas acciones, mientras mayor su número mejor.»
+  <div class="fuente">Crespo, M. A., <i>Guía de diseño de proyectos sociales comunitarios bajo el enfoque del marco lógico</i>, p. 32.</div>
+  <div style="margin-top:10px">Un medio fundamental es <b>imprescindible</b> cuando «constituye el eje de la solución del problema identificado y es necesario que se lleve a cabo al menos una acción destinada a alcanzarlo».
+  <div class="fuente">Guía General del SNIP, MEF Perú.</div></div></div>
+  <div class="nota"><b>El medio que queda afuera.</b> MF7 no tiene acciones posibles desde el proyecto: definir una norma provincial no depende del establecimiento.
+  El manual de la cátedra resuelve ese caso con una regla precisa: «Existen algunos elementos del proyecto […] que aunque es necesario para hacer óptima la intervención,
+  no dependerá de quién lo ejecuta o está definitivamente fuera del dominio del que ordena el proyecto. Estos casos también deberían representarse en la EAP y ser tratados
+  más adelante como un supuesto dentro de la Matriz Lógica del Proyecto.»
+  <div class="fuente">Ortegón, Pacheco y Prieto, Serie Manuales 42, ILPES/CEPAL, 2005, nota al pie 7, p. 21.</div></div>
+</section>
+
+<!-- 4 -->
+<section class="paso" id="p4">
+  <div class="tit"><span class="n">Paso 4</span><h2>Las acciones para cada medio fundamental</h2></div>
+  <p class="bajada">Parados en cada medio fundamental, la pregunta es qué hay que hacer para materializarlo. Cada respuesta es una acción.
+  Un mismo medio suele admitir más de una, y ahí empieza el análisis de alternativas.</p>
+  <div id="listaAcciones"></div>
+  <div class="regla"><b>De dónde salen.</b> «A partir de los medios que están más abajo en las raíces del árbol de problemas, se proponen acciones probables
+  que puedan en términos operativos conseguir el medio.»
+  <div class="fuente">Ortegón, Pacheco y Prieto, <i>Metodología del marco lógico para la planificación, el seguimiento y la evaluación de proyectos y programas</i>, Serie Manuales 42, ILPES/CEPAL, 2005, p. 18.</div>
+  <div style="margin-top:10px"><b>La cadena que hay que verificar.</b> «La existencia de un problema se explica por la existencia de una causa que lo provoca; para solucionarlo es necesario recurrir a unos medios
+  que eliminen la causa; para hacer efectivo este medio se debe identificar una acción que lo operacionalice.»</div>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:13.5px">
+    <span class="caja" style="background:var(--azul-suave);border-color:transparent">Acción</span><span style="color:var(--muted)">→</span>
+    <span class="caja medioB">Medio</span><span style="color:var(--muted)">→ elimina la</span>
+    <span class="caja" style="background:var(--rosa-suave);border-color:transparent">Causa</span><span style="color:var(--muted)">→ que genera el</span>
+    <span class="caja metaB" style="padding:9px 11px">Problema</span></div>
+  <div class="fuente">Crespo, M. A., op. cit., pp. 32-33.</div></div>
+</section>
+
+<!-- 5 -->
+<section class="paso" id="p5">
+  <div class="tit"><span class="n">Paso 5</span><h2>Cómo se relacionan las acciones entre sí</h2></div>
+  <p class="bajada">Antes de armar nada hay que clasificar las acciones. De esa clasificación depende cuántas alternativas existen y cómo se construye cada una.</p>
+
+  <div class="grid g3" style="margin-bottom:18px">
+    <div class="card" style="border-left:3px solid var(--rosa)">
+      <span class="pill exc">Mutuamente excluyentes</span>
+      <p style="margin:.6em 0 0">«No son factibles en conjunto, por lo que deberán ser rechazadas» todas menos una: «no pueden ser llevados a cabo al mismo tiempo, por lo que se tendrá que elegir sólo uno de ellos».</p>
+      <p class="fuente">Son las que generan alternativas distintas: cada elección abre una rama de decisión.</p></div>
+    <div class="card" style="border-left:3px solid var(--azul)">
+      <span class="pill com">Complementarias</span>
+      <p style="margin:.6em 0 0">«Las factibles en conjunto con otras acciones»; «resulta más conveniente llevarlos a cabo conjuntamente, ya sea porque se logran mejores resultados o porque se ahorran costos».</p>
+      <p class="fuente">Se agrupan: van juntas dentro de la misma alternativa.</p></div>
+    <div class="card" style="border-left:3px solid var(--violeta)">
+      <span class="pill ind">Independientes y fuera del dominio</span>
+      <p style="margin:.6em 0 0">Independientes: «aquellos que no tienen relaciones de complementariedad ni de exclusión mutua». Fuera del dominio: «están fuera del alcance de los promotores del proyecto».</p>
+      <p class="fuente">Las primeras pueden incorporarse o no; las segundas pasan a la matriz como supuesto.</p></div>
+  </div>
+
+  <div class="fuente" style="margin:-8px 0 16px">Clasificación tomada de Crespo, M. A., op. cit., p. 33, y de la Guía General del SNIP, MEF Perú.</div>
+  <div class="card">
+    <h3 style="font-size:16px">En este caso</h3>
+    <div class="tablaWrap"><table id="tblRelaciones">
+      <thead><tr><th style="width:28%">Medio fundamental</th><th>Acciones</th><th style="width:22%">Relación entre ellas</th></tr></thead>
+      <tbody></tbody></table></div>
+  </div>
+
+  <div class="nota"><b>Consecuencia práctica.</b> Hay tres medios con acciones excluyentes, de modo que sólo por ahí existen ocho combinaciones posibles.
+  Las acciones complementarias no multiplican alternativas: se suman dentro de cada una.</div>
+</section>
+
+<!-- 6 -->
+<section class="paso" id="p6">
+  <div class="tit"><span class="n">Paso 6</span><h2>Configurar la alternativa</h2></div>
+  <p class="bajada">Acá está el punto que más se malinterpreta. Una alternativa de proyecto no es una rama del árbol ni un medio suelto:
+  es una <b>combinación de acciones</b> que cubre todos los medios fundamentales imprescindibles. Un solo componente no resuelve el problema central; lo resuelve el conjunto.</p>
+
+  <div class="regla"><b>La regla que lo define todo.</b> «Todas las alternativas deben cumplir con el propósito y los fines.»
+  <div class="fuente">Ortegón, Pacheco y Prieto, Serie Manuales 42, ILPES/CEPAL, 2005, p. 19.</div>
+  <div style="margin-top:10px">De ahí se sigue la regla de cobertura: «Se agruparán las acciones antes propuestas y relacionadas considerando: que cada proyecto alternativo
+  debe contener por lo menos una acción vinculada con cada uno de los medios fundamentales imprescindibles que no sean mutuamente excluyentes.»
+  <div class="fuente">Guía General del SNIP, MEF Perú.</div></div>
+  <div style="margin-top:10px">Y la operación de armado: «Se verifica el grado de interdependencia entre las acciones propuestas y se agrupan las que sean complementarias.
+  Cada agrupación de acciones complementarias configura una alternativa.»
+  <div class="fuente">Crespo, M. A., op. cit., p. 33.</div></div></div>
+
+  <div class="card" style="margin:0 0 18px;border-left:3px solid var(--azul)">
+    <h3 style="font-size:15px">El ejemplo resuelto del manual de la cátedra</h3>
+    <p style="margin:0 0 .5em">Para una empresa de transporte con el problema «alta accidentalidad», los medios admiten estas acciones:
+    prudencia de los conductores (contratar nuevos conductores <i>y/o</i> capacitar en manejo seguro), vehículos renovados (comprar <i>y/o</i> reparar)
+    y buen mantenimiento (contratar el servicio <i>o</i> crear una unidad propia, que son excluyentes).</p>
+    <div class="tablaWrap"><table>
+      <thead><tr><th style="width:16%">Alternativa</th><th>Acciones que la componen</th></tr></thead>
+      <tbody>
+        <tr><td><b>Alternativa 1</b></td><td>Contratación de servicios de mantenimiento, contratación de nuevos conductores, capacitación en manejo seguro, compra y reparación de vehículos.</td></tr>
+        <tr><td><b>Alternativa 2</b></td><td>Crear unidad de mantenimiento, contratación de nuevos conductores, capacitación en manejo seguro, compra y reparación de vehículos.</td></tr>
+      </tbody></table></div>
+    <p class="fuente">Serie Manuales 42, ILPES/CEPAL, 2005, p. 19. Cada alternativa es una lista de cuatro o cinco acciones tomadas de tres medios distintos.
+    Las dos se diferencian sólo en el par excluyente; todo lo complementario está en las dos. Y los componentes que de ahí salen son cuatro, no uno.</p>
+  </div>
+
+  <div class="grid" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:18px">
+    <div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+        <button class="btn" data-preset="0">Alternativa 1 · Adecuación con lo existente</button>
+        <button class="btn" data-preset="1">Alternativa 2 · Biodigestión y fertirriego</button>
+        <button class="btn" data-preset="2">Alternativa 3 · Mínima de cumplimiento</button>
+        <button class="btn" data-preset="vacio">Vaciar</button>
+      </div>
+      <div id="configurador"></div>
+    </div>
+    <div>
+      <div class="card tablero">
+        <h3 style="font-size:15px;margin-bottom:8px">Verificación</h3>
+        <div id="cobertura"></div>
+        <div id="veredicto"></div>
+        <div style="margin-top:14px;font-size:13px;color:var(--muted)" id="resumenSel"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="paso" id="p7">
+  <div class="tit"><span class="n">Paso 7</span><h2>Comparar y seleccionar</h2></div>
+  <p class="bajada">Con las alternativas configuradas y todas cubriendo los medios imprescindibles, recién ahí se comparan.
+  La comparación tiene dos planos: el financiero, con los indicadores de la asignatura, y el de los criterios que no se expresan en dinero.</p>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:15px">Parámetros de la evaluación</h3>
+    <div class="grid g2" style="align-items:end">
+      <div class="peso"><label for="rTmar">Tasa mínima aceptable de rendimiento (TMAR)</label>
+        <input type="range" id="rTmar" min="4" max="24" step="1" value="12">
+        <div class="val"><span id="vTmar">12</span> % anual · es la tasa de descuento: el costo de oportunidad del capital, con inflación y premio al riesgo.</div></div>
+      <div class="peso"><label for="rHor">Horizonte de evaluación</label>
+        <input type="range" id="rHor" min="5" max="25" step="1" value="10">
+        <div class="val"><span id="vHor">10</span> años · lo que sobra de vida útil al cierre del horizonte se computa como valor de salvamento.</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">Evaluación financiera de las alternativas</h3>
+    <div class="tablaWrap"><table id="tblFinanciero">
+      <thead><tr>
+        <th style="width:24%">Alternativa</th><th>Inversión</th><th>Costo anual</th><th>Beneficio anual</th>
+        <th>VAC</th><th>CAE</th><th>VAN</th><th>RBC</th><th>Cobertura</th>
+      </tr></thead><tbody></tbody></table></div>
+    <p class="fuente">Valores en miles de pesos, de ejercicio: sirven para practicar el criterio, no son un presupuesto.
+    El dimensionamiento y los costos reales corresponden al F02 y al F03.</p>
+    <div id="dictamenFin"></div>
+  </div>
+
+  <div class="grid g2" style="margin-bottom:16px">
+    <div class="card">
+      <h3 style="font-size:15px">Las fórmulas que se están aplicando</h3>
+      <p style="margin:0 0 .4em"><b>Factor de valor actual de una serie uniforme</b><br>
+      <code>P = A · [(1+i)ⁿ − 1] / [i(1+i)ⁿ]</code></p>
+      <p style="margin:0 0 .4em"><b>Factor de recuperación del capital</b><br>
+      <code>A = P · [i(1+i)ⁿ] / [(1+i)ⁿ − 1]</code></p>
+      <p style="margin:0 0 .4em"><b>Valor actualizado de costos</b><br>
+      <code>VAC = CI + Σ Cᵢ/(1+r)ⁱ − VS/(1+r)ⁿ</code></p>
+      <p style="margin:0 0 .4em"><b>Costo anual equivalente</b><br>
+      <code>CAE = VAC · [i(1+i)ⁿ] / [(1+i)ⁿ − 1]</code></p>
+      <p style="margin:0 0 .4em"><b>Valor actualizado neto</b><br>
+      <code>VAN = Σ BNᵢ/(1+r)ⁱ + VS/(1+r)ⁿ − CI</code></p>
+      <p style="margin:0"><b>Relación beneficio-costo</b><br>
+      <code>RBC = Σ Bᵢ/(1+r)ⁱ ÷ Σ Cᵢ/(1+r)ⁱ</code></p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px">Qué indicador corresponde en cada caso</h3>
+      <p>Las alternativas completas producen todas el mismo propósito: el efluente aplicado dentro de los límites.
+      Cuando el beneficio principal es el mismo y no se monetiza —el cumplimiento ambiental no tiene precio de mercado—,
+      la comparación pertinente es por <b>mínimo costo</b>: gana el menor VAC.</p>
+      <p>Pero acá las alternativas además difieren en beneficios que sí se pueden valorizar: el fertilizante que se deja de comprar,
+      la energía del biogás, el agua que no se consume. Por eso también se calcula el <b>VAN</b>, y entre alternativas mutuamente
+      excluyentes se elige la de mayor VAN.</p>
+      <p style="margin:0">El <b>CAE</b> resuelve un problema que el VAC no ve: las alternativas tienen vidas útiles distintas —de 8 a 25 años—.
+      Llevar el VAC a una anualidad equivalente las vuelve comparables. Movés el horizonte y se nota.</p>
+      <div class="fuente">Criterios de decisión del manual: VAN &gt; 0 se acepta y entre proyectos mutuamente excluyentes se elige el de mayor VAN;
+      RBC &gt; 1 viable. La TMAR guarda relación inversa con el VAN.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:15px">Criterios que no se expresan en dinero</h3>
+    <p class="fuente" style="margin-top:0">La decisión no se agota en el flujo de fondos. Estos pesos ponderan lo que el VAN no captura.</p>
+    <div class="pesos" id="pesos"></div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" data-w="equilibrado">Equilibrado</button>
+      <button class="btn" data-w="legal">Prioridad: plazo de adecuación</button>
+      <button class="btn" data-w="ambiental">Prioridad: reducción de carga</button>
+      <button class="btn" data-w="economico">Prioridad: costo y retorno</button>
+    </div>
+    <div class="tablaWrap" style="margin-top:14px"><table id="tblComparacion">
+      <thead><tr><th style="width:26%">Alternativa</th><th>Acciones</th><th style="width:22%">Puntaje multicriterio</th><th>VAN</th><th>Cobertura</th></tr></thead>
+      <tbody></tbody></table></div>
+  </div>
+
+  <div class="regla"><b>Criterio de selección.</b> «Se selecciona la estrategia, no sólo más factible en términos económicos, técnicos, legales y ambientales,
+  sino también pertinente, eficiente y eficaz.»
+  <div class="fuente">Ortegón, Pacheco y Prieto, Serie Manuales 42, ILPES/CEPAL, 2005, p. 19.</div></div>
+</section>
+
+<!-- 8 -->
+<section class="paso" id="p8">
+  <div class="tit"><span class="n">Paso 8</span><h2>De la alternativa a la Estructura Analítica</h2></div>
+  <p class="bajada">Los componentes salen de la alternativa seleccionada: cada medio fundamental cubierto se convierte en un componente,
+  redactado como producto obtenido, y las acciones elegidas para ese medio pasan a ser sus actividades.</p>
+
+  <div class="card" id="eap"></div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-size:15px">Por qué hacen falta todos los componentes</h3>
+    <blockquote>«Los componentes, junto con los supuestos a este nivel, describen las condiciones necesarias y suficientes para lograr el propósito.»</blockquote>
+    <p class="fuente">Metodología para la elaboración de la matriz de marco lógico, repositorio bibliográfico del CONEVAL, p. 6.</p>
+    <blockquote>«Cada uno de los Componentes del proyecto tiene que ser necesario para lograr el Propósito, y es razonable suponer que si los Componentes se producen adecuadamente,
+    se logrará el Propósito.» Y en la verificación de la lógica vertical: «Cada Componente es necesario para lograr el Propósito del proyecto; no falta ninguno de los Componentes
+    necesarios para lograr el Propósito del proyecto.»</blockquote>
+    <p class="fuente">Ortegón, Pacheco y Prieto, Serie Manuales 42, ILPES/CEPAL, 2005, pp. 24-25.</p>
+    <blockquote>«Para identificar los productos o componentes se puede analizar la información obtenida en la identificación de alternativas, mirar cuál de ellas es la seleccionada
+    y el análisis de costos de la misma. Normalmente en la configuración de las alternativas aparecen enunciados los productos.»</blockquote>
+    <p class="fuente">Ídem, p. 20. En el ejemplo del manual, la alternativa seleccionada da cuatro componentes: programa de capacitación desarrollado, vehículos nuevos adquiridos,
+    taller de mantenimiento implementado y calles pavimentadas, este último tratado como supuesto por estar fuera del dominio de la empresa.</p>
+    <p style="margin:.8em 0 0">Las dos condiciones juntas —cada componente necesario y que no falte ninguno— son la definición de un conjunto suficiente.
+    De ahí que la pregunta correcta no sea «¿este componente resuelve el problema?», sino «¿el conjunto de componentes que elegí lo resuelve?».</p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-size:15px">Lectura de la lógica vertical</h3>
+    <div class="cadena" id="cadenaEAP"></div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="paso" id="p9">
+  <div class="tit"><span class="n">Paso 9</span><h2>Trampas, autocontrol y bibliografía</h2></div>
+
+  <div class="grid g2" style="margin-bottom:20px">
+    <div class="card"><h3 style="font-size:15px;color:var(--rosa)">Confundir la alternativa con una rama</h3>
+      <p style="margin:0">Es el error de fondo de este tramo. Se elige un medio, se lo llama «estrategia» y se formula un proyecto de un solo componente.
+      Como ese componente no cubre los demás medios imprescindibles, el propósito no se alcanza aunque el componente se ejecute perfecto.</p></div>
+    <div class="card"><h3 style="font-size:15px;color:var(--rosa)">La alternativa que no sale del árbol</h3>
+      <p style="margin:0">Aparece una tecnología que a alguien le gustó y no hay ningún medio fundamental que la sostenga.
+      Si el proyecto no se puede señalar con el dedo sobre el árbol, o falta ese medio o sobra el proyecto.</p></div>
+    <div class="card"><h3 style="font-size:15px;color:var(--rosa)">Sumar acciones excluyentes</h3>
+      <p style="margin:0">Se listan las dos tecnologías de tratamiento y se dice que se harán las dos. Entonces no hubo elección
+      y el análisis de alternativas quedó sin objeto.</p></div>
+    <div class="card"><h3 style="font-size:15px;color:var(--rosa)">Elegir sin criterios explícitos</h3>
+      <p style="margin:0">Se selecciona una alternativa y se la describe, pero no se dice por qué se descartaron las otras.
+      El descarte fundamentado es parte de la evaluación, no un anexo.</p></div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <h3 style="font-size:16px">Autocontrol antes de entregar</h3>
+    <div id="checklist"></div>
+    <div style="font-size:13px;color:var(--muted);margin-top:12px" id="progreso"></div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:16px">Bibliografía de respaldo</h3>
+    <p class="fuente" style="margin-top:0">Las tres primeras obras están en la biblioteca de la cátedra; las restantes son de acceso público.</p>
+    <div class="ref"><div class="aut">Ortegón, E.; Pacheco, J. F.; Prieto, A. (2005)</div>
+      <i>Metodología del marco lógico para la planificación, el seguimiento y la evaluación de proyectos y programas.</i> Serie Manuales 42, ILPES/CEPAL, Santiago de Chile.
+      <div class="fuente">Fuente principal de este recurso. Identificación de alternativas y selección de la alternativa óptima, pp. 18-19; Estructura Analítica del Proyecto y derivación de los componentes, pp. 19-21;
+      componentes y lógica vertical, pp. 24-25. Contiene el ejemplo resuelto de la empresa de transporte y la nota al pie 7 sobre los medios fuera del dominio del ejecutor.</div></div>
+    <div class="ref"><div class="aut">Crespo, M. A.</div>
+      <i>Guía de diseño de proyectos sociales comunitarios bajo el enfoque del marco lógico. Conceptos esenciales y aplicaciones.</i>
+      <div class="fuente">Análisis de estrategias de solución, pp. 32-34: relación acción – medio – causa – problema, clasificación de las acciones en complementarias, excluyentes y fuera del dominio del grupo,
+      y la regla de que cada agrupación de acciones complementarias configura una alternativa. Incluye la matriz de evaluación de estrategias.</div></div>
+    <div class="ref"><div class="aut">Gutiérrez Rodríguez, F. Á.; Hernández Gutiérrez, D. N.; López Calvajar, G. A.</div>
+      <i>Gestión de proyectos con enfoque de marco lógico.</i> Editorial Universo Sur.
+      <div class="fuente">El análisis de alternativas, pp. 145-151: la alternativa como agrupamiento por enfoque, los criterios de valoración y la escala de puntuación para la decisión multicriterio.
+      Advierte que un proyecto no aborda todas las alternativas posibles, porque el abordaje global corresponde a un programa.</div></div>
+    <div class="ref"><div class="aut">Ministerio de Economía y Finanzas del Perú · SNIP</div>
+      <i>Guía General de Identificación, Formulación y Evaluación Social de Proyectos de Inversión Pública a nivel de Perfil.</i>
+      <div class="url">https://www3.congreso.gob.pe/Docs/sites/webs/cip/temas/descentralizacion/pdf/06A09.pdf</div>
+      <div class="fuente">Medio fundamental imprescindible y regla de cobertura: cada proyecto alternativo debe contener por lo menos una acción vinculada con cada uno de los medios fundamentales imprescindibles.</div></div>
+    <div class="ref"><div class="aut">Aldunate, E.; Córdoba, J. (2011)</div>
+      <i>Formulación de programas con la metodología de marco lógico.</i> Serie Manuales 68, ILPES/CEPAL.
+      <div class="url">https://repositorio.cepal.org/handle/11362/5507</div>
+      <div class="fuente">Configuración de alternativas de programa. Define la suficiencia lógica: un conjunto de causas necesarias es suficiente cuando, dado ese conjunto, es inevitable que el efecto se logre.</div></div>
+    <div class="ref"><div class="aut">Metodología para la elaboración de la matriz de marco lógico</div>
+      Repositorio bibliográfico sobre marco lógico, CONEVAL, México.
+      <div class="url">https://www.coneval.org.mx/rw/resource/coneval/EVALUACIONES/Bibliograf%C3%ADa%20sobre%20la%20Metodolog%C3%ADa%20de%20Marco%20L%C3%B3gico/1330.pdf</div>
+      <div class="fuente">Enunciado literal de la regla: los componentes, junto con los supuestos de ese nivel, describen las condiciones necesarias y suficientes para lograr el propósito.</div></div>
+    <div class="ref" style="border:0"><div class="aut">Cátedra FEPAR · UNSa</div>
+      Guía 01 y Manual de la asignatura, ítems de construcción del árbol de objetivos y selección de la estrategia y la actividad.</div>
+  </div>
+</section>
+
+<div class="navPie">
+  <button class="btn" id="bAnt">← Anterior</button>
+  <button class="btn pri" id="bSig">Siguiente →</button>
+</div>
+</main>
+
+<footer class="pie"><div class="wrap">
+  Cátedra de Formulación y Evaluación de Proyectos Ambientales y de Recursos Naturales · Universidad Nacional de Salta ·
+  Recurso del Taller 01 sobre el escenario de gestión del agua y los efluentes en un establecimiento porcino.
+  <div style="margin-top:8px">Atajos: <kbd>←</kbd> <kbd>→</kbd> pasos · <kbd>T</kbd> tema</div>
+</div></footer>
+
+<script>
+"use strict";
+
+/* ================= DATOS ================= */
+const ESPEJO = [
+ ["Problema central / meta","Aplicación al suelo de efluentes con carga muy superior a la admitida","Aplicación al suelo de efluentes dentro de los límites admitidos"],
+ ["Causa / medio","Alto volumen y carga del efluente: 40 m³/día de agua que sale convertida en efluente, con corrientes mezcladas en las fosas","Volumen y carga del efluente reducidos en origen"],
+ ["Causa / medio","Tratamiento insuficiente: una laguna fuera de uso y compostaje al 30 % de su capacidad","Capacidad de tratamiento restituida y en uso"],
+ ["Causa / medio","El efluente se genera todos los días pero sólo puede aplicarse en ciertos momentos del año","Almacenamiento acorde al desfasaje estacional"],
+ ["Causa / medio","Aplicación al campo sin dosis, momento, frecuencia ni balance de nutrientes","Aplicación agronómica planificada"],
+ ["Causa / medio","Decisiones sin datos: sin medidores por sector, sin volumen de efluente, sin dimensiones de lagunas","Medición y monitoreo disponibles"],
+ ["Causa / medio","Colaboración con la escuela y los vecinos sostenida sólo por el trato directo","Acuerdos con el entorno formalizados"],
+ ["Efecto / fin","Suelo con más sales, potasio y fósforo que el lote testigo","Suelo dentro de parámetros agronómicos"],
+ ["Efecto / fin","Coliformes muy por encima del límite en los pozos de observación internos","Agua subterránea sin contaminación de origen porcino"],
+ ["Efecto / fin","No conformidad ambiental vigente y plan de adecuación con plazos en riesgo","Plan de adecuación cumplido en plazo"],
+ ["Efecto / fin","Se compra fertilizante nitrogenado importado mientras el nutriente propio se desperdicia","Nutriente propio valorizado en reemplazo de fertilizante comprado"],
+ ["Efecto / fin","Olores y tránsito de camiones señalados por parte de los vecinos","Convivencia con el entorno sostenida"]
+];
+
+const FINES = [
+ {t:"Cumplimiento", items:["Plan de adecuación cumplido en plazo","No conformidad ambiental levantada"]},
+ {t:"Ambiente", items:["Agua subterránea sin contaminación de origen porcino","Suelo dentro de parámetros agronómicos"]},
+ {t:"Economía y entorno", items:["Fertilizante comprado sustituido por nutriente propio","Convivencia con el entorno sostenida"]}
+];
+
+const MEDIOS = [
+ {id:"MF1", n:"Volumen y carga del efluente reducidos en origen", imp:true,  rel:"complementarias",
+  comp:"Separación de corrientes y reducción del consumo implementadas"},
+ {id:"MF2", n:"Capacidad de tratamiento restituida y en uso",      imp:true,  rel:"excluyentes",
+  comp:"Capacidad de tratamiento restituida y operativa"},
+ {id:"MF3", n:"Almacenamiento acorde al desfasaje estacional",     imp:true,  rel:"excluyentes",
+  comp:"Almacenamiento estacional construido y en servicio"},
+ {id:"MF4", n:"Aplicación agronómica planificada",                 imp:true,  rel:"excluyentes",
+  comp:"Plan de aplicación agronómica implementado"},
+ {id:"MF5", n:"Medición y monitoreo disponibles",                  imp:false, rel:"complementarias",
+  comp:"Sistema de medición y monitoreo instalado"},
+ {id:"MF6", n:"Acuerdos con el entorno formalizados",              imp:false, rel:"independiente",
+  comp:"Convenio de monitoreo participativo suscripto"},
+ {id:"MF7", n:"Nivel de tratamiento exigible definido por norma provincial", imp:false, rel:"fuera", fuera:true, comp:"—"}
+];
+
+const ACCIONES = [
+ {id:"A11", mf:"MF1", t:"Reconversión de las fosas con rampa y compartimentos",
+  d:"Obra bajo las naves para separar excretas, agua de bebida y restos de alimento en el punto donde se generan.",
+  ci:9000, co:150, b:0, vida:20, p:{tec:3,eco:3,leg:3,amb:5,soc:3}},
+ {id:"A12", mf:"MF1", t:"Protocolo de lavado en seco con hidrolavado de bajo caudal",
+  d:"Barrido y raspado previos al lavado, con equipo de menor caudal. Sin obra civil.",
+  ci:1200, co:200, b:900, vida:8, p:{tec:5,eco:5,leg:2,amb:3,soc:3}},
+ {id:"A21", mf:"MF2", t:"Rehabilitación de la laguna con separación previa de sólidos",
+  d:"Puesta en servicio de la laguna fuera de uso y separador mecánico que deriva la fracción sólida al compostaje ocioso.",
+  ci:6500, co:800, b:0, vida:15, p:{tec:4,eco:4,leg:5,amb:4,soc:3}},
+ {id:"A22", mf:"MF2", t:"Digestor anaerobio con captura de biogás",
+  d:"Tratamiento biológico cerrado, con subproducto energético. Mayor inversión y mayor exigencia de operación.",
+  ci:18000, co:1600, b:3400, vida:20, p:{tec:3,eco:3,leg:5,amb:5,soc:4}},
+ {id:"A31", mf:"MF3", t:"Laguna de almacenamiento estacional impermeabilizada",
+  d:"Volumen dimensionado por el déficit acumulado entre generación diaria y ventana agronómica de aplicación.",
+  ci:5200, co:300, b:0, vida:20, p:{tec:4,eco:4,leg:4,amb:3,soc:2}},
+ {id:"A32", mf:"MF3", t:"Batería de tanques modulares cubiertos",
+  d:"Almacenamiento cerrado, menor huella y sin emisión de olores. Mayor costo por metro cúbico.",
+  ci:8800, co:220, b:0, vida:25, p:{tec:4,eco:3,leg:4,amb:4,soc:4}},
+ {id:"A41", mf:"MF4", t:"Plan de aplicación con balance de nutrientes y calendario por lote",
+  d:"Dosis, momento y frecuencia según lo que el cultivo puede tomar, con registro de cada aplicación.",
+  ci:700, co:350, b:2600, vida:10, p:{tec:4,eco:5,leg:4,amb:4,soc:4}},
+ {id:"A42", mf:"MF4", t:"Fertirriego dosificado incorporado al riego de pasturas",
+  d:"Aplicación con equipo dosificador y caudalímetro. Mejor control de la dosis instantánea, requiere equipamiento.",
+  ci:4500, co:500, b:3100, vida:12, p:{tec:3,eco:4,leg:4,amb:4,soc:3}},
+ {id:"A51", mf:"MF5", t:"Medición sectorizada del consumo y aforo del efluente",
+  d:"Caudalímetros por sector y aforo a la salida de las fosas: la línea de base que hoy no existe.",
+  ci:900, co:120, b:400, vida:10, p:{tec:5,eco:5,leg:3,amb:3,soc:4}},
+ {id:"A52", mf:"MF5", t:"Red de monitoreo del acuífero con la escuela y las viviendas",
+  d:"Muestreo periódico de los pozos internos, del pozo de la escuela y de los pozos vecinos, con protocolo y frecuencia.",
+  ci:600, co:480, b:0, vida:10, p:{tec:5,eco:4,leg:4,amb:4,soc:5}},
+ {id:"A61", mf:"MF6", t:"Convenio de monitoreo participativo",
+  d:"Acuerdo escrito con la escuela y las viviendas: qué se monitorea, quién muestrea y cómo se comunican los resultados.",
+  ci:120, co:90, b:0, vida:10, p:{tec:5,eco:5,leg:3,amb:2,soc:5}}
+];
+
+const PRESETS = [
+ {n:"Adecuación con lo existente", s:["A11","A12","A21","A31","A41","A51","A52","A61"]},
+ {n:"Biodigestión y fertirriego",  s:["A12","A22","A32","A42","A51"]},
+ {n:"Mínima de cumplimiento",      s:["A12","A21","A31","A41"]}
+];
+
+const CRITERIOS = [
+ {k:"tec", n:"Técnico",   d:"Factibilidad de ejecutar con animales en producción y con la infraestructura existente."},
+ {k:"eco", n:"Económico", d:"Inversión, costo operativo y retorno, incluido el ahorro de fertilizante."},
+ {k:"leg", n:"Legal",     d:"Aporte al levantamiento de la no conformidad y al plan de adecuación."},
+ {k:"amb", n:"Ambiental", d:"Reducción efectiva de la carga vertida y protección del acuífero."},
+ {k:"soc", n:"Social",    d:"Efecto sobre la convivencia con las viviendas y la escuela."}
+];
+const PESOS_PRESET = {
+ equilibrado:{tec:20,eco:20,leg:20,amb:20,soc:20},
+ legal:{tec:15,eco:10,leg:45,amb:20,soc:10},
+ ambiental:{tec:10,eco:10,leg:15,amb:50,soc:15},
+ economico:{tec:20,eco:45,leg:10,amb:15,soc:10}
+};
+
+const CHECKS = [
+ "Las acciones fueron planteadas a partir de los medios fundamentales del árbol de objetivos.",
+ "Cada acción está clasificada como excluyente, complementaria o independiente.",
+ "La alternativa contiene al menos una acción por cada medio fundamental imprescindible.",
+ "No hay dos acciones mutuamente excluyentes dentro de la misma alternativa.",
+ "Se compararon al menos dos alternativas completas, no dos acciones sueltas.",
+ "El descarte de las alternativas no elegidas está fundamentado con criterios explícitos.",
+ "Cada componente está redactado como producto obtenido y admite el participio.",
+ "El conjunto de componentes, con sus supuestos, alcanza para lograr el propósito.",
+ "Las alternativas se compararon con los indicadores de la asignatura: VAC, CAE, VAN y relación beneficio-costo, con la misma TMAR y el mismo horizonte."
+];
+
+/* ================= ESTADO ================= */
+let seleccion = new Set(PRESETS[0].s);
+let pesos = Object.assign({}, PESOS_PRESET.equilibrado);
+let paso = 1;
+const TITULOS = ["El caso","Problema → objetivo","Medios fundamentales","Las acciones","Relación entre acciones","Configurar la alternativa","Comparar y seleccionar","La EAP","Trampas y bibliografía"];
+const TOTAL = TITULOS.length;
+
+const $ = s=>document.querySelector(s), $$ = s=>Array.from(document.querySelectorAll(s));
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const accion = id=>ACCIONES.find(a=>a.id===id);
+const medio  = id=>MEDIOS.find(m=>m.id===id);
+const accionesDe = mf=>ACCIONES.filter(a=>a.mf===mf);
+const mil = n=>Number(n).toLocaleString("es-AR");
+const m$ = n=>(n/1000).toLocaleString("es-AR",{maximumFractionDigits:1});
+/* factores del manual: FAS = valor actual de una serie uniforme; FRC = factor de recuperación del capital */
+const FAS = (i,n)=> i===0 ? n : (Math.pow(1+i,n)-1)/(i*Math.pow(1+i,n));
+const FRC = (i,n)=> i===0 ? 1/n : i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);
+let TMAR = 0.12, HORIZ = 10;
+function finanzas(sel){
+  const acc = ACCIONES.filter(a=>sel.has(a.id));
+  const CI = acc.reduce((t,a)=>t+a.ci,0);
+  const C  = acc.reduce((t,a)=>t+a.co,0);
+  const B  = acc.reduce((t,a)=>t+a.b,0);
+  /* valor de salvamento: parte no consumida de la vida útil al cierre del horizonte */
+  const VS = acc.reduce((t,a)=>t + a.ci*Math.max(0,(a.vida-HORIZ)/a.vida),0);
+  const fas = FAS(TMAR,HORIZ), vsAct = VS/Math.pow(1+TMAR,HORIZ);
+  const VAC = CI + C*fas - vsAct;
+  const VAN = (B-C)*fas + vsAct - CI;
+  const CAE = VAC*FRC(TMAR,HORIZ);
+  const RBC = (CI + C*fas)>0 ? (B*fas)/(CI + C*fas) : 0;
+  return {CI,C,B,VS,VAC,VAN,CAE,RBC,fas};
+}
+
+/* ================= NAVEGACIÓN ================= */
+function pintarNav(){
+  $("#navPasos").innerHTML = TITULOS.map((t,i)=>`<button data-p="${i+1}" aria-current="${i+1===paso}"><b>${i+1}</b>${esc(t)}</button>`).join("");
+  $$("#navPasos button").forEach(b=>b.onclick=()=>irA(+b.dataset.p));
+}
+function irA(n){
+  paso = Math.min(TOTAL, Math.max(1,n));
+  $$("section.paso").forEach(s=>s.classList.remove("activo"));
+  $("#p"+paso).classList.add("activo");
+  pintarNav(); window.scrollTo({top:0,behavior:"smooth"});
+}
+$("#bSig").onclick=()=>irA(paso+1); $("#bAnt").onclick=()=>irA(paso-1);
+document.addEventListener("keydown",e=>{
+  if(/input|select|textarea/i.test(e.target.tagName)) return;
+  if(e.key==="ArrowRight") irA(paso+1);
+  if(e.key==="ArrowLeft") irA(paso-1);
+  if(e.key==="t"||e.key==="T") tema();
+});
+function tema(){ const h=document.documentElement;
+  h.dataset.tema = h.dataset.tema==="oscuro"?"claro":"oscuro";
+  try{localStorage.setItem("feparTema",h.dataset.tema)}catch(_){} }
+$("#bTema").onclick=tema; $("#bImprimir").onclick=()=>window.print();
+try{const t=localStorage.getItem("feparTema"); if(t) document.documentElement.dataset.tema=t;}catch(_){}
+
+/* ================= PASO 2 ================= */
+let modo="obj";
+function pintarEspejo(){
+  $("#tblEspejo tbody").innerHTML = ESPEJO.map(([n,p,o])=>
+    `<tr><td style="color:var(--muted);font-size:13px">${esc(n)}</td>
+     <td style="${modo!=="obj"?"":"opacity:.35"}">${esc(p)}</td>
+     <td style="${modo==="obj"?"font-weight:550":"opacity:.35"}">${esc(o)}</td></tr>`).join("");
+  $("#swTexto").textContent = modo==="obj"
+    ? "Se destacan los medios y los fines: es el árbol del que sale el proyecto."
+    : "Se destacan las causas y los efectos: el punto de partida.";
+}
+$("#swProb").onclick=()=>{modo="prob";pintarEspejo()};
+$("#swObj").onclick =()=>{modo="obj"; pintarEspejo()};
+
+/* ================= PASO 3 ================= */
+function pintarArbol(){
+  $("#colsFines").innerHTML = FINES.map(f=>`
+    <div class="colFin"><div class="banda" style="margin:0 0 2px">${esc(f.t)}</div>
+    ${f.items.map(i=>`<div class="caja finB">${esc(i)}</div>`).join('<div class="flechaUp" style="height:9px"></div>')}</div>`).join("");
+  $("#colsMF").innerHTML = MEDIOS.map(m=>`
+    <div class="colMF"><div class="caja medioB mfCaja ${m.imp?"impr":""}" style="${m.fuera?'background:transparent;border:1px dashed var(--muted)':''}">
+      <span class="cod" style="display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:3px">${m.id}</span>
+      ${esc(m.n)}
+      <div style="margin-top:6px">${m.fuera?'<span class="pill">fuera del alcance</span>':m.imp?'<span class="pill imp">imprescindible</span>':'<span class="pill">habilitante</span>'}</div>
+    </div></div>`).join("");
+}
+
+/* ================= PASO 4 ================= */
+function pintarAcciones(){
+  $("#listaAcciones").innerHTML = MEDIOS.map(m=>`
+    <div class="mfBloque">
+      <div class="mfCab"><h4>${m.id} · ${esc(m.n)}</h4>
+        ${m.fuera?'<span class="pill">fuera del alcance</span>':m.imp?'<span class="pill imp">imprescindible</span>':'<span class="pill">habilitante</span>'}</div>
+      ${m.fuera ? `<div style="padding:8px 0;border-top:1px solid var(--line2);color:var(--muted);font-size:13.5px">No se identifican acciones: la definición de una norma provincial está fuera del dominio del establecimiento. Este medio se representa igual en la Estructura Analítica y se trata como <b>supuesto</b> en la matriz.</div>` : accionesDe(m.id).map(a=>`
+        <div style="padding:8px 0;border-top:1px solid var(--line2)">
+          <div class="t" style="font-weight:600">${a.id} · ${esc(a.t)}</div>
+          <div class="d" style="color:var(--muted);font-size:13.5px">${esc(a.d)}</div>
+        </div>`).join("")}
+    </div>`).join("");
+}
+
+/* ================= PASO 5 ================= */
+function pintarRelaciones(){
+  const et = {excluyentes:'<span class="pill exc">mutuamente excluyentes</span>',
+              complementarias:'<span class="pill com">complementarias</span>',
+              independiente:'<span class="pill ind">independiente</span>',
+              fuera:'<span class="pill">fuera del dominio del grupo</span>'};
+  $("#tblRelaciones tbody").innerHTML = MEDIOS.map(m=>`
+    <tr><td><b>${m.id}</b> · ${esc(m.n)} ${m.imp?'<span class="pill imp">impr.</span>':""}</td>
+     <td>${m.fuera?'<span style="color:var(--muted)">Sin acciones: pasa a la matriz como supuesto.</span>':accionesDe(m.id).map(a=>`${a.id} · ${esc(a.t)}`).join("<br>")}</td>
+     <td>${et[m.rel]||""}</td></tr>`).join("");
+}
+
+/* ================= PASO 6 · CONFIGURADOR ================= */
+function pintarConfigurador(){
+  $("#configurador").innerHTML = MEDIOS.map(m=>{
+    if(m.fuera) return `<div class="mfBloque" style="border-style:dashed">
+      <div class="mfCab"><h4>${m.id} · ${esc(m.n)}</h4><span class="pill">fuera del alcance</span></div>
+      <div style="font-size:13.5px;color:var(--muted)">Sin acciones posibles desde el proyecto. Se conserva en la Estructura Analítica y se traslada a la columna de supuestos.</div></div>`;
+    const acc = accionesDe(m.id);
+    const cubierto = acc.some(a=>seleccion.has(a.id));
+    const cls = m.imp ? (cubierto?"cubierto":"falta") : "";
+    return `<div class="mfBloque ${cls}">
+      <div class="mfCab"><h4>${m.id} · ${esc(m.n)}</h4>
+        ${m.imp?'<span class="pill imp">imprescindible</span>':'<span class="pill">habilitante</span>'}
+        ${m.rel==="excluyentes"?'<span class="pill exc">elegir una</span>':m.rel==="complementarias"?'<span class="pill com">pueden ir juntas</span>':'<span class="pill ind">independiente</span>'}
+      </div>
+      ${acc.map(a=>`
+        <label class="accion ${seleccion.has(a.id)?"sel":""}">
+          <input type="checkbox" data-a="${a.id}" ${seleccion.has(a.id)?"checked":""}>
+          <span><span class="t">${a.id} · ${esc(a.t)}</span>
+          <span class="d" style="display:block">${esc(a.d)}</span>
+          <span class="m">Inversión $${mil(a.ci)} · operación $${mil(a.co)}/año${a.b?` · beneficio $${mil(a.b)}/año`:""} · vida útil ${a.vida} años</span></span>
+        </label>`).join("")}
+    </div>`;
+  }).join("");
+  $$('#configurador input[type=checkbox]').forEach(i=>i.onchange=()=>{
+    const id=i.dataset.a, a=accion(id), m=medio(a.mf);
+    if(i.checked){
+      if(m.rel==="excluyentes") accionesDe(m.id).forEach(o=>seleccion.delete(o.id));
+      seleccion.add(id);
+    } else seleccion.delete(id);
+    actualizar();
+  });
+}
+function evaluar(sel){
+  const faltan = MEDIOS.filter(m=>m.imp && !m.fuera && !accionesDe(m.id).some(a=>sel.has(a.id)));
+  const conflictos = MEDIOS.filter(m=>m.rel==="excluyentes" && accionesDe(m.id).filter(a=>sel.has(a.id)).length>1);
+  const acc = ACCIONES.filter(a=>sel.has(a.id));
+  const fin = finanzas(sel);
+  const sumaP = CRITERIOS.reduce((t,c)=>t+pesos[c.k],0)||1;
+  const punt = acc.length ? CRITERIOS.reduce((t,c)=>{
+      const prom = acc.reduce((s,a)=>s+a.p[c.k],0)/acc.length;
+      return t + prom*pesos[c.k];
+    },0)/sumaP : 0;
+  return {faltan, conflictos, acc, fin, punt, ok: faltan.length===0 && conflictos.length===0 && acc.length>0};
+}
+function pintarTablero(){
+  const r = evaluar(seleccion);
+  $("#cobertura").innerHTML = MEDIOS.filter(m=>m.imp).map(m=>{
+    const c = accionesDe(m.id).some(a=>seleccion.has(a.id));
+    return `<div class="chk"><span class="ic ${c?"si":"no"}">${c?"✓":"!"}</span><span>${m.id} · ${esc(m.n)}</span></div>`;
+  }).join("") + MEDIOS.filter(m=>!m.imp && !m.fuera).map(m=>{
+    const c = accionesDe(m.id).some(a=>seleccion.has(a.id));
+    return `<div class="chk" style="opacity:.7"><span class="ic ${c?"si":"no"}" style="${c?"":"background:var(--line)"}">${c?"✓":"–"}</span><span>${m.id} · ${esc(m.n)} <span class="pill">opcional</span></span></div>`;
+  }).join("");
+  $("#veredicto").innerHTML = r.ok
+    ? `<div class="veredicto ok"><b>Alternativa completa.</b> Cubre los ${MEDIOS.filter(m=>m.imp).length} medios imprescindibles con ${r.acc.length} acciones. Da ${new Set(r.acc.map(a=>a.mf)).size} componentes.</div>`
+    : `<div class="veredicto mal"><b>Todavía no es una alternativa.</b> ${
+        r.conflictos.length ? "Hay acciones mutuamente excluyentes elegidas a la vez en " + r.conflictos.map(m=>m.id).join(", ") + ". " : ""}${
+        r.faltan.length ? "Sin cubrir: " + r.faltan.map(m=>m.id).join(", ") + ". " + (r.faltan.length>1?"Con esos medios":"Con ese medio") + " sin atender, el propósito no se alcanza aunque el resto se ejecute bien." : ""}${
+        (!r.acc.length ? "No hay ninguna acción seleccionada." : "")}</div>`;
+  $("#resumenSel").innerHTML = `Inversión: <b>$${mil(r.fin.CI)} mil</b> · operación <b>$${mil(r.fin.C)} mil/año</b> · beneficios <b>$${mil(r.fin.B)} mil/año</b><br>
+    VAC a ${(TMAR*100).toFixed(0)} % y ${HORIZ} años: <b>$${m$(r.fin.VAC)} millones</b><br>
+    <span style="opacity:.8">Acciones: ${r.acc.map(a=>a.id).join(", ")||"ninguna"}</span>`;
+}
+$$("[data-preset]").forEach(b=>b.onclick=()=>{
+  seleccion = b.dataset.preset==="vacio" ? new Set() : new Set(PRESETS[+b.dataset.preset].s);
+  actualizar();
+});
+
+/* ================= PASO 7 ================= */
+$("#rTmar").oninput = ev=>{ TMAR = (+ev.target.value)/100; $("#vTmar").textContent = ev.target.value; actualizar(); };
+$("#rHor").oninput  = ev=>{ HORIZ = +ev.target.value;      $("#vHor").textContent  = ev.target.value; actualizar(); };
+
+function alternativas(){
+  return PRESETS.map((p,i)=>({n:"Alternativa "+(i+1)+" · "+p.n, s:new Set(p.s), propia:false}))
+    .concat([{n:"Mi alternativa", s:new Set(seleccion), propia:true}]);
+}
+function pintarFinanciero(){
+  const filas = alternativas().map(f=>({f, r:evaluar(f.s)}));
+  const compl = filas.filter(x=>x.r.ok);
+  const minVAC = compl.length ? Math.min(...compl.map(x=>x.r.fin.VAC)) : null;
+  const maxVAN = compl.length ? Math.max(...compl.map(x=>x.r.fin.VAN)) : null;
+  $("#tblFinanciero tbody").innerHTML = filas.map(({f,r})=>{
+    const d = r.fin, mv = r.ok && d.VAC===minVAC, mn = r.ok && d.VAN===maxVAN;
+    return `<tr${f.propia?' style="background:var(--ambar-suave)"':""}>
+      <td><b>${esc(f.n)}</b></td>
+      <td>$${mil(d.CI)}</td><td>$${mil(d.C)}</td><td>$${mil(d.B)}</td>
+      <td${mv?' style="font-weight:700;color:var(--verde-osc)"':""}>$${m$(d.VAC)} M${mv?' <span class="pill ok">menor</span>':""}</td>
+      <td>$${mil(Math.round(d.CAE))}</td>
+      <td${mn?' style="font-weight:700;color:var(--verde-osc)"':""}>${d.VAN<0?"−":""}$${m$(Math.abs(d.VAN))} M${mn?' <span class="pill ok">mayor</span>':""}</td>
+      <td>${d.RBC.toFixed(2)}</td>
+      <td>${r.ok?'<span class="pill ok">completa</span>':'<span class="pill no">incompleta</span>'}</td></tr>`;
+  }).join("");
+  const g = compl.find(x=>x.r.fin.VAN===maxVAN), gc = compl.find(x=>x.r.fin.VAC===minVAC);
+  $("#dictamenFin").innerHTML = compl.length
+    ? `<div class="veredicto ${g && g.r.fin.VAN>0?"ok":"mal"}" style="margin-top:12px">
+        Con TMAR del ${(TMAR*100).toFixed(0)} % y horizonte de ${HORIZ} años, el menor costo actualizado es el de <b>${esc(gc.f.n)}</b>
+        ($${m$(gc.r.fin.VAC)} millones) y el mayor VAN, el de <b>${esc(g.f.n)}</b> (${g.r.fin.VAN<0?"−":""}$${m$(Math.abs(g.r.fin.VAN))} millones).
+        ${g.r.fin.VAN>0 ? "Ese VAN es positivo, de modo que la alternativa se acepta." : "Ningún VAN resulta positivo: los beneficios monetizados no cubren la inversión, y la decisión pasa a fundarse en el mínimo costo y en los criterios no monetarios."}
+       </div>`
+    : `<div class="veredicto mal" style="margin-top:12px">Ninguna alternativa está completa: no hay nada que comparar todavía.</div>`;
+}
+function pintarPesos(){
+  $("#pesos").innerHTML = CRITERIOS.map(c=>`
+    <div class="peso"><label for="w_${c.k}">${esc(c.n)}</label>
+    <input type="range" id="w_${c.k}" min="0" max="60" step="5" value="${pesos[c.k]}">
+    <div class="val"><span id="v_${c.k}">${pesos[c.k]}</span> % · ${esc(c.d)}</div></div>`).join("");
+  CRITERIOS.forEach(c=>$("#w_"+c.k).oninput=ev=>{
+    pesos[c.k]=+ev.target.value; $("#v_"+c.k).textContent=pesos[c.k]; actualizar();
+  });
+}
+$$("[data-w]").forEach(b=>b.onclick=()=>{
+  pesos=Object.assign({},PESOS_PRESET[b.dataset.w]);
+  CRITERIOS.forEach(c=>{$("#w_"+c.k).value=pesos[c.k]; $("#v_"+c.k).textContent=pesos[c.k];});
+  actualizar();
+});
+function pintarComparacion(){
+  $("#tblComparacion tbody").innerHTML = alternativas().map(f=>{
+    const r = evaluar(f.s);
+    return `<tr${f.propia?' style="background:var(--ambar-suave)"':""}>
+      <td><b>${esc(f.n)}</b></td>
+      <td style="font-size:13px;color:var(--muted)">${Array.from(f.s).join(", ")||"—"}</td>
+      <td><div style="display:flex;align-items:center;gap:8px">
+        <div class="barra"><i style="width:${(r.punt/5*100).toFixed(0)}%;background:${r.ok?"var(--verde)":"var(--line)"}"></i></div>
+        <b>${r.punt.toFixed(2)}</b></div></td>
+      <td>${r.fin.VAN<0?"−":""}$${m$(Math.abs(r.fin.VAN))} M</td>
+      <td>${r.ok?'<span class="pill ok">completa</span>':'<span class="pill no">incompleta</span>'}</td></tr>`;
+  }).join("");
+}
+
+/* ================= PASO 8 ================= */
+function pintarEAP(){
+  const r = evaluar(seleccion);
+  const mfs = MEDIOS.filter(m=>accionesDe(m.id).some(a=>seleccion.has(a.id)));
+  $("#eap").innerHTML = `
+    <div class="nivel fin"><div class="et">Fin</div><div class="cont">
+      Contribuir al cumplimiento del plan de adecuación ambiental y a la protección del acuífero del que se abastecen las viviendas vecinas y la escuela rural.</div></div>
+    <div class="nivel prop"><div class="et">Propósito · meta</div><div class="cont">
+      Aplicación al suelo de efluentes porcinos dentro de los límites admitidos, en el establecimiento de Rosario de Lerma.</div></div>
+    <div class="nivel"><div class="et">Componentes</div><div class="cont" style="background:transparent;border:0;padding:0">
+      ${mfs.length ? mfs.map(m=>`
+        <div class="compItem"><div class="cn">${esc(m.comp)}</div>
+          <div style="font-size:12.5px;color:var(--muted);margin-top:2px">Proviene de ${m.id} · ${esc(m.n)}</div>
+          <ul>${accionesDe(m.id).filter(a=>seleccion.has(a.id)).map(a=>`<li>${esc(a.t)}</li>`).join("")}</ul>
+        </div>`).join("") : '<div class="veredicto mal">No hay acciones seleccionadas: no hay componentes.</div>'}
+      ${r.faltan.length ? `<div class="veredicto mal" style="margin-top:4px"><b>Falta${r.faltan.length>1?"n":""} componente${r.faltan.length>1?"s":""}.</b> ${r.faltan.length>1?"Los medios imprescindibles":"El medio imprescindible"} ${r.faltan.map(m=>m.id).join(", ")} qued${r.faltan.length>1?"aron":"ó"} sin ninguna acción, de modo que este conjunto no alcanza para lograr el propósito.</div>`:""}
+    </div></div>
+    <div class="nivel"><div class="et">Supuesto</div><div class="cont" style="border-style:dashed">
+      MF7 · Nivel de tratamiento exigible definido por norma provincial. Está fuera del dominio del establecimiento, de modo que no genera componente:
+      se representa en la Estructura Analítica y se traslada a la columna de supuestos de la matriz.</div></div>`;
+  $("#cadenaEAP").innerHTML = `
+    <div class="eslabon"><div class="si">Si</div><div>ejecutamos las actividades de cada componente,</div></div>
+    <div class="eslabon"><div class="si">entonces</div><div>obtenemos los ${mfs.length} componentes de la alternativa;</div></div>
+    <div class="eslabon"><div class="si">entonces</div><div>${r.ok
+      ? "el conjunto de componentes, con sus supuestos, alcanza para lograr el propósito: la aplicación al suelo queda dentro de los límites admitidos;"
+      : "<b style='color:var(--rosa)'>la cadena se corta:</b> con medios imprescindibles sin cubrir, los componentes obtenidos no son suficientes para lograr el propósito;"}</div></div>
+    <div class="eslabon"><div class="si">entonces</div><div>se contribuye al fin: el plan de adecuación se cumple y el acuífero compartido queda protegido.</div></div>`;
+}
+
+/* ================= PASO 9 ================= */
+function pintarChecklist(){
+  $("#checklist").innerHTML = CHECKS.map((c,i)=>`<div class="check"><input type="checkbox" id="ch${i}"><label for="ch${i}">${esc(c)}</label></div>`).join("");
+  $$("#checklist input").forEach(i=>i.onchange=()=>{
+    const n=$$("#checklist input:checked").length;
+    $("#progreso").textContent = `${n} de ${CHECKS.length} verificados.` + (n===CHECKS.length?" El tramo está listo para pasar a la matriz.":"");
+  });
+  $("#progreso").textContent = `0 de ${CHECKS.length} verificados.`;
+}
+
+/* ================= ACTUALIZAR ================= */
+function actualizar(){ pintarConfigurador(); pintarTablero(); pintarFinanciero(); pintarComparacion(); pintarEAP(); }
+
+pintarNav(); pintarEspejo(); pintarArbol(); pintarAcciones(); pintarRelaciones();
+pintarPesos(); pintarChecklist(); actualizar();
+</script>
+</body>
+</html>
