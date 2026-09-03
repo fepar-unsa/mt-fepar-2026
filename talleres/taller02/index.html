@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller 02 · Del problema al proceso · Estudios técnicos y F02 · FEPAR 2026</title>
+<meta name="description" content="Conductor de clase del Taller 02 de FEPAR 2026: el caso porcino desde el problema central hasta el Formulario 02, con evaluación multicriterio, normalización de criterios de costo y de beneficio, y estudios técnicos.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MT FEPAR 2026">
+<meta property="og:title" content="Taller 02 · Del problema al proceso">
+<meta property="og:description" content="Sesenta minutos: del árbol de objetivos a la alternativa, evaluación multicriterio con normalización, y estudios técnicos del F02.">
+<meta property="og:locale" content="es_AR">
+<style>
+:root{
+  --bg:#f2f2ef; --panel:#fcfcfb; --panel2:#f7f7f4; --ink:#0b0b0b; --muted:#52514e;
+  --line:#dcdbd4; --line2:#e8e8e3;
+  --navy:#0b1222; --navy-tx:#e8eaf0; --navy-sub:#9fb0cd;
+  --verde:#1baf7a; --verde-osc:#12805a; --verde-suave:#e7f7f0;
+  --ambar:#b45309; --ambar-suave:#fff8ec; --ambar-line:#f3ddb4;
+  --azul:#1d4ed8; --azul-osc:#1a3fae; --azul-suave:#f7faff; --azul-line:#cddffa;
+  --rosa:#eb6834; --rosa-suave:#fdeee7;
+  --violeta:#4b5563; --violeta-suave:#eef1f5;
+  --gris-suave:#e8e8e3;
+  --sombra:0 1px 2px rgba(11,18,34,.05),0 8px 24px rgba(11,18,34,.05);
+  --r:10px; --maxw:1300px;
+}
+html[data-tema="oscuro"]{
+  --bg:#0b1222; --panel:#111a2e; --panel2:#16203a; --ink:#e8eaf0; --muted:#9fb0cd;
+  --line:#243250; --line2:#1b2740;
+  --navy:#060c18; --verde:#3fd0a0; --verde-osc:#6fe0bb; --verde-suave:#12302a;
+  --ambar:#e0a75c; --ambar-suave:#2c2415; --ambar-line:#4a3a1c;
+  --azul:#7aa5ff; --azul-osc:#a8c4ff; --azul-suave:#14203a; --azul-line:#2c4270;
+  --rosa:#f59267; --rosa-suave:#33201a;
+  --violeta:#a7b3c6; --violeta-suave:#1c2536;
+  --gris-suave:#1b2740;
+  --sombra:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;font-weight:650;letter-spacing:-.01em}
+p{margin:0 0 .85em}
+a{color:var(--azul)}
+code{font-family:ui-monospace,"Fira Code",Consolas,monospace;font-size:13px;background:var(--gris-suave);padding:1px 5px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+header.top{position:sticky;top:0;z-index:50;background:var(--navy);color:var(--navy-tx);border-bottom:2px solid var(--azul)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.marca{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+.marca .sig{width:26px;height:26px;border-radius:7px;background:var(--azul);position:relative;flex:0 0 auto}
+.marca .sig::after{content:"";position:absolute;inset:7px 7px auto 7px;height:4px;border-radius:2px;background:#fff;
+  box-shadow:0 6px 0 rgba(255,255,255,.65)}
+.ruta{color:var(--navy-sub);font-size:13px}
+.top .der{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:8px;
+  padding:6px 11px;font:inherit;font-size:13px;cursor:pointer}
+.btn:hover{border-color:var(--azul);color:var(--azul)}
+.btn.pri{background:var(--azul);border-color:var(--azul);color:#fff}
+.btn.pri:hover{background:var(--azul-osc);color:#fff}
+.btn.on{background:var(--azul);border-color:var(--azul);color:#fff}
+header.top .btn{background:transparent;border-color:#243250;color:var(--navy-tx)}
+header.top .btn:hover{border-color:var(--azul);background:#16203a;color:#fff}
+
+.reloj{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--navy-sub)}
+.reloj .t{font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy-tx);font-size:15px;min-width:52px;text-align:right}
+.reloj .bar{width:120px;height:6px;background:#243250;border-radius:3px;overflow:hidden}
+.reloj .bar i{display:block;height:100%;width:0;background:#3b82f6;transition:width .5s linear}
+.reloj.exceso .t{color:#f59267}
+.reloj.exceso .bar i{background:#eb6834}
+
+nav.pasos{position:sticky;top:60px;z-index:40;background:var(--panel2);border-bottom:1px solid var(--line)}
+nav.pasos .wrap{display:flex;gap:4px;overflow-x:auto;padding:8px 22px}
+nav.pasos button{white-space:nowrap;border:1px solid transparent;background:transparent;color:var(--muted);
+  border-radius:999px;padding:6px 12px;font:inherit;font-size:13.5px;cursor:pointer;display:flex;align-items:center;gap:7px}
+nav.pasos button:hover{color:var(--ink);background:var(--gris-suave)}
+nav.pasos button[aria-current="true"]{background:var(--azul);border-color:var(--azul);color:#fff;font-weight:600}
+nav.pasos .min{font-size:11px;opacity:.75;font-variant-numeric:tabular-nums}
+nav.pasos .sep{width:1px;background:var(--line);margin:2px 6px;flex:0 0 auto}
+
+main{padding:26px 0 90px}
+section.paso{display:none;animation:ap .22s ease}
+section.paso.activo{display:block}
+@keyframes ap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tit{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.tit .n{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--azul)}
+.tit h2{font-size:25px;margin:0}
+.tit .dur{margin-left:auto;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.bajada{color:var(--muted);max-width:84ch;margin-bottom:20px}
+.etapa{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:5px;margin-bottom:10px}
+.etapa.f1{background:var(--verde-suave);color:var(--verde-osc)}
+.etapa.f2{background:var(--azul-suave);color:var(--azul)}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sombra)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:980px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.dato{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.dato .v{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--azul)}
+.dato .k{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+.nota{background:var(--ambar-suave);border:1px solid var(--ambar-line);border-left:3px solid var(--ambar);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0}
+.nota b{color:var(--ambar)}
+.regla{background:var(--azul-suave);border:1px solid var(--azul-line);border-left:3px solid var(--azul);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0}
+.regla b{color:var(--azul)}
+.docente{background:var(--verde-suave);border-left:3px solid var(--verde);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0}
+.docente b{color:var(--verde-osc)}
+.fuente{font-size:12.5px;color:var(--muted);margin-top:8px}
+blockquote{margin:10px 0;padding:2px 0 2px 14px;border-left:2px solid var(--azul);font-style:italic}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line2);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:650}
+tbody tr:hover{background:var(--panel2)}
+.tablaWrap{overflow-x:auto}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:2px 8px;border-radius:999px;background:var(--gris-suave);color:var(--muted)}
+.pill.ok{background:var(--verde-suave);color:var(--verde-osc)}
+.pill.no{background:var(--rosa-suave);color:var(--rosa)}
+.pill.inv{background:var(--azul-suave);color:var(--azul)}
+.pill.ope{background:var(--verde-suave);color:var(--verde-osc)}
+.pill.imp{background:var(--ambar);color:#fff}
+.pill.cos{background:var(--rosa-suave);color:var(--rosa)}
+.pill.ben{background:var(--verde-suave);color:var(--verde-osc)}
+
+/* árbol compacto */
+.arb{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;align-items:start;margin-top:8px}
+.arb .mf{border-radius:9px;padding:10px 11px;font-size:12.8px;background:var(--verde-suave);border:1px solid transparent}
+.arb .mf.impr{box-shadow:0 0 0 2px var(--ambar)}
+.arb .mf.fuera{background:transparent;border:1px dashed var(--muted)}
+.arb .cod{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:3px}
+.meta{background:var(--ambar-suave);border-radius:9px;padding:12px 14px;text-align:center;font-weight:650;font-size:13.5px}
+@media(max-width:1050px){.arb{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.arb{grid-template-columns:1fr}}
+
+/* árbol de problemas */
+.arb .mf.ef{background:var(--rosa-suave)}
+.arb .mf.ca{background:var(--panel2);border:1px solid var(--line)}
+.efFinal{background:var(--rosa-suave);border:1px solid var(--rosa);border-radius:9px;padding:12px 14px;text-align:center;font-weight:650;font-size:13.5px;color:var(--rosa)}
+.tronco{background:var(--ambar-suave);border:1px solid var(--ambar-line);border-left:3px solid var(--ambar);border-radius:9px;padding:13px 16px;text-align:center;font-weight:650;font-size:13.5px;line-height:1.45}
+
+/* ecuación del indicador */
+.ecuacion{display:flex;flex-wrap:wrap;gap:7px;align-items:center;justify-content:center;margin-top:10px}
+.ecuacion .tk{border-radius:7px;padding:7px 12px;font-size:12.8px;font-weight:650}
+.ecuacion .op{color:var(--muted);font-weight:700}
+.tk.c1{background:var(--azul-suave);color:var(--azul)}
+.tk.c2{background:var(--verde-suave);color:var(--verde-osc)}
+.tk.c3{background:var(--ambar-suave);color:var(--ambar)}
+.tk.c4{background:var(--rosa-suave);color:var(--rosa)}
+.tk.c5{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+.et5{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+.indLinea{border:1px solid var(--line);border-radius:9px;padding:13px 15px;background:var(--panel2);font-size:14px;line-height:1.6}
+.indLinea .h1{color:var(--azul);font-weight:650}
+.indLinea .h2{color:var(--verde-osc);font-weight:650}
+.indLinea .h3{color:var(--ambar);font-weight:650}
+.indLinea .h4{color:var(--rosa);font-weight:650}
+.indLinea .h5{font-weight:650}
+.indLinea .vacio{background:var(--rosa-suave);color:var(--rosa);border-radius:5px;padding:0 7px}
+.campo5 label{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+.campo5 input{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:7px;padding:8px 10px;font:inherit;font-size:13px;background:var(--panel);color:var(--ink)}
+.campo5 input:focus{outline:none;border-color:var(--azul)}
+
+/* configurador compacto */
+.mfB{border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:10px}
+.mfB.falta{border-color:var(--rosa);box-shadow:0 0 0 1px var(--rosa)}
+.mfB.cub{border-color:var(--verde)}
+.acc{display:flex;gap:10px;align-items:flex-start;padding:7px 9px;border-radius:7px;cursor:pointer;border:1px solid transparent;font-size:13.5px}
+.acc:hover{background:var(--panel2);border-color:var(--line)}
+.acc.sel{background:var(--verde-suave);border-color:var(--verde)}
+.acc input{margin-top:3px;accent-color:var(--verde);width:15px;height:15px;flex:0 0 auto}
+.chk{display:flex;gap:9px;align-items:center;font-size:13.3px;padding:4px 0;border-bottom:1px solid var(--line2)}
+.chk .ic{width:17px;height:17px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.chk .ic.si{background:var(--verde)} .chk .ic.no{background:var(--rosa)}
+.veredicto{border-radius:9px;padding:11px 13px;margin-top:10px;font-size:13.5px}
+.veredicto.ok{background:var(--verde-suave);color:var(--verde-osc)}
+.veredicto.mal{background:var(--rosa-suave);color:var(--rosa)}
+
+/* multicriterio */
+.critFila{display:grid;grid-template-columns:1.6fr 150px 1fr 60px;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line2)}
+.critFila .nom{font-size:13.6px;font-weight:600}
+.critFila .un{font-size:12px;color:var(--muted);font-weight:400;display:block}
+.critFila input[type=range]{width:100%;accent-color:var(--azul)}
+.critFila .pesoV{font-size:13px;font-variant-numeric:tabular-nums;text-align:right;font-weight:650}
+.tog{display:inline-flex;background:var(--gris-suave);border-radius:999px;padding:2px}
+.tog button{border:0;background:transparent;color:var(--muted);border-radius:999px;padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
+.tog button[aria-pressed="true"]{background:var(--panel);font-weight:650;box-shadow:var(--sombra)}
+.tog button[aria-pressed="true"].c{color:var(--rosa)} .tog button[aria-pressed="true"].b{color:var(--verde-osc)}
+@media(max-width:820px){.critFila{grid-template-columns:1fr;gap:6px}}
+.barra{height:8px;background:var(--gris-suave);border-radius:99px;overflow:hidden;min-width:80px}
+.barra i{display:block;height:100%;background:var(--azul);border-radius:99px;transition:width .3s ease}
+.gan{background:var(--verde-suave)!important}
+
+/* EDT */
+.edt{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin:14px 0}
+.edt .fl{color:var(--muted);text-align:center;font-size:18px}
+.edt .bx{border-radius:9px;padding:11px 13px;font-size:13.5px}
+.edt .accion{background:var(--azul-suave);border:1px solid var(--azul-line)}
+.edt .tareas{background:var(--panel2);border:1px solid var(--line)}
+.edt .comp{background:var(--verde-suave);border:1px solid transparent}
+.edt .et{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+@media(max-width:880px){.edt{grid-template-columns:1fr}.edt .fl{transform:rotate(90deg)}}
+
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel2);
+  border-radius:999px;padding:7px 13px;font-size:13.3px;cursor:pointer;margin:0 8px 8px 0}
+.chip:hover{border-color:var(--azul)}
+.chip.inv{background:var(--azul-suave);border-color:var(--azul-line);color:var(--azul)}
+.chip.ope{background:var(--verde-suave);border-color:transparent;color:var(--verde-osc)}
+.chip.mal{border-color:var(--rosa);box-shadow:0 0 0 1px var(--rosa)}
+
+.gantt{font-size:13px}
+.gfila{display:grid;grid-template-columns:230px 46px 62px 1fr;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line2)}
+.gfila.cab{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:650;border-bottom:1px solid var(--line)}
+.gpista{position:relative;height:20px;background:var(--gris-suave);border-radius:5px;overflow:hidden}
+.gbarra{position:absolute;top:0;height:100%;border-radius:5px;background:var(--azul);opacity:.9}
+.gesc{display:grid;grid-template-columns:230px 46px 62px 1fr;gap:10px;margin-top:6px;font-size:11px;color:var(--muted)}
+.gmeses{display:flex;justify-content:space-between}
+@media(max-width:820px){.gfila,.gesc{grid-template-columns:150px 34px 50px 1fr}}
+
+.check{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line2)}
+.check input{margin-top:4px;accent-color:var(--azul);width:16px;height:16px;flex:0 0 auto}
+.peso label{display:block;font-size:12.5px;font-weight:650;margin-bottom:4px}
+.peso input[type=range]{width:100%;accent-color:var(--azul)}
+.peso .val{font-size:12px;color:var(--muted)}
+
+footer.pie{border-top:2px solid var(--azul);background:var(--navy);padding:22px 0;color:var(--navy-sub);font-size:13px}
+.navPie{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+kbd{font:inherit;font-size:11.5px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--muted)}
+@media print{nav.pasos,header.top .der,.navPie{display:none}section.paso{display:block!important;page-break-after:always}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="marca"><span class="sig"></span> FEPAR 2026</div>
+    <span class="ruta">Taller 02 · Del problema al proceso</span>
+    <div class="der">
+      <div class="reloj" id="reloj"><span class="t" id="relojT">00:00</span><div class="bar"><i id="relojBar"></i></div></div>
+      <button class="btn" id="bReloj">Iniciar</button>
+      <button class="btn" id="bTema">Tema</button>
+      <button class="btn" id="bImprimir">Imprimir</button>
+    </div>
+  </div>
+</header>
+
+<nav class="pasos" aria-label="Bloques"><div class="wrap" id="navPasos"></div></nav>
+
+<main class="wrap">
+
+<!-- ===== 1 ===== -->
+<section class="paso activo" id="p1">
+  <span class="etapa f1">Repaso del F01</span>
+  <div class="tit"><span class="n">Bloque 1</span><h2>El caso y el árbol de problemas</h2><span class="dur">5 minutos</span></div>
+  <p class="bajada">Retomamos el mismo caso del Taller 01 y lo llevamos hasta el final del F02. Todo lo que se decida hoy en los
+  estudios técnicos tiene que poder rastrearse hasta este árbol.</p>
+
+  <div class="grid g4" style="margin-bottom:16px">
+    <div class="dato"><div class="v">40 m³/día</div><div class="k">Agua de un pozo de 70 m. Prácticamente todo vuelve a salir como efluente.</div></div>
+    <div class="dato"><div class="v">670 m³</div><div class="k">Fosas bajo las naves, sin rampa ni compartimentos.</div></div>
+    <div class="dato"><div class="v">30 %</div><div class="k">Uso del galpón de compostaje: hay capacidad instalada ociosa.</div></div>
+    <div class="dato"><div class="v">20 + 1</div><div class="k">Viviendas y una escuela, todas con pozo sobre el mismo acuífero.</div></div>
+  </div>
+
+  <div class="card">
+    <div style="text-align:center;margin-bottom:6px"><span class="pill" style="background:var(--rosa-suave);color:var(--rosa)">Efecto final</span></div>
+    <div class="efFinal">Pérdida de la licencia social y ambiental para producir en el valle</div>
+    <div style="text-align:center;color:var(--muted);margin:8px 0 4px">▲ a esto conducen los efectos ▲</div>
+    <div class="arb" id="efectos"></div>
+
+    <div style="text-align:center;color:var(--muted);margin:14px 0 4px">▲ y todos derivan del problema central ▲</div>
+    <div class="tronco">Aplicación al suelo de efluentes porcinos con carga orgánica, salina y bacteriológica muy superior a la admitida,
+      en un establecimiento de Rosario de Lerma que comparte acuífero con veinte viviendas y una escuela rural</div>
+    <div style="text-align:center;color:var(--muted);margin:14px 0 4px">▲ que se explica por estas causas ▲</div>
+
+    <div class="arb" id="causas"></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:12px">
+      <span><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:var(--rosa-suave);margin-right:6px;vertical-align:-1px"></span>Efectos</span>
+      <span><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:var(--ambar-suave);margin-right:6px;vertical-align:-1px"></span>Problema central</span>
+      <span><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:var(--panel2);border:1px solid var(--line);margin-right:6px;vertical-align:-1px"></span>Causas</span>
+      <span style="margin-left:auto">Se lee de abajo hacia arriba: ¿esta causa produce la de arriba?</span>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <h3 style="font-size:15px">Lo que muestran los análisis</h3>
+      <div class="tablaWrap"><table>
+        <thead><tr><th>Parámetro</th><th class="num">Medido</th><th class="num">Límite</th><th class="num">Excede</th></tr></thead>
+        <tbody>
+          <tr><td>Demanda química de oxígeno</td><td class="num">17.857</td><td class="num">500</td><td class="num"><b>36×</b></td></tr>
+          <tr><td>Nitrógeno total</td><td class="num">303</td><td class="num">30</td><td class="num"><b>10×</b></td></tr>
+          <tr><td>Amoníaco</td><td class="num">368</td><td class="num">75</td><td class="num"><b>5×</b></td></tr>
+          <tr><td>Coliformes fecales</td><td class="num">1,1 M</td><td class="num">2.000</td><td class="num"><b>550×</b></td></tr>
+        </tbody></table></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px">Dos controles sobre el tronco</h3>
+      <p><b>Es una situación negativa en curso</b>, no la ausencia de una solución. «Falta una planta de tratamiento» sería
+      la solución escrita en negativo, y arrastraría el proyecto entero.</p>
+      <p style="margin:0"><b>Cada causa es un hecho del sistema.</b> Es el error que la Guía marca como el que descuenta siempre.
+      Por eso la causa no dice «falta almacenamiento» sino que el efluente se genera todos los días y sólo puede aplicarse
+      en ciertos momentos del año.</p>
+    </div>
+  </div>
+
+  <div class="docente"><b>Para el aula.</b> Pedir que cada equipo lea su problema central en voz alta. Treinta segundos.
+  Escuchar si aparece un «falta de…»: ahí hay que frenar antes de seguir.</div>
+</section>
+
+<!-- ===== 2 ===== -->
+<section class="paso" id="p2">
+  <span class="etapa f1">Repaso del F01</span>
+  <div class="tit"><span class="n">Bloque 2</span><h2>El árbol de objetivos y los medios fundamentales</h2><span class="dur">6 minutos</span></div>
+  <p class="bajada">Cada causa se transforma en un medio, cada efecto en un fin y el problema central en la meta. No es una traducción palabra por palabra: es el mismo árbol con el signo cambiado. Lo que importa para el proyecto es su última fila:
+  los medios sobre los que se puede actuar directamente. De ellos, algunos son imprescindibles y otros habilitantes.</p>
+
+  <div class="card">
+    <div class="meta">Meta · Aplicación al suelo de efluentes dentro de los límites admitidos, sin afectación del acuífero compartido</div>
+    <div style="text-align:center;color:var(--muted);margin:6px 0 2px">▲ se alcanza con estos medios ▲</div>
+    <div class="arb" id="arbol"></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:12px">
+      <span><span class="pill imp">imprescindible</span> eje de la solución: exige al menos una acción</span>
+      <span><span class="pill">habilitante</span> mejora el proyecto pero no lo define</span>
+      <span style="border:1px dashed var(--muted);border-radius:5px;padding:1px 8px">fuera del alcance: va a supuestos</span>
+    </div>
+  </div>
+
+  <div class="regla"><b>Definición.</b> «Un medio fundamental es considerado como imprescindible cuando constituye el eje de la solución del problema
+  identificado y es necesario que se lleve a cabo al menos una acción destinada a alcanzarlo.»
+  <div class="fuente">Guía General del SNIP, MEF Perú. Concordante con Ortegón, Pacheco y Prieto, Serie Manuales 42, ILPES/CEPAL, 2005, pp. 18-19.</div></div>
+
+  <div class="nota"><b>El medio que no se puede atacar.</b> MF7 no depende del establecimiento: definir una norma provincial está fuera de su dominio.
+  El manual de la cátedra resuelve ese caso con una regla precisa: se representa igual en la Estructura Analítica y se trata como supuesto en la matriz.</div>
+</section>
+
+<!-- ===== 3 ===== -->
+<section class="paso" id="p3">
+  <span class="etapa f1">Repaso del F01</span>
+  <div class="tit"><span class="n">Bloque 3</span><h2>El indicador y la meta</h2><span class="dur">5 minutos</span></div>
+  <p class="bajada">El objetivo central es el problema en positivo, y se mide con un indicador. La Guía es exigente con su forma:
+  cinco elementos, ni uno menos. Y ese indicador de la línea de base es el mismo que después mide el propósito en la matriz.</p>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="font-size:16px">La ecuación de la cátedra</h3>
+    <div class="ecuacion">
+      <span class="tk c1">Cantidad o porcentaje</span><span class="op">+</span>
+      <span class="tk c2">Variable</span><span class="op">+</span>
+      <span class="tk c3">Lugar</span><span class="op">+</span>
+      <span class="tk c4">Plazo</span><span class="op">+</span>
+      <span class="tk c5">Medio de verificación</span>
+    </div>
+    <p class="fuente" style="margin-top:10px">En el ítem de medición del problema los cinco elementos van en una sola línea.
+    En la matriz, los cuatro primeros van en la columna del indicador y el quinto en su propia columna.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="font-size:16px">Armarlo para el caso</h3>
+    <p style="color:var(--muted);margin-bottom:12px">Editá cualquier pieza y mirá cómo se rearma la línea. Si vaciás una, el visor avisa cuál falta.</p>
+    <div class="grid g3" id="ind5"></div>
+    <div style="margin-top:14px">
+      <div class="et5">Indicador armado</div>
+      <div class="indLinea" id="indLinea"></div>
+      <div id="indAviso"></div>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="font-size:15px">Objetivo central o meta</h3>
+      <p style="margin:0 0 .8em">«Aplicación al suelo de efluentes porcinos dentro de los límites admitidos, en el establecimiento
+      de Rosario de Lerma, sin afectación del acuífero compartido.»</p>
+      <p style="margin:0;color:var(--muted);font-size:13.5px">Es el problema en positivo. Uno solo. No es la enumeración de las obras:
+      esas aparecen recién en el F02 y tienen que derivar de acá.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px">Sin proyecto y con proyecto</h3>
+      <div class="tablaWrap"><table>
+        <thead><tr><th>Situación</th><th class="num">Valor</th><th>De dónde sale</th></tr></thead>
+        <tbody>
+          <tr><td>Sin proyecto</td><td class="num"><b>0 %</b></td><td style="font-size:13px">Ninguna aplicación cumple hoy: la DQO excede 36 veces y los coliformes 550.</td></tr>
+          <tr><td>Con proyecto</td><td class="num"><b>100 %</b></td><td style="font-size:13px">Meta al año 2, que es la que después mide el propósito de la matriz.</td></tr>
+        </tbody></table></div>
+      <p class="fuente" style="margin-bottom:0">Sin la fila del valor con proyecto no hay meta, y sin meta el indicador no evalúa nada.</p>
+    </div>
+  </div>
+
+  <div class="nota"><b>El error que más se repite.</b> Medir el problema con una variable y el propósito con otra.
+  Si la línea de base mide dependencia de la red y el propósito mide sustitución, no se están comparando las mismas cosas.
+  Tiene que ser el mismo indicador, con su valor sin proyecto y su valor con proyecto.</div>
+</section>
+
+<!-- ===== 4 ===== -->
+<section class="paso" id="p4">
+  <span class="etapa f1">Repaso del F01</span>
+  <div class="tit"><span class="n">Bloque 4</span><h2>Las acciones y la alternativa</h2><span class="dur">7 minutos</span></div>
+  <p class="bajada">De cada medio fundamental se desprenden acciones. Se clasifican en excluyentes, complementarias e independientes,
+  y con ellas se configura la alternativa. Una alternativa no es una rama del árbol: es una combinación que cubre todos los medios imprescindibles.</p>
+
+  <div class="grid" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px">
+    <div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+        <button class="btn" data-preset="0">Alt 1 · Adecuación con lo existente</button>
+        <button class="btn" data-preset="1">Alt 2 · Biodigestión y fertirriego</button>
+        <button class="btn" data-preset="2">Alt 3 · Mínima de cumplimiento</button>
+      </div>
+      <div id="config"></div>
+    </div>
+    <div>
+      <div class="card" style="position:sticky;top:120px">
+        <h3 style="font-size:15px;margin-bottom:8px">Verificación de cobertura</h3>
+        <div id="cobertura"></div><div id="veredicto"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="regla"><b>La regla de cobertura.</b> «Cada proyecto alternativo debe contener por lo menos una acción vinculada con cada uno de los
+  medios fundamentales imprescindibles que no sean mutuamente excluyentes.» Y en el manual de la cátedra: «Todas las alternativas deben cumplir
+  con el propósito y los fines.»
+  <div class="fuente">Guía General del SNIP, MEF Perú · Ortegón, Pacheco y Prieto, Serie Manuales 42, p. 19.</div></div>
+</section>
+
+<!-- ===== 5 ===== -->
+<section class="paso" id="p5">
+  <span class="etapa f1">Repaso del F01</span>
+  <div class="tit"><span class="n">Bloque 5</span><h2>Elegir: evaluación multicriterio</h2><span class="dur">11 minutos</span></div>
+  <p class="bajada">Las tres alternativas cubren los medios imprescindibles, así que las tres resuelven el problema. Elegir exige criterios,
+  y los criterios vienen en unidades distintas y en direcciones opuestas: algunos conviene minimizarlos y otros maximizarlos.
+  Para sumarlos hay que normalizarlos primero.</p>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">1 · La matriz de decisión, con los datos en sus unidades</h3>
+    <div class="tablaWrap"><table id="tblCruda"></table></div>
+    <p class="fuente">Valores de ejercicio, coherentes con la evaluación financiera del Taller 01. Nótese que no se pueden sumar:
+    millones de pesos, porcentajes, meses y escalas cualitativas no comparten unidad ni dirección.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">2 · Definir la dirección de cada criterio y su peso</h3>
+    <p style="color:var(--muted);margin-bottom:10px">Un criterio de <b>beneficio</b> mejora cuando el valor sube. Uno de <b>costo</b> mejora cuando baja.
+    Es la primera decisión y la que más se equivoca.</p>
+    <div id="criterios"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center">
+      <span style="font-size:13px;color:var(--muted)">Método de normalización</span>
+      <button class="btn on" data-norm="minmax">Mín–máx</button>
+      <button class="btn" data-norm="suma">Por la suma</button>
+      <button class="btn" data-norm="maximo">Por el máximo</button>
+      <button class="btn" data-norm="vectorial">Vectorial</button>
+      <span style="margin-left:auto;font-size:13px;color:var(--muted)">Suma de pesos: <b id="sumaPesos"></b></span>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-bottom:16px">
+    <div class="card">
+      <h3 style="font-size:15px">Los dos obstáculos que resuelve la normalización</h3>
+      <p><b>Las unidades.</b> Millones de pesos, meses, porcentajes y una escala de 1 a 5 no se pueden sumar.
+      Y si se suman igual, el criterio con las cifras más grandes domina el resultado por el tamaño del número,
+      no por su importancia.</p>
+      <p><b>La dirección.</b> En el VAC, menos es mejor. En la reducción de carga, más es mejor.
+      Sumados tal cual, se estaría premiando lo que se quería castigar.</p>
+      <p style="margin:0">Normalizar hace las dos cosas de una vez: <b>adimensiona</b>, para poder sumar peras con manzanas,
+      y <b>orienta</b>, para que en todos los criterios «más alto» signifique «mejor». Después de normalizar,
+      lo único que expresa importancia relativa es el peso.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px">Las dos maneras de manejar la dirección</h3>
+      <p><b>Una fórmula por tipo de criterio.</b> Es lo que hace este visor: la de beneficio y la de costo son simétricas
+      y se aplican según cómo esté declarado cada criterio.</p>
+      <p><b>Convertir primero y normalizar después.</b> Se transforma el costo en beneficio y luego se aplica una sola fórmula
+      a todo. La conversión puede hacerse por diferencia, <code>x' = máx − x</code>, o por inverso, <code>x' = 1/x</code>.</p>
+      <p style="margin:0"><b>No son equivalentes.</b> La diferencia conserva las distancias entre alternativas; el inverso las deforma
+      y castiga mucho más a los valores altos. Conviene elegir un camino y declararlo, no alternarlos.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">Las fórmulas, método por método</h3>
+    <div class="tablaWrap"><table>
+      <thead><tr><th style="width:22%">Método</th><th>Criterio de beneficio ↑</th><th>Criterio de costo ↓</th><th style="width:26%">Observación</th></tr></thead>
+      <tbody>
+        <tr><td><b>Mín–máx</b></td><td><code>(x − mín) / (máx − mín)</code></td><td><code>(máx − x) / (máx − mín)</code></td>
+          <td style="font-size:13px;color:var(--muted)">Queda en 0–1. La peor alternativa recibe exactamente 0.</td></tr>
+        <tr><td><b>Por la suma</b></td><td><code>x / Σx</code></td><td><code>(1/x) / Σ(1/x)</code></td>
+          <td style="font-size:13px;color:var(--muted)">Los valores suman 1. Nadie recibe 0.</td></tr>
+        <tr><td><b>Por el máximo</b></td><td><code>x / máx</code></td><td><code>mín / x</code></td>
+          <td style="font-size:13px;color:var(--muted)">La mejor recibe 1. Simple y proporcional.</td></tr>
+        <tr><td><b>Vectorial</b></td><td><code>x / √(Σx²)</code></td><td><code>1 − x / √(Σx²)</code></td>
+          <td style="font-size:13px;color:var(--muted)">La que usa TOPSIS. Conserva la magnitud relativa.</td></tr>
+        <tr style="opacity:.7"><td><b>z-score</b></td><td><code>(x − x̄) / s</code></td><td><code>(x̄ − x) / s</code></td>
+          <td style="font-size:13px;color:var(--muted)">No queda acotada y da negativos: no conviene para la suma ponderada.</td></tr>
+      </tbody></table></div>
+    <p class="fuente">El Manual Teórico menciona la normalización por la suma, la mín–máx y la estandarización z-score.
+    Las columnas de costo son el complemento que la mayoría de los manuales da por supuesto.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">El cálculo, paso a paso, con dos criterios del caso</h3>
+    <div class="grid g2">
+      <div>
+        <p style="margin:0 0 .5em"><span class="pill cos">costo ↓</span> <b>Valor actualizado de costos</b>, en millones:
+        35,3 · 43,5 · 21,4. Mínimo 21,4, máximo 43,5, rango <b>22,1</b>.</p>
+        <div class="tablaWrap"><table>
+          <thead><tr><th>Alternativa</th><th>Cuenta</th><th class="num">r</th></tr></thead>
+          <tbody>
+            <tr><td>Alt 1</td><td><code>(43,5 − 35,3) / 22,1</code></td><td class="num"><b>0,371</b></td></tr>
+            <tr><td>Alt 2</td><td><code>(43,5 − 43,5) / 22,1</code></td><td class="num"><b>0,000</b></td></tr>
+            <tr><td>Alt 3</td><td><code>(43,5 − 21,4) / 22,1</code></td><td class="num"><b>1,000</b></td></tr>
+          </tbody></table></div>
+      </div>
+      <div>
+        <p style="margin:0 0 .5em"><span class="pill ben">beneficio ↑</span> <b>Reducción de la carga vertida</b>, en porcentaje:
+        85 · 95 · 60. Mínimo 60, máximo 95, rango <b>35</b>.</p>
+        <div class="tablaWrap"><table>
+          <thead><tr><th>Alternativa</th><th>Cuenta</th><th class="num">r</th></tr></thead>
+          <tbody>
+            <tr><td>Alt 1</td><td><code>(85 − 60) / 35</code></td><td class="num"><b>0,714</b></td></tr>
+            <tr><td>Alt 2</td><td><code>(95 − 60) / 35</code></td><td class="num"><b>1,000</b></td></tr>
+            <tr><td>Alt 3</td><td><code>(60 − 60) / 35</code></td><td class="num"><b>0,000</b></td></tr>
+          </tbody></table></div>
+      </div>
+    </div>
+    <p style="margin:.8em 0 0">El mismo procedimiento, con la fórmula que corresponde a cada dirección, le da el 1 a la más barata
+    en un caso y a la de mayor reducción en el otro. Ahora las dos columnas se leen igual y recién ahí se pueden sumar.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">Por qué el método cambia el ganador</h3>
+    <p>Con <b>mín–máx</b>, la peor alternativa de cada criterio recibe exactamente cero. Eso significa que su peso, por alto que sea,
+    no le aporta nada en ese criterio: la alternativa 2 sacó 0 en el VAC y ahí perdió los 25 puntos de peso de ese criterio.</p>
+    <p>Con <b>normalización por la suma</b> no hay ceros: esa misma alternativa recibe 0,234 en lugar de 0.</p>
+    <p style="margin:0">Por eso, al cambiar de método arriba, el orden se reacomoda. No es un defecto: mín–máx <b>amplifica</b> las diferencias
+    porque estira el rango de punta a punta, mientras que los métodos de razón las conservan proporcionales.
+    Cuando la diferencia entre el primero y el segundo es de milésimas, la respuesta no está en la planilla.</p>
+  </div>
+
+  <div class="grid g2" style="margin-bottom:16px">
+    <div class="card">
+      <h3 style="font-size:15px">Cinco reglas para no equivocarse</h3>
+      <ol style="margin:0;padding-left:20px">
+        <li>Usar <b>el mismo método para todos los criterios</b>. Mezclar rompe la comparabilidad que se buscaba.</li>
+        <li>Declarar la dirección de cada criterio <b>antes</b> de ver los números. Si se define mirando el resultado, ya no se está evaluando.</li>
+        <li>Recordar que mín–máx es <b>relativo al conjunto</b>: si se agrega una alternativa, todos los valores normalizados cambian.</li>
+        <li>Cuidado con ceros y negativos en los métodos que dividen: si un criterio puede valer cero, el <code>1/x</code> explota. Ahí conviene mín–máx.</li>
+        <li>Verificar al final: todo entre 0 y 1, y el 1 en la alternativa que se preferiría por ese criterio. Son treinta segundos y atrapan el error más caro.</li>
+      </ol>
+    </div>
+    <div class="card" style="border-left:3px solid var(--ambar)">
+      <h3 style="font-size:15px">El criterio que no es ni costo ni beneficio</h3>
+      <p>A veces el óptimo es un <b>valor objetivo</b> y no un extremo: una temperatura de proceso, una densidad de plantación,
+      un caudal de diseño. Ni el máximo ni el mínimo son mejores; lo mejor es acercarse a un valor.</p>
+      <p style="margin:0 0 .5em">Ahí no sirve ninguna de las dos fórmulas y se normaliza por distancia al objetivo:</p>
+      <p style="margin:0 0 .5em"><code>r = 1 − |x − objetivo| / máx|x − objetivo|</code></p>
+      <p style="margin:0">Es poco frecuente en los trabajos de la materia, pero cuando aparece y se lo fuerza a ser costo o beneficio,
+      el resultado queda mal y nadie se da cuenta.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">3 · La matriz normalizada</h3>
+    <div class="tablaWrap"><table id="tblNorm"></table></div>
+    <p class="fuente">Todos los valores quedan entre 0 y 1 y en la misma dirección: cuanto más alto, mejor.
+    Los criterios de costo ya vienen invertidos por la fórmula.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="font-size:16px">4 · Ponderar, sumar y ordenar</h3>
+    <div class="tablaWrap"><table id="tblFinal"></table></div>
+    <div id="dictamen"></div>
+  </div>
+
+  <div class="nota"><b>La prueba que conviene hacer en clase.</b> Cambiá el VAC de costo a beneficio y mirá el ranking.
+  Se da vuelta. Equivocar la dirección de un criterio no produce un error pequeño: produce la decisión contraria.</div>
+
+  <div class="docente"><b>Para el aula.</b> Preguntar quién puso peso alto al plazo y por qué. Ahí aparece que la ponderación no es técnica
+  sino política: depende de si el establecimiento está corriendo contra el plan de adecuación o no.</div>
+</section>
+
+<!-- ===== 6 ===== -->
+<section class="paso" id="p6">
+  <span class="etapa f2">Entramos al F02</span>
+  <div class="tit"><span class="n">Bloque 6</span><h2>Dimensionamiento</h2><span class="dur">5 minutos</span></div>
+  <p class="bajada">Con la alternativa elegida empieza el F02. Lo primero es el tamaño: la capacidad de producir una cantidad de bienes
+  o servicios por unidad de tiempo, atada a la magnitud del problema que se quiere resolver.</p>
+
+  <div class="grid g2" style="margin-bottom:14px">
+    <div class="card">
+      <h3 style="font-size:16px">El indicador de tamaño según el proyecto</h3>
+      <div class="tablaWrap"><table>
+        <thead><tr><th>Tipo de proyecto</th><th>Indicador del tamaño</th></tr></thead>
+        <tbody>
+          <tr><td>Educativo</td><td>Estudiantes por ciclo lectivo</td></tr>
+          <tr><td>Agrícola</td><td>Toneladas por ciclo de producción</td></tr>
+          <tr><td>Saneamiento</td><td>Población total servida por el sistema</td></tr>
+          <tr><td>Energía</td><td>MWh producidos por año</td></tr>
+          <tr><td>Agua</td><td>Agua captada en m³/seg</td></tr>
+          <tr style="background:var(--azul-suave)"><td><b>Nuestro caso</b></td><td><b>Metros cúbicos de efluente gestionados por año</b></td></tr>
+        </tbody></table></div>
+      <p class="fuente">Tabla de la Guía 02, con la fila del caso agregada.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:16px">Las seis preguntas</h3>
+      <ol style="margin:0;padding-left:20px;font-size:14px">
+        <li><b>Dimensión del problema.</b> Magnitud, afectados, espacio y período.</li>
+        <li><b>Demanda.</b> Cuánto demanda la sociedad, hoy y a futuro.</li>
+        <li><b>Capacidad de respuesta.</b> Qué parte del problema resolvemos.</li>
+        <li><b>Capacidad de producción.</b> Cuánto por período y en qué unidad.</li>
+        <li><b>Capacidad instalada.</b> El máximo de la infraestructura. ¿Habrá ociosa?</li>
+        <li><b>Tecnología.</b> Cuál se usa y qué condiciona.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:16px">Dimensionar el caso en vivo</h3>
+    <p style="color:var(--muted);margin-bottom:14px">El almacenamiento se dimensiona por el desfasaje entre lo que se genera todos los días
+    y la ventana en que se puede aplicar al campo.</p>
+    <div class="grid g3">
+      <div class="peso"><label for="rCau">Efluente generado</label><input type="range" id="rCau" min="20" max="60" step="1" value="40">
+        <div class="val"><span id="vCau">40</span> m³ por día</div></div>
+      <div class="peso"><label for="rDias">Días sin ventana de aplicación</label><input type="range" id="rDias" min="30" max="210" step="15" value="150">
+        <div class="val"><span id="vDias">150</span> días de acumulación</div></div>
+      <div class="peso"><label for="rRed">Reducción por separación en origen</label><input type="range" id="rRed" min="0" max="50" step="5" value="25">
+        <div class="val"><span id="vRed">25</span> % menos de volumen líquido</div></div>
+    </div>
+    <div class="grid g4" style="margin-top:16px" id="dimResul"></div>
+    <div class="nota" style="margin-bottom:0"><b>La lectura que importa.</b> La capacidad instalada actual son las fosas, 670 m³.
+    Todo lo que exceda ese volumen es obra nueva. Bajar el caudal en origen no es un detalle operativo: achica el proyecto y con él la inversión.</div>
+  </div>
+</section>
+
+<!-- ===== 7 ===== -->
+<section class="paso" id="p7">
+  <span class="etapa f2">Entramos al F02</span>
+  <div class="tit"><span class="n">Bloque 7</span><h2>Acción, tarea y componente</h2><span class="dur">9 minutos</span></div>
+  <p class="bajada">Es el corazón del F02 y la Estructura de Desglose de Tareas. Los componentes de la alternativa se desagregan en acciones;
+  cada acción en tareas; y de la acción ejecutada resulta el componente, expresado como producto.</p>
+
+  <div class="card">
+    <h3 style="font-size:16px">La regla de redacción</h3>
+    <div class="edt">
+      <div class="bx accion"><span class="et">Acción · verbo en infinitivo</span>Construir un galpón para almacenamiento</div>
+      <div class="fl">→</div>
+      <div class="bx tareas"><span class="et">Tareas · los pasos</span>Conseguir las habilitaciones · Desmontar el predio · Limpiarlo · Nivelarlo · Montar y construir</div>
+      <div class="fl">→</div>
+      <div class="bx comp"><span class="et">Componente · producto obtenido</span>Galpón para almacenamiento construido</div>
+    </div>
+    <blockquote>«Describimos las acciones y tareas utilizando verbos en infinitivo. De nuestras acciones, y sus tareas asociadas, derivan las componentes.
+    La componente es el resultado de la ejecución de la acción, se expresa como un producto.»</blockquote>
+    <p class="fuente">Guía 02, acciones en la etapa de inversión.</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 style="font-size:16px">Probarlo</h3>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <label for="inAccion" style="font-size:12.5px;font-weight:650;display:block;margin-bottom:5px">Acción</label>
+        <input id="inAccion" class="btn" style="width:100%;padding:10px 12px" value="Reconvertir las fosas con rampa y compartimentos">
+        <label for="inComp" style="font-size:12.5px;font-weight:650;display:block;margin:12px 0 5px">Componente que resulta</label>
+        <input id="inComp" class="btn" style="width:100%;padding:10px 12px" value="Fosas reconvertidas con separación de corrientes">
+      </div>
+      <div class="card" style="background:var(--panel2);box-shadow:none"><div id="verifEDT"></div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3 style="font-size:16px">El desglose del caso</h3>
+    <p style="color:var(--muted)">Las acciones de inversión de la alternativa 1, ya desagregadas. Es el modelo de lo que cada equipo debe producir.</p>
+    <div id="tablaEDT"></div>
+  </div>
+
+  <div class="docente"><b>Para el aula.</b> Cada equipo toma un componente propio y lo desagrega en tres minutos.
+  Los dos errores aparecen enseguida: la tarea escrita como acción, y el componente escrito como sustantivo suelto.</div>
+</section>
+
+<!-- ===== 8 ===== -->
+<section class="paso" id="p8">
+  <span class="etapa f2">Entramos al F02</span>
+  <div class="tit"><span class="n">Bloque 8</span><h2>Inversión, operación y cronograma</h2><span class="dur">8 minutos</span></div>
+  <p class="bajada">El proyecto tiene una línea de tiempo que arranca en el período cero. La inversión incorpora el capital;
+  la operación lo usa para producir. Después se secuencia, se pone duración y sale el Gantt.</p>
+
+  <div class="grid g2" style="margin-bottom:14px">
+    <div class="card" style="border-left:3px solid var(--azul)"><span class="pill inv">Inversión</span>
+      <p style="margin:.6em 0 0">«Tienen como objetivo dotar al proyecto del conjunto de bienes de capital necesarios para garantizar su funcionamiento,
+      conseguir los medios, alcanzar las metas y lograr los fines.» Incluye intangibles: habilitaciones, proyectos, capacitación inicial.</p></div>
+    <div class="card" style="border-left:3px solid var(--verde)"><span class="pill ope">Operación</span>
+      <p style="margin:.6em 0 0">«Comienza cuando se inicia efectivamente el proceso de producción.» Usa el capital incorporado.
+      Sus acciones se repiten con una periodicidad que hay que declarar junto con la duración.</p></div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="font-size:16px">Clasificar las acciones del caso</h3>
+    <p style="color:var(--muted)">Clic para asignar cada acción. El visor corrige al final.</p>
+    <div id="clasificador" style="margin:10px 0"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn pri" id="bCorregir">Corregir</button>
+      <button class="btn" id="bReiniciarCl">Reiniciar</button>
+      <span id="resulCl" style="align-self:center;font-size:13.5px"></span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="font-size:16px">Las cuatro formas de vinculación</h3>
+    <div class="grid g4">
+      <div style="border:1px solid var(--line);border-radius:9px;padding:11px"><b style="font-size:13.3px">Comienzo – comienzo</b>
+        <p style="margin:.35em 0 0;font-size:12.8px;color:var(--muted)">Arrancan a la vez.</p></div>
+      <div style="border:1px solid var(--line);border-radius:9px;padding:11px"><b style="font-size:13.3px">Fin – fin</b>
+        <p style="margin:.35em 0 0;font-size:12.8px;color:var(--muted)">Terminan juntas para habilitar la siguiente.</p></div>
+      <div style="border:1px solid var(--azul-line);background:var(--azul-suave);border-radius:9px;padding:11px"><b style="font-size:13.3px">Fin – comienzo</b>
+        <p style="margin:.35em 0 0;font-size:12.8px;color:var(--muted)">La más frecuente: una parte del producto de la anterior.</p></div>
+      <div style="border:1px solid var(--line);border-radius:9px;padding:11px"><b style="font-size:13.3px">Comienzo – fin</b>
+        <p style="margin:.35em 0 0;font-size:12.8px;color:var(--muted)">Una no termina si no comenzó la siguiente.</p></div>
+    </div>
+    <p class="fuente">Guía 02, siguiendo a CEPADE — Universidad Politécnica de Madrid.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:16px">Cronograma del caso</h3>
+    <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <label for="selAcc" style="font-size:13px;color:var(--muted)">Acción</label>
+      <select id="selAcc" class="btn" style="padding:8px 11px"></select>
+      <label for="rDur" style="font-size:13px;color:var(--muted)">duración</label>
+      <input type="range" id="rDur" min="1" max="10" step="1" value="3" style="accent-color:var(--azul)">
+      <span id="vDur" style="font-size:13px;font-weight:650"></span>
+    </div>
+    <div class="gantt" id="gantt"></div>
+    <div id="ganttPie" class="fuente"></div>
+  </div>
+</section>
+
+<!-- ===== 9 ===== -->
+<section class="paso" id="p9">
+  <span class="etapa f2">Entramos al F02</span>
+  <div class="tit"><span class="n">Bloque 9</span><h2>Recursos, consignas y dudas</h2><span class="dur">4 minutos</span></div>
+  <p class="bajada">Último tramo del F02: para cada tarea, qué bienes y servicios hacen falta. Y después, a trabajar en equipo.</p>
+
+  <div class="grid g2" style="margin-bottom:14px">
+    <div class="card"><h3 style="font-size:15px">Ejemplo de la Guía</h3>
+      <div class="tablaWrap"><table>
+        <thead><tr><th style="width:32%">Tarea</th><th>Recursos necesarios</th></tr></thead>
+        <tbody>
+          <tr><td>Relevar y nivelar</td><td>Topógrafo · mano de obra · retroexcavadora · materiales y herramientas</td></tr>
+          <tr><td>Fundar y construir platea</td><td>Mano de obra · materiales · hormigonera, baldes y carretillas</td></tr>
+          <tr><td>Montar estructuras metálicas</td><td>Mano de obra · grúa</td></tr>
+        </tbody></table></div>
+      <p class="fuente">Los recursos se listan por tarea, no por acción. Se cargan en las pestañas RECURSOS-I y RECURSOS-O de la planilla.</p></div>
+    <div class="card"><h3 style="font-size:15px">La regla de coherencia</h3>
+      <blockquote>«Debe existir coherencia entre los bienes y servicios que se producirán y los recursos necesarios para obtenerlos.
+      Incorporar recursos en una cantidad superior a la requerida implica una ineficiencia técnica y genera un incremento innecesario de los costos.»</blockquote>
+      <p style="margin:0">De ahí surge el acercamiento al Nivel Óptimo de Producción.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-bottom:14px">
+    <div class="card" style="border-left:3px solid var(--azul)">
+      <h3 style="font-size:16px">Orden sugerido para el trabajo de hoy</h3>
+      <ol style="margin:0;padding-left:20px">
+        <li>Escribir el indicador de tamaño y su valor. Una línea.</li>
+        <li>Listar las acciones de inversión, una por componente, con verbo en infinitivo.</li>
+        <li>Desagregar en tareas sólo las dos acciones más pesadas.</li>
+        <li>Asignar códigos y predecesoras a todas las acciones de inversión.</li>
+        <li>Poner duración estimada. Sin precisión: estamos en idea o perfil.</li>
+        <li>Anotar las dudas que no se resuelven entre ustedes.</li>
+      </ol>
+      <p class="fuente">Entrega el 11 de septiembre por Moodle: Formulario 02 más la planilla de cálculo.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--verde)">
+      <h3 style="font-size:16px">Preguntas para traerle al docente</h3>
+      <ul style="margin:0;padding-left:18px">
+        <li>¿Nuestro indicador de tamaño mide lo que el proyecto produce, o mide el problema?</li>
+        <li>¿Hasta qué nivel desagregamos para idea o perfil?</li>
+        <li>Esta acción, ¿es inversión u operación? ¿Puede ser las dos?</li>
+        <li>¿Cómo estimamos una duración sin experiencia en esa obra?</li>
+        <li>¿Este recurso va en la tarea o es un gasto general del proyecto?</li>
+        <li>En la ponderación multicriterio, ¿cómo justificamos los pesos que elegimos?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="font-size:16px">Autocontrol del F02</h3>
+    <div id="checklist"></div>
+    <div style="font-size:13px;color:var(--muted);margin-top:12px" id="progreso"></div>
+  </div>
+
+  <div class="card"><h3 style="font-size:15px;color:var(--rosa)">Errores que se repiten</h3>
+    <div class="grid g2"><ul style="margin:0;padding-left:18px">
+      <li>Acciones que no salen de ningún componente del F01.</li>
+      <li>Tareas escritas como acciones, y acciones como tareas.</li>
+      <li>Componentes en sustantivo, sin participio.</li>
+    </ul><ul style="margin:0;padding-left:18px">
+      <li>Acciones de operación sin periodicidad declarada.</li>
+      <li>Tamaño del proyecto sin relación con la magnitud del problema.</li>
+      <li>Criterios sumados sin normalizar, o con la dirección invertida.</li>
+    </ul></div></div>
+</section>
+
+<div class="navPie">
+  <button class="btn" id="bAnt">← Anterior</button>
+  <button class="btn pri" id="bSig">Siguiente →</button>
+</div>
+</main>
+
+<footer class="pie"><div class="wrap">
+  Cátedra de Formulación y Evaluación de Proyectos Ambientales y de Recursos Naturales · Universidad Nacional de Salta ·
+  Taller 02 sobre la Guía 02 y el Formulario 02, con el escenario de gestión del agua y los efluentes en un establecimiento porcino.
+  <div style="margin-top:8px">Atajos: <kbd>←</kbd> <kbd>→</kbd> bloques · <kbd>T</kbd> tema · <kbd>C</kbd> cronómetro</div>
+</div></footer>
+
+<script>
+"use strict";
+
+const BLOQUES = [
+  {t:"Árbol de problemas", m:5}, {t:"Árbol de objetivos", m:6}, {t:"Indicador y meta", m:5},
+  {t:"Acciones y alternativa", m:7}, {t:"Evaluación multicriterio", m:11},
+  {t:"Dimensionamiento", m:5}, {t:"Acción, tarea y componente", m:9},
+  {t:"Inversión, operación y cronograma", m:8}, {t:"Recursos, consignas y dudas", m:4}
+];
+const TOTAL_MIN = BLOQUES.reduce((a,b)=>a+b.m,0);
+
+const EFECTOS = [
+ {id:"E1", n:"Salinización creciente de los lotes que reciben el purín"},
+ {id:"E2", n:"Coliformes por encima del límite en los pozos internos del establecimiento"},
+ {id:"E3", n:"Incertidumbre sobre la calidad del agua en las viviendas y la escuela vecinas"},
+ {id:"E4", n:"No conformidad ambiental frente a la autoridad de aplicación"},
+ {id:"E5", n:"Compra creciente de fertilizante importado, con un nutriente disponible sin usar"},
+ {id:"E6", n:"Olores y tránsito de camiones en los momentos de descarga"}
+];
+const CAUSAS = [
+ {id:"C1", n:"Volumen y carga del efluente elevados en origen: lavado con manguera abierta y sin separación de corrientes", mf:"MF1"},
+ {id:"C2", n:"Capacidad de tratamiento fuera de servicio: la laguna colmatada y el galpón de compostaje al 30 %", mf:"MF2"},
+ {id:"C3", n:"Almacenamiento insuficiente frente al desfasaje estacional: el efluente se genera todos los días y sólo puede aplicarse en dos ventanas al año", mf:"MF3"},
+ {id:"C4", n:"Aplicación al suelo sin plan agronómico ni balance de nutrientes", mf:"MF4"},
+ {id:"C5", n:"Ausencia de medición del consumo y de monitoreo del acuífero", mf:"MF5"},
+ {id:"C6", n:"Falta de acuerdos formales con las viviendas y la escuela que comparten el acuífero", mf:"MF6"},
+ {id:"C7", n:"Nivel de tratamiento exigible no definido por norma provincial", mf:"MF7", fuera:true}
+];
+
+const MEDIOS = [
+ {id:"MF1", n:"Volumen y carga del efluente reducidos en origen", imp:true,  rel:"complementarias"},
+ {id:"MF2", n:"Capacidad de tratamiento restituida y en uso",      imp:true,  rel:"excluyentes"},
+ {id:"MF3", n:"Almacenamiento acorde al desfasaje estacional",     imp:true,  rel:"excluyentes"},
+ {id:"MF4", n:"Aplicación agronómica planificada",                 imp:true,  rel:"excluyentes"},
+ {id:"MF5", n:"Medición y monitoreo disponibles",                  imp:false, rel:"complementarias"},
+ {id:"MF6", n:"Acuerdos con el entorno formalizados",              imp:false, rel:"independiente"},
+ {id:"MF7", n:"Nivel de tratamiento exigible definido por norma provincial", imp:false, rel:"fuera", fuera:true}
+];
+
+const ACC = [
+ {id:"A11", mf:"MF1", t:"Reconvertir las fosas con rampa y compartimentos"},
+ {id:"A12", mf:"MF1", t:"Protocolo de lavado en seco con hidrolavado de bajo caudal"},
+ {id:"A21", mf:"MF2", t:"Rehabilitar la laguna con separación previa de sólidos"},
+ {id:"A22", mf:"MF2", t:"Digestor anaerobio con captura de biogás"},
+ {id:"A31", mf:"MF3", t:"Laguna de almacenamiento estacional impermeabilizada"},
+ {id:"A32", mf:"MF3", t:"Batería de tanques modulares cubiertos"},
+ {id:"A41", mf:"MF4", t:"Plan de aplicación con balance de nutrientes"},
+ {id:"A42", mf:"MF4", t:"Fertirriego dosificado en pasturas"},
+ {id:"A51", mf:"MF5", t:"Medición sectorizada del consumo y aforo"},
+ {id:"A52", mf:"MF5", t:"Red de monitoreo del acuífero con la escuela y las viviendas"},
+ {id:"A61", mf:"MF6", t:"Convenio de monitoreo participativo"}
+];
+const PRESETS = [
+ {n:"Alt 1 · Adecuación con lo existente", s:["A11","A12","A21","A31","A41","A51","A52","A61"]},
+ {n:"Alt 2 · Biodigestión y fertirriego",  s:["A12","A22","A32","A42","A51"]},
+ {n:"Alt 3 · Mínima de cumplimiento",      s:["A12","A21","A31","A41"]}
+];
+
+/* ---- multicriterio: matriz de decisión con unidades reales ---- */
+const CRIT = [
+ {k:"vac",  n:"Valor actualizado de costos", u:"millones $", tipo:"costo",     peso:25},
+ {k:"red",  n:"Reducción de la carga vertida", u:"%",         tipo:"beneficio", peso:25},
+ {k:"plazo",n:"Plazo de ejecución",           u:"meses",      tipo:"costo",     peso:15},
+ {k:"riesgo",n:"Riesgo operativo",            u:"escala 1-5", tipo:"costo",     peso:10},
+ {k:"social",n:"Aceptación del entorno",      u:"escala 1-5", tipo:"beneficio", peso:10},
+ {k:"legal",n:"Aporte al plan de adecuación", u:"escala 1-5", tipo:"beneficio", peso:15}
+];
+const ALT = [
+ {n:"Alt 1 · Adecuación con lo existente", vac:35.3, red:85, plazo:9,  riesgo:2, social:5, legal:4},
+ {n:"Alt 2 · Biodigestión y fertirriego",  vac:43.5, red:95, plazo:14, riesgo:4, social:4, legal:5},
+ {n:"Alt 3 · Mínima de cumplimiento",      vac:21.4, red:60, plazo:7,  riesgo:2, social:3, legal:3}
+];
+let metodo = "minmax";
+
+const EDT = [
+ {c:"A", t:"Reconvertir las fosas con rampa y compartimentos", comp:"Fosas reconvertidas con separación de corrientes", etapa:"inv", dur:3, pred:[],
+  tareas:["Gestionar la habilitación","Vaciar y limpiar la fosa nave por nave","Demoler y reconstruir con rampa y tabiques","Verificar estanqueidad"]},
+ {c:"B", t:"Rehabilitar la laguna e instalar el separador", comp:"Laguna rehabilitada y separador instalado", etapa:"inv", dur:4, pred:[],
+  tareas:["Relevar y vaciar la laguna","Reparar taludes e impermeabilización","Montar el separador","Probar el funcionamiento"]},
+ {c:"C", t:"Construir el almacenamiento estacional", comp:"Almacenamiento estacional construido", etapa:"inv", dur:5, pred:["B"],
+  tareas:["Dimensionar por déficit acumulado","Movimiento de suelo","Impermeabilizar","Cercar y señalizar"]},
+ {c:"D", t:"Instalar la medición sectorizada y el aforo", comp:"Sistema de medición instalado", etapa:"inv", dur:2, pred:["A"],
+  tareas:["Definir puntos de medición","Adquirir caudalímetros","Montar y conectar","Calibrar y registrar línea de base"]},
+ {c:"E", t:"Instalar la red de monitoreo del acuífero", comp:"Red de monitoreo instalada", etapa:"inv", dur:1, pred:[],
+  tareas:["Seleccionar los pozos","Acordar el protocolo con la escuela y los vecinos","Ejecutar la primera campaña"]},
+ {c:"F", t:"Capacitar al personal en el nuevo procedimiento", comp:"Personal capacitado", etapa:"inv", dur:1, pred:["A","D"],
+  tareas:["Preparar el material","Dictar los contenidos","Entregar constancias"]},
+ {c:"G", t:"Operar el lavado en seco previo", comp:"Lavado ejecutado con menor consumo", etapa:"ope", dur:12, pred:["F"], per:"Diaria", tareas:[]},
+ {c:"H", t:"Vaciar y conducir las fosas al tratamiento", comp:"Efluente conducido a tratamiento", etapa:"ope", dur:12, pred:["C"], per:"Quincenal", tareas:[]},
+ {c:"I", t:"Aplicar el purín según el plan agronómico", comp:"Purín aplicado dentro de los límites", etapa:"ope", dur:12, pred:["C"], per:"Dos ventanas al año", tareas:[]},
+ {c:"J", t:"Monitorear el acuífero y los consumos", comp:"Monitoreo ejecutado y comunicado", etapa:"ope", dur:12, pred:["E"], per:"Trimestral", tareas:[]}
+];
+
+const CHECKS = [
+ "La alternativa seleccionada cubre todos los medios fundamentales imprescindibles.",
+ "La elección entre alternativas se hizo con criterios explícitos, normalizados y ponderados.",
+ "Cada criterio tiene declarado si es de costo o de beneficio.",
+ "El indicador de tamaño del proyecto está declarado con su unidad y su valor.",
+ "Cada acción sale de un componente de la alternativa seleccionada.",
+ "Las acciones están redactadas con verbo en infinitivo y los componentes en participio.",
+ "Las acciones están separadas en etapa de inversión y etapa de operación.",
+ "Las de operación declaran su periodicidad además de su duración.",
+ "Todas las acciones tienen código, predecesoras y duración estimada.",
+ "Los recursos están listados por tarea, no por acción."
+];
+
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mil=n=>Number(n).toLocaleString("es-AR",{maximumFractionDigits:0});
+const dec=(n,d)=>Number(n).toLocaleString("es-AR",{minimumFractionDigits:d,maximumFractionDigits:d});
+let paso=1, seleccion=new Set(PRESETS[0].s);
+
+/* ---------- navegación ---------- */
+function acumulado(i){ return BLOQUES.slice(0,i).reduce((a,b)=>a+b.m,0); }
+function pintarNav(){
+  $("#navPasos").innerHTML = BLOQUES.map((b,i)=>
+    (i===5?'<span class="sep"></span>':"") +
+    `<button data-p="${i+1}" aria-current="${i+1===paso}">${i+1}. ${esc(b.t)}<span class="min">${b.m}′</span></button>`).join("");
+  $$("#navPasos button").forEach(b=>b.onclick=()=>irA(+b.dataset.p));
+}
+function irA(n){
+  paso=Math.min(BLOQUES.length,Math.max(1,n));
+  $$("section.paso").forEach(s=>s.classList.remove("activo"));
+  $("#p"+paso).classList.add("activo");
+  pintarNav(); pintarReloj(); window.scrollTo({top:0,behavior:"smooth"});
+}
+$("#bSig").onclick=()=>irA(paso+1); $("#bAnt").onclick=()=>irA(paso-1);
+document.addEventListener("keydown",e=>{
+  if(/input|select|textarea/i.test(e.target.tagName)) return;
+  if(e.key==="ArrowRight") irA(paso+1);
+  if(e.key==="ArrowLeft") irA(paso-1);
+  if(e.key==="t"||e.key==="T") tema();
+  if(e.key==="c"||e.key==="C") toggleReloj();
+});
+function tema(){ const h=document.documentElement;
+  h.dataset.tema=h.dataset.tema==="oscuro"?"claro":"oscuro";
+  try{localStorage.setItem("feparTema",h.dataset.tema)}catch(_){} }
+$("#bTema").onclick=tema; $("#bImprimir").onclick=()=>window.print();
+try{const t=localStorage.getItem("feparTema"); if(t) document.documentElement.dataset.tema=t;}catch(_){}
+
+/* ---------- cronómetro ---------- */
+let seg=0, corriendo=false, tic=null;
+function pintarReloj(){
+  const m=Math.floor(seg/60), s=seg%60;
+  $("#relojT").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+  $("#relojBar").style.width=Math.min(100,seg/(TOTAL_MIN*60)*100)+"%";
+  $("#reloj").classList.toggle("exceso", seg>acumulado(paso)*60);
+  $("#reloj").title=`El bloque ${paso} debería cerrar a los ${acumulado(paso)} minutos · clase completa ${TOTAL_MIN} minutos`;
+}
+function toggleReloj(){
+  corriendo=!corriendo; $("#bReloj").textContent=corriendo?"Pausar":"Iniciar";
+  if(corriendo) tic=setInterval(()=>{seg++;pintarReloj();},1000); else clearInterval(tic);
+}
+$("#bReloj").onclick=toggleReloj; $("#bReloj").ondblclick=()=>{seg=0;pintarReloj();};
+
+/* ---------- bloque 1 · árbol de problemas ---------- */
+$("#efectos").innerHTML = EFECTOS.map(e=>`
+  <div class="mf ef"><span class="cod">${e.id}</span>${esc(e.n)}</div>`).join("");
+$("#causas").innerHTML = CAUSAS.map(c=>`
+  <div class="mf ca ${c.fuera?"fuera":""}"><span class="cod">${c.id} → ${c.mf}</span>${esc(c.n)}</div>`).join("");
+
+/* ---------- bloque 3 · indicador de cinco elementos ---------- */
+const IND = [
+ {k:"cant", et:"Cantidad o porcentaje", v:"100 % del volumen", h:"h1"},
+ {k:"var",  et:"Variable",              v:"de efluente aplicado al suelo que cumple los límites admitidos", h:"h2"},
+ {k:"lug",  et:"Lugar",                 v:"en el establecimiento de Rosario de Lerma", h:"h3"},
+ {k:"pla",  et:"Plazo",                 v:"al año 2 de operación", h:"h4"},
+ {k:"mv",   et:"Medio de verificación", v:"según protocolos de análisis de laboratorio", h:"h5"}
+];
+$("#ind5").innerHTML = IND.map(f=>`
+  <div class="campo5"><label for="f_${f.k}">${esc(f.et)}</label>
+  <input id="f_${f.k}" data-k="${f.k}" value="${esc(f.v)}"></div>`).join("");
+function pintarIndicador(){
+  const vals = IND.map(f=>({f, t:($("#f_"+f.k).value||"").trim()}));
+  $("#indLinea").innerHTML = vals.map(({f,t})=>
+    t ? `<span class="${f.h}">${esc(t)}</span>` : `<span class="vacio">${esc(f.et.toLowerCase())}</span>`
+  ).join(" ") + ".";
+  const faltan = vals.filter(v=>!v.t).map(v=>v.f.et.toLowerCase());
+  $("#indAviso").innerHTML = faltan.length
+    ? `<div class="veredicto mal" style="margin-top:10px">Todavía no es un indicador: falta ${faltan.length===1?"el elemento":"los elementos"} ${faltan.join(", ")}.</div>`
+    : `<div class="veredicto ok" style="margin-top:10px">Los cinco elementos están. Este mismo indicador es el que después mide el propósito en la matriz.</div>`;
+}
+$$("#ind5 input").forEach(i=>i.oninput=pintarIndicador);
+pintarIndicador();
+
+/* ---------- bloque 2 · árbol ---------- */
+$("#arbol").innerHTML = MEDIOS.map(m=>`
+  <div class="mf ${m.imp?"impr":""} ${m.fuera?"fuera":""}">
+    <span class="cod">${m.id}</span>${esc(m.n)}
+    <div style="margin-top:6px">${m.fuera?'<span class="pill">fuera del alcance</span>':m.imp?'<span class="pill imp">imprescindible</span>':'<span class="pill">habilitante</span>'}</div>
+  </div>`).join("");
+
+/* ---------- bloque 3 · configurador ---------- */
+function accionesDe(mf){ return ACC.filter(a=>a.mf===mf); }
+function pintarConfig(){
+  $("#config").innerHTML = MEDIOS.map(m=>{
+    if(m.fuera) return `<div class="mfB" style="border-style:dashed"><b>${m.id}</b> · ${esc(m.n)} <span class="pill">fuera del alcance</span>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">Sin acciones. Pasa a la matriz como supuesto.</div></div>`;
+    const acc=accionesDe(m.id), cub=acc.some(a=>seleccion.has(a.id));
+    return `<div class="mfB ${m.imp?(cub?"cub":"falta"):""}">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
+        <b>${m.id}</b> · ${esc(m.n)}
+        ${m.imp?'<span class="pill imp">imprescindible</span>':'<span class="pill">habilitante</span>'}
+        ${m.rel==="excluyentes"?'<span class="pill cos">elegir una</span>':m.rel==="complementarias"?'<span class="pill" style="background:var(--azul-suave);color:var(--azul)">pueden ir juntas</span>':'<span class="pill">independiente</span>'}
+      </div>
+      ${acc.map(a=>`<label class="acc ${seleccion.has(a.id)?"sel":""}">
+        <input type="checkbox" data-a="${a.id}" ${seleccion.has(a.id)?"checked":""}><span><b>${a.id}</b> · ${esc(a.t)}</span></label>`).join("")}
+    </div>`;
+  }).join("");
+  $$('#config input[type=checkbox]').forEach(i=>i.onchange=()=>{
+    const id=i.dataset.a, a=ACC.find(x=>x.id===id), m=MEDIOS.find(x=>x.id===a.mf);
+    if(i.checked){ if(m.rel==="excluyentes") accionesDe(m.id).forEach(o=>seleccion.delete(o.id)); seleccion.add(id); }
+    else seleccion.delete(id);
+    pintarConfig(); pintarCobertura();
+  });
+}
+function pintarCobertura(){
+  const faltan=MEDIOS.filter(m=>m.imp&&!m.fuera&&!accionesDe(m.id).some(a=>seleccion.has(a.id)));
+  const conf=MEDIOS.filter(m=>m.rel==="excluyentes"&&accionesDe(m.id).filter(a=>seleccion.has(a.id)).length>1);
+  $("#cobertura").innerHTML = MEDIOS.filter(m=>!m.fuera).map(m=>{
+    const c=accionesDe(m.id).some(a=>seleccion.has(a.id));
+    return `<div class="chk" style="${m.imp?"":"opacity:.7"}"><span class="ic ${c?"si":"no"}" style="${c?"":(m.imp?"":"background:var(--line)")}">${c?"✓":(m.imp?"!":"–")}</span>
+      <span>${m.id}${m.imp?"":' <span class="pill">opcional</span>'}</span></div>`;
+  }).join("");
+  const nComp = new Set(ACC.filter(a=>seleccion.has(a.id)).map(a=>a.mf)).size;
+  $("#veredicto").innerHTML = (faltan.length||conf.length)
+    ? `<div class="veredicto mal"><b>Todavía no es una alternativa.</b> ${conf.length?"Hay excluyentes elegidas a la vez en "+conf.map(m=>m.id).join(", ")+". ":""}${faltan.length?"Sin cubrir: "+faltan.map(m=>m.id).join(", ")+".":""}</div>`
+    : `<div class="veredicto ok"><b>Alternativa completa.</b> Cubre los cuatro medios imprescindibles y da ${nComp} componentes.</div>`;
+}
+$$("[data-preset]").forEach(b=>b.onclick=()=>{ seleccion=new Set(PRESETS[+b.dataset.preset].s); pintarConfig(); pintarCobertura(); });
+
+/* ---------- bloque 4 · multicriterio ---------- */
+function pintarCriterios(){
+  $("#criterios").innerHTML = CRIT.map(c=>`
+    <div class="critFila">
+      <div class="nom">${esc(c.n)}<span class="un">${esc(c.u)}</span></div>
+      <div class="tog" role="group">
+        <button class="c" data-tipo="costo" data-k="${c.k}" aria-pressed="${c.tipo==="costo"}">Costo ↓</button>
+        <button class="b" data-tipo="beneficio" data-k="${c.k}" aria-pressed="${c.tipo==="beneficio"}">Beneficio ↑</button>
+      </div>
+      <input type="range" min="0" max="50" step="5" value="${c.peso}" data-peso="${c.k}">
+      <div class="pesoV">${c.peso} %</div>
+    </div>`).join("");
+  $$("#criterios [data-tipo]").forEach(b=>b.onclick=()=>{
+    CRIT.find(c=>c.k===b.dataset.k).tipo=b.dataset.tipo; pintarCriterios(); calcular();
+  });
+  $$("#criterios [data-peso]").forEach(r=>r.oninput=()=>{
+    CRIT.find(c=>c.k===r.dataset.peso).peso=+r.value; pintarCriterios(); calcular();
+  });
+  $("#sumaPesos").textContent = CRIT.reduce((a,c)=>a+c.peso,0)+" %";
+}
+$$("[data-norm]").forEach(b=>b.onclick=()=>{
+  metodo=b.dataset.norm;
+  $$("[data-norm]").forEach(x=>x.classList.toggle("on", x===b));
+  calcular();
+});
+function normalizar(c){
+  const v = ALT.map(a=>a[c.k]);
+  const ben = c.tipo==="beneficio";
+  if(metodo==="minmax"){
+    const mn=Math.min(...v), mx=Math.max(...v), r=mx-mn;
+    return v.map(x=> r===0 ? 1 : (ben ? (x-mn)/r : (mx-x)/r));
+  }
+  if(metodo==="suma"){
+    if(ben){ const s=v.reduce((a,b)=>a+b,0); return v.map(x=>s?x/s:0); }
+    const inv=v.map(x=>x?1/x:0), s=inv.reduce((a,b)=>a+b,0); return inv.map(x=>s?x/s:0);
+  }
+  if(metodo==="maximo"){
+    const mx=Math.max(...v), mn=Math.min(...v);
+    return v.map(x=> ben ? (mx?x/mx:0) : (x?mn/x:0));
+  }
+  const norm = Math.sqrt(v.reduce((a,b)=>a+b*b,0));
+  return v.map(x=> norm===0 ? 0 : (ben ? x/norm : 1-x/norm));
+}
+const NOMBRE_METODO = {minmax:"mín–máx", suma:"por la suma", maximo:"por el máximo", vectorial:"vectorial"};
+function formulaDe(c){
+  const ben = c.tipo==="beneficio";
+  if(metodo==="minmax")   return ben ? "(x − mín)/(máx − mín)" : "(máx − x)/(máx − mín)";
+  if(metodo==="suma")     return ben ? "x / Σx" : "(1/x) / Σ(1/x)";
+  if(metodo==="maximo")   return ben ? "x / máx" : "mín / x";
+  return ben ? "x / √(Σx²)" : "1 − x / √(Σx²)";
+}
+function calcular(){
+  $("#tblCruda").innerHTML =
+    `<thead><tr><th>Criterio</th><th>Dirección</th>${ALT.map(a=>`<th class="num">${esc(a.n)}</th>`).join("")}</tr></thead><tbody>`+
+    CRIT.map(c=>`<tr><td>${esc(c.n)}<span style="display:block;font-size:12px;color:var(--muted)">${esc(c.u)}</span></td>
+      <td><span class="pill ${c.tipo==="costo"?"cos":"ben"}">${c.tipo==="costo"?"costo ↓":"beneficio ↑"}</span></td>
+      ${ALT.map(a=>`<td class="num">${dec(a[c.k], c.k==="vac"?1:0)}</td>`).join("")}</tr>`).join("")+`</tbody>`;
+
+  const N = {}; CRIT.forEach(c=>N[c.k]=normalizar(c));
+  $("#tblNorm").innerHTML =
+    `<thead><tr><th>Criterio</th><th>Fórmula aplicada</th>${ALT.map(a=>`<th class="num">${esc(a.n)}</th>`).join("")}</tr></thead><tbody>`+
+    CRIT.map(c=>{
+      const f = formulaDe(c);
+      return `<tr><td>${esc(c.n)}</td><td style="font-size:12.5px;color:var(--muted)"><code>${f}</code></td>
+        ${N[c.k].map(v=>`<td class="num">${dec(v,3)}</td>`).join("")}</tr>`;
+    }).join("")+`</tbody>`;
+
+  const sw = CRIT.reduce((a,c)=>a+c.peso,0)||1;
+  const S = ALT.map((a,i)=>CRIT.reduce((t,c)=>t+(c.peso/sw)*N[c.k][i],0));
+  const mx = Math.max(...S), gan = S.indexOf(mx);
+  $("#tblFinal").innerHTML =
+    `<thead><tr><th>Criterio</th><th class="num">Peso</th>${ALT.map(a=>`<th class="num">${esc(a.n)}</th>`).join("")}</tr></thead><tbody>`+
+    CRIT.map(c=>`<tr><td>${esc(c.n)}</td><td class="num">${dec(c.peso/sw,2)}</td>
+      ${N[c.k].map((v,i)=>`<td class="num"${i===gan?' class="gan"':""}>${dec((c.peso/sw)*v,3)}</td>`).join("")}</tr>`).join("")+
+    `<tr style="border-top:2px solid var(--line)"><td><b>Puntaje total</b></td><td class="num"><b>1,00</b></td>
+      ${S.map((v,i)=>`<td class="num" ${i===gan?'style="background:var(--verde-suave)"':""}>
+        <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end">
+          <div class="barra" style="flex:1"><i style="width:${(v*100).toFixed(0)}%"></i></div><b>${dec(v,3)}</b></div></td>`).join("")}</tr>`+
+    `</tbody>`;
+  const orden = S.map((v,i)=>({v,i})).sort((a,b)=>b.v-a.v);
+  $("#dictamen").innerHTML = `<div class="veredicto ok" style="margin-top:12px">
+    Con estos pesos y normalización ${NOMBRE_METODO[metodo]}, el orden es:
+    <b>${orden.map((o,k)=>`${k+1}º ${esc(ALT[o.i].n)} (${dec(o.v,3)})`).join(" · ")}</b>.
+    La diferencia entre la primera y la segunda es de ${dec(orden[0].v-orden[1].v,3)} puntos:
+    ${(orden[0].v-orden[1].v)<0.05?"es un empate técnico, conviene revisar los pesos o sumar un criterio":"la ventaja es clara con esta ponderación"}.</div>`;
+}
+
+/* ---------- bloque 5 · dimensionamiento ---------- */
+function dimensionar(){
+  const cau=+$("#rCau").value, dias=+$("#rDias").value, red=+$("#rRed").value;
+  $("#vCau").textContent=cau; $("#vDias").textContent=dias; $("#vRed").textContent=red;
+  const caudal=cau*(1-red/100), anual=caudal*365, acum=caudal*dias, falt=Math.max(0,acum-670);
+  $("#dimResul").innerHTML=`
+    <div class="dato"><div class="v">${mil(caudal)} m³/día</div><div class="k">Efluente a gestionar tras la separación en origen</div></div>
+    <div class="dato"><div class="v">${mil(anual)} m³/año</div><div class="k">Indicador de tamaño del proyecto</div></div>
+    <div class="dato"><div class="v">${mil(acum)} m³</div><div class="k">Volumen acumulado en el período sin aplicación</div></div>
+    <div class="dato" style="${falt>0?'border-color:var(--ambar)':''}"><div class="v" style="color:${falt>0?'var(--ambar)':'var(--verde-osc)'}">${falt>0?mil(falt)+" m³":"cubierto"}</div>
+      <div class="k">${falt>0?"Almacenamiento nuevo, además de las fosas de 670 m³":"Alcanza con la capacidad instalada"}</div></div>`;
+}
+["rCau","rDias","rRed"].forEach(id=>$("#"+id).oninput=dimensionar);
+
+/* ---------- bloque 6 · EDT ---------- */
+const INF=/^[a-záéíóúñ]+(ar|er|ir)\b/i, PART=/\b\w+(ado|ada|ados|adas|ido|ida|idos|idas|to|ta|tos|tas|cho|cha)\b/i;
+function verifEDT(){
+  const a=$("#inAccion").value.trim(), c=$("#inComp").value.trim();
+  const oa=INF.test(a), oc=PART.test(c);
+  $("#verifEDT").innerHTML=`
+    <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line2)">
+      <span class="pill ${oa?"ok":"no"}">${oa?"correcto":"revisar"}</span>
+      <div><b>La acción empieza con verbo en infinitivo.</b><div style="font-size:13px;color:var(--muted)">${oa?"«"+esc(a.split(" ")[0])+"» es infinitivo.":"Empezá con un verbo en -ar, -er o -ir: construir, adquirir, capacitar."}</div></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0">
+      <span class="pill ${oc?"ok":"no"}">${oc?"correcto":"revisar"}</span>
+      <div><b>El componente está en participio.</b><div style="font-size:13px;color:var(--muted)">${oc?"Se lee como producto obtenido.":"Escribí qué obtenés al ejecutar la acción, terminado: instalado, construido, capacitado."}</div></div></div>
+    <div style="margin-top:10px;font-size:13px;color:var(--muted)">Prueba rápida: si al componente se le puede anteponer «quedó», está bien redactado.</div>`;
+}
+$("#inAccion").oninput=verifEDT; $("#inComp").oninput=verifEDT;
+$("#tablaEDT").innerHTML=`<div class="tablaWrap"><table>
+  <thead><tr><th style="width:6%">Cód</th><th style="width:26%">Acción</th><th style="width:38%">Tareas</th><th>Componente</th></tr></thead>
+  <tbody>${EDT.filter(a=>a.etapa==="inv").map(a=>`<tr><td><b>${a.c}</b></td><td>${esc(a.t)}</td>
+    <td style="font-size:13px;color:var(--muted)">${a.tareas.map(esc).join(" · ")}</td>
+    <td style="background:var(--verde-suave)">${esc(a.comp)}</td></tr>`).join("")}</tbody></table></div>`;
+
+/* ---------- bloque 7 · clasificador y gantt ---------- */
+let clas={};
+function pintarClas(){
+  $("#clasificador").innerHTML=EDT.map(a=>{
+    const v=clas[a.c];
+    return `<span class="chip ${v||""}" data-c="${a.c}"><b>${a.c}</b> ${esc(a.t)}${v?` <span class="pill ${v}">${v==="inv"?"inversión":"operación"}</span>`:""}</span>`;
+  }).join("");
+  $$("#clasificador .chip").forEach(ch=>ch.onclick=()=>{
+    const c=ch.dataset.c;
+    clas[c]= clas[c]==="inv"?"ope": clas[c]==="ope"?null:"inv";
+    if(!clas[c]) delete clas[c];
+    $("#resulCl").textContent=""; pintarClas();
+  });
+}
+$("#bCorregir").onclick=()=>{
+  let bien=0,mal=0,sin=0;
+  EDT.forEach(a=>{
+    const el=$(`#clasificador .chip[data-c="${a.c}"]`);
+    if(!clas[a.c]){sin++;return;}
+    if(clas[a.c]===a.etapa) bien++; else {mal++; el.classList.add("mal");}
+  });
+  $("#resulCl").innerHTML=`<b>${bien}</b> bien · <b>${mal}</b> a revisar${sin?` · ${sin} sin clasificar`:""}. `+
+    (mal?"Las marcadas están al revés: fijate si esa acción incorpora capital o si lo usa para producir.":"Correcto: seis de inversión y cuatro de operación.");
+};
+$("#bReiniciarCl").onclick=()=>{clas={};$("#resulCl").textContent="";pintarClas();};
+
+let dur={}; EDT.forEach(a=>dur[a.c]=a.dur);
+function inicio(c,visto){
+  visto=visto||{}; if(visto[c])return 0; visto[c]=1;
+  const a=EDT.find(x=>x.c===c);
+  return a.pred.length?Math.max(...a.pred.map(p=>inicio(p,Object.assign({},visto))+dur[p])):0;
+}
+function pintarGantt(){
+  const inv=EDT.filter(a=>a.etapa==="inv");
+  const fin=Math.max(...inv.map(a=>inicio(a.c)+dur[a.c])), e=Math.max(fin,1);
+  $("#gantt").innerHTML=`<div class="gfila cab"><div>Acción</div><div>Cód</div><div>Predec.</div><div>Meses</div></div>`+
+    inv.map(a=>{const i=inicio(a.c),d=dur[a.c];
+      return `<div class="gfila"><div>${esc(a.t)}</div><div><b>${a.c}</b></div><div>${a.pred.length?a.pred.join("-"):"—"}</div>
+        <div class="gpista"><span class="gbarra" style="left:${i/e*100}%;width:${d/e*100}%"></span></div></div>`;}).join("")+
+    `<div class="gesc"><div></div><div></div><div></div><div class="gmeses">${
+      Array.from({length:Math.min(e,12)+1},(_,k)=>`<span>${Math.round(k*e/Math.min(e,12))}</span>`).join("")}</div></div>`;
+  $("#ganttPie").innerHTML=`Duración de la etapa de inversión con estos valores: <b>${fin} meses</b>. `+
+    `La operación arranca cuando cierra la acción de la que depende, no al final de toda la inversión.`;
+}
+$("#selAcc").innerHTML=EDT.filter(a=>a.etapa==="inv").map(a=>`<option value="${a.c}">${a.c} · ${esc(a.t)}</option>`).join("");
+function sincDur(){ const c=$("#selAcc").value; $("#rDur").value=dur[c]; $("#vDur").textContent=dur[c]+" meses"; }
+$("#selAcc").onchange=sincDur;
+$("#rDur").oninput=()=>{dur[$("#selAcc").value]=+$("#rDur").value; $("#vDur").textContent=$("#rDur").value+" meses"; pintarGantt();};
+
+/* ---------- bloque 8 ---------- */
+$("#checklist").innerHTML=CHECKS.map((c,i)=>`<div class="check"><input type="checkbox" id="ch${i}"><label for="ch${i}">${esc(c)}</label></div>`).join("");
+$$("#checklist input").forEach(i=>i.onchange=()=>{
+  const n=$$("#checklist input:checked").length;
+  $("#progreso").textContent=`${n} de ${CHECKS.length} verificados.`+(n===CHECKS.length?" El F02 está en condiciones de entregarse.":"");
+});
+$("#progreso").textContent=`0 de ${CHECKS.length} verificados.`;
+
+pintarNav(); pintarConfig(); pintarCobertura(); pintarCriterios(); calcular();
+dimensionar(); verifEDT(); pintarClas(); sincDur(); pintarGantt(); pintarReloj();
+</script>
+</body>
+</html>
