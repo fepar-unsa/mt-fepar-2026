@@ -522,10 +522,80 @@ html[data-theme="light"] .uw select option{background:#fff;color:#10241d}
 @media (max-width:1180px){ .ejgrid{grid-template-columns:repeat(3,1fr)} }
 @media (max-width:760px){ .ejgrid{grid-template-columns:repeat(2,1fr)} .rub{grid-template-columns:1fr;font-size:12px}
   .rub>div{border-right:none} }
+
+/* ===================== MODO TALLER ===================== */
+#tbar{position:fixed;top:0;left:var(--rail);right:0;height:0;z-index:45;display:none;
+  align-items:center;gap:8px;padding:0 clamp(12px,2vw,26px);overflow:hidden;
+  background:linear-gradient(180deg,var(--panel),var(--panel2));
+  border-bottom:1px solid var(--line2);transition:left .3s cubic-bezier(.22,.9,.28,1)}
+#tbar.on{display:flex;height:54px}
+html[data-taller="on"] #stage{top:58px}
+html[data-taller="on"] #top{top:54px}
+#tbar #t-n{font-size:11.5px;color:var(--tx3);font-variant-numeric:tabular-nums;flex:none}
+#tbar #t-t{flex:1;min-width:80px;font-size:13px;font-weight:650;color:var(--tx);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#tbar #t-rest{font-size:11px;color:var(--tx3);flex:none;white-space:nowrap}
+.tetq{flex:none;font-size:9.5px;letter-spacing:.11em;font-weight:800;border-radius:6px;
+  padding:3px 8px;border:1px solid var(--line2);color:var(--tx3);white-space:nowrap}
+.tetq.consigna{border-color:rgba(0,160,90,.55);color:var(--verde-l);background:rgba(0,160,90,.12)}
+.tetq.comun{border-color:rgba(237,161,0,.55);color:var(--oro);background:rgba(237,161,0,.12)}
+.tetq.apertura{border-color:rgba(57,182,216,.55);color:var(--celeste);background:rgba(57,182,216,.12)}
+.tetq.cierre{border-color:rgba(123,107,214,.55);color:var(--violeta);background:rgba(123,107,214,.14)}
+.tclock{flex:none;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--verde-l);
+  font-variant-numeric:tabular-nums;min-width:78px;text-align:right;line-height:1}
+.tclock.ambar{color:var(--oro)}
+.tclock.rojo{color:var(--coral)}
+.tclock.fin{color:var(--bad);animation:tpulse 1s ease-in-out infinite}
+@keyframes tpulse{0%,100%{opacity:1}50%{opacity:.35}}
+.tprog-w{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.07)}
+.tprog{display:block;height:100%;width:100%;background:var(--verde);transition:width .3s linear}
+.tprog.ambar{background:var(--oro)} .tprog.rojo{background:var(--coral)} .tprog.fin{background:var(--bad)}
+
+.ov.ov-full .ov-in{align-items:center}
+.ov.ov-full .ov-in>*{margin:0 auto}
+#tconsigna h1{font-size:clamp(24px,3vw,40px);margin-top:6px}
+.sorteo-big{font-size:clamp(30px,6vw,68px);font-weight:800;letter-spacing:-.03em;color:var(--tx3);
+  margin:22px 0 8px;line-height:1.1;min-height:1.2em;transition:.2s}
+.sorteo-big.fin{color:var(--verde-l);text-shadow:0 0 40px rgba(0,192,106,.35)}
+#tguion input[type=number]{background:rgba(255,255,255,.05);border:1px solid var(--line2);
+  border-radius:7px;color:var(--tx);font-family:var(--ff);font-size:12.5px;padding:3px 6px}
+html[data-theme="light"] #tguion input[type=number]{background:#fff}
+
+@media (max-width:1180px){
+  #tbar{gap:6px;padding:0 10px;overflow-x:auto;scrollbar-width:none}
+  #tbar::-webkit-scrollbar{display:none}
+  #tbar>*{flex:none}
+  #tbar #t-t{max-width:200px}
+  #t-rest{display:none}
+}
+@media (max-width:760px){
+  #tbar.on{height:48px}
+  html[data-taller="on"] #stage{top:52px}
+  html[data-taller="on"] #top{top:48px}
+  .tclock{font-size:21px;min-width:62px}
+  #tbar #t-t{display:none}
+}
 </style>
 </head>
 <body>
 <div id="top"><div id="bar"></div></div>
+
+<div id="tbar">
+  <span class="tetq consigna" id="t-k">CONSIGNA</span>
+  <span id="t-n">1/16</span>
+  <span id="t-t">—</span>
+  <span class="tclock" id="t-clock">0:00</span>
+  <button class="hud-b" id="t-play" title="Arrancar o pausar (barra espaciadora)">▶</button>
+  <button class="hud-b" id="t-mas" title="Sumar dos minutos">+2</button>
+  <button class="hud-b" id="t-reset" title="Reiniciar el reloj de esta consigna">↺</button>
+  <button class="hud-b" id="t-ver" title="Volver a ver la consigna">☰</button>
+  <button class="hud-b" id="t-dado" title="Sortear un equipo">🎲</button>
+  <button class="hud-b" id="t-prev" title="Paso anterior">◀</button>
+  <button class="hud-b pri" id="t-next" title="Siguiente paso (N)">Siguiente ▶</button>
+  <button class="hud-b" id="t-guion" title="Guion del taller">Guion</button>
+  <span id="t-rest"></span>
+  <div class="tprog-w"><i class="tprog" id="t-prog"></i></div>
+</div>
 
 <aside id="rail">
   <div id="rail-h">
@@ -547,6 +617,7 @@ html[data-theme="light"] .uw select option{background:#fff;color:#10241d}
   <button class="hud-b" id="b-prev" title="Anterior (←)">◀</button>
   <button class="hud-b" id="b-next" title="Siguiente (→)">▶</button>
   <button class="hud-b" id="b-rail" title="Índice (I)">▤ Índice</button>
+  <button class="hud-b" id="b-taller" title="Modo taller: consignas con cronómetro">⏱ Taller</button>
   <button class="hud-b pri" id="b-word" title="Exportar el F02 a Word">⬇ Word</button>
   <button class="hud-b" id="b-xls" title="Descargar la planilla de cálculo (.xlsx, nueve hojas)">📊 Planilla</button>
   <button class="hud-b" id="b-img" title="Descargar los diagramas como imagen">🖼 Imágenes</button>
@@ -575,6 +646,29 @@ html[data-theme="light"] .uw select option{background:#fff;color:#10241d}
   <div class="ov-bar"><span class="t">Diagramas del proyecto · descarga como imagen</span>
     <button class="hud-b" id="imgov-x">✕ Cerrar (Esc)</button></div>
   <div class="ov-in"><div id="imgov-c" style="width:100%"></div></div>
+</div>
+
+<div class="ov" id="tguion">
+  <div class="ov-bar"><span class="t">Modo taller · guion y cronómetro</span>
+    <button class="hud-b" id="tguion-x">✕ Cerrar (Esc)</button></div>
+  <div class="ov-in"><div id="tguion-c" style="width:100%"></div></div>
+</div>
+
+<div class="ov ov-full" id="tconsigna">
+  <div class="ov-bar"><span class="t">Consigna del taller</span>
+    <button class="hud-b" id="tconsigna-x">✕ Cerrar (Esc)</button></div>
+  <div class="ov-in"><div id="tconsigna-c" style="width:100%;max-width:1180px"></div></div>
+</div>
+
+<div class="ov ov-full" id="tsorteo">
+  <div class="ov-bar"><span class="t">Sorteo</span>
+    <button class="hud-b" id="tsorteo-x">✕ Cerrar (Esc)</button></div>
+  <div class="ov-in"><div id="tsorteo-c" style="width:100%;max-width:900px;text-align:center"></div></div>
+</div>
+
+<div class="ov ov-full" id="tcierre">
+  <div class="ov-bar"><span class="t">Cierre del taller</span></div>
+  <div class="ov-in"><div id="tcierre-c" style="width:100%;max-width:1100px"></div></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1130,12 +1224,31 @@ document.getElementById('b-th').onclick = function(){
   h.dataset.theme = h.dataset.theme === 'light' ? 'dark' : 'light';
   setTimeout(fitNow, 40);
 };
+function ovAbierto(){
+  var ids = ['tguion','tconsigna','tsorteo','tcierre','imgov'];
+  for(var i=0;i<ids.length;i++){
+    var el = document.getElementById(ids[i]);
+    if(el && el.classList.contains('on')) return ids[i];
+  }
+  return null;
+}
 document.addEventListener('keydown', function(e){
   var t = e.target.tagName;
   var editing = (t==='INPUT'||t==='TEXTAREA'||t==='SELECT');
   var po = document.getElementById('pop').classList.contains('on');
-  if(e.key === 'Escape'){ popClose(); document.getElementById('imgov').classList.remove('on'); return; }
+  if(e.key === 'Escape'){
+    popClose();
+    ['imgov','tguion','tconsigna','tsorteo'].forEach(function(id){
+      var el = document.getElementById(id); if(el) el.classList.remove('on'); });
+    return;
+  }
   if(editing) return;
+  /* atajos del modo taller */
+  if(typeof TS !== 'undefined' && TS.on && !po){
+    if(e.key === ' '){ e.preventDefault(); tToggle(); return; }
+    if(e.key === 'n' || e.key === 'N'){ e.preventDefault(); tSig(); return; }
+  }
+  if(ovAbierto()) return;
   if(e.key === '+' || e.key === '='){ e.preventDefault(); po?popZ(.1):setZoom(ZOOM+.1); return; }
   if(e.key === '-' || e.key === '_'){ e.preventDefault(); po?popZ(-.1):setZoom(ZOOM-.1); return; }
   if(e.key === '0'){ e.preventDefault(); if(po){POP.z=1;popZ(0);} else setZoom(1); return; }
@@ -1863,6 +1976,557 @@ function xlsxBuild(hojas){
                 data: u8(hojaXML(h.filas, h.anchos, true))});
   });
   return zipStore(files);
+}
+</script>
+<script>
+"use strict";
+/* ===============================================================
+   MODO TALLER — conduce la clase consigna por consigna, con
+   cronómetro propio en cada máquina y sorteo de equipo expositor.
+   =============================================================== */
+
+var TPLAN = [
+ {k:'apertura', t:'Apertura · el equipo y el punto de partida', min:5, sec:'El equipo y el proyecto',
+  obj:'Dejar cargado el equipo y traer al visor todo lo que ya está resuelto en el Formulario 01.',
+  hacer:['Escriban el nombre del equipo y quién coordina hoy.',
+         'Toquen «⇄ traer» sobre su escenario para importar el F01, o carguen el archivo de avance.',
+         'Completen quiénes participan de esta entrega y cuántas horas dedicó cada uno.'],
+  logro:'El nombre del proyecto y los cuatro niveles de la EAP aparecen cargados en la pantalla siguiente.',
+  guia:'Guía 02 · ítem A'},
+
+ {k:'consigna', t:'La actividad de la EAP es el punto de partida', min:5, sec:'De dónde venimos: la EAP',
+  obj:'Verificar que la actividad que van a desagregar está bien enunciada, antes de gastar dos horas desagregándola.',
+  hacer:['Lean en voz alta la actividad y la componente que trajeron del F01.',
+         'Controlen: ¿la actividad está escrita como un proyecto de inversión y no como un deseo?',
+         '¿La componente está escrita como producto obtenido y no como acción?',
+         'Si algo no cierra, corríjanlo acá mismo: todo lo que sigue se apoya en esto.'],
+  logro:'La actividad y la componente quedan escritas de manera que el equipo las pueda defender.',
+  guia:'Guía 02 · introducción'},
+
+ {k:'consigna', t:'¿De qué tamaño es el proyecto?', min:10, sec:'El tamaño del proyecto',
+  obj:'Definir la capacidad de producción por unidad de tiempo y los factores que la condicionan.',
+  hacer:['Elijan el tipo de proyecto y ajusten el indicador de tamaño.',
+         'Respondan la magnitud del problema, la demanda y qué parte pueden atender.',
+         'Completen capacidad, capacidad instalada, tecnología, materias primas y localización.',
+         'Donde no haya dato, adopten un supuesto y déjenlo escrito: a nivel de idea está permitido.'],
+  logro:'Hay un número de capacidad y una unidad de medida concretos.',
+  guia:'Guía 02 · ítem B'},
+
+ {k:'consigna', t:'La frase del dimensionamiento', min:7, sec:'Redacción del dimensionamiento',
+  obj:'Cerrar el tamaño del proyecto en una frase verificable y en un párrafo.',
+  hacer:['Completen los beneficiarios: la frase se arma sola arriba.',
+         'Toquen «⇄ pasar la frase al párrafo» y amplíenlo.',
+         'Agreguen por qué esa dimensión y no otra, y la coherencia con el problema.'],
+  logro:'El párrafo de dimensionamiento está escrito y supera los 600 caracteres sugeridos.',
+  guia:'Guía 02 · ítem B'},
+
+ {k:'comun', t:'Puesta en común · el tamaño', min:6, sec:'Redacción del dimensionamiento',
+  obj:'Escuchar dos dimensionamientos y detectar sobre y subdimensionamiento.',
+  hacer:['Se sortean dos equipos: leen su frase de dimensionamiento en voz alta.',
+         'El resto pregunta: ¿de dónde sale ese número? ¿qué pasa si la demanda es el doble?',
+         'Cada equipo anota una corrección para aplicar en su propio dimensionamiento.'],
+  logro:'Todos los equipos escucharon al menos dos criterios distintos de dimensionamiento.',
+  guia:'', sorteo:2},
+
+ {k:'consigna', t:'Dónde se emplaza el proyecto', min:5, sec:'Macro y micro localización',
+  obj:'Definir la zona general y el sitio específico, con los factores que los condicionan.',
+  hacer:['Marquen los factores considerados en cada nivel.',
+         'Escriban macro y micro localización: zona primero, sitio después.',
+         'No describan toda la geografía del departamento: sólo lo que tiene relación con el proyecto.'],
+  logro:'Los dos textos están escritos y los factores marcados.',
+  guia:'Guía 02 · ítem C'},
+
+ {k:'consigna', t:'Los dos flujogramas del proceso', min:9, sec:'Flujograma del proceso',
+  obj:'Ordenar el proceso paso a paso, primero para la inversión y después para la operación.',
+  hacer:['Carguen los pasos de la inversión: qué hay que hacer para que el proyecto pueda operar.',
+         'Carguen los pasos de la operación: el proceso productivo que se repite.',
+         'Usen ▲▼ para ordenarlos hasta que la secuencia tenga sentido temporal.',
+         'Miren el diagrama que se dibuja abajo: si un paso quedó suelto, se nota.'],
+  logro:'Los dos diagramas están dibujados y el equipo los puede leer en voz alta sin trabarse.',
+  guia:'Guía 02 · ítem C'},
+
+ {k:'consigna', t:'Acciones y tareas de la inversión', min:12, sec:'Acciones en la inversión',
+  obj:'Desagregar la actividad en acciones, tareas y componentes para la etapa de inversión.',
+  hacer:['Una acción por bloque, con verbo en infinitivo.',
+         'Para cada una: sus tareas debajo y su componente al lado. El botón ✨ propone la componente.',
+         'Miren los avisos en rojo y ámbar: marcan tareas administrativas y acciones de la formulación.',
+         'Pregunta de cierre: si ejecuto estas tareas, ¿logro la acción y por lo tanto la componente?'],
+  logro:'Entre cuatro y seis acciones, cada una con sus tareas y su componente, sin avisos en rojo.',
+  guia:'Guía 02 · ítem D'},
+
+ {k:'consigna', t:'Acciones y tareas de la operación', min:10, sec:'Acciones en la operación',
+  obj:'Desagregar la etapa operativa y verificar que su capital haya entrado por la inversión.',
+  hacer:['Pregunta de arranque: ¿qué necesito hacer para que mi proyecto funcione?',
+         'Carguen las acciones del proceso productivo con sus tareas y componentes.',
+         'En el panel de la derecha, indiquen de qué acción de la inversión viene el capital de cada una.',
+         'Si alguna no puede señalar ninguna, falta una acción en la inversión: vuelvan y agréguenla.'],
+  logro:'Todas las acciones operativas tienen su capital identificado o declarado como no necesario.',
+  guia:'Guía 02 · ítem E'},
+
+ {k:'comun', t:'Puesta en común · la EDT', min:7, sec:'Acciones en la operación',
+  obj:'Revisar en conjunto la trampa más común: confundir acción, tarea administrativa y estudio de formulación.',
+  hacer:['Se sortea un equipo: comparte su tabla de acciones de inversión.',
+         'Entre todos, buscan una acción que en realidad sea una compra, un trámite o un estudio.',
+         'Se corrige en el momento y se discute cómo debería enunciarse.'],
+  logro:'El curso identificó al menos un caso de cada trampa y sabe cómo reescribirlo.',
+  guia:'', sorteo:1},
+
+ {k:'consigna', t:'Describir una acción como corresponde', min:8, sec:'Descripción de cada acción',
+  obj:'Escribir una acción completa con los nueve descriptores, al nivel que pide la Guía.',
+  hacer:['Elijan la acción más importante de la inversión.',
+         'Completen objetivo, resultado, descripción, responsables, recursos e indicadores.',
+         'Carguen duración y periodicidad.',
+         'Toquen «⇄ armar la redacción» y corrijan el párrafo a mano.'],
+  logro:'Al menos una acción tiene su párrafo de descripción escrito.',
+  guia:'Guía 02 · ítem F'},
+
+ {k:'consigna', t:'Secuenciar: qué va antes de qué', min:7, sec:'Secuenciación y predecesoras',
+  obj:'Establecer el orden de precedencia entre las acciones de las dos etapas.',
+  hacer:['Para cada acción, marquen las predecesoras tocando las letras.',
+         'Elijan el tipo de vínculo: fin–inicio es el más común, pero no el único.',
+         'Si el visor avisa que hay un ciclo, deshagan ese vínculo.',
+         'Miren la red de precedencias que se dibuja abajo.'],
+  logro:'Las dos etapas tienen predecesoras cargadas y no hay ciclos.',
+  guia:'Guía 02 · ítem G'},
+
+ {k:'consigna', t:'Cuánto dura y cada cuánto se repite', min:6, sec:'Duración y periodicidad',
+  obj:'Asignar duración a cada acción y periodicidad sólo donde corresponde.',
+  hacer:['Elijan la unidad temporal de cada etapa: la inversión y la operación pueden usar escalas distintas.',
+         'Carguen la duración de cada acción.',
+         'Periodicidad sólo en las acciones recurrentes: en la inversión casi no hay.'],
+  logro:'Todas las acciones tienen duración y la unidad es coherente dentro de cada etapa.',
+  guia:'Guía 02 · ítem H'},
+
+ {k:'consigna', t:'Leer el cronograma', min:4, sec:'Diagrama de Gantt',
+  obj:'Interpretar el Gantt que el visor calculó y decidir si representa el proyecto.',
+  hacer:['Miren la duración total y las acciones de la ruta crítica.',
+         'Pregúntense si ese cronograma es defendible ante alguien que conozca la actividad.',
+         'Si algo no cierra, el problema está en las predecesoras o en las duraciones: vuelvan y ajusten.',
+         'Descarguen el diagrama en PNG para pegarlo en el formulario.'],
+  logro:'Los dos diagramas están dibujados y el equipo puede explicar la ruta crítica.',
+  guia:'Guía 02 · ítem I'},
+
+ {k:'consigna', t:'Los recursos de cada tarea', min:9, sec:'Recursos de la inversión',
+  obj:'Determinar qué necesita cada tarea, con unidad de medida y cantidad.',
+  hacer:['Toquen «⇄ sembrar una fila por tarea» para arrancar desde las tareas ya cargadas.',
+         'Completen recurso, unidad y cantidad. La cantidad tiene que respetar la duración de la acción.',
+         'Si llegan con el tiempo, pasen a los recursos de la operación y separen gasto de capital ya incorporado.'],
+  logro:'Las acciones de la inversión tienen sus recursos identificados.',
+  guia:'Guía 02 · ítems J y K'},
+
+ {k:'cierre', t:'Cierre · autocontrol y entrega', min:10, sec:'Autocontrol',
+  obj:'Revisar qué quedó completo, qué falta, y llevarse el formulario.',
+  hacer:['Pasen el autocontrol de diecisiete puntos y miren el diagnóstico automático.',
+         'Marquen la rúbrica: dónde está el equipo en cada criterio.',
+         'Vayan a «La entrega» y descarguen el Word, la planilla y el archivo de avance.',
+         'Anoten qué apartados quedan para terminar fuera del taller.'],
+  logro:'Cada equipo se va con el Word, la planilla y el archivo de avance descargados.',
+  guia:'Guía 02 · cierre'}
+];
+
+/* =============================================================== ESTADO DEL TALLER */
+var TKEY = 'fepar2026_f02_taller';
+var TS = {on:false, i:0, left:0, endsAt:0, run:false, done:{}, equipos:8, nombres:'',
+          sorteados:[], plan:null, arranque:''};
+
+function tSave(){ try{ localStorage.setItem(TKEY, JSON.stringify(TS)); }catch(e){} }
+function tLoad(){
+  try{
+    var o = JSON.parse(localStorage.getItem(TKEY) || 'null');
+    if(o && typeof o === 'object'){ Object.keys(TS).forEach(function(k){ if(o[k] !== undefined) TS[k] = o[k]; }); }
+  }catch(e){}
+  if(!Array.isArray(TS.plan) || TS.plan.length !== TPLAN.length)
+    TS.plan = TPLAN.map(function(p){ return p.min; });
+}
+function tMin(i){ return (TS.plan && TS.plan[i] != null) ? TS.plan[i] : TPLAN[i].min; }
+function tTotal(){ return TPLAN.reduce(function(a,_,i){ return a + tMin(i); }, 0); }
+function tPaso(){ return TPLAN[TS.i] || TPLAN[0]; }
+
+/* =============================================================== RELOJ */
+function tLeft(){
+  if(!TS.on) return 0;
+  return TS.run ? Math.max(0, Math.round((TS.endsAt - Date.now()) / 1000)) : Math.max(0, TS.left|0);
+}
+function tStart(){
+  if(!TS.on) return;
+  TS.endsAt = Date.now() + (TS.left|0) * 1000;
+  TS.run = true; TS.sono = false; tSave(); tPaint();
+}
+function tPause(){
+  if(!TS.run) return;
+  TS.left = tLeft(); TS.run = false; tSave(); tPaint();
+}
+function tToggle(){ TS.run ? tPause() : tStart(); }
+function tReset(){
+  TS.left = tMin(TS.i) * 60; TS.run = false; TS.sono = false; tSave(); tPaint();
+}
+function tExtra(seg){
+  TS.left = tLeft() + seg;
+  if(TS.left < 0) TS.left = 0;
+  if(TS.run) TS.endsAt = Date.now() + TS.left * 1000;
+  TS.sono = false; tSave(); tPaint();
+}
+function tIr(i, autoStart){
+  if(i < 0 || i >= TPLAN.length) return;
+  TS.i = i;
+  TS.left = tMin(i) * 60;
+  TS.run = false; TS.sono = false;
+  tSave();
+  var s = secIdx(TPLAN[i].sec);
+  if(s >= 0) show(s);
+  tPaint();
+  tConsignaOpen(autoStart !== false);
+}
+function tSig(){
+  TS.done[TS.i] = true;
+  if(TS.i >= TPLAN.length - 1){ tSave(); tCierreOpen(); return; }
+  tIr(TS.i + 1);
+}
+function tAnt(){ if(TS.i > 0) tIr(TS.i - 1); }
+
+/* sonido de fin de consigna */
+var TAUD = null;
+function tBeep(n){
+  try{
+    if(!TAUD) TAUD = new (window.AudioContext || window.webkitAudioContext)();
+    if(TAUD.state === 'suspended') TAUD.resume();
+    for(var k = 0; k < (n || 3); k++){
+      var o = TAUD.createOscillator(), g = TAUD.createGain();
+      var t0 = TAUD.currentTime + k * 0.28;
+      o.type = 'sine'; o.frequency.setValueAtTime(k === 2 ? 660 : 880, t0);
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.22, t0 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.22);
+      o.connect(g); g.connect(TAUD.destination);
+      o.start(t0); o.stop(t0 + 0.24);
+    }
+  }catch(e){}
+}
+
+/* =============================================================== BARRA */
+function mmss(s){
+  s = Math.max(0, s|0);
+  var m = Math.floor(s / 60), q = s % 60;
+  return m + ':' + (q < 10 ? '0' : '') + q;
+}
+function tPaint(){
+  var bar = document.getElementById('tbar');
+  if(!bar) return;
+  document.documentElement.dataset.taller = TS.on ? 'on' : 'off';
+  bar.classList.toggle('on', !!TS.on);
+  if(!TS.on) return;
+  var p = tPaso(), s = tLeft(), tot = tMin(TS.i) * 60;
+  var el = function(id){ return document.getElementById(id); };
+  el('t-n').textContent = (TS.i + 1) + '/' + TPLAN.length;
+  el('t-t').textContent = p.t;
+  el('t-k').textContent = p.k === 'comun' ? 'PUESTA EN COMÚN'
+                        : p.k === 'apertura' ? 'APERTURA'
+                        : p.k === 'cierre' ? 'CIERRE' : 'CONSIGNA';
+  el('t-k').className = 'tetq ' + p.k;
+  el('t-clock').textContent = mmss(s);
+  el('t-play').textContent = TS.run ? '⏸' : '▶';
+  el('t-play').title = TS.run ? 'Pausar (barra espaciadora)' : 'Arrancar (barra espaciadora)';
+  var st = s <= 0 ? 'fin' : (s <= 30 ? 'rojo' : (s <= 120 ? 'ambar' : ''));
+  el('t-clock').className = 'tclock ' + st;
+  var pr = tot > 0 ? Math.max(0, Math.min(1, s / tot)) : 0;
+  el('t-prog').style.width = (pr * 100) + '%';
+  el('t-prog').className = 'tprog ' + st;
+  var rest = 0;
+  for(var k = TS.i + 1; k < TPLAN.length; k++) rest += tMin(k);
+  el('t-rest').textContent = 'quedan ' + (Math.round(s / 60) + rest) + ' min de taller';
+}
+var TTICK = null;
+function tTick(){
+  if(!TS.on) return;
+  if(TS.run){
+    var s = tLeft();
+    if(s <= 0 && !TS.sono){ TS.sono = true; tBeep(3); toast('Se cumplió el tiempo de la consigna.'); }
+  }
+  tPaint();
+}
+
+/* =============================================================== OVERLAY: GUION */
+function tGuionOpen(){
+  var c = document.getElementById('tguion-c');
+  c.innerHTML = '';
+  var g = E('div','row'); g.style.gap='16px'; g.style.flexWrap='wrap'; g.style.alignItems='flex-start';
+
+  var izq = E('div','col'); izq.style.flex='1.6'; izq.style.minWidth='340px';
+  var c1 = card(null,'Guion del taller · ' + tTotal() + ' minutos');
+  c1.appendChild(E('p','tiny','Podés ajustar los minutos de cada paso. El cronómetro corre en cada notebook por separado: vos marcás el arranque en voz alta y cada equipo toca ▶.'));
+  var sc = E('div','scrolly'); sc.style.marginTop='8px'; sc.style.maxHeight='46vh';
+  var t = E('table','tb dense');
+  t.innerHTML = '<thead><tr><th>#</th><th>Paso</th><th>Pantalla</th><th>Min</th></tr></thead>';
+  var tb = E('tbody');
+  TPLAN.forEach(function(p, i){
+    var tr = E('tr');
+    if(i === TS.i && TS.on) tr.style.boxShadow = 'inset 3px 0 0 var(--verde)';
+    tr.appendChild(E('td',null,'<strong>'+(i+1)+'</strong>'));
+    var td = E('td');
+    td.appendChild(E('p','sub','<span class="tetq '+p.k+'" style="margin-right:6px">'+
+      (p.k==='comun'?'COMÚN':p.k==='apertura'?'APERTURA':p.k==='cierre'?'CIERRE':'CONSIGNA')+'</span>'+esc(p.t)));
+    tr.appendChild(td);
+    tr.appendChild(E('td',null,'<span class="tiny">'+esc(p.sec)+'</span>'));
+    var tdm = E('td');
+    var inp = E('input'); inp.type='number'; inp.min='1'; inp.max='60';
+    inp.value = tMin(i); inp.style.width='52px';
+    inp.addEventListener('input', function(){
+      var v = Math.max(1, Math.min(60, parseInt(inp.value,10) || 1));
+      TS.plan[i] = v;
+      if(i === TS.i && !TS.run){ TS.left = v * 60; }
+      tSave(); tPaint();
+      var h = c1.querySelector('h3'); if(h) h.textContent = 'Guion del taller · ' + tTotal() + ' minutos';
+    });
+    tdm.appendChild(inp);
+    tr.appendChild(tdm);
+    var tdg = E('td');
+    var b = E('button','btn xs ghost','ir');
+    b.type='button';
+    b.onclick = function(){ TS.on = true; tIr(i); tGuionClose(); };
+    tdg.appendChild(b); tr.appendChild(tdg);
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb); sc.appendChild(t); c1.appendChild(sc);
+  izq.appendChild(c1);
+  g.appendChild(izq);
+
+  var der = E('div','col'); der.style.flex='1'; der.style.minWidth='290px';
+  var c2 = card('oro','Equipos en el aula');
+  c2.appendChild(E('p','tiny','Se usa para el sorteo del equipo que expone en las puestas en común.'));
+  var f1 = E('div'); f1.style.marginTop='8px';
+  f1.appendChild(E('label','fl','Cantidad de equipos'));
+  var ni = E('input','fi'); ni.type='number'; ni.min='2'; ni.max='20'; ni.value = TS.equipos;
+  ni.addEventListener('input', function(){
+    TS.equipos = Math.max(2, Math.min(20, parseInt(ni.value,10) || 2)); tSave(); });
+  f1.appendChild(ni);
+  c2.appendChild(f1);
+  var f2 = E('div'); f2.style.marginTop='8px';
+  f2.appendChild(E('label','fl','Nombres de los equipos (opcional, uno por línea)'));
+  var ta = E('textarea','fa short'); ta.value = TS.nombres || '';
+  ta.placeholder = 'PACHA Consultora\nURBIS\n…';
+  ta.addEventListener('input', function(){ TS.nombres = ta.value; tSave(); });
+  f2.appendChild(ta);
+  c2.appendChild(f2);
+  der.appendChild(c2);
+
+  var c3 = card('vio','Cómo funciona');
+  c3.appendChild(listUl([
+    'Cada paso abre una <strong>pantalla de consigna</strong> con el objetivo, qué hacer y el criterio de logro. Al tocar «Empezar» arranca el reloj.',
+    'La barra de arriba queda visible mientras trabajan: muestra el tiempo, el paso y permite pausar o sumar minutos.',
+    'A los dos minutos se pone ámbar, a los treinta segundos en rojo, y al llegar a cero suena.',
+    'El cronómetro es de <strong>cada máquina</strong>. Si un equipo se atrasa, puede sumarse con «+2 min» sin cortar el ritmo del aula.',
+    '<span class="kbd">espacio</span> arranca y pausa · <span class="kbd">N</span> pasa al siguiente paso.'
+  ],'o'));
+  der.appendChild(c3);
+  g.appendChild(der);
+  c.appendChild(g);
+
+  var pie = E('div','wrap'); pie.style.marginTop='14px';
+  pie.appendChild(btn(TS.on ? '↻ Reiniciar el taller desde el principio' : '▶ Iniciar el taller', '', function(){
+    TS.on = true; TS.done = {}; TS.sorteados = [];
+    tIr(0); tGuionClose();
+  }));
+  if(TS.on){
+    pie.appendChild(btn('Seguir donde estaba','ghost', function(){ tGuionClose(); }));
+    pie.appendChild(btn('■ Salir del modo taller','ghost', function(){
+      TS.on = false; TS.run = false; tSave(); tPaint(); tGuionClose(); requestAnimationFrame(fitNow);
+    }));
+  }
+  c.appendChild(pie);
+  document.getElementById('tguion').classList.add('on');
+}
+function tGuionClose(){ document.getElementById('tguion').classList.remove('on'); }
+
+/* =============================================================== OVERLAY: CONSIGNA */
+function tConsignaOpen(autoFocus){
+  var p = tPaso();
+  var c = document.getElementById('tconsigna-c');
+  c.innerHTML = '';
+  var h = E('div');
+  h.appendChild(E('span','tetq '+p.k, p.k==='comun' ? 'PUESTA EN COMÚN' : p.k==='apertura' ? 'APERTURA'
+                : p.k==='cierre' ? 'CIERRE' : 'CONSIGNA ' + (TS.i + 1)));
+  h.appendChild(E('h1',null, esc(p.t)));
+  h.appendChild(E('p','lead', esc(p.obj)));
+  c.appendChild(h);
+
+  var g = E('div','grid g2'); g.style.marginTop='14px';
+  var c1 = card(null,'Qué hacer');
+  var ol = E('div','col'); ol.style.marginTop='8px'; ol.style.gap='7px';
+  p.hacer.forEach(function(x, i){
+    var r = E('div','row'); r.style.gap='10px'; r.style.alignItems='flex-start';
+    var n = E('div','num', String(i+1)); n.style.fontSize='17px'; n.style.flex='none'; n.style.minWidth='20px';
+    r.appendChild(n); r.appendChild(E('p','sub', x));
+    ol.appendChild(r);
+  });
+  c1.appendChild(ol);
+  g.appendChild(c1);
+
+  var c2 = E('div','col');
+  var cl = card('oro','Cómo saben que está lograda');
+  cl.appendChild(E('p','sub', esc(p.logro)));
+  var w = E('div','wrap'); w.style.marginTop='9px';
+  w.appendChild(E('span','pill v','⏱ ' + tMin(TS.i) + ' min'));
+  w.appendChild(E('span','pill a','Pantalla: ' + esc(p.sec)));
+  if(p.guia) w.appendChild(E('span','pill o', esc(p.guia)));
+  cl.appendChild(w);
+  c2.appendChild(cl);
+  if(p.k !== 'comun' && p.k !== 'cierre'){
+    var ce = card('vio','Si se traban');
+    ce.appendChild(E('p','sub','Los seis casos resueltos tienen este mismo paso desarrollado hasta el final. En cada pantalla de trabajo hay además una tarjeta con el fragmento del caso que corresponde.'));
+    var b = btn('Ver los casos resueltos →','ghost sm', function(){
+      tConsignaClose(); goTo('Seis casos resueltos'); });
+    b.style.marginTop='9px'; b.style.alignSelf='flex-start';
+    ce.appendChild(b);
+    c2.appendChild(ce);
+  }
+  if(p.sorteo){
+    var cs = card('coral','Sorteo');
+    cs.appendChild(E('p','sub','Esta puesta en común arranca sorteando ' +
+      (p.sorteo === 1 ? 'un equipo' : p.sorteo + ' equipos') + ' entre los ' + TS.equipos + ' del aula.'));
+    var bs = btn('🎲 Sortear ahora','sm', function(){ tSorteoOpen(p.sorteo); });
+    bs.style.marginTop='9px'; bs.style.alignSelf='flex-start';
+    cs.appendChild(bs);
+    c2.appendChild(cs);
+  }
+  g.appendChild(c2);
+  c.appendChild(g);
+
+  var pie = E('div','wrap'); pie.style.marginTop='16px';
+  var ir = btn('▶ Empezar · arranca el reloj','', function(){ tConsignaClose(); tStart(); });
+  pie.appendChild(ir);
+  pie.appendChild(btn('Ver la consigna después','ghost', function(){ tConsignaClose(); }));
+  if(TS.i > 0) pie.appendChild(btn('◀ Paso anterior','ghost', function(){ tAnt(); }));
+  c.appendChild(pie);
+
+  document.getElementById('tconsigna').classList.add('on');
+  if(autoFocus !== false) setTimeout(function(){ try{ ir.focus(); }catch(e){} }, 60);
+}
+function tConsignaClose(){ document.getElementById('tconsigna').classList.remove('on'); }
+
+/* =============================================================== OVERLAY: SORTEO */
+function tEquipos(){
+  var n = TS.nombres ? TS.nombres.split('\n').map(function(x){ return x.trim(); }).filter(function(x){ return x; }) : [];
+  var out = [];
+  for(var i = 0; i < TS.equipos; i++) out.push(n[i] || ('Equipo ' + (i + 1)));
+  return out;
+}
+function tSorteoOpen(cuantos){
+  cuantos = cuantos || 1;
+  var eq = tEquipos();
+  var libres = eq.filter(function(x){ return TS.sorteados.indexOf(x) < 0; });
+  if(libres.length < cuantos){ TS.sorteados = []; libres = eq.slice(); }
+  var c = document.getElementById('tsorteo-c');
+  c.innerHTML = '';
+  var big = E('div','sorteo-big','—');
+  var sub = E('p','tiny','Sorteando entre ' + libres.length + ' equipos que todavía no expusieron…');
+  c.appendChild(E('span','eyebrow','Puesta en común'));
+  c.appendChild(E('h2',null, cuantos === 1 ? 'Expone…' : 'Exponen…'));
+  c.appendChild(big);
+  c.appendChild(sub);
+  var pie = E('div','wrap'); pie.style.marginTop='16px'; pie.style.justifyContent='center';
+  c.appendChild(pie);
+  document.getElementById('tsorteo').classList.add('on');
+
+  var elegidos = [];
+  var pool = libres.slice();
+  for(var k = 0; k < cuantos; k++){
+    var j = Math.floor(Math.random() * pool.length);
+    elegidos.push(pool.splice(j, 1)[0]);
+  }
+  var n = 0, dur = 26;
+  var iv = setInterval(function(){
+    big.textContent = libres[Math.floor(Math.random() * libres.length)];
+    if(++n >= dur){
+      clearInterval(iv);
+      big.textContent = elegidos.join('  ·  ');
+      big.classList.add('fin');
+      sub.innerHTML = 'Ya expusieron: ' + (TS.sorteados.length + elegidos.length) + ' de ' + eq.length + ' equipos.';
+      TS.sorteados = TS.sorteados.concat(elegidos);
+      tSave();
+      tBeep(2);
+      pie.appendChild(btn('Cerrar','', function(){ tSorteoClose(); }));
+      pie.appendChild(btn('🎲 Sortear otro','ghost', function(){ tSorteoClose(); tSorteoOpen(1); }));
+    }
+  }, 70);
+}
+function tSorteoClose(){ document.getElementById('tsorteo').classList.remove('on'); }
+
+/* =============================================================== OVERLAY: CIERRE */
+function tCierreOpen(){
+  var c = document.getElementById('tcierre-c');
+  c.innerHTML = '';
+  c.appendChild(E('span','eyebrow','Taller 02 · cierre'));
+  c.appendChild(E('h1',null,'Terminó el taller'));
+  c.appendChild(E('p','lead','Esto es lo que quedó cargado. Lo que falte se completa fuera del taller, con el mismo visor: el avance está guardado en esta computadora y en el archivo que descarguen.'));
+
+  var g = E('div','grid g3'); g.style.marginTop='14px';
+  var ai = accNamed('inv').length, ao = accNamed('ope').length;
+  var ri = D.rec.inv.filter(function(r){ return txt(r.r); }).length;
+  var ro = D.rec.ope.filter(function(r){ return txt(r.r); }).length;
+  var ckn = CK.filter(function(_, i){ return D.ck[i]; }).length;
+  [[ai + ' / ' + ao, 'acciones de inversión y de operación'],
+   [ri + ro, 'recursos determinados'],
+   [ckn + ' / ' + CK.length, 'puntos del autocontrol']
+  ].forEach(function(x){
+    var cd = card(null, null);
+    cd.appendChild(E('div','num', x[0]));
+    cd.appendChild(E('p','tiny', x[1]));
+    g.appendChild(cd);
+  });
+  c.appendChild(g);
+
+  var falta = [];
+  if(!txt(D.dim.txt)) falta.push('el párrafo de dimensionamiento');
+  if(!txt(D.loc.macro) || !txt(D.loc.micro)) falta.push('la localización');
+  if(!txt(D.des.txt)) falta.push('la descripción general del proyecto');
+  if(!ao) falta.push('las acciones de la operación');
+  if(!ro) falta.push('los recursos de la operación');
+  var sinD = accList('inv').concat(accList('ope')).filter(function(a){ return txt(a.n) && !txt(a.dur); }).length;
+  if(sinD) falta.push(sinD + ' duraciones');
+  var sinDesc = accList('inv').concat(accList('ope')).filter(function(a){
+    return txt(a.n) && !txt(a.d.txt) && !(txt(a.d.obj) && txt(a.d.des)); }).length;
+  if(sinDesc) falta.push(sinDesc + ' descripciones de acciones');
+
+  var cf = card(falta.length ? 'oro' : '', falta.length ? 'Lo que queda para terminar' : 'El formulario está completo');
+  cf.appendChild(E('p','sub', falta.length
+    ? 'Antes de la entrega hay que completar: <strong>' + esc(falta.join(' · ')) + '</strong>.'
+    : 'No se detectan faltantes. Revisen igual el autocontrol y la rúbrica antes de subir la entrega.'));
+  cf.style.marginTop = '12px';
+  c.appendChild(cf);
+
+  var pie = E('div','wrap'); pie.style.marginTop='16px';
+  pie.appendChild(btn('⬇ Descargar el Formulario 02 en Word','', function(){ expWord(); }));
+  pie.appendChild(btn('📊 Descargar la planilla','ghost', function(){ expXLS(); }));
+  pie.appendChild(btn('💾 Descargar el avance','ghost', function(){ expJSON(); }));
+  pie.appendChild(btn('Cerrar','ghost', function(){
+    document.getElementById('tcierre').classList.remove('on');
+    TS.run = false; tSave(); tPaint();
+    goTo('La entrega');
+  }));
+  c.appendChild(pie);
+  document.getElementById('tcierre').classList.add('on');
+}
+
+/* =============================================================== ARRANQUE DEL MÓDULO */
+function tInit(){
+  tLoad();
+  document.getElementById('b-taller').onclick = tGuionOpen;
+  document.getElementById('t-play').onclick  = tToggle;
+  document.getElementById('t-reset').onclick = tReset;
+  document.getElementById('t-mas').onclick   = function(){ tExtra(120); };
+  document.getElementById('t-prev').onclick  = tAnt;
+  document.getElementById('t-next').onclick  = tSig;
+  document.getElementById('t-guion').onclick = tGuionOpen;
+  document.getElementById('t-dado').onclick  = function(){ tSorteoOpen(1); };
+  document.getElementById('tguion-x').onclick   = tGuionClose;
+  document.getElementById('tconsigna-x').onclick = tConsignaClose;
+  document.getElementById('tsorteo-x').onclick   = tSorteoClose;
+  document.getElementById('t-ver').onclick = function(){ tConsignaOpen(false); };
+  if(TS.on && TS.run) TS.left = tLeft();  /* el reloj sigue corriendo con el tiempo real */
+  TS.run = false;
+  tPaint();
+  if(TTICK) clearInterval(TTICK);
+  TTICK = setInterval(tTick, 250);
 }
 </script>
 <script>
@@ -4232,6 +4896,7 @@ document.getElementById('b-print').onclick = doPrint;
 (function boot(){
   var had = loadLocal();
   buildAll();
+  tInit();
   var h = parseInt((location.hash||'').replace('#',''), 10);
   show(h >= 1 && h <= SECS.length ? h-1 : 0);
   paintProgress();
