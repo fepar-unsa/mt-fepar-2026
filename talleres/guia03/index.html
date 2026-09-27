@@ -1,0 +1,2367 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FEPAR 2026 · Guía 03 y Formulario 03 — presentación de clase</title>
+<meta name="description" content="Presentación de clase de la Guía 03 de FEPAR 2026: el flujo de fondos, los tipos de activo, la componente positiva y negativa, el horizonte, la TMAR y los indicadores, con el recorrido del Formulario 03 campo por campo.">
+<style>
+:root{
+  --bg:#06110d; --bg2:#0a1a14; --panel:#0e2019; --panel2:#0b1a15;
+  --line:rgba(255,255,255,.11); --line2:rgba(255,255,255,.22);
+  --tx:#eef7f3; --tx2:#bdd3ca; --tx3:#84a096;
+  --verde:#00a05a; --verde-l:#22c97f; --aqua:#12b5a0; --celeste:#39b6d8;
+  --oro:#eda100; --violeta:#8a79e0; --coral:#ef6a4b; --bad:#ef5350;
+  --ac:var(--verde-l);
+  --ff:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r:20px; --r-s:14px;
+  --u:clamp(9px, 1.05vw, 17px);        /* unidad tipográfica base de la proyección */
+}
+html[data-theme="light"]{
+  --bg:#f4f8f6; --bg2:#eaf1ee; --panel:#fff; --panel2:#f6faf8;
+  --line:rgba(16,36,29,.14); --line2:rgba(16,36,29,.28);
+  --tx:#0d211a; --tx2:#3a534a; --tx3:#647e74;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--ff);overflow:hidden;
+  -webkit-font-smoothing:antialiased;line-height:1.45}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;transition:background .5s;
+  background:radial-gradient(1200px 780px at 8% -10%, color-mix(in srgb, var(--ac) 22%, transparent), transparent 62%),
+             radial-gradient(900px 600px at 98% 108%, color-mix(in srgb, var(--ac) 12%, transparent), transparent 60%)}
+*{scrollbar-width:thin;scrollbar-color:color-mix(in srgb, var(--ac) 70%, transparent) transparent}
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-thumb{background:color-mix(in srgb, var(--ac) 70%, transparent);border-radius:9px;
+  border:3px solid transparent;background-clip:padding-box}
+
+/* ============================== ESCENARIO ============================== */
+#esc{position:fixed;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;
+  padding:calc(var(--u)*3.4) calc(var(--u)*4.2) calc(var(--u)*5.2)}
+#dia{width:100%;max-width:1680px;max-height:100%;overflow:auto;padding:2px}
+/* entrada suave de cada pantalla */
+/* fundido puro: un desplazamiento haría aparecer la barra de scroll un instante */
+@keyframes entra{from{opacity:0}to{opacity:1}}
+#dia.entra>*{animation:entra .34s cubic-bezier(.22,.8,.3,1) both}
+#dia.entra>*:nth-child(2){animation-delay:.05s}
+#dia.entra>*:nth-child(3){animation-delay:.09s}
+@media (prefers-reduced-motion:reduce){#dia.entra>*{animation:none}}
+/* las pantallas con demostración llevan más cosas: se compactan un poco */
+#dia.demo{--u:clamp(8px, .86vw, 14px)}
+#dia.demo .dato{font-size:calc(var(--u)*2.5)}
+#dia.demo .dato.largo{font-size:calc(var(--u)*1.5)}
+#dia.demo .lead{font-size:calc(var(--u)*1.3);margin-top:calc(var(--u)*.7)}
+#dia.demo .box{padding:calc(var(--u)*.78) calc(var(--u)*1)}
+#dia.demo .card{padding:calc(var(--u)*1.05) calc(var(--u)*1.15)}
+#dia.demo svg.g{margin-top:calc(var(--u)*.5)}
+#dia::-webkit-scrollbar{width:8px}
+
+/* ============================== BARRA ============================== */
+#pie{position:fixed;left:0;right:0;bottom:0;z-index:20;height:calc(var(--u)*3.4);
+  display:flex;align-items:center;gap:calc(var(--u)*.9);padding:0 calc(var(--u)*1.6);
+  background:linear-gradient(0deg, var(--panel), transparent);pointer-events:none}
+#pie>*{pointer-events:auto}
+.marca{font-size:calc(var(--u)*.78);letter-spacing:.16em;text-transform:uppercase;color:var(--ac);
+  font-weight:800;flex:none}
+#sec-n{font-size:calc(var(--u)*.82);color:var(--tx3);flex:1;min-width:0;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;font-weight:600}
+#cont{font-size:calc(var(--u)*.82);color:var(--tx3);font-variant-numeric:tabular-nums;flex:none;font-weight:700}
+#prog{position:fixed;left:0;bottom:0;height:3px;background:var(--ac);z-index:21;transition:width .28s ease}
+.bi{border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--tx2);border-radius:9px;
+  padding:calc(var(--u)*.26) calc(var(--u)*.62);font-size:calc(var(--u)*.78);cursor:pointer;
+  font-family:var(--ff);font-weight:700;transition:.15s;flex:none}
+.bi:hover{color:var(--tx);border-color:var(--ac);background:color-mix(in srgb, var(--ac) 16%, transparent)}
+html[data-theme="light"] .bi{background:rgba(255,255,255,.92)}
+
+/* ============================== TIPOGRAFÍA ============================== */
+.kicker{display:inline-flex;align-items:center;gap:calc(var(--u)*.6);font-size:calc(var(--u)*.86);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ac);font-weight:800;margin-bottom:calc(var(--u)*.9)}
+.kicker i{width:calc(var(--u)*.55);height:calc(var(--u)*.55);border-radius:50%;background:var(--ac);display:inline-block}
+h1{font-size:calc(var(--u)*4.3);line-height:1.02;letter-spacing:-.035em;margin:0;font-weight:800}
+h2{font-size:calc(var(--u)*2.9);line-height:1.08;letter-spacing:-.03em;margin:0;font-weight:800}
+h3{font-size:calc(var(--u)*1.42);line-height:1.2;margin:0;font-weight:750;letter-spacing:-.01em}
+h4{font-size:calc(var(--u)*1.05);margin:0;font-weight:800;color:var(--ac);
+  letter-spacing:.06em;text-transform:uppercase}
+.lead{font-size:calc(var(--u)*1.55);line-height:1.42;color:var(--tx2);margin-top:calc(var(--u)*1.2);
+  max-width:46em}
+.lead strong{color:var(--tx);font-weight:750}
+p{margin:0;font-size:calc(var(--u)*1.12);line-height:1.5;color:var(--tx2)}
+p strong,li strong{color:var(--tx);font-weight:750}
+.sm{font-size:calc(var(--u)*.95);color:var(--tx3);line-height:1.5}
+.mt{margin-top:calc(var(--u)*1.2)} .mt2{margin-top:calc(var(--u)*2)}
+
+ul.li{list-style:none;padding:0;margin:calc(var(--u)*1.2) 0 0}
+ul.li>li{position:relative;padding:calc(var(--u)*.5) 0 calc(var(--u)*.5) calc(var(--u)*1.8);
+  font-size:calc(var(--u)*1.12);line-height:1.48;color:var(--tx2)}
+ul.li>li::before{content:"";position:absolute;left:calc(var(--u)*.28);top:calc(var(--u)*1.05);
+  width:calc(var(--u)*.44);height:calc(var(--u)*.44);border-radius:2px;background:var(--ac)}
+ol.num{list-style:none;padding:0;margin:calc(var(--u)*1.2) 0 0;counter-reset:n}
+ol.num>li{counter-increment:n;position:relative;padding:calc(var(--u)*.55) 0 calc(var(--u)*.55) calc(var(--u)*2.5);
+  font-size:calc(var(--u)*1.12);line-height:1.48;color:var(--tx2)}
+ol.num>li::before{content:counter(n);position:absolute;left:0;top:calc(var(--u)*.52);
+  width:calc(var(--u)*1.75);height:calc(var(--u)*1.75);border-radius:calc(var(--u)*.55);
+  background:color-mix(in srgb, var(--ac) 18%, transparent);
+  border:1px solid color-mix(in srgb, var(--ac) 55%, transparent);color:var(--ac);
+  font-size:calc(var(--u)*.88);font-weight:800;display:flex;align-items:center;justify-content:center}
+
+/* ============================== CAJAS ============================== */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*1.6);align-items:start}
+.cols>*{min-width:0}
+.c3{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*1.2)}
+.c4{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*1)}
+.c3>*,.c4>*{min-width:0}
+.card{background:linear-gradient(158deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:var(--r);padding:calc(var(--u)*1.4) calc(var(--u)*1.5);position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac)}
+.card.v::before{background:var(--violeta)} .card.o::before{background:var(--oro)}
+.card.c::before{background:var(--celeste)} .card.r::before{background:var(--coral)}
+.card.a::before{background:var(--aqua)}
+.card h3{margin-bottom:calc(var(--u)*.55)}
+.card .et{display:block;font-size:calc(var(--u)*.72);letter-spacing:.14em;text-transform:uppercase;
+  font-weight:800;color:var(--tx3);margin-bottom:calc(var(--u)*.45)}
+.box{border:1px solid var(--line);border-radius:var(--r-s);padding:calc(var(--u)*1) calc(var(--u)*1.2);
+  background:rgba(255,255,255,.04)}
+.box.ok{border-color:color-mix(in srgb,#00c06a 55%,transparent);background:rgba(0,192,106,.1)}
+.box.no{border-color:color-mix(in srgb,#ef6a4b 55%,transparent);background:rgba(239,106,75,.1)}
+.box.info{border-color:color-mix(in srgb,#39b6d8 55%,transparent);background:rgba(57,182,216,.1)}
+.box.warn{border-color:color-mix(in srgb,#eda100 55%,transparent);background:rgba(237,161,0,.1)}
+.box .et{display:block;font-size:calc(var(--u)*.72);letter-spacing:.14em;text-transform:uppercase;
+  font-weight:800;color:var(--tx3);margin-bottom:calc(var(--u)*.35)}
+.cita{border-left:3px solid var(--ac);padding-left:calc(var(--u)*1.2);font-size:calc(var(--u)*1.2);
+  line-height:1.5;color:var(--tx2);font-style:italic}
+.cita b{color:var(--tx);font-style:normal}
+
+/* números grandes */
+.dato{font-size:calc(var(--u)*3.2);font-weight:800;letter-spacing:-.035em;line-height:1;
+  color:var(--ac);font-variant-numeric:tabular-nums}
+.dato.largo{font-size:calc(var(--u)*1.85);letter-spacing:-.02em}
+.dato small{display:block;font-size:calc(var(--u)*.82);font-weight:700;color:var(--tx3);
+  letter-spacing:.08em;text-transform:uppercase;margin-top:calc(var(--u)*.4)}
+.chip{display:inline-block;font-size:calc(var(--u)*.7);font-weight:800;letter-spacing:.08em;
+  padding:calc(var(--u)*.16) calc(var(--u)*.6);border-radius:999px;text-transform:uppercase}
+.chip.g{background:rgba(0,192,106,.18);color:var(--verde-l)}
+.chip.a{background:rgba(18,181,160,.2);color:var(--aqua)}
+.chip.v{background:rgba(138,121,224,.22);color:var(--violeta)}
+.chip.o{background:rgba(237,161,0,.2);color:var(--oro)}
+.chip.c{background:rgba(57,182,216,.2);color:var(--celeste)}
+.chip.r{background:rgba(239,106,75,.2);color:var(--coral)}
+
+/* tablas */
+table.t{width:100%;border-collapse:collapse;font-size:calc(var(--u)*.98);margin-top:calc(var(--u)*1)}
+table.t th{text-align:left;font-size:calc(var(--u)*.74);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--tx3);font-weight:800;padding:calc(var(--u)*.5) calc(var(--u)*.7);
+  border-bottom:1px solid var(--line2)}
+table.t td{padding:calc(var(--u)*.5) calc(var(--u)*.7);border-bottom:1px solid var(--line);
+  color:var(--tx2);vertical-align:top;line-height:1.42}
+table.t tr:last-child td{border-bottom:none}
+table.t td.n,table.t th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.t td.b{color:var(--tx);font-weight:700}
+table.t tr.tot td{background:color-mix(in srgb, var(--ac) 12%, transparent);color:var(--tx);font-weight:750}
+table.t td.pos{color:var(--verde-l)} table.t td.neg{color:var(--coral)}
+
+/* el formulario, tal como se ve en el Word */
+.form{border:1px solid var(--line2);border-radius:var(--r-s);overflow:hidden;background:rgba(255,255,255,.035)}
+.form .ft{background:color-mix(in srgb, var(--ac) 16%, transparent);color:var(--tx);
+  font-size:calc(var(--u)*.82);font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:calc(var(--u)*.55) calc(var(--u)*.9);border-bottom:1px solid var(--line2)}
+.form .fc{padding:calc(var(--u)*1.1) calc(var(--u)*.9);color:var(--tx3);font-size:calc(var(--u)*.95);
+  font-style:italic;min-height:calc(var(--u)*3)}
+.form table{width:100%;border-collapse:collapse;font-size:calc(var(--u)*.9)}
+.form table th,.form table td{border:1px solid var(--line);padding:calc(var(--u)*.45) calc(var(--u)*.7);
+  text-align:left;color:var(--tx2)}
+.form table th{background:rgba(255,255,255,.05);font-weight:750;color:var(--tx);
+  font-size:calc(var(--u)*.78);text-transform:uppercase;letter-spacing:.06em}
+.form table td.e{color:var(--tx3);font-style:italic}
+
+/* campos de las demos */
+label.fl{display:block;font-size:calc(var(--u)*.74);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--tx3);font-weight:800;margin-bottom:calc(var(--u)*.35)}
+input.fi,select.fi{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--line2);
+  border-radius:10px;color:var(--tx);font-family:var(--ff);font-size:calc(var(--u)*1);
+  padding:calc(var(--u)*.5) calc(var(--u)*.7);font-variant-numeric:tabular-nums}
+html[data-theme="light"] input.fi,html[data-theme="light"] select.fi{background:#fff}
+input.fi:focus,select.fi:focus{outline:none;border-color:var(--ac)}
+input[type=range]{width:100%;accent-color:var(--verde-l);height:calc(var(--u)*1.4)}
+.bt{border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--tx2);border-radius:11px;
+  padding:calc(var(--u)*.45) calc(var(--u)*.95);font-size:calc(var(--u)*.92);cursor:pointer;
+  font-family:var(--ff);font-weight:700;transition:.15s}
+.bt:hover{color:var(--tx);border-color:var(--ac);background:color-mix(in srgb, var(--ac) 16%, transparent)}
+.bt.on{background:var(--verde);border-color:var(--verde);color:#04150e;font-weight:800}
+html[data-theme="light"] .bt{background:rgba(255,255,255,.92)}
+.bt.mini{padding:calc(var(--u)*.3) calc(var(--u)*.7);font-size:calc(var(--u)*.82)}
+.wrapb{display:flex;gap:calc(var(--u)*.6);flex-wrap:wrap;margin-top:calc(var(--u)*1)}
+
+svg.g{width:100%;height:auto;display:block;border-radius:var(--r-s);
+  background:rgba(255,255,255,.035);border:1px solid var(--line);margin-top:calc(var(--u)*.8)}
+
+/* ============================== ESQUEMAS ============================== */
+svg.esq{width:100%;height:auto;display:block;margin:calc(var(--u)*1) auto 0;max-height:62vh}
+
+/* ============================== DISCUSIÓN ============================== */
+.disc h1{font-size:calc(var(--u)*3.5);line-height:1.04}
+.disc .lead{max-width:56em}
+.disc h4{margin-bottom:calc(var(--u)*.3)}
+ul.qq{list-style:none;padding:0;margin:calc(var(--u)*.8) 0 0}
+ul.qq>li{position:relative;padding:calc(var(--u)*.52) 0 calc(var(--u)*.52) calc(var(--u)*1.7);
+  font-size:calc(var(--u)*1.1);line-height:1.46;color:var(--tx);
+  border-bottom:1px solid var(--line)}
+ul.qq>li:last-child{border-bottom:none}
+ul.qq>li::before{content:"?";position:absolute;left:0;top:calc(var(--u)*.52);
+  width:calc(var(--u)*1.15);height:calc(var(--u)*1.15);border-radius:50%;
+  background:color-mix(in srgb, var(--ac) 22%, transparent);color:var(--ac);
+  font-size:calc(var(--u)*.78);font-weight:800;display:flex;align-items:center;justify-content:center}
+body[data-tipo="disc"] #esc::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(900px 620px at 84% 18%, color-mix(in srgb, var(--ac) 14%, transparent), transparent 66%)}
+.box.mal{border-color:color-mix(in srgb,#ef6a4b 55%,transparent);background:rgba(239,106,75,.1)}
+
+/* clasificador */
+.bienes{display:flex;flex-wrap:wrap;gap:calc(var(--u)*.55);margin-top:calc(var(--u)*1)}
+.bien{border:1px solid var(--line2);border-radius:11px;padding:calc(var(--u)*.45) calc(var(--u)*.85);
+  font-size:calc(var(--u)*.98);cursor:pointer;background:rgba(255,255,255,.05);color:var(--tx2);
+  font-family:var(--ff);font-weight:650;transition:.15s}
+.bien:hover{border-color:var(--ac);color:var(--tx)}
+.bien.sel{border-color:var(--ac);background:color-mix(in srgb, var(--ac) 22%, transparent);color:var(--tx)}
+.bien.ok{border-color:#00c06a;background:rgba(0,192,106,.2);color:var(--verde-l)}
+.bien.mal{border-color:#ef6a4b;background:rgba(239,106,75,.2);color:var(--coral)}
+.bien.hecho{opacity:.45}
+html[data-theme="light"] .bien{background:rgba(255,255,255,.9)}
+
+/* índice */
+.ov{position:fixed;inset:0;z-index:60;background:rgba(3,10,8,.95);backdrop-filter:blur(10px);
+  display:none;padding:calc(var(--u)*2.6);overflow:auto}
+html[data-theme="light"] .ov{background:rgba(242,248,245,.97)}
+.ov.on{display:block}
+.ovw{max-width:1500px;margin:0 auto}
+.ix{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:calc(var(--u)*1);
+  margin-top:calc(var(--u)*1.4)}
+.ixs{border:1px solid var(--line);border-radius:var(--r-s);padding:calc(var(--u)*1);
+  background:rgba(255,255,255,.035)}
+.ixs h4{margin-bottom:calc(var(--u)*.6)}
+.ixs button{display:block;width:100%;text-align:left;border:none;background:transparent;
+  color:var(--tx2);font-family:var(--ff);font-size:calc(var(--u)*.92);cursor:pointer;
+  padding:calc(var(--u)*.3) calc(var(--u)*.4);border-radius:8px;line-height:1.35}
+.ixs button:hover{background:color-mix(in srgb, var(--ac) 16%, transparent);color:var(--tx)}
+.ixs button.on{color:var(--ac);font-weight:750}
+.ixs button b{color:var(--tx3);font-weight:700;font-variant-numeric:tabular-nums;margin-right:6px}
+
+/* notas del docente */
+#notas{position:fixed;left:0;right:0;bottom:calc(var(--u)*3.4);z-index:22;display:none;
+  background:var(--panel);border-top:2px solid var(--oro);
+  padding:calc(var(--u)*1) calc(var(--u)*1.8);max-height:36vh;overflow:auto}
+#notas.on{display:block}
+#notas .et{display:block;font-size:calc(var(--u)*.7);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--oro);font-weight:800;margin-bottom:calc(var(--u)*.4)}
+#notas p{font-size:calc(var(--u)*1);color:var(--tx2)}
+
+.toast{position:fixed;left:50%;bottom:calc(var(--u)*5);transform:translate(-50%,12px);z-index:70;opacity:0;
+  background:var(--panel);border:1px solid var(--ac);border-radius:999px;
+  padding:calc(var(--u)*.55) calc(var(--u)*1.3);font-size:calc(var(--u)*.92);
+  box-shadow:0 20px 50px -20px rgba(0,0,0,.7);pointer-events:none;transition:.25s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* portada y separadores de sección */
+.portada h1{font-size:calc(var(--u)*5.4)}
+.sep{text-align:left;position:relative;overflow:hidden}
+.sep .n{position:absolute;right:0;top:50%;transform:translateY(-50%);
+  font-size:calc(var(--u)*11);font-weight:800;line-height:.8;letter-spacing:-.07em;
+  color:color-mix(in srgb, var(--ac) 13%, transparent);
+  pointer-events:none;user-select:none;z-index:0}
+.sep h1{margin-top:calc(var(--u)*.4);position:relative}
+.sep .lead{max-width:36em}
+
+@media (max-width:900px){
+  :root{--u:clamp(11px,3.1vw,16px)}
+  .cols,.c3,.c4{grid-template-columns:1fr}
+  #esc{padding:calc(var(--u)*2) calc(var(--u)*1.4) calc(var(--u)*5)}
+}
+@media print{
+  body{overflow:visible} #pie,#prog,.ov,.toast,#notas{display:none!important}
+  #esc{position:static;padding:14mm;page-break-after:always;min-height:auto}
+}
+</style>
+</head>
+<body>
+<div id="esc"><div id="dia"></div></div>
+
+<div id="notas"><span class="et">Para el docente</span><p id="notas-t"></p></div>
+
+<div id="pie">
+  <span class="marca">FEPAR 2026</span>
+  <button class="bi" id="b-ant" title="Anterior (← o Re Pág)">◀</button>
+  <button class="bi" id="b-sig" title="Siguiente (→, espacio o Av Pág)">▶</button>
+  <span id="sec-n">—</span>
+  <button class="bi" id="b-notas" title="Notas del docente (N)">Notas</button>
+  <button class="bi" id="b-indice" title="Índice (I o Esc)">Índice</button>
+  <button class="bi" id="b-tema" title="Tema claro u oscuro (T)">◐</button>
+  <button class="bi" id="b-full" title="Pantalla completa (F)">⛶</button>
+  <span id="cont">0 / 0</span>
+</div>
+<div id="prog"></div>
+
+<div class="ov" id="ov-ix"><div class="ovw">
+  <span class="kicker"><i></i>Índice</span>
+  <h2>Guía 03 y Formulario 03</h2>
+  <p class="sm mt">Hacé clic en cualquier pantalla para ir directo. Se cierra con Esc.</p>
+  <div class="ix" id="ix"></div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+<script>
+"use strict";
+/* ===============================================================
+   LAS TRES DEMOSTRACIONES EN VIVO
+   =============================================================== */
+
+/* ---------- utilidades ---------- */
+function E(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls;
+  if(html!=null) e.innerHTML=html; return e; }
+function esc(t){ return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function id(x){ return document.getElementById(x); }
+function fmt(n, dec){
+  if(n == null || !isFinite(n)) return '—';
+  dec = (dec == null ? 0 : dec);
+  var neg = n < 0; n = Math.abs(n);
+  var p = n.toFixed(dec).split('.');
+  p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return (neg ? '−' : '') + p.join(',');
+}
+function fmtM(n, dec){ return (n==null||!isFinite(n)) ? '—' : (n<0?'−':'')+'U$S '+fmt(Math.abs(n), dec||0); }
+function avisoD(m){ var t=id('toast'); t.textContent=m; t.classList.add('on');
+  clearTimeout(t._h); t._h=setTimeout(function(){ t.classList.remove('on'); }, 2600); }
+
+/* ---------- motor financiero mínimo ---------- */
+function flujoDe(p){
+  var f = [-p.I0], t;
+  for(t=1; t<=p.H; t++) f.push((p.ing||0) - (p.ope||0));
+  if(p.salv) f[p.H] += p.salv;
+  return f;
+}
+function vanDe(f, i){ var v=0; for(var t=0;t<f.length;t++) v += f[t]/Math.pow(1+i,t); return v; }
+function tirDe(f){
+  var lo=-0.95, hi=10, flo=vanDe(f,lo), fhi=vanDe(f,hi);
+  if(!isFinite(flo)||!isFinite(fhi)||flo*fhi>0) return null;
+  for(var k=0;k<200;k++){ var m=(lo+hi)/2, fm=vanDe(f,m);
+    if(flo*fm<=0){ hi=m; fhi=fm; } else { lo=m; flo=fm; } }
+  return (lo+hi)/2;
+}
+function indicDe(p){
+  var f = flujoDe(p), i = p.tasa, t;
+  var VAB = 0, VAC = 0;
+  for(t=0; t<f.length; t++){
+    var pos = (t===0 ? 0 : (p.ing||0)) + ((t===p.H && p.salv) ? p.salv : 0);
+    var neg = (t===0 ? p.I0 : (p.ope||0));
+    VAB += pos/Math.pow(1+i,t);
+    VAC += neg/Math.pow(1+i,t);
+  }
+  var ac = 0, TRI = null;
+  for(t=0; t<f.length; t++){ ac += f[t]; if(t>0 && ac>=0 && TRI===null) TRI = t; }
+  return {f:f, VAN:vanDe(f,i), TIR:tirDe(f), RBC: VAC ? VAB/VAC : null, VAC: VAC-VAB, TRI:TRI};
+}
+
+/* ---------- SVG ---------- */
+var FFD = "'Segoe UI',system-ui,Arial,Helvetica,sans-serif";
+function sv(tag, at){ var e=document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for(var k in at) if(at.hasOwnProperty(k)) e.setAttribute(k, at[k]); return e; }
+function claro(){ return document.documentElement.dataset.theme === 'light'; }
+function cTx(){ return claro() ? '#3a534a' : '#bdd3ca'; }
+function cTx3(){ return claro() ? '#647e74' : '#84a096'; }
+function cLin(){ return claro() ? 'rgba(16,36,29,.16)' : 'rgba(255,255,255,.13)'; }
+
+/* curva del VAN contra la tasa */
+function curvaVAN(p, hasta){
+  hasta = hasta || 0.45;
+  var W=1020, H=215, mL=92, mR=20, mT=18, mB=34;
+  var aW=W-mL-mR, aH=H-mT-mB;
+  var f = flujoDe(p), pts=[], k;
+  for(k=0;k<=90;k++){ var i=hasta*k/90; pts.push({i:i, v:vanDe(f,i)}); }
+  var mx=Math.max.apply(null,pts.map(function(x){return x.v;}));
+  var mn=Math.min.apply(null,pts.map(function(x){return x.v;}));
+  if(mx===mn){ mx+=1; mn-=1; }
+  var pad=(mx-mn)*.09; mx+=pad; mn-=pad;
+  if(mn>0) mn = -pad; if(mx<0) mx = pad;
+  function Y(v){ return mT+aH-((v-mn)/(mx-mn))*aH; }
+  function X(i){ return mL+(i/hasta)*aW; }
+  var s = sv('svg',{viewBox:'0 0 '+W+' '+H, class:'g', preserveAspectRatio:'xMidYMid meet'});
+  for(k=0;k<=5;k++){
+    var v=mn+(mx-mn)*k/5, y=Y(v);
+    s.appendChild(sv('line',{x1:mL,y1:y,x2:W-mR,y2:y,stroke:cLin(),'stroke-width':1}));
+    var tl=sv('text',{x:mL-9,y:y+4,'text-anchor':'end','font-size':11.5,fill:cTx3(),'font-family':FFD});
+    tl.textContent=fmt(v/1000,0)+'k'; s.appendChild(tl);
+  }
+  if(mn<0 && mx>0)
+    s.appendChild(sv('line',{x1:mL,y1:Y(0),x2:W-mR,y2:Y(0),stroke:'#eda100','stroke-width':2,'stroke-dasharray':'6 5'}));
+  var d='';
+  pts.forEach(function(x,j){ d += (j===0?'M':'L')+X(x.i).toFixed(1)+' '+Y(x.v).toFixed(1)+' '; });
+  s.appendChild(sv('path',{d:d,fill:'none',stroke:'#39b6d8','stroke-width':3,'stroke-linejoin':'round'}));
+  for(k=0;k<=Math.round(hasta*100/5);k++){
+    var ii=k*0.05; if(ii>hasta+1e-9) break;
+    var lb=sv('text',{x:X(ii),y:H-mB+19,'text-anchor':'middle','font-size':11.5,fill:cTx3(),'font-family':FFD});
+    lb.textContent=(k*5)+'%'; s.appendChild(lb);
+  }
+  /* TMAR */
+  if(p.tasa<=hasta){
+    s.appendChild(sv('line',{x1:X(p.tasa),y1:mT,x2:X(p.tasa),y2:mT+aH,stroke:'#22c97f','stroke-width':2,'stroke-dasharray':'5 4'}));
+    var fin1 = p.tasa > hasta*0.72;
+    var t1=sv('text',{x:X(p.tasa)+(fin1?-8:8),y:mT+14,'font-size':12.5,fill:'#22c97f',
+      'font-weight':'800','text-anchor':fin1?'end':'start','font-family':FFD});
+    t1.textContent='TMAR '+fmt(p.tasa*100,1)+' %'; s.appendChild(t1);
+    var vv=vanDe(f,p.tasa);
+    s.appendChild(sv('circle',{cx:X(p.tasa),cy:Y(vv),r:6,fill:vv>=0?'#22c97f':'#ef6a4b',stroke:claro()?'#fff':'#0e2019','stroke-width':2}));
+  }
+  /* TIR */
+  var T = tirDe(f);
+  if(T!=null && T>0 && T<=hasta){
+    s.appendChild(sv('line',{x1:X(T),y1:mT,x2:X(T),y2:mT+aH,stroke:'#ef6a4b','stroke-width':2,'stroke-dasharray':'5 4'}));
+    var fin2 = T > hasta*0.72;
+    var t2=sv('text',{x:X(T)+(fin2?-8:8),y:mT+32,'font-size':12.5,fill:'#ef6a4b',
+      'font-weight':'800','text-anchor':fin2?'end':'start','font-family':FFD});
+    t2.textContent='TIR '+fmt(T*100,2)+' %'; s.appendChild(t2);
+  }
+  return s;
+}
+
+/* flujo acumulado, chico */
+function miniAcum(p, color){
+  var W=560, H=158, mL=62, mR=14, mT=14, mB=28;
+  var aW=W-mL-mR, aH=H-mT-mB;
+  var f=flujoDe(p), ac=[], s0=0, t;
+  for(t=0;t<f.length;t++){ s0+=f[t]; ac.push(s0); }
+  var mx=Math.max.apply(null,ac), mn=Math.min.apply(null,ac);
+  if(mx===mn){ mx+=1; mn-=1; }
+  var pad=(mx-mn)*.1; mx+=pad; mn-=pad;
+  if(mn>0) mn=-pad; if(mx<0) mx=pad;
+  function Y(v){ return mT+aH-((v-mn)/(mx-mn))*aH; }
+  function X(i){ return mL+(ac.length<=1?0:(i/(ac.length-1))*aW); }
+  var s=sv('svg',{viewBox:'0 0 '+W+' '+H, class:'g', preserveAspectRatio:'xMidYMid meet'});
+  for(var k=0;k<=3;k++){
+    var v=mn+(mx-mn)*k/3, y=Y(v);
+    s.appendChild(sv('line',{x1:mL,y1:y,x2:W-mR,y2:y,stroke:cLin(),'stroke-width':1}));
+    var tl=sv('text',{x:mL-7,y:y+4,'text-anchor':'end','font-size':10.5,fill:cTx3(),'font-family':FFD});
+    tl.textContent=fmt(v/1000,0)+'k'; s.appendChild(tl);
+  }
+  if(mn<0&&mx>0) s.appendChild(sv('line',{x1:mL,y1:Y(0),x2:W-mR,y2:Y(0),stroke:'#eda100','stroke-width':1.6,'stroke-dasharray':'5 4'}));
+  var d='';
+  ac.forEach(function(v,j){ d += (j===0?'M':'L')+X(j).toFixed(1)+' '+Y(v).toFixed(1)+' '; });
+  s.appendChild(sv('path',{d:d,fill:'none',stroke:color,'stroke-width':2.8,'stroke-linejoin':'round'}));
+  ac.forEach(function(v,j){
+    s.appendChild(sv('circle',{cx:X(j),cy:Y(v),r:3.2,fill:v>=0?'#22c97f':'#ef6a4b'}));
+    if(j%2===0 || j===ac.length-1){
+      var lb=sv('text',{x:X(j),y:H-mB+17,'text-anchor':'middle','font-size':10.5,fill:cTx3(),'font-family':FFD});
+      lb.textContent=j; s.appendChild(lb);
+    }
+  });
+  return s;
+}
+
+function dato(k, v, d, col){
+  var x = E('div','box'); x.style.textAlign='left';
+  x.appendChild(E('span','et', esc(k)));
+  var n = E('div','dato' + (String(v).length > 11 ? ' largo' : ''), v);
+  if(col) n.style.color = col;
+  x.appendChild(n);
+  if(d) x.appendChild(E('p','sm', esc(d)));
+  return x;
+}
+
+/* ===============================================================
+   DEMO 1 · VAN Y TIR EN VIVO
+   =============================================================== */
+var D1 = {I0:50000, ing:22000, ope:9000, H:8, tasa:0.22, salv:6000, conIng:true};
+function demoVan(c){
+  var wrap = E('div');
+  var mandos = E('div','c3'); mandos.style.marginTop='calc(var(--u)*.4)';
+
+  function sl(lab, min, max, paso, get, set, fmtv){
+    var d = E('div'); d.style.marginBottom='calc(var(--u)*.8)';
+    var top = E('div'); top.style.display='flex'; top.style.justifyContent='space-between';
+    top.style.alignItems='baseline'; top.style.gap='10px';
+    top.appendChild(E('label','fl', esc(lab)));
+    var val = E('span'); val.style.fontWeight='800'; val.style.fontVariantNumeric='tabular-nums';
+    val.style.color='var(--ac)'; val.style.fontSize='calc(var(--u)*1.05)';
+    val.textContent = fmtv(get());
+    top.appendChild(val);
+    d.appendChild(top);
+    var r = E('input'); r.type='range'; r.min=min; r.max=max; r.step=paso; r.value=get();
+    r.addEventListener('input', function(){ set(parseFloat(r.value)); val.textContent=fmtv(get()); pintar(); });
+    d.appendChild(r);
+    return d;
+  }
+
+  var izq = E('div');
+  izq.appendChild(sl('Tasa de descuento · TD (TMAR)', 0, 45, 0.5,
+    function(){ return D1.tasa*100; }, function(v){ D1.tasa=v/100; },
+    function(v){ return fmt(v,1)+' %'; }));
+  izq.appendChild(sl('Ingreso por período', 0, 40000, 500,
+    function(){ return D1.ing; }, function(v){ D1.ing=v; },
+    function(v){ return fmtM(v); }));
+  izq.appendChild(sl('Costo operativo por período', 0, 30000, 500,
+    function(){ return D1.ope; }, function(v){ D1.ope=v; },
+    function(v){ return fmtM(v); }));
+  var med = E('div');
+  med.appendChild(sl('Inversión en el período 0', 10000, 150000, 1000,
+    function(){ return D1.I0; }, function(v){ D1.I0=v; },
+    function(v){ return fmtM(v); }));
+  med.appendChild(sl('Horizonte', 3, 20, 1,
+    function(){ return D1.H; }, function(v){ D1.H=Math.round(v); },
+    function(v){ return Math.round(v)+' períodos'; }));
+  var der = E('div');
+  var bs = E('div','wrapb');
+  var bq = E('button','bt' + (D1.conIng ? '' : ' on'),
+    D1.conIng ? 'Apagar los ingresos' : 'Volver a encender los ingresos');
+  bq.type='button';
+  bq.onclick = function(){
+    if(D1.conIng){ D1._ing = D1.ing; D1.ing = 0; D1.conIng = false; }
+    else { D1.ing = D1._ing || 22000; D1.conIng = true; }
+    demoVan(c);
+  };
+  bs.appendChild(bq);
+  var br = E('button','bt','Reiniciar'); br.type='button';
+  br.onclick = function(){ D1 = {I0:50000, ing:22000, ope:9000, H:8, tasa:0.22, salv:6000, conIng:true}; demoVan(c); };
+  bs.appendChild(br);
+  der.appendChild(bs);
+  mandos.appendChild(izq); mandos.appendChild(med); mandos.appendChild(der);
+  wrap.appendChild(mandos);
+
+  var salida = E('div'); salida.style.marginTop='calc(var(--u)*1.2)';
+  wrap.appendChild(salida);
+
+  function pintar(){
+    salida.innerHTML = '';
+    var R = indicDe(D1);
+    var hay = D1.ing > 0;
+    var kp = E('div','c4');
+    kp.appendChild(dato('VAN', fmtM(R.VAN), 'a la TMAR elegida', R.VAN>=0 ? 'var(--verde-l)' : 'var(--coral)'));
+    kp.appendChild(dato('TIR', R.TIR==null ? 'no existe' : fmt(R.TIR*100,2)+' %',
+      R.TIR==null ? 'el flujo nunca cambia de signo' : (R.TIR>=D1.tasa ? 'supera la TMAR' : 'no alcanza la TMAR'),
+      R.TIR==null ? 'var(--tx3)' : (R.TIR>=D1.tasa ? 'var(--verde-l)' : 'var(--coral)')));
+    if(hay) kp.appendChild(dato('RBC', R.RBC==null?'—':fmt(R.RBC,3), 'beneficios sobre costos',
+      (R.RBC!=null && R.RBC>=1) ? 'var(--verde-l)' : 'var(--coral)'));
+    else kp.appendChild(dato('VAC', fmtM(R.VAC), 'valor actualizado de costos', 'var(--celeste)'));
+    kp.appendChild(dato('Recupero', R.TRI==null?'no ocurre':('período '+R.TRI),
+      R.TRI==null?'dentro del horizonte':'el acumulado cambia de signo', R.TRI==null?'var(--tx3)':'var(--aqua)'));
+    salida.appendChild(kp);
+
+    var g = E('div'); g.style.marginTop='calc(var(--u)*1)';
+    g.appendChild(E('span','et','El VAN según la tasa de descuento (TD)'));
+    g.appendChild(curvaVAN(D1));
+    salida.appendChild(g);
+
+    var msg = E('div','box ' + (hay ? (R.VAN>=0?'ok':'warn') : 'info'));
+    msg.style.marginTop='calc(var(--u)*.9)';
+    if(!hay){
+      msg.innerHTML = '<p><strong>Sin componente positiva</strong> la curva no cruza el cero en ningún lado: no hay ninguna tasa que anule el flujo, y por eso <strong>no existe la TIR</strong>. Lo único que se puede calcular es el VAC.</p>';
+    } else if(R.TIR==null){
+      msg.innerHTML = '<p>Con estos valores el flujo no cambia de signo y la TIR no existe.</p>';
+    } else {
+      msg.innerHTML = '<p>La curva cruza el cero exactamente en la TIR, <strong>'+fmt(R.TIR*100,2)+' %</strong>. '+
+        'A la izquierda de ese punto el VAN es positivo; a la derecha, negativo. '+
+        (R.TIR>=D1.tasa
+          ? 'Como la TMAR (<strong>'+fmt(D1.tasa*100,1)+' %</strong>) está por debajo de la TIR, el VAN da positivo.'
+          : 'Como la TMAR (<strong>'+fmt(D1.tasa*100,1)+' %</strong>) está por encima de la TIR, el VAN da negativo.')+'</p>';
+    }
+    salida.appendChild(msg);
+  }
+  pintar();
+  c.innerHTML = '';
+  c.appendChild(wrap);
+}
+
+/* ===============================================================
+   DEMO 2 · CLASIFICADOR DE ACTIVOS
+   =============================================================== */
+var TIPOS = [
+ {k:'dep',  n:'Bien de capital depreciable',    c:'g', d:'Vida útil mayor a dos años y se desvaloriza.'},
+ {k:'nod',  n:'Bien de capital no depreciable', c:'a', d:'El suelo y lo que se le adosa como unidad inseparable.'},
+ {k:'nom',  n:'Activo nominal (intangible)',    c:'v', d:'Habilitaciones, patentes, capacitaciones, llave de negocio.'},
+ {k:'cir',  n:'Costo operativo adelantado',     c:'o', d:'Capital de trabajo para arrancar el proceso productivo.'}
+];
+var BIENES = [
+ {t:'Camioneta 4x4', k:'dep'},
+ {t:'Nivelación del terreno', k:'nod', p:'Forma con el suelo una unidad inseparable.'},
+ {t:'Capacitación del personal', k:'nom'},
+ {t:'Adelanto de salarios del primer ciclo', k:'cir'},
+ {t:'Galpón de 150 m²', k:'dep'},
+ {t:'Desmonte del lote', k:'nod'},
+ {t:'Alambrado perimetral', k:'dep', p:'Se deprecia: los postes y el alambre tienen vida útil y se reponen.'},
+ {t:'Habilitación municipal', k:'nom'},
+ {t:'Alimento para animales antes de producir', k:'cir'},
+ {t:'La tierra', k:'nod'},
+ {t:'Motosierra', k:'dep'},
+ {t:'Patente de un procedimiento', k:'nom'},
+ {t:'Combustible para arrancar la actividad', k:'cir'},
+ {t:'Equipo de medición de gases', k:'dep'},
+ {t:'Manual de procedimientos y su elaboración', k:'nom'},
+ {t:'Contrapiso y platea de hormigón', k:'nod', p:'Forma una unidad inseparable con el suelo.'}
+];
+var D2 = {sel:'dep', hechos:{}, ok:0, mal:0};
+function demoActivos(c){
+  c.innerHTML = '';
+  var w = E('div');
+
+  var tipos = E('div','c4');
+  TIPOS.forEach(function(t){
+    var b = E('button','bt'+(D2.sel===t.k?' on':''));
+    b.type='button';
+    b.style.textAlign='left'; b.style.padding='calc(var(--u)*.7) calc(var(--u)*.9)';
+    b.innerHTML = '<span class="chip '+t.c+'">'+esc(t.n.split(' ')[0])+'</span>'+
+      '<div style="font-size:calc(var(--u)*1);font-weight:750;margin-top:calc(var(--u)*.35)">'+esc(t.n)+'</div>'+
+      '<div style="font-size:calc(var(--u)*.82);font-weight:500;opacity:.75;margin-top:calc(var(--u)*.2)">'+esc(t.d)+'</div>';
+    b.onclick = function(){ D2.sel = t.k; demoActivos(c); };
+    tipos.appendChild(b);
+  });
+  w.appendChild(tipos);
+
+  var elegido = TIPOS.filter(function(t){ return t.k===D2.sel; })[0];
+  var ind = E('p','sm'); ind.style.marginTop='calc(var(--u)*1)';
+  ind.innerHTML = 'Toquen los bienes que son <strong style="color:var(--ac)">'+esc(elegido.n.toLowerCase())+'</strong>.';
+  w.appendChild(ind);
+
+  var bienes = E('div','bienes');
+  BIENES.forEach(function(b, i){
+    var st = D2.hechos[i];
+    var el = E('button','bien'+(st ? ' '+st : ''));
+    el.type='button'; el.textContent = b.t;
+    if(st) el.classList.add('hecho');
+    el.onclick = function(){
+      if(D2.hechos[i]) return;
+      var bien = (b.k === D2.sel);
+      D2.hechos[i] = bien ? 'ok' : 'mal';
+      if(bien){ D2.ok++; avisoD('Correcto.'); }
+      else { D2.mal++;
+        var real = TIPOS.filter(function(t){ return t.k===b.k; })[0];
+        avisoD((b.p ? b.p+' ' : '') + 'Va en: ' + real.n + '.'); }
+      demoActivos(c);
+    };
+    bienes.appendChild(el);
+  });
+  w.appendChild(bienes);
+
+  var pie = E('div','wrapb');
+  var m = E('div','box'); m.style.flex='1'; m.style.minWidth='240px';
+  var faltan = BIENES.length - Object.keys(D2.hechos).length;
+  m.innerHTML = '<p><strong style="color:var(--verde-l)">'+D2.ok+'</strong> bien · '+
+    '<strong style="color:var(--coral)">'+D2.mal+'</strong> mal · '+faltan+' sin clasificar</p>';
+  pie.appendChild(m);
+  var br = E('button','bt','Empezar de nuevo'); br.type='button';
+  br.onclick = function(){ D2 = {sel:'dep', hechos:{}, ok:0, mal:0}; demoActivos(c); };
+  pie.appendChild(br);
+  w.appendChild(pie);
+
+  if(faltan === 0){
+    var fin = E('div','box ' + (D2.mal===0 ? 'ok' : 'warn'));
+    fin.style.marginTop='calc(var(--u)*.9)';
+    fin.innerHTML = D2.mal===0
+      ? '<p>Los dieciséis bien clasificados. Eso es exactamente lo que hay que hacer con cada componente de la inversión del proyecto de ustedes.</p>'
+      : '<p>Los que más cuestan son los que quedan incorporados al suelo y los que no se pueden tocar. Revisen esos dos casos en las componentes de inversión de su proyecto.</p>';
+    w.appendChild(fin);
+  }
+  c.appendChild(w);
+}
+
+/* ===============================================================
+   DEMO 3 · PRIVADO CONTRA PÚBLICO
+   =============================================================== */
+var D3 = {I0:120000, ope:26000, H:10, tasa:0.21, precio:9, cant:4200, salv:14000};
+function demoPubPriv(c){
+  c.innerHTML = '';
+  var w = E('div');
+
+  var top = E('div'); top.style.display='flex'; top.style.gap='calc(var(--u)*1.4)';
+  top.style.flexWrap='wrap'; top.style.alignItems='flex-end';
+  function campo(lab, min, max, paso, get, set, fmtv){
+    var d = E('div'); d.style.flex='1'; d.style.minWidth='240px';
+    var fila = E('div'); fila.style.display='flex'; fila.style.justifyContent='space-between';
+    fila.style.alignItems='baseline'; fila.style.gap='10px';
+    fila.appendChild(E('label','fl', esc(lab)));
+    var val = E('span'); val.style.fontWeight='800'; val.style.color='var(--ac)';
+    val.style.fontVariantNumeric='tabular-nums'; val.style.fontSize='calc(var(--u)*1.05)';
+    val.textContent = fmtv(get()); fila.appendChild(val);
+    d.appendChild(fila);
+    var r = E('input'); r.type='range'; r.min=min; r.max=max; r.step=paso; r.value=get();
+    r.addEventListener('input', function(){ set(parseFloat(r.value)); val.textContent=fmtv(get()); pintar(); });
+    d.appendChild(r);
+    return d;
+  }
+  top.appendChild(campo('Precio del servicio', 0, 20, 0.5,
+    function(){ return D3.precio; }, function(v){ D3.precio=v; },
+    function(v){ return 'U$S '+fmt(v,2); }));
+  top.appendChild(campo('Tasa de descuento (TD)', 5, 40, 0.5,
+    function(){ return D3.tasa*100; }, function(v){ D3.tasa=v/100; },
+    function(v){ return fmt(v,1)+' %'; }));
+  w.appendChild(top);
+
+  var salida = E('div'); salida.style.marginTop='calc(var(--u)*1.2)';
+  w.appendChild(salida);
+
+  function pintar(){
+    salida.innerHTML = '';
+    var priv = {I0:D3.I0, ope:D3.ope, H:D3.H, tasa:D3.tasa, salv:D3.salv, ing:D3.precio*D3.cant};
+    var pub  = {I0:D3.I0, ope:D3.ope, H:D3.H, tasa:D3.tasa, salv:D3.salv, ing:0};
+    var Rp = indicDe(priv), Ru = indicDe(pub);
+
+    var cols = E('div','cols');
+
+    var a = E('div','card');
+    a.appendChild(E('span','et','Proyecto privado · con ingresos directos'));
+    a.appendChild(E('h3',null,'El usuario paga por el servicio'));
+    a.appendChild(E('p','sm','Se cobran '+fmt(D3.cant)+' unidades al año a U$S '+fmt(D3.precio,2)+
+      ', es decir '+fmtM(priv.ing)+' por período.'));
+    a.appendChild(miniAcum(priv, '#22c97f'));
+    var ka = E('div','c3'); ka.style.marginTop='calc(var(--u)*.8)';
+    ka.appendChild(dato('VAN', fmtM(Rp.VAN), null, Rp.VAN>=0?'var(--verde-l)':'var(--coral)'));
+    ka.appendChild(dato('TIR', Rp.TIR==null?'no existe':fmt(Rp.TIR*100,1)+' %', null,
+      Rp.TIR==null?'var(--tx3)':(Rp.TIR>=D3.tasa?'var(--verde-l)':'var(--coral)')));
+    ka.appendChild(dato('RBC', Rp.RBC==null?'—':fmt(Rp.RBC,2), null,
+      (Rp.RBC!=null&&Rp.RBC>=1)?'var(--verde-l)':'var(--coral)'));
+    a.appendChild(ka);
+    cols.appendChild(a);
+
+    var b = E('div','card c');
+    b.appendChild(E('span','et','Proyecto público · sin ingresos directos'));
+    b.appendChild(E('h3',null,'El acceso es libre y nadie paga'));
+    b.appendChild(E('p','sm','El mismo proyecto, la misma inversión y el mismo costo operativo. La única diferencia es que la componente positiva es cero.'));
+    b.appendChild(miniAcum(pub, '#39b6d8'));
+    var kb = E('div','c3'); kb.style.marginTop='calc(var(--u)*.8)';
+    kb.appendChild(dato('VAC', fmtM(Ru.VAC), null, 'var(--celeste)'));
+    kb.appendChild(dato('VAN', 'no corresponde', null, 'var(--tx3)'));
+    kb.appendChild(dato('TIR', 'no existe', null, 'var(--tx3)'));
+    b.appendChild(kb);
+    cols.appendChild(b);
+    salida.appendChild(cols);
+
+    var msg = E('div','box info'); msg.style.marginTop='calc(var(--u)*1)';
+    if(D3.precio === 0){
+      msg.className = 'box warn';
+      msg.innerHTML = '<p>Con el precio en cero los dos proyectos son <strong>el mismo</strong>: la línea de la izquierda y la de la derecha bajan igual y nunca cruzan el cero. Si no entra dinero, no hay VAN ni TIR que calcular.</p>';
+    } else {
+      msg.innerHTML = '<p>La línea verde puede cruzar el cero: ahí está el recupero, y la tasa que la lleva justo a cero es la TIR. '+
+        'La línea celeste <strong>nunca cruza</strong>, porque todos sus períodos son negativos. '+
+        'Por eso en un proyecto público el VAC no es un premio consuelo: es el único indicador posible, y sirve para comparar alternativas que produzcan el mismo resultado.</p>';
+    }
+    salida.appendChild(msg);
+  }
+  pintar();
+  c.appendChild(w);
+}
+
+/* ---------- registro ---------- */
+var DEMOS = {van:demoVan, activos:demoActivos, pubpriv:demoPubPriv};
+</script>
+<script>
+"use strict";
+/* ===============================================================
+   ESQUEMAS DIBUJADOS
+   Cada concepto central se explica con un dibujo, no con una lista.
+   Se redibujan al cambiar de tema porque pinta() rehace la pantalla.
+   =============================================================== */
+
+var C = {
+  verde:'#22c97f', verdeO:'#00a05a', aqua:'#12b5a0', celeste:'#39b6d8',
+  oro:'#eda100', violeta:'#8a79e0', coral:'#ef6a4b'
+};
+function cFondo(){ return claro() ? '#ffffff' : '#0e2019'; }
+function cSuave(){ return claro() ? 'rgba(16,36,29,.05)' : 'rgba(255,255,255,.05)'; }
+function cBorde(){ return claro() ? 'rgba(16,36,29,.20)' : 'rgba(255,255,255,.20)'; }
+
+function lienzo(W, H){
+  var s = sv('svg', {viewBox:'0 0 '+W+' '+H, class:'esq', preserveAspectRatio:'xMidYMid meet'});
+  var defs = sv('defs');
+  ['verde','celeste','coral','oro','violeta','aqua'].forEach(function(k){
+    var m = sv('marker', {id:'fl-'+k, viewBox:'0 0 10 10', refX:'9', refY:'5',
+      markerWidth:'6', markerHeight:'6', orient:'auto-start-reverse'});
+    m.appendChild(sv('path', {d:'M 0 0 L 10 5 L 0 10 z', fill:C[k]}));
+    defs.appendChild(m);
+  });
+  var gr = sv('marker', {id:'fl-gris', viewBox:'0 0 10 10', refX:'9', refY:'5',
+    markerWidth:'6', markerHeight:'6', orient:'auto-start-reverse'});
+  gr.appendChild(sv('path', {d:'M 0 0 L 10 5 L 0 10 z', fill:cTx3()}));
+  defs.appendChild(gr);
+  s.appendChild(defs);
+  return s;
+}
+function txt(s, x, y, t, o){
+  o = o || {};
+  var e = sv('text', {x:x, y:y, 'font-size':o.s || 17, fill:o.c || cTx(),
+    'text-anchor':o.a || 'middle', 'font-weight':o.w || '600', 'font-family':FFD,
+    'letter-spacing':o.ls || 0});
+  e.textContent = t; s.appendChild(e); return e;
+}
+function multi(s, x, y, lineas, o){
+  o = o || {};
+  var lh = o.lh || ((o.s || 17) * 1.32);
+  lineas.forEach(function(l, i){ txt(s, x, y + i*lh, l, o); });
+}
+function caja(s, x, y, w, h, o){
+  o = o || {};
+  var r = sv('rect', {x:x, y:y, width:w, height:h, rx:o.r == null ? 14 : o.r,
+    fill: o.fill || cSuave(), stroke: o.stroke || cBorde(), 'stroke-width': o.sw || 1.5});
+  if(o.dash) r.setAttribute('stroke-dasharray', o.dash);
+  s.appendChild(r); return r;
+}
+function flecha(s, x1, y1, x2, y2, col, o){
+  o = o || {};
+  var l = sv(o.curva ? 'path' : 'line', o.curva
+    ? {d:o.curva, fill:'none'}
+    : {x1:x1, y1:y1, x2:x2, y2:y2});
+  l.setAttribute('stroke', C[col] || col);
+  l.setAttribute('stroke-width', o.sw || 2.4);
+  l.setAttribute('stroke-linecap', 'round');
+  if(o.dash) l.setAttribute('stroke-dasharray', o.dash);
+  if(o.marker !== false) l.setAttribute('marker-end', 'url(#fl-' + (C[col] ? col : 'gris') + ')');
+  s.appendChild(l); return l;
+}
+function tono(col, a){ return 'color-mix(in srgb, ' + col + ' ' + a + '%, transparent)'; }
+
+/* ---------------------------------------------------------------
+   1 · EL FLUJO DE FONDOS EN EL TIEMPO
+   --------------------------------------------------------------- */
+function esqFlujo(){
+  var W = 1280, H = 450, y0 = 232, x0 = 215, x1 = 1150;
+  var s = lienzo(W, H);
+  var n = 7, paso = (x1 - x0) / (n - 1);
+  function X(i){ return x0 + i * paso; }
+
+  /* eje */
+  s.appendChild(sv('line', {x1:145, y1:y0, x2:1160, y2:y0, stroke:cTx3(), 'stroke-width':2.2}));
+  flecha(s, 1156, y0, 1196, y0, cTx3(), {sw:2.2});
+  txt(s, 1270, y0+6, 'tiempo', {a:'end', s:15, c:cTx3(), w:'700'});
+
+  /* ingresos */
+  for(var i = 1; i < n; i++){
+    caja(s, X(i)-58, y0-104, 116, 42, {fill:tono(C.verde,13), stroke:tono(C.verde,48), r:10});
+    txt(s, X(i), y0-78, 'ingresos', {s:14, w:'750', c:C.verde});
+    flecha(s, X(i), y0-16, X(i), y0-56, 'verde', {sw:2.8});
+  }
+
+  /* operación */
+  for(i = 1; i < n; i++){
+    flecha(s, X(i), y0+16, X(i), y0+56, 'oro', {sw:2.6});
+    caja(s, X(i)-58, y0+62, 116, 40, {fill:tono(C.oro,12), stroke:tono(C.oro,45), r:10});
+    txt(s, X(i), y0+87, 'operación', {s:14, w:'750', c:C.oro});
+  }
+
+  /* inversión en el período 0 */
+  flecha(s, X(0), y0+16, X(0), y0+56, 'coral', {sw:3.6});
+  caja(s, X(0)-88, y0+62, 176, 66, {fill:tono(C.coral,14), stroke:tono(C.coral,55), r:12});
+  multi(s, X(0), y0+90, ['COSTOS DE','INVERSIÓN'], {s:15, w:'800', c:C.coral, lh:21});
+
+  /* salvamento */
+  caja(s, X(n-1)-88, y0-176, 176, 52, {fill:tono(C.celeste,13), stroke:tono(C.celeste,50), r:12});
+  multi(s, X(n-1), y0-152, ['VALOR DE','SALVAMENTO'], {s:13.5, w:'800', c:C.celeste, lh:18});
+  flecha(s, X(n-1), y0-122, X(n-1), y0-108, 'celeste', {sw:2.4});
+
+  /* los períodos, encima de la línea y con el fondo recortado */
+  var etq = ['0','1','2','3','4','…','H'];
+  for(i = 0; i < n; i++){
+    var esCero = (i === 0);
+    s.appendChild(sv('rect', {x:X(i)-17, y:y0-13, width:34, height:26, rx:8,
+      fill:cFondo(), stroke: esCero ? C.oro : cTx3(), 'stroke-width': esCero ? 2 : 1.4}));
+    txt(s, X(i), y0+6, etq[i], {s:15.5, w:'800', c: esCero ? C.oro : cTx3()});
+  }
+
+  /* rótulos de lado */
+  txt(s, 40, y0-78, 'entra', {a:'start', s:16, w:'800', c:C.verde});
+  txt(s, 40, y0+95, 'sale',  {a:'start', s:16, w:'800', c:C.coral});
+
+  /* el FFN */
+  caja(s, 145, H-60, 1051, 46, {fill:cSuave(), stroke:cBorde(), r:12, dash:'7 5'});
+  txt(s, 670, H-31, 'FLUJO DE FONDOS NETO  =  suma algebraica de cada columna',
+      {s:16.5, w:'800', c:cTx()});
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   2 · LA BIFURCACIÓN: CON INGRESOS O SIN INGRESOS
+   --------------------------------------------------------------- */
+function esqTipos(){
+  var W = 1200, H = 400;
+  var s = lienzo(W, H);
+
+  caja(s, 424, 18, 352, 66, {fill:cSuave(), stroke:cBorde(), r:16});
+  txt(s, 600, 58, '¿El proyecto tiene ingresos directos?', {s:19, w:'800'});
+
+  /* ramas */
+  flecha(s, 560, 88, 300, 136, 'verde', {sw:2.6});
+  flecha(s, 640, 88, 900, 136, 'celeste', {sw:2.6});
+  txt(s, 396, 116, 'SÍ', {s:20, w:'800', c:C.verde});
+  txt(s, 812, 116, 'NO', {s:20, w:'800', c:C.celeste});
+
+  /* rama privada */
+  caja(s, 66, 142, 468, 214, {fill:tono(C.verde,9), stroke:tono(C.verde,45), r:18});
+  txt(s, 300, 176, 'PROYECTO PRIVADO', {s:16, w:'800', c:C.verde, ls:'.12em'});
+  txt(s, 300, 208, 'Alguien paga por el bien o el servicio', {s:16, c:cTx2s()});
+  multi(s, 300, 238, ['Carne de llama · pacú · yacón · granza de PET',
+                      'energía solar · captación de CO₂'], {s:14.5, c:cTx3(), lh:21});
+  var xs = [126, 246, 366], nm = ['VAN','TIR','RBC'];
+  for(var i=0;i<3;i++){
+    caja(s, xs[i], 288, 108, 46, {fill:tono(C.verde,20), stroke:tono(C.verde,60), r:11});
+    txt(s, xs[i]+54, 317, nm[i], {s:19, w:'800', c:C.verde});
+  }
+
+  /* rama pública */
+  caja(s, 666, 142, 468, 214, {fill:tono(C.celeste,9), stroke:tono(C.celeste,45), r:18});
+  txt(s, 900, 176, 'PROYECTO PÚBLICO', {s:16, w:'800', c:C.celeste, ls:'.12em'});
+  txt(s, 900, 208, 'Nadie paga: el financiamiento es indirecto', {s:16, c:cTx2s()});
+  multi(s, 900, 238, ['Arbolado urbano · saneamiento · conservación',
+                      'restauración · espacios públicos'], {s:14.5, c:cTx3(), lh:21});
+  caja(s, 786, 288, 228, 46, {fill:tono(C.celeste,20), stroke:tono(C.celeste,60), r:11});
+  txt(s, 900, 317, 'VAC', {s:19, w:'800', c:C.celeste});
+  return s;
+}
+function cTx2s(){ return claro() ? '#3a534a' : '#bdd3ca'; }
+
+/* ---------------------------------------------------------------
+   3 · DE LOS RECURSOS DEL F02 AL COSTO TOTAL
+   --------------------------------------------------------------- */
+function esqValoracion(){
+  var W = 1200, H = 300;
+  var s = lienzo(W, H);
+  var pasos = [
+    {t:['RECURSO','de la tarea'], sub:'viene del F02', c:C.aqua},
+    {t:['× PRECIO','UNITARIO'], sub:'estudio de mercado', c:C.oro},
+    {t:['COSTO DEL','RECURSO'], sub:'precio × cantidad', c:C.oro},
+    {t:['COSTO DE LA','COMPONENTE'], sub:'suma de sus tareas', c:C.verde},
+    {t:['COSTO TOTAL','DE INVERSIÓN'], sub:'suma de componentes', c:C.verde}
+  ];
+  var w = 194, gap = 54, y = 74, h = 116;
+  var x0 = (W - (pasos.length*w + (pasos.length-1)*gap)) / 2;
+  pasos.forEach(function(p, i){
+    var x = x0 + i*(w+gap);
+    caja(s, x, y, w, h, {fill:tono(p.c, 11), stroke:tono(p.c, 50), r:16});
+    multi(s, x+w/2, y+48, p.t, {s:16.5, w:'800', c:p.c, lh:23});
+    txt(s, x+w/2, y+96, p.sub, {s:13, c:cTx3(), w:'600'});
+    if(i < pasos.length-1) flecha(s, x+w+8, y+h/2, x+w+gap-8, y+h/2, i<2?'oro':'verde', {sw:2.6});
+  });
+  caja(s, x0, y+h+34, pasos.length*w + (pasos.length-1)*gap, 46,
+    {fill:cSuave(), stroke:cBorde(), r:12, dash:'7 5'});
+  txt(s, W/2, y+h+63, 'Lo mismo, tarea por tarea, para cada una de las acciones de la etapa',
+    {s:15.5, w:'700', c:cTx()});
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   4 · LOS CUATRO TIPOS DE ACTIVO EN DOS EJES
+   --------------------------------------------------------------- */
+function esqActivos(){
+  var W = 1200, H = 396;
+  var s = lienzo(W, H);
+  var x0 = 210, y0 = 56, cw = 442, ch = 148, gap = 22;
+
+  /* rótulos de eje */
+  txt(s, 100, y0+ch/2, 'SE', {s:15, w:'800', c:cTx3(), a:'middle', ls:'.1em'});
+  txt(s, 100, y0+ch/2+20, 'DESVALORIZA', {s:15, w:'800', c:cTx3(), ls:'.1em'});
+  txt(s, 100, y0+ch+gap+ch/2, 'NO SE', {s:15, w:'800', c:cTx3(), ls:'.1em'});
+  txt(s, 100, y0+ch+gap+ch/2+20, 'DESVALORIZA', {s:15, w:'800', c:cTx3(), ls:'.1em'});
+  txt(s, x0+cw/2, 36, 'TANGIBLE', {s:15, w:'800', c:cTx3(), ls:'.14em'});
+  txt(s, x0+cw+gap+cw/2, 36, 'INTANGIBLE O CIRCULANTE', {s:15, w:'800', c:cTx3(), ls:'.14em'});
+
+  var cel = [
+    {x:0, y:0, c:C.verde,   t:'Bien de capital depreciable',
+     ej:['vehículos · galpón · alambrado','motosierra · computadoras · mobiliario'],
+     n:'vida útil mayor a dos años'},
+    {x:1, y:0, c:C.violeta, t:'Activo nominal',
+     ej:['habilitaciones · patentes','capacitaciones · llave de negocio'],
+     n:'intangible, sin valor de reventa'},
+    {x:0, y:1, c:C.aqua,    t:'Bien de capital no depreciable',
+     ej:['la tierra · desmonte','nivelación · platea de hormigón'],
+     n:'unidad inseparable con el suelo'},
+    {x:1, y:1, c:C.oro,     t:'Costo operativo adelantado',
+     ej:['adelantos de salarios · combustible','alimento para animales'],
+     n:'capital de trabajo del arranque'}
+  ];
+  cel.forEach(function(k){
+    var x = x0 + k.x*(cw+gap), y = y0 + k.y*(ch+gap);
+    caja(s, x, y, cw, ch, {fill:tono(k.c, 10), stroke:tono(k.c, 48), r:18});
+    txt(s, x+cw/2, y+42, k.t, {s:18.5, w:'800', c:k.c});
+    txt(s, x+cw/2, y+68, k.n, {s:14, c:cTx3(), w:'600'});
+    multi(s, x+cw/2, y+100, k.ej, {s:14.5, c:cTx2s(), lh:21});
+  });
+
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   5 · EL DOBLE CONTEO
+   --------------------------------------------------------------- */
+function esqDoble(){
+  var W = 1200, H = 360;
+  var s = lienzo(W, H);
+
+  /* fila de arriba: mal */
+  caja(s, 40, 20, 1120, 146, {fill:tono(C.coral,8), stroke:tono(C.coral,45), r:18});
+  txt(s, 96, 54, 'MAL', {s:17, w:'800', c:C.coral, a:'start', ls:'.14em'});
+  caja(s, 96, 70, 250, 74, {fill:tono(C.coral,16), stroke:tono(C.coral,55), r:12});
+  multi(s, 221, 100, ['T0 · inversión', 'Tractor  U$S 48.000'], {s:15.5, w:'750', c:C.coral, lh:22});
+  var xs = [420, 590, 760, 930];
+  xs.forEach(function(x, i){
+    caja(s, x, 70, 150, 74, {fill:tono(C.coral,16), stroke:tono(C.coral,55), r:12});
+    multi(s, x+75, 100, ['T'+(i+1), 'Tractor  48.000'], {s:14.5, w:'750', c:C.coral, lh:21});
+    /* tachado */
+    s.appendChild(sv('line', {x1:x+12, y1:140, x2:x+138, y2:76,
+      stroke:C.coral, 'stroke-width':2.6, 'stroke-linecap':'round', opacity:.85}));
+  });
+  txt(s, 1108, 112, '…', {s:26, w:'800', c:C.coral});
+
+  /* fila de abajo: bien */
+  caja(s, 40, 186, 1120, 146, {fill:tono(C.verde,8), stroke:tono(C.verde,45), r:18});
+  txt(s, 96, 220, 'BIEN', {s:17, w:'800', c:C.verde, a:'start', ls:'.14em'});
+  caja(s, 96, 236, 250, 74, {fill:tono(C.verde,16), stroke:tono(C.verde,55), r:12});
+  multi(s, 221, 266, ['T0 · inversión', 'Tractor  U$S 48.000'], {s:15.5, w:'750', c:C.verde, lh:22});
+  xs.forEach(function(x, i){
+    caja(s, x, 236, 150, 74, {fill:tono(C.verde,16), stroke:tono(C.verde,55), r:12});
+    multi(s, x+75, 266, ['T'+(i+1), 'gasoil, filtros,', 'service  1.900'],
+      {s:13.5, w:'750', c:C.verde, lh:18});
+  });
+  txt(s, 1108, 278, '…', {s:26, w:'800', c:C.verde});
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   6 · LA TMAR SE APILA
+   --------------------------------------------------------------- */
+function esqTmar(){
+  var W = 1200, H = 360;
+  var s = lienzo(W, H);
+  var capas = [
+    {t:'Prima por riesgo del proyecto', v:'5 a 15 %', f:'sector, tamaño e incertidumbre', c:C.coral},
+    {t:'Riesgo país', v:'8 a 12 %', f:'índice de JP Morgan para la Argentina', c:C.oro},
+    {t:'Tasa libre de riesgo', v:'3 a 5 %', f:'bonos del Tesoro de los Estados Unidos', c:C.celeste}
+  ];
+  var x = 96, w = 720, h = 76, gap = 12, y = 28;
+  capas.forEach(function(k, i){
+    var yy = y + i*(h+gap);
+    caja(s, x, yy, w, h, {fill:tono(k.c, 13), stroke:tono(k.c, 50), r:14});
+    txt(s, x+28, yy+34, k.t, {a:'start', s:18, w:'800', c:k.c});
+    txt(s, x+28, yy+58, k.f, {a:'start', s:14, c:cTx3(), w:'600'});
+    txt(s, x+w-28, yy+46, k.v, {a:'end', s:22, w:'800', c:k.c});
+  });
+  /* llave y resultado */
+  var yT = y + 3*(h+gap) - gap;
+  s.appendChild(sv('line', {x1:x, y1:yT+10, x2:x+w, y2:yT+10, stroke:cBorde(), 'stroke-width':2}));
+  txt(s, x+28, yT+46, 'TMAR', {a:'start', s:24, w:'800', c:cTx()});
+  txt(s, x+w-28, yT+48, '16 a 32 %', {a:'end', s:28, w:'800', c:C.verde});
+
+  caja(s, 872, 28, 232, 3*h+2*gap, {fill:cSuave(), stroke:cBorde(), r:16, dash:'7 5'});
+  multi(s, 988, 92, ['La moneda', 'manda'], {s:19, w:'800', c:cTx(), lh:26});
+  multi(s, 988, 152, ['En dólares se usan', 'estos valores.', '', 'En pesos hay que',
+                      'sumar la inflación', 'esperada.'],
+    {s:14.5, c:cTx3(), lh:21, w:'600'});
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   7 · EL HORIZONTE
+   --------------------------------------------------------------- */
+function esqHorizonte(){
+  var W = 1200, H = 300;
+  var s = lienzo(W, H);
+  var x0 = 100, x1 = 1100, y = 150;
+  s.appendChild(sv('line', {x1:x0, y1:y, x2:x1, y2:y, stroke:cTx3(), 'stroke-width':2.2}));
+  var n = 12, paso = (x1-x0)/n;
+  for(var i=0;i<=n;i++){
+    s.appendChild(sv('line', {x1:x0+i*paso, y1:y-7, x2:x0+i*paso, y2:y+7,
+      stroke:cTx3(), 'stroke-width':1.6}));
+    if(i%2===0) txt(s, x0+i*paso, y+30, String(i), {s:14, c:cTx3(), w:'700'});
+  }
+  /* recupero */
+  var xR = x0 + 5*paso;
+  s.appendChild(sv('line', {x1:xR, y1:y-92, x2:xR, y2:y+12, stroke:C.verde,
+    'stroke-width':2.6, 'stroke-dasharray':'6 5'}));
+  caja(s, xR-136, y-134, 272, 44, {fill:tono(C.verde,15), stroke:tono(C.verde,55), r:12});
+  txt(s, xR, y-105, 'RECUPERO DE LA INVERSIÓN', {s:14.5, w:'800', c:C.verde});
+
+  /* franja +3 a +5 */
+  var xa = x0 + 8*paso, xb = x0 + 10*paso;
+  caja(s, xa, y-52, xb-xa, 40, {fill:tono(C.oro,16), stroke:tono(C.oro,55), r:10, dash:'6 4'});
+  txt(s, (xa+xb)/2, y-26, 'horizonte', {s:15, w:'800', c:C.oro});
+  flecha(s, xR+8, y-32, xa-8, y-32, 'oro', {sw:2.2, dash:'5 4'});
+  txt(s, (xR+xa)/2, y-42, 'más tres a cinco períodos', {s:13.5, c:C.oro, w:'700'});
+
+  /* advertencia */
+  caja(s, x0, y+56, x1-x0, 46, {fill:tono(C.coral,9), stroke:tono(C.coral,45), r:12});
+  txt(s, (x0+x1)/2, y+85,
+    'Estirar el horizonte hasta que el VAN cambie de signo no es una decisión técnica',
+    {s:16, w:'750', c:C.coral});
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   8 · POR QUÉ SE DESCUENTA
+   --------------------------------------------------------------- */
+function esqDescuento(){
+  var W = 1200, H = 330;
+  var s = lienzo(W, H);
+  var n = 9, x0 = 130, paso = 112, base = 258, hMax = 170;
+  var tasa = 0.22;
+  txt(s, 60, 46, 'El mismo peso, cada año más lejos, vale menos hoy',
+    {a:'start', s:19, w:'800', c:cTx()});
+  for(var t=0; t<n; t++){
+    var f = Math.pow(1+tasa, -t);
+    var h = hMax * f, x = x0 + t*paso;
+    /* fantasma del valor nominal */
+    caja(s, x, base-hMax, 76, hMax, {fill:'none', stroke:cBorde(), r:8, dash:'4 4', sw:1.2});
+    caja(s, x, base-h, 76, h, {fill:tono(C.celeste, 22), stroke:tono(C.celeste, 55), r:8});
+    txt(s, x+38, base+24, 'T'+t, {s:14.5, w:'800', c:cTx3()});
+    txt(s, x+38, base-h-10, Math.round(f*100)+'%', {s:13.5, w:'800', c:C.celeste});
+  }
+  s.appendChild(sv('line', {x1:x0-22, y1:base, x2:x0+n*paso-20, y2:base,
+    stroke:cTx3(), 'stroke-width':2}));
+  txt(s, W-60, 46, 'con una tasa del 22 %', {a:'end', s:15, w:'700', c:C.celeste});
+  txt(s, W/2, base+62,
+    'Por eso la tasa que elijan cambia el resultado: no es un detalle de cálculo, es una decisión',
+    {s:15.5, w:'700', c:cTx3()});
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   9 · VOLVER AL FORMULARIO 02
+   --------------------------------------------------------------- */
+function esqEdt(){
+  var W = 1200, H = 410;
+  var s = lienzo(W, H);
+  var niv = [
+    {t:'ACTIVIDAD', s:'lo que el proyecto hace', c:C.violeta, w:300},
+    {t:'ACCIONES', s:'verbo en infinitivo · cada una da una componente', c:C.aqua, w:560},
+    {t:'TAREAS', s:'lo que hay que hacer dentro de cada acción', c:C.celeste, w:800},
+    {t:'RECURSOS', s:'qué hace falta, con unidad y cantidad', c:C.verde, w:1040}
+  ];
+  var y = 28, h = 58, gap = 20;
+  niv.forEach(function(k, i){
+    var x = (W - k.w)/2, yy = y + i*(h+gap);
+    caja(s, x, yy, k.w, h, {fill:tono(k.c, 12), stroke:tono(k.c, 50), r:13});
+    txt(s, x+22, yy+36, k.t, {a:'start', s:17, w:'800', c:k.c});
+    txt(s, x+k.w-22, yy+36, k.s, {a:'end', s:14, c:cTx3(), w:'600'});
+    if(i < niv.length-1) flecha(s, W/2, yy+h+2, W/2, yy+h+gap-4, 'gris', {sw:2});
+  });
+  var yF = y + 4*(h+gap);
+  caja(s, 80, yF, W-160, 50, {fill:tono(C.oro,12), stroke:tono(C.oro,50), r:13});
+  txt(s, W/2, yF+31,
+    'El Formulario 03 empieza acá abajo: le pone precio a cada recurso. Si esta fila está floja, todo lo de arriba se cae',
+    {s:16, w:'750', c:C.oro});
+  return s;
+}
+
+/* ---------------------------------------------------------------
+   10 · MAPA DE INDICADORES
+   --------------------------------------------------------------- */
+function esqIndicadores(){
+  var W = 1200, H = 420;
+  var s = lienzo(W, H);
+  var izq = [
+    {n:'VAN', d:'Valor Actual Neto', q:'¿Genera valor por encima de lo que el inversor exige?', c:C.verde},
+    {n:'TIR', d:'Tasa Interna de Retorno', q:'¿A qué tasa rinde el proyecto?', c:C.verde},
+    {n:'RBC', d:'Relación Beneficio-Costo', q:'¿Cuánto devuelve cada peso de costo?', c:C.verde}
+  ];
+  var y = 70, h = 78, gap = 14;
+  txt(s, 300, 42, 'CON INGRESOS DIRECTOS', {s:16, w:'800', c:C.verde, ls:'.12em'});
+  izq.forEach(function(k, i){
+    var yy = y + i*(h+gap);
+    caja(s, 60, yy, 480, h, {fill:tono(k.c, 10), stroke:tono(k.c, 45), r:14});
+    txt(s, 92, yy+34, k.n, {a:'start', s:22, w:'800', c:k.c});
+    txt(s, 172, yy+33, k.d, {a:'start', s:15, c:cTx2s(), w:'700'});
+    txt(s, 92, yy+60, k.q, {a:'start', s:14, c:cTx3(), w:'600'});
+  });
+  txt(s, 900, 42, 'SIN INGRESOS DIRECTOS', {s:16, w:'800', c:C.celeste, ls:'.12em'});
+  caja(s, 660, y, 480, h, {fill:tono(C.celeste, 10), stroke:tono(C.celeste, 45), r:14});
+  txt(s, 692, y+34, 'VAC', {a:'start', s:22, w:'800', c:C.celeste});
+  txt(s, 772, y+33, 'Valor Actualizado de Costos', {a:'start', s:15, c:cTx2s(), w:'700'});
+  txt(s, 692, y+60, '¿Cuánto cuesta, traído a hoy, sostener el proyecto?', {a:'start', s:14, c:cTx3(), w:'600'});
+
+  caja(s, 660, y+h+gap, 480, 2*h+gap, {fill:cSuave(), stroke:cBorde(), r:14, dash:'7 5'});
+  txt(s, 900, y+h+gap+40, 'NO CORRESPONDEN', {s:16, w:'800', c:cTx3(), ls:'.1em'});
+  multi(s, 900, y+h+gap+76, ['Sin componente positiva no hay valor neto que calcular,',
+    'el flujo nunca cambia de signo y el numerador de la',
+    'relación beneficio-costo está vacío.'],
+    {s:14.5, c:cTx3(), lh:22, w:'600'});
+
+  caja(s, 60, y+3*(h+gap)+6, W-120, 48, {fill:tono(C.oro,11), stroke:tono(C.oro,48), r:13});
+  txt(s, W/2, y+3*(h+gap)+36,
+    '¿Y si ninguno alcanza? Hay más indicadores posibles, y elegir cuáles usar es parte del trabajo del equipo',
+    {s:16, w:'750', c:C.oro});
+  return s;
+}
+
+/* --------------------------------------------------------------- registro */
+var ESQ = {
+  flujo: esqFlujo, tipos: esqTipos, valoracion: esqValoracion, activos: esqActivos,
+  doble: esqDoble, tmar: esqTmar, horizonte: esqHorizonte, descuento: esqDescuento,
+  edt: esqEdt, indicadores: esqIndicadores
+};
+</script>
+<script>
+"use strict";
+/* ===============================================================
+   LAS DIAPOSITIVAS DE LA GUÍA 03
+   s sección · t título · k volanta · ac acento · tipo portada|sep|disc
+   html cuerpo · demo demostración · nota lo que dice el docente
+   Los esquemas se insertan con <div data-esq="nombre"></div>
+   =============================================================== */
+var DIAPOS_GUIA = [
+
+/* ============================================================ A · APERTURA */
+{s:'Apertura', t:'', tipo:'portada', ac:'var(--verde-l)',
+ html:'<div class="portada">'+
+  '<span class="kicker"><i></i>FEPAR 2026 · Guía 03</span>'+
+  '<h1>Estudios financieros<br>de proyectos</h1>'+
+  '<p class="lead">Flujos de fondos e indicadores. Le ponemos <strong>precio</strong> a todo lo que el Formulario 02 definió técnicamente, lo ordenamos <strong>en el tiempo</strong> y sacamos los <strong>indicadores</strong> que nos dicen si vale la pena seguir.</p>'+
+  '<div class="wrapb" style="margin-top:calc(var(--u)*2.4)">'+
+   '<span class="chip g">Formulario 03</span><span class="chip c">Guía 03</span>'+
+   '<span class="chip o">Entrega: 9 de octubre</span><span class="chip v">15 días hábiles</span></div>'+
+  '<p class="sm mt2">Avanzar con → o la barra espaciadora · Índice con I · Notas con N</p></div>',
+ nota:'Arranque de la clase. Recordarles que el F03 no inventa proyecto nuevo: toma lo que ya decidieron en el F02 y le pone precio. Si el F02 quedó flojo, el F03 lo va a mostrar.'},
+
+{s:'Apertura', t:'Dónde estamos parados', ac:'var(--verde-l)',
+ html:'<p class="lead">Identificamos el problema, elegimos una estrategia y la estudiamos desde lo técnico. Ahora entra lo financiero.</p>'+
+  '<div class="c4 mt2">'+
+   '<div class="card"><span class="et">Formulario 01</span><h3>El problema</h3><p class="sm mt">Causas, efectos, objetivo central y la estrategia elegida.</p></div>'+
+   '<div class="card a"><span class="et">Formulario 02</span><h3>Lo técnico</h3><p class="sm mt">Dimensionamiento, localización, acciones, tareas, componentes, tiempos y <strong>recursos</strong>.</p></div>'+
+   '<div class="card o"><span class="et">Formulario 03 · acá estamos</span><h3>Lo financiero</h3><p class="sm mt">Valoramos esos recursos a precio de mercado y armamos el flujo de fondos.</p></div>'+
+   '<div class="card v"><span class="et">Lo que viene</span><h3>Lo económico</h3><p class="sm mt">Valorar los beneficios sociales y los costos económicos. Todavía no.</p></div>'+
+  '</div>'+
+  '<div class="box warn mt2"><span class="et">La bisagra</span><p>La correcta determinación de los recursos en el F02 es el punto clave de todo esto. Si no prestaron atención a qué bienes y servicios necesita cada componente, la valoración y la evaluación financiera van a arrastrar el error.</p></div>',
+ nota:'Insistir en la cadena: problema → estrategia → técnica → finanzas. Y avisar que los equipos que hicieron el F02 con recursos vagos («materiales varios») van a sufrir acá.'},
+
+{s:'Apertura', t:'Qué nivel de precisión tenemos', ac:'var(--celeste)',
+ html:'<p class="lead">Estamos en la etapa de <strong>idea</strong>. La información es secundaria y el riesgo de equivocarnos en las estimaciones es alto.</p>'+
+  '<div class="cols mt2">'+
+   '<div class="box ok"><span class="et">Lo que sí hacemos</span>'+
+    '<ul class="li" style="margin-top:calc(var(--u)*.4)">'+
+     '<li>Buscar precios en fuentes secundarias de mercado.</li>'+
+     '<li>Adoptar supuestos <strong>y declararlos</strong>.</li>'+
+     '<li>Trabajar con flujos <strong>libres de riesgo</strong>: la componente operativa de un período se repite en los siguientes.</li>'+
+     '<li>Armar un <strong>flujo simplificado</strong>.</li>'+
+    '</ul></div>'+
+   '<div class="box no"><span class="et">Lo que todavía no hacemos</span>'+
+    '<ul class="li" style="margin-top:calc(var(--u)*.4)">'+
+     '<li>Separar ingresos gravables de no gravables.</li>'+
+     '<li>Separar costos deducibles de no deducibles.</li>'+
+     '<li>Incorporar los costos indirectos administrativos.</li>'+
+     '<li>Incorporar el riesgo de la inversión.</li>'+
+     '<li><strong>Recomendar que se invierta.</strong> Eso recién después de factibilidad.</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<p class="sm mt">El objetivo de toda la experiencia es aprender a formular un proyecto, no acertar el número.</p>',
+ nota:'Este es el permiso que les damos para avanzar sin datos perfectos, y al mismo tiempo el límite: nadie puede cerrar el F03 diciendo «conviene invertir».'},
+
+/* ============================================================ 00 · DE DÓNDE VENIMOS */
+{s:'De dónde venimos', t:'', tipo:'sep', ac:'var(--celeste)',
+ html:'<div class="sep"><div class="n">00</div><h1>De dónde venimos</h1>'+
+  '<p class="lead">Diez equipos, diez F02 entregados. El F03 no arranca de cero: arranca ahí.</p></div>',
+ nota:'Antes de entrar en la teoría, ubicarlos en su propio trabajo. La idea es que vean que el F03 es la continuación de lo que ya hicieron, no un formulario nuevo.'},
+
+{s:'De dónde venimos', t:'Del F02 al F03, sin saltos', ac:'var(--aqua)',
+ html:'<p class="lead">El F03 no agrega recursos nuevos. Toma los que el F02 ya definió y les pone <strong>precio</strong> y <strong>fecha</strong>.</p>'+
+  '<div class="c4 mt2">'+
+   '<div class="card a"><span class="et">Ya lo tienen del F02</span><h3>Acción y componente</h3><p class="sm mt">Qué se hace y qué queda hecho.</p></div>'+
+   '<div class="card a"><span class="et">Ya lo tienen del F02</span><h3>Recurso y cantidad</h3><p class="sm mt">Qué bienes y servicios hacen falta, con su unidad de medida.</p></div>'+
+   '<div class="card o"><span class="et">Lo que agrega el F03</span><h3>Precio unitario</h3><p class="sm mt">Cuánto cuesta cada unidad, con la fuente y la fecha.</p></div>'+
+   '<div class="card o"><span class="et">Lo que agrega el F03</span><h3>Período</h3><p class="sm mt">En qué momento del horizonte cae ese monto.</p></div>'+
+  '</div>'+
+  '<div class="box ok mt2"><span class="et">La buena noticia</span><p>La mitad del trabajo ya está hecha. Si el F02 tiene los recursos bien desagregados, el F03 es multiplicar y ubicar en el tiempo.</p></div>',
+ nota:'Marcar que las dos primeras tarjetas son trabajo terminado y las dos últimas son lo nuevo. Es la forma más rápida de que entiendan el alcance real del formulario.'},
+
+{s:'De dónde venimos', t:'Lo que ninguno cargó todavía', ac:'var(--oro)',
+ html:'<p class="lead">Revisamos los diez F02. En los diez, las columnas de <strong>precio</strong> y <strong>costo</strong> están vacías. Incluso los cuatro equipos que venden algo tienen sin declarar su precio de venta.</p>'+
+  '<div class="cols mt2">'+
+   '<div class="box ok"><span class="et">Lo que sí llegó bien</span>'+
+    '<ul class="li" style="margin-top:calc(var(--u)*.4)">'+
+     '<li>Los proyectos están dimensionados y localizados.</li>'+
+     '<li>Las acciones y componentes están identificadas.</li>'+
+     '<li>Varios equipos tienen los recursos cuantificados tarea por tarea, con unidad y cantidad.</li>'+
+    '</ul></div>'+
+   '<div class="box warn"><span class="et">Lo que falta y es el trabajo de hoy</span>'+
+    '<ul class="li" style="margin-top:calc(var(--u)*.4)">'+
+     '<li>Ningún precio unitario, en ningún equipo.</li>'+
+     '<li>Ningún precio de venta, en los que venden.</li>'+
+     '<li>Ninguna fuente de precios declarada.</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<p class="sm mt">No es un reproche: el F02 no pedía precios. Lo que conviene ver es que el trabajo que viene tiene un nombre concreto, y es salir a buscar precios de mercado con su fuente y su fecha.</p>',
+ nota:'Decirlo sin dramatismo. El punto es que sepan que el F03 se les va a ir en buscar precios, y que empiecen esta semana y no el día antes.'},
+
+{s:'El flujo de fondos', t:'', tipo:'sep', ac:'var(--aqua)',
+ html:'<div class="sep"><div class="n">01</div><h1>El flujo de fondos</h1>'+
+  '<p class="lead">Las entradas y las salidas de dinero, ordenadas en el tiempo.</p></div>',
+ nota:'Separador. Sirve para marcar el cambio de tema y para respirar.'},
+
+{s:'El flujo de fondos', t:'Dos componentes, dos orígenes', ac:'var(--aqua)',
+ html:'<p class="lead">El flujo de fondos permite <strong>conocer y representar los costos y beneficios</strong> del proyecto a lo largo de un horizonte temporal.</p>'+
+  '<div class="cols mt2">'+
+   '<div class="card a"><span class="et">Componente positiva</span><h3>Los ingresos</h3>'+
+    '<p class="mt">Lo que el cliente o el usuario le paga al proyecto por el bien o el servicio que recibe.</p>'+
+    '<p class="sm mt">Salen del <strong>estudio de mercado</strong> y del <strong>dimensionamiento</strong>: cantidad demandada que tenemos capacidad de producir, por su precio.</p></div>'+
+   '<div class="card r"><span class="et">Componente negativa</span><h3>Los costos</h3>'+
+    '<p class="mt">Lo que el proyecto paga por los bienes y servicios que necesita para producir.</p>'+
+    '<p class="sm mt">Salen del <strong>estudio técnico</strong>, que dice qué y cuánto hace falta, y del <strong>de mercado</strong>, que dice a cuánto.</p></div>'+
+  '</div>'+
+  '<div class="box info mt2"><p>Nos centramos en el <strong>flujo nominal o monetario</strong> —el dinero que entra y sale—, sin perder de vista que por detrás hay un <strong>flujo real</strong> de bienes y servicios.</p></div>',
+ nota:'Marcar que las dos componentes se alimentan de los mismos dos estudios, técnico y de mercado, cruzados distinto.'},
+
+{s:'El flujo de fondos', t:'Todo en una línea de tiempo', ac:'var(--aqua)',
+ html:'<div data-esq="flujo"></div>'+
+  '<div class="c3 mt"><div class="box"><span class="et">El período lo decide el equipo</span>'+
+   '<p class="sm">Día, mes, semestre o año, según cómo se representen mejor los flujos. Muchos toman el período fiscal; los de recursos naturales, el ciclo biológico de la especie.</p></div>'+
+   '<div class="box"><span class="et">El período 0</span>'+
+   '<p class="sm">Puede durar menos que el período considerado o abarcar varios. Si hay más de uno se los llama 01, 02, 03.</p></div>'+
+   '<div class="box"><span class="et">El valor de salvamento</span>'+
+   '<p class="sm">Lo que todavía valen los bienes al cierre del horizonte. Entra del lado positivo, en el último período.</p></div></div>',
+ nota:'Dejar la pantalla un rato. Este dibujo es el mapa de toda la unidad: si lo entienden, el resto es completar celdas.'},
+
+/* ============================================================ 02 · QUÉ TIPO */
+{s:'Qué tipo de proyecto', t:'', tipo:'sep', ac:'var(--celeste)',
+ html:'<div class="sep"><div class="n">02</div><h1>¿Qué tipo de proyecto tenemos?</h1>'+
+  '<p class="lead">De esta sola pregunta depende qué indicadores van a poder calcular.</p></div>',
+ nota:'Es la decisión que más consecuencias tiene en todo el formulario. Vale detenerse.'},
+
+{s:'Qué tipo de proyecto', t:'La pregunta que ordena todo', ac:'var(--celeste)',
+ html:'<div data-esq="tipos"></div>'+
+  '<div class="box warn mt"><span class="et">La regla</span><p>Se registra como componente positiva <strong>sólo lo que efectivamente entra en dinero</strong>. Lo que el proyecto entrega sin que nadie pague es <strong>beneficio económico</strong>, y eso se justifica, no se valora.</p></div>',
+ nota:'Pedirles que digan en voz alta de qué lado está el proyecto de su equipo. Si dudan, ahí está el trabajo de la clase. Los casos intermedios los vamos a ver cuando entremos en la evaluación económica.'},
+
+{s:'Qué tipo de proyecto', t:'Cómo cambia el flujo según el tipo', ac:'var(--celeste)', demo:'pubpriv',
+ html:'<p class="lead">El mismo proyecto, con y sin componente positiva. Miren qué se puede calcular en cada caso y qué no.</p>',
+ nota:'Demostración en vivo. Mover el precio con el deslizador y mostrar que en el caso público la línea del acumulado nunca cruza el cero, y por eso no existe una tasa que anule el flujo: no hay TIR.'},
+
+/* ============================================================ 03 · VALORAR LA INVERSIÓN */
+{s:'Valorar la inversión', t:'', tipo:'sep', ac:'var(--verde-l)',
+ html:'<div class="sep"><div class="n">03</div><h1>Valorar la inversión</h1>'+
+  '<p class="lead">De los recursos del Formulario 02 al costo de cada componente.</p></div>',
+ nota:''},
+
+{s:'Valorar la inversión', t:'Antes de poner un solo precio', ac:'var(--violeta)',
+ html:'<p class="lead">El Formulario 03 no arranca en una planilla de precios. Arranca <strong>volviendo al Formulario 02</strong>.</p>'+
+  '<div data-esq="edt"></div>',
+ nota:'Este es el pedido que más repetimos al corregir: vuelvan a mirar las acciones antes de valorar. Muchos equipos descubren acá que les falta una acción entera, o que una tarea no tiene recursos asignados.'},
+
+{s:'Valorar la inversión', t:'', tipo:'disc', ac:'var(--violeta)',
+ html:'<div class="disc">'+
+  '<span class="kicker"><i></i>Para discutir en el equipo</span>'+
+  '<h1>¿Están bien definidas<br>nuestras acciones?</h1>'+
+  '<div class="cols mt2">'+
+   '<div><h4>Lo que hay que revisar</h4>'+
+    '<ul class="li">'+
+     '<li>¿Cada acción de la inversión <strong>deja una componente</strong> concreta, o hay acciones que no producen nada?</li>'+
+     '<li>¿Todas las tareas tienen <strong>recursos asignados</strong>, con unidad y cantidad?</li>'+
+     '<li>¿Falta alguna acción para que la operación pueda funcionar? Todo bien de capital que usa la operación tiene que haber entrado por una acción de la inversión.</li>'+
+     '<li>¿Hay recursos escritos como <em>materiales varios</em> o <em>insumos</em>? Eso no se puede valorar.</li>'+
+    '</ul></div>'+
+   '<div><h4>Preguntas para el aula</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Qué pasa con el flujo de fondos si una acción de la inversión quedó afuera del F02?</li>'+
+     '<li>Si una tarea dice «contratar mano de obra» sin decir cuántos jornales, ¿de dónde sale el costo?</li>'+
+     '<li>¿Quién de ustedes puede defender, número en mano, la cantidad de cada recurso de su proyecto?</li>'+
+     '<li>¿Cuánto cambia el resultado si esa cantidad estaba mal estimada al doble?</li>'+
+    '</ul></div>'+
+  '</div></div>',
+ nota:'Darles cinco minutos reales de discusión en equipo. Es la mejor inversión de tiempo de toda la clase: lo que no se corrija acá se arrastra hasta los indicadores.'},
+
+{s:'Valorar la inversión', t:'Del recurso al costo total', ac:'var(--verde-l)',
+ html:'<div data-esq="valoracion"></div>'+
+  '<div class="box warn mt"><span class="et">La pregunta que ordena</span><p>¿Cuál es el capital que necesitamos para que el proyecto funcione? Un error acá tiene efectos en los tiempos de ejecución, en los costos, en el alcance y en el cumplimiento de las metas proyectadas.</p></div>',
+ nota:'Recalcar que la unidad de análisis es la componente, no la tarea ni el recurso suelto. El formulario pide el costo por componente.'},
+
+{s:'Valorar la inversión', t:'El ejemplo de la Guía', ac:'var(--verde-l)',
+ html:'<p class="lead">Tarea <strong>«Relevar y nivelar»</strong>, dentro de la acción <strong>«Construir galpón»</strong>.</p>'+
+  '<table class="t mt">'+
+   '<tr><th>Recurso necesario</th><th>Unidad</th><th class="n">Cantidad</th><th class="n">Precio unitario</th><th class="n">Costo</th></tr>'+
+   '<tr><td class="b">Topógrafo</td><td>horas</td><td class="n">2</td><td class="n">U$S 40,00</td><td class="n b">U$S 80,00</td></tr>'+
+   '<tr><td class="b">Mano de obra</td><td>jornal</td><td class="n">1</td><td class="n">U$S 30,00</td><td class="n b">U$S 30,00</td></tr>'+
+   '<tr><td class="b">Retroexcavadora</td><td>horas</td><td class="n">1</td><td class="n">U$S 65,00</td><td class="n b">U$S 65,00</td></tr>'+
+   '<tr><td class="b">Combustible</td><td>litros</td><td class="n">20</td><td class="n">U$S 1,00</td><td class="n b">U$S 20,00</td></tr>'+
+   '<tr class="tot"><td colspan="4">Costo de la tarea</td><td class="n">U$S 205,00</td></tr>'+
+  '</table>'+
+  '<div class="cols mt2">'+
+   '<div class="box"><p>Lo mismo con <strong>todas</strong> las tareas de la acción «Construir galpón».</p></div>'+
+   '<div class="box ok"><span class="et">Costo de la componente</span>'+
+    '<p>La componente <strong>«Galpón construido»</strong> cuesta <strong>U$S 1.887,00</strong>.</p></div>'+
+  '</div>',
+ nota:'Mostrar que el salto de 205 a 1.887 es la suma de todas las tareas de la acción. Preguntarles qué otras tareas tendría construir un galpón.'},
+
+{s:'Valorar la inversión', t:'Los cuatro tipos de activo', ac:'var(--verde-l)',
+ html:'<div data-esq="activos"></div>',
+ nota:'La confusión más común es entre depreciable y no depreciable. El eje vertical del dibujo la resuelve: lo que se adosa al suelo no pierde valor porque dura infinitos actos productivos.'},
+
+{s:'Valorar la inversión', t:'Clasifiquemos', ac:'var(--verde-l)', demo:'activos',
+ html:'<p class="lead">Elijan un tipo de activo y después toquen los bienes que le corresponden. Van a ver en el momento si acertaron.</p>',
+ nota:'Hacerlo con toda el aula en voz alta. Los que más discusión generan son la nivelación, la capacitación y los adelantos de salario.'},
+
+/* ============================================================ 04 · VALORAR LA OPERACIÓN */
+{s:'Valorar la operación', t:'', tipo:'sep', ac:'var(--oro)',
+ html:'<div class="sep"><div class="n">04</div><h1>Valorar la operación</h1>'+
+  '<p class="lead">Donde el proyecto empieza a resolver el problema, y donde está el error más caro del formulario.</p></div>',
+ nota:''},
+
+{s:'Valorar la operación', t:'El error que más se repite', ac:'var(--coral)',
+ html:'<div data-esq="doble"></div>'+
+  '<div class="box warn mt"><span class="et">Por qué importa tanto</span><p>Un bien de capital contabilizado dos veces infla el costo operativo de <strong>todos</strong> los períodos del horizonte. No es un error de un renglón: se multiplica por la cantidad de años y puede dar por inviable un proyecto que no lo es.</p></div>',
+ nota:'Este es el punto donde más se pierden los equipos. En el ejemplo de la Guía, la tableta y la balanza aparecen en la planilla con el precio unitario en blanco: no es un olvido, es la regla.'},
+
+{s:'Valorar la operación', t:'Los tres tipos de gasto operativo', ac:'var(--oro)',
+ html:'<div class="c3 mt">'+
+   '<div class="card"><span class="chip g">Funcionamiento</span><h3 class="mt">Gastos de funcionamiento</h3>'+
+    '<p class="sm mt">El circulante que consume el proceso productivo.</p>'+
+    '<p class="sm mt" style="color:var(--tx3)">Alimento, semilla, jornales, salarios, combustible, servicios, insumos.</p></div>'+
+   '<div class="card c"><span class="chip c">Mantenimiento</span><h3 class="mt">Mantenimiento del capital</h3>'+
+    '<p class="sm mt">Lo que conserva el capital ya instalado para que no se degrade.</p>'+
+    '<p class="sm mt" style="color:var(--tx3)">Mantenimiento de vehículos y de corrales, limpieza de galpones, parques y jardines.</p></div>'+
+   '<div class="card r"><span class="chip r">Comercialización</span><h3 class="mt">Gastos de comercialización</h3>'+
+    '<p class="sm mt">Lo que cuesta poner el producto en manos de quien lo recibe.</p>'+
+    '<p class="sm mt" style="color:var(--tx3)">Publicidad, salarios de venta, combustibles, servicios, fletes, envases de despacho.</p></div>'+
+  '</div>'+
+  '<div class="box info mt2"><span class="et">La mano de obra</span><p>Se consignan las <strong>horas efectivas trabajadas</strong> para lograr la componente de cada tarea. Si las tareas van una después de otra —secuenciación fin-comienzo— las puede hacer el mismo operario: no hace falta multiplicar el personal.</p></div>',
+ nota:'Preguntarles dónde pondrían el flete que lleva el producto al punto de venta. Es comercialización, y en muchos F02 quedó escondido dentro de la acción de producción.'},
+
+{s:'Valorar la operación', t:'El período manda', ac:'var(--oro)',
+ html:'<p class="lead">El costo de la componente operativa corresponde al <strong>período que el equipo definió</strong>, no a «un rato» ni a «una campaña».</p>'+
+  '<div class="box mt2"><span class="et">El ejemplo de la Guía</span>'+
+   '<p>En el establecimiento de producción helicícola el período operativo es un año. Entonces el costo de la componente «Caracoles adultos para comercialización recolectados», <strong>U$S 1.159,00</strong>, corresponde a un año entero de ejecución del proyecto.</p></div>'+
+  '<div class="box info mt"><span class="et">Flujo libre de riesgo</span>'+
+   '<p>Determinamos la componente de costos operativos para un período y la <strong>repetimos en los sucesivos</strong>, mientras no cambie nada en las acciones o las tareas descriptas. El análisis del riesgo queda para etapas avanzadas de la formulación.</p></div>'+
+  '<div class="box warn mt"><span class="et">Cuándo no se repite</span>'+
+   '<p>Cuando el proyecto tiene una materia prima finita —un pasivo ambiental que se agota en dos campañas—, repetir la componente completa en todos los períodos <strong>sobreestima el costo</strong>. Hay que declararlo en lugar de esconderlo detrás de la convención.</p></div>',
+ nota:'El caso de las piletas de contingencia es el ejemplo claro: el pasivo se agota, y los últimos años son sólo monitoreo.'},
+
+/* ============================================================ 05 · COMPONENTE POSITIVA */
+{s:'La componente positiva', t:'', tipo:'sep', ac:'var(--verde-l)',
+ html:'<div class="sep"><div class="n">05</div><h1>La componente positiva</h1>'+
+  '<p class="lead">Cuánto entra, cuándo entra, y por qué el ingreso no es lo mismo que el beneficio.</p></div>',
+ nota:''},
+
+{s:'La componente positiva', t:'Dos variables y un momento', ac:'var(--verde-l)',
+ html:'<h2 style="color:var(--ac)">Ingreso = cantidad producida por período × precio de mercado</h2>'+
+  '<div class="cols mt2">'+
+   '<div class="card"><span class="et">La cantidad</span><h3>¿Cuánto podemos producir y ofrecer?</h3>'+
+    '<p class="mt">Esta pregunta se responde desde los <strong>estudios técnicos</strong>. Depende de la capacidad instalada, en relación directa con la inversión realizada.</p>'+
+    '<p class="sm mt">El dimensionamiento óptimo que determinaron en el F02 es el que fija esta cifra. No se inventa acá.</p></div>'+
+   '<div class="card o"><span class="et">El precio</span><h3>¿A cuánto lo vamos a ofrecer?</h3>'+
+    '<p class="mt">El precio de mercado del bien o el servicio, relevado del <strong>estudio de mercado</strong>.</p>'+
+    '<p class="sm mt">Ojo con el canal: no es lo mismo el precio de góndola al público que el precio mayorista que paga el comercio.</p></div>'+
+  '</div>'+
+  '<div class="box info mt2"><span class="et">El momento</span><p>Hay que marcar con una cruz si el ingreso se registra en el <strong>tiempo 0</strong> o <strong>desde el tiempo 1 hasta el horizonte</strong>. Lo habitual es que se verifique con regularidad desde T1, generando un flujo periódico.</p></div>',
+ nota:'Preguntarles de dónde sacaron la cantidad. Si la sacaron de la demanda y no de la capacidad instalada, hay un problema: el proyecto no puede vender más de lo que produce.'},
+
+{s:'La componente positiva', t:'El ejemplo de la Guía', ac:'var(--verde-l)',
+ html:'<p class="lead">Una planta procesadora de <strong>granza de PET</strong> a partir de botellas plásticas.</p>'+
+  '<table class="t mt">'+
+   '<tr><th>Dato</th><th>Descripción</th></tr>'+
+   '<tr><td class="b">Producto</td><td>Granza de PET.</td></tr>'+
+   '<tr><td class="b">Período</td><td>Se considera un período de producción anual.</td></tr>'+
+   '<tr><td class="b">Capacidad de producción</td><td>4 toneladas de producto reciclado por día. La planta procesa PET durante 250 días al año.</td></tr>'+
+   '<tr><td class="b">Precio del kilogramo</td><td>U$S 2,50, de fuentes secundarias de mercado de granza a nivel nacional.</td></tr>'+
+   '<tr class="tot"><td>Ingreso bruto por período</td><td>2.500.000 U$S por año</td></tr>'+
+  '</table>'+
+  '<p class="sm mt">4 t/día × 250 días = 1.000 t al año = 1.000.000 kg × U$S 2,50 = U$S 2.500.000.</p>'+
+  '<div class="box ok mt"><p>Es una <strong>suma uniforme y periódica</strong>, porque estamos considerando inexistente el riesgo a lo largo de los años de producción.</p></div>',
+ nota:'Hacer la cuenta en el pizarrón con ellos. Sirve para que vean que el número grande sale de tres datos chicos y verificables.'},
+
+{s:'La componente positiva', t:'Cuando no hay ingresos directos', ac:'var(--celeste)',
+ html:'<p class="lead">Muchos de los proyectos que estamos formulando <strong>no tienen ingresos directos</strong>. Eso no los invalida: cambia lo que se puede calcular.</p>'+
+  '<div class="cols mt2">'+
+   '<div class="box"><span class="et">Qué se escribe</span>'+
+    '<p>En la tabla de componente positiva y en la justificación técnica y de mercado: <strong>NO APLICA</strong>.</p>'+
+    '<p class="sm mt">Dejarlo en blanco no sirve. Quien lo lea tiene que entender que no es un olvido.</p></div>'+
+   '<div class="box warn"><span class="et">Lo que igual hay que justificar</span>'+
+    '<p>Aunque no haya ingresos, el equipo <strong>tiene que justificar cómo dimensionó</strong> la cantidad de bienes o servicios que el proyecto le suministra a la sociedad.</p></div>'+
+  '</div>'+
+  '<div class="box info mt2"><p>Todos los proyectos de infraestructura pública —escuelas, caminos, hospitales, obras de saneamiento, obras energéticas— tienen su componente positiva en fondos del Estado, que se financian con los impuestos de empresas y familias. Y no olvidemos los proyectos ambientales, sociales y educativos financiados por ONG, fundaciones y organizaciones altruistas.</p></div>'+
+  '<p class="sm mt">La planilla, en estos casos, es mucho más sencilla: período por período, sólo salidas de dinero hasta el horizonte.</p>',
+ nota:'Es importante que no lo vivan como una carencia del proyecto. Un parque público no tiene ingresos y es un proyecto perfectamente válido.'},
+
+{s:'La componente positiva', t:'Ingreso no es beneficio económico', ac:'var(--violeta)',
+ html:'<div class="cols">'+
+   '<div class="card"><span class="et">Ingreso</span><h3>La plata que entra al proyecto</h3>'+
+    '<p class="mt">Toneladas de granza producidas en un período, por el precio de la tonelada en el mercado.</p>'+
+    '<p class="sm mt">Se mide en dinero y va al flujo de fondos.</p></div>'+
+   '<div class="card v"><span class="et">Beneficio económico</span><h3>El incremento del bienestar de la sociedad</h3>'+
+    '<p class="mt">La mejora en el bienestar de los consumidores de granza por tener acceso al producto dentro de sus procesos productivos, medida con los indicadores marshallianos o hicksianos que correspondan.</p>'+
+    '<p class="sm mt">No se valora todavía. Sí se justifica, siempre.</p></div>'+
+  '</div>'+
+  '<div class="box info mt2"><span class="et">Cuándo coinciden</span>'+
+   '<p>El ingreso en dinero coincide con el beneficio económico sólo bajo <strong>competencia perfecta</strong>, sin distorsiones ni externalidades, cuando la utilidad marginal del consumo iguala al costo marginal de producción. En el mundo real casi nunca coinciden.</p></div>'+
+  '<div class="box warn mt"><p>Un proyecto de arbolado urbano no tiene ingresos por ventas y sin embargo tiene beneficio económico: el incremento del bienestar de la población, financiado indirectamente con los impuestos y las tasas municipales.</p></div>',
+ nota:'Preguntar: ¿puede existir un proyecto que no genere ningún beneficio a la sociedad? ¿Hay proyectos que sólo generan perjuicios? Sirve para instalar que el ítem del beneficio se completa siempre.'},
+
+/* ============================================================ 06 · COMPONENTE NEGATIVA */
+{s:'La componente negativa', t:'', tipo:'sep', ac:'var(--coral)',
+ html:'<div class="sep"><div class="n">06</div><h1>La componente negativa<br>y su lugar en el tiempo</h1>'+
+  '<p class="lead">Qué ítems tenemos y en qué período se registra cada uno.</p></div>',
+ nota:''},
+
+{s:'La componente negativa', t:'Qué ítems tiene cada etapa', ac:'var(--coral)',
+ html:'<div class="cols">'+
+   '<div class="card r"><span class="et">En la inversión</span><h3>Flujos del período 0</h3>'+
+    '<ul class="li">'+
+     '<li><span class="chip g">dep</span> Bienes de capital depreciables: alambrado, galpón, tractor, motosierra, equipo de medición de gases.</li>'+
+     '<li><span class="chip a">no dep</span> Bienes de capital no depreciables: nivelación, desmonte.</li>'+
+     '<li><span class="chip v">nominal</span> Activos nominales: capacitación, patentes.</li>'+
+     '<li><span class="chip o">circulante</span> Costos operativos adelantados: salarios, materias primas, combustible.</li>'+
+    '</ul></div>'+
+   '<div class="card o"><span class="et">En la operación</span><h3>Flujos de T1 a Tn</h3>'+
+    '<ul class="li">'+
+     '<li><span class="chip g">func</span> Costos operativos directos: salarios, materias primas, insumos para la producción.</li>'+
+     '<li><span class="chip c">mant</span> Costos de mantenimiento del capital.</li>'+
+     '<li><span class="chip r">com</span> Costos de comercialización.</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box mt2"><p>Observen con atención las magnitudes y pregúntense: <strong>¿hay coherencia entre el costo de inversión estimado y el nivel de recursos asignados? ¿Es coherente la magnitud de los costos operativos con el proceso productivo descripto?</strong></p></div>',
+ nota:''},
+
+{s:'La componente negativa', t:'La convención de fin de período', ac:'var(--coral)',
+ html:'<p class="lead">Todo movimiento de dinero dentro de un período se registra <strong>al cierre</strong> de ese período.</p>'+
+  '<div class="box info mt2"><span class="et">El ejemplo</span>'+
+   '<p>Una acción implica un movimiento de dinero <strong>cada dos meses</strong> y el período considerado es <strong>anual</strong>. Entonces los seis registros bimestrales se ubican todos <strong>al final del año</strong>.</p></div>'+
+  '<div class="box warn mt2"><span class="et">Lo que hay que preguntarse de cada acción</span>'+
+   '<ul class="li" style="margin-top:calc(var(--u)*.4)">'+
+    '<li>¿Las tareas son continuas, periódicas, aperiódicas o discontinuas?</li>'+
+    '<li>¿Están concentradas en determinadas épocas del año?</li>'+
+    '<li>¿Hay acciones que se realizan en algunos períodos y en otros no?</li>'+
+    '<li>¿Algunas se concentran al inicio del período y otras al final?</li>'+
+   '</ul></div>'+
+  '<p class="sm mt">Todo eso ya lo respondieron en el Formulario 02, en la dimensión temporal de cada acción. Acá se traduce a columnas.</p>',
+ nota:'Es una convención, no una verdad. Pero si cada equipo la aplica distinto, los flujos no se pueden comparar.'},
+
+{s:'La componente negativa', t:'Lo que no va en el período 0', ac:'var(--coral)',
+ html:'<p class="lead">Las inversiones se concentran mayoritariamente en el período 0. Pero no todas.</p>'+
+  '<div class="c3 mt2">'+
+   '<div class="card r"><h3>Reposición de bienes de capital</h3>'+
+    '<p class="sm mt">Las cintas de goteo duran cinco campañas y el resto del sistema de riego, diez. La reposición va en el período en que ocurre.</p></div>'+
+   '<div class="card v"><h3>Capacitaciones de actualización</h3>'+
+    '<p class="sm mt">Un módulo de refuerzo cada cuatro años, o una recertificación que exige la autoridad, van en su período, no en el 0.</p></div>'+
+   '<div class="card o"><h3>Auditorías y cierres</h3>'+
+    '<p class="sm mt">La auditoría ambiental de cierre que la autoridad exige para firmar el acta se registra en el período en que se ejecuta.</p></div>'+
+  '</div>'+
+  '<div class="box no mt2"><p>Empujar todas las reposiciones al período 0 «para simplificar» cambia el resultado: adelanta gastos que en realidad ocurren años después y que el descuento intertemporal iba a achicar.</p></div>',
+ nota:'Es un error frecuente y fácil de corregir. Pedirles que revisen la vida útil de cada bien contra el horizonte.'},
+
+/* ============================================================ 07 · EL HORIZONTE */
+{s:'El horizonte', t:'', tipo:'sep', ac:'var(--violeta)',
+ html:'<div class="sep"><div class="n">07</div><h1>El horizonte del proyecto</h1>'+
+  '<p class="lead">Cuántos períodos vamos a evaluar, y por qué ese número y no otro.</p></div>',
+ nota:''},
+
+{s:'El horizonte', t:'No es el fin de la vida del proyecto', ac:'var(--violeta)',
+ html:'<p class="lead">El horizonte es el <strong>tiempo fijado para la evaluación posterior</strong>. Lo define el equipo. No es necesariamente el fin de la vida útil de lo que construimos.</p>'+
+  '<div data-esq="horizonte"></div>',
+ nota:'El dibujo muestra la regla para proyectos privados: primero el recupero, después tres a cinco períodos más. En los públicos manda la vida útil del bien principal y el ciclo del programa que se abastece.'},
+
+{s:'El horizonte', t:'', tipo:'disc', ac:'var(--violeta)',
+ html:'<div class="disc">'+
+  '<span class="kicker"><i></i>Para discutir en el equipo</span>'+
+  '<h1>¿Qué horizonte<br>le ponemos al proyecto?</h1>'+
+  '<div class="cols mt2">'+
+   '<div><h4>Lo que lo condiciona</h4>'+
+    '<ul class="li">'+
+     '<li>La <strong>vida útil del bien que manda</strong>: el que se agota primero y sin el cual el proyecto no funciona.</li>'+
+     '<li>El <strong>ciclo del programa</strong> que el proyecto abastece, si es público.</li>'+
+     '<li>El <strong>recupero de la inversión</strong>, si es privado, más tres a cinco períodos.</li>'+
+     '<li>El plazo que fija una <strong>autoridad</strong>, una concesión o un convenio.</li>'+
+    '</ul></div>'+
+   '<div><h4>Preguntas para el aula</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Qué bien del proyecto se agota primero, y qué pasa con el flujo cuando se agota?</li>'+
+     '<li>Si alargan el horizonte, ¿qué reposiciones nuevas tienen que agregar al flujo?</li>'+
+     '<li>¿Por qué un horizonte más largo suele mejorar el VAN, y por qué eso no alcanza para justificarlo?</li>'+
+     '<li>En un proyecto público, ¿el horizonte lo define el proyecto o lo define quien paga la operación año a año?</li>'+
+     '<li>¿Qué le contestan a alguien que dice que con veinte años el proyecto «da bien»?</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box mal mt2"><p>El horizonte se justifica por un argumento técnico verificable. Nunca por el resultado que uno quiere obtener.</p></div>'+
+  '</div>',
+ nota:'Vale contar que este es el mecanismo con el que se maquillan proyectos en la vida real, y que por eso lo miramos con lupa. En los públicos, además, dejar planteada la pregunta que la Guía deja abierta: si en ese horizonte los beneficios económicos pueden cubrir los costos de inversión, los operativos y el costo de oportunidad social.'},
+
+/* ============================================================ 08 · LA MATRIZ */
+{s:'La matriz', t:'', tipo:'sep', ac:'var(--aqua)',
+ html:'<div class="sep"><div class="n">08</div><h1>La matriz del flujo de fondos</h1>'+
+  '<p class="lead">Sistematizar toda la información financiera en una sola grilla.</p></div>',
+ nota:''},
+
+{s:'La matriz', t:'Cómo se arma', ac:'var(--aqua)',
+ html:'<p class="lead">Filas de ingresos con su total, filas de egresos con su total, y la fila del <strong>FFN</strong>: la suma algebraica de cada columna.</p>'+
+  '<table class="t mt">'+
+   '<tr><th>Componentes</th><th class="n">0</th><th class="n">1</th><th class="n">2</th><th class="n">3</th><th class="n">4</th><th class="n">…</th><th class="n">H</th></tr>'+
+   '<tr><td class="b">Ingresos</td><td class="n">—</td><td class="n pos">+</td><td class="n pos">+</td><td class="n pos">+</td><td class="n pos">+</td><td class="n pos">+</td><td class="n pos">+</td></tr>'+
+   '<tr class="tot"><td>Total</td><td class="n">—</td><td class="n">+</td><td class="n">+</td><td class="n">+</td><td class="n">+</td><td class="n">+</td><td class="n">+</td></tr>'+
+   '<tr><td class="b">Egresos de inversión</td><td class="n neg">−</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>'+
+   '<tr><td class="b">Egresos de operación</td><td class="n">—</td><td class="n neg">−</td><td class="n neg">−</td><td class="n neg">−</td><td class="n neg">−</td><td class="n neg">−</td><td class="n neg">−</td></tr>'+
+   '<tr class="tot"><td>Total</td><td class="n">−</td><td class="n">−</td><td class="n">−</td><td class="n">−</td><td class="n">−</td><td class="n">−</td><td class="n">−</td></tr>'+
+   '<tr class="tot"><td>FFN</td><td class="n">=</td><td class="n">=</td><td class="n">=</td><td class="n">=</td><td class="n">=</td><td class="n">=</td><td class="n">=</td></tr>'+
+  '</table>'+
+  '<div class="cols mt2">'+
+   '<div class="box ok"><p>Cada equipo puede <strong>desagregar</strong> las componentes como le resulte más claro. Lo que no puede faltar: las componentes positivas y negativas bien identificadas, el horizonte y los valores calculados.</p></div>'+
+   '<div class="box info"><p>En proyectos públicos no hay filas de ingreso y la matriz es <strong>mucho más sencilla</strong>: sólo egresos, su total, y el flujo de costos.</p></div>'+
+  '</div>',
+ nota:'Mostrar en la planilla de cátedra la misma estructura. Que vean que la matriz del formulario y la del Excel son la misma cosa.'},
+
+{s:'La matriz', t:'Qué hay que mirar cuando está armada', ac:'var(--aqua)',
+ html:'<p class="lead">La matriz no se entrega y listo. Se lee.</p>'+
+  '<ol class="num mt2">'+
+   '<li>¿Qué <strong>relación</strong> hay entre la inversión y el costo operativo de un período? ¿En cuántos períodos la operación acumulada iguala lo invertido?</li>'+
+   '<li>¿Los ingresos <strong>superan</strong> a los costos? ¿Desde qué período?</li>'+
+   '<li>¿Los costos de inversión guardan <strong>proporción con el problema</strong> que se quiere resolver?</li>'+
+   '<li>¿En qué período el acumulado <strong>cambia de signo</strong>, si es que lo hace?</li>'+
+   '<li>¿Cuál es la magnitud de los costos operativos por período, y es coherente con el proceso productivo descripto?</li>'+
+  '</ol>'+
+  '<div class="box warn mt2"><p>Un proyecto de infraestructura pública suele mostrar que <strong>lo caro no es hacerlo, es sostenerlo</strong>: los costos operativos acumulados superan varias veces la inversión. Eso es un hallazgo del flujo, y va en el resumen narrativo.</p></div>',
+ nota:'Estas cinco preguntas son exactamente las que la Guía pide contestar en el resumen narrativo del ítem G.'},
+
+/* ============================================================ 09 · LA TASA */
+{s:'La tasa de descuento (TD)', t:'', tipo:'sep', ac:'var(--oro)',
+ html:'<div class="sep"><div class="n">09</div><h1>La tasa de descuento</h1>'+
+  '<p class="lead">La <strong>TD</strong>: el costo de oportunidad de quien invierte. Es la decisión más discutible de todo el formulario.</p></div>',
+ nota:''},
+
+{s:'La tasa de descuento (TD)', t:'Por qué se descuenta', ac:'var(--oro)',
+ html:'<div data-esq="descuento"></div>',
+ nota:'Mostrar que al 22 % un peso del año 8 vale menos de veinte centavos de hoy. De ahí sale la sensibilidad del VAN a la tasa, y por eso la elección de la tasa no es un trámite.'},
+
+{s:'La tasa de descuento (TD)', t:'La TD se estima como TMAR', ac:'var(--oro)',
+ html:'<div data-esq="tmar"></div>'+
+  '<div class="box info mt"><p>Un mismo número con dos nombres. <strong>TD</strong> es el papel que cumple: la tasa a la que se descuentan los flujos, y que representa el costo de oportunidad del inversor. <strong>TMAR</strong> es el procedimiento con el que le ponemos valor. El formulario pide las dos cosas: el número y cómo lo armaron.</p></div>',
+ nota:'Los valores orientativos son de la Guía. Que los usen como punto de partida, no como respuesta: lo que se evalúa es el argumento con el que eligieron cada uno. Aclarar de una vez el vocabulario: TD, TMAR y costo de oportunidad no son tres cosas distintas.'},
+
+{s:'La tasa de descuento (TD)', t:'', tipo:'disc', ac:'var(--oro)',
+ html:'<div class="disc">'+
+  '<span class="kicker"><i></i>Para discutir en el equipo</span>'+
+  '<h1>¿De quién es el costo<br>de oportunidad?</h1>'+
+  '<p class="lead">La <strong>TD</strong> representa lo que quien pone la plata deja de ganar en su mejor alternativa. Antes de elegir un número hay que saber <strong>de quién estamos hablando</strong>.</p>'+
+  '<div class="cols mt2">'+
+   '<div><h4>Lo que hay que decidir</h4>'+
+    '<ul class="li">'+
+     '<li>¿Quién financia el proyecto: un privado, el Estado, una ONG, una cooperativa? La exigencia de cada uno es distinta.</li>'+
+     '<li>¿La TD expresa el costo de oportunidad del <strong>inversor</strong> o el de la <strong>sociedad</strong>? Hoy usamos el del inversor; el social viene después.</li>'+
+     '<li>¿En qué <strong>moneda</strong> está el flujo? La tasa tiene que estar en la misma.</li>'+
+     '<li>¿Qué <strong>prima de riesgo</strong> corresponde a este sector, a este tamaño y a esta incertidumbre?</li>'+
+    '</ul></div>'+
+   '<div><h4>Preguntas para el aula</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Le exigen lo mismo a un emprendimiento familiar del Valle de Lerma que a un fondo de inversión?</li>'+
+     '<li>Si el proyecto lo financia una ONG con fondos donados, ¿qué está dejando de ganar? ¿Y qué tasa le corresponde entonces?</li>'+
+     '<li>Un parque público no compite con un plazo fijo. ¿Contra qué compite?</li>'+
+     '<li>¿Qué le hace al VAN mover la prima de riesgo del 5 % al 15 %? ¿Cambia el signo?</li>'+
+     '<li>Si los precios los relevaron en pesos, ¿pueden descontar con una tasa en dólares?</li>'+
+     '<li>¿Una tasa alta castiga más a un proyecto que recupera temprano o a uno que recupera tarde?</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box warn mt2"><p>No hay una tasa correcta. Hay una tasa <strong>defendible</strong>: la que el equipo puede explicar, con fuente y con fecha, y cuyo efecto sobre el resultado conoce.</p></div>'+
+  '</div>',
+ nota:'Esta discusión conviene darla con el visor del VAN al lado, para poder mover la tasa y mostrar el efecto mientras discuten. La respuesta importante no es el número: es que entiendan que están tomando una decisión, no aplicando una fórmula.'},
+
+/* ============================================================ 10 · INDICADORES */
+{s:'Los indicadores', t:'', tipo:'sep', ac:'var(--verde-l)',
+ html:'<div class="sep"><div class="n">10</div><h1>Los indicadores financieros</h1>'+
+  '<p class="lead">Cuáles corresponden, cómo se calculan y, sobre todo, qué habilitan a decir.</p></div>',
+ nota:''},
+
+{s:'Los indicadores', t:'Cuáles corresponden a cada proyecto', ac:'var(--verde-l)',
+ html:'<div data-esq="indicadores"></div>',
+ nota:'El «no corresponde» es una respuesta correcta y completa. Que no pongan cero ni inventen un número. Y dejar picando la caja de abajo: no son los únicos indicadores posibles.'},
+
+{s:'Los indicadores', t:'Cómo se calcula en Excel', ac:'var(--verde-l)',
+ html:'<p class="lead">Fórmulas → Insertar función → <strong>VNA</strong> y <strong>TIR</strong>.</p>'+
+  '<div class="cols mt2">'+
+   '<div class="card"><span class="et">Con ingresos</span><h3>Para el VAN</h3>'+
+    '<ol class="num" style="margin-top:calc(var(--u)*.6)">'+
+     '<li>Incorporen en la fórmula <strong>solamente los flujos netos desde t1 hasta el horizonte</strong>.</li>'+
+     '<li>Al resultado, <strong>súmenle el costo de inversión del t0</strong>.</li>'+
+     '<li>Presten atención a los signos: los flujos de los años operativos suelen ser positivos y la inversión es negativa.</li>'+
+    '</ol></div>'+
+   '<div class="card c"><span class="et">Sin ingresos</span><h3>Para el VAC</h3>'+
+    '<p class="mt">El procedimiento es el mismo, pero no hay flujos positivos: todos son negativos.</p>'+
+    '<p class="mt">Se calcula el VNA de los costos de t1 al horizonte y a ese valor se le agrega el costo de inversión. Eso es el VAC.</p></div>'+
+  '</div>'+
+  '<div class="box warn mt2"><p>El error más común con VNA es meter el período 0 dentro del rango. La función ya descuenta el primer valor un período: si le pasan el t0, lo van a descontar de más.</p></div>',
+ nota:'Vale hacerlo en vivo con la planilla de cátedra proyectada. Mostrar el error y después la forma correcta.'},
+
+{s:'Los indicadores', t:'Veámoslo funcionar', ac:'var(--verde-l)', demo:'van',
+ html:'<p class="lead">Un proyecto chico. Muevan la tasa y miren dónde la curva cruza el cero.</p>',
+ nota:'La idea es que vean tres cosas: que el VAN baja cuando sube la tasa, que la TIR es exactamente el cruce por cero, y que si apagan los ingresos la curva nunca cruza y la TIR desaparece.'},
+
+{s:'Los indicadores', t:'', tipo:'disc', ac:'var(--verde-l)',
+ html:'<div class="disc">'+
+  '<span class="kicker"><i></i>Para discutir en el equipo</span>'+
+  '<h1>¿Y si estos tres<br>no alcanzan?</h1>'+
+  '<p class="lead">El formulario pide VAN, TIR y RBC, o el VAC. Pero decidir si un proyecto vale la pena no siempre se resuelve con esos. <strong>Elegir qué indicadores usar es parte del trabajo del equipo.</strong></p>'+
+  '<div class="cols mt2">'+
+   '<div><h4>Otros que pueden sumar</h4>'+
+    '<ul class="li">'+
+     '<li><strong>Período de recupero descontado.</strong> Como el recupero simple, pero con los flujos traídos a hoy. Suele dar bastante más tarde.</li>'+
+     '<li><strong>Costo por unidad de producto.</strong> El VAC dividido por la cantidad entregada: costo por plantín, por metro cúbico tratado, por visita. Es el que mejor compara alternativas en proyectos públicos.</li>'+
+     '<li><strong>Valor anual equivalente.</strong> El VAN repartido en cuotas iguales, para comparar proyectos de distinta duración.</li>'+
+     '<li><strong>Índice de rentabilidad.</strong> Valor actual de los flujos operativos sobre la inversión: útil cuando el capital disponible es limitado.</li>'+
+     '<li><strong>Análisis de sensibilidad.</strong> Cuánto tiene que caer el precio, o subir un costo, para que el VAN llegue a cero.</li>'+
+    '</ul></div>'+
+   '<div><h4>Preguntas para el aula</h4>'+
+    '<ul class="qq">'+
+     '<li>Dos proyectos, uno de cinco años y otro de veinte. ¿Sirve comparar sus VAN directamente?</li>'+
+     '<li>Si el VAN es apenas positivo, ¿eso alcanza para decidir? ¿Qué más querrían saber?</li>'+
+     '<li>En su proyecto, ¿qué supuesto tendría que fallar para que el resultado cambie de signo?</li>'+
+     '<li>¿Qué indicador usarían para convencer a un municipio de que conviene su proyecto y no otro?</li>'+
+     '<li>¿Un indicador financiero puede decir que un proyecto ambiental no vale la pena?</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box info mt2"><p>Si usan un indicador que el formulario no pide, <strong>agréguenlo con su conclusión parcial</strong>. Sumar es bienvenido; reemplazar los que la Guía pide, no.</p></div>'+
+  '</div>',
+ nota:'Acá es donde se separa un equipo que completa el formulario de uno que formula un proyecto. Invitarlos a traer un indicador propio y defenderlo en la entrega.'},
+
+/* ============================================================ 11 · CIERRE */
+{s:'Tributo y cierre', t:'', tipo:'sep', ac:'var(--celeste)',
+ html:'<div class="sep"><div class="n">11</div><h1>Tributo, conclusiones<br>y financiamiento</h1>'+
+  '<p class="lead">Los tres ítems que cierran el formulario.</p></div>',
+ nota:''},
+
+{s:'Tributo y cierre', t:'La categoría tributaria', ac:'var(--celeste)',
+ html:'<p class="lead">Aplica <strong>sólo a los proyectos de inversión privada</strong>. Eso no significa que los públicos estén exentos del marco impositivo: en ellos intervienen empresas privadas que sí tributan.</p>'+
+  '<ol class="num mt2">'+
+   '<li>Observen el <strong>monto del ingreso periódico</strong>. Si el período no es anual, anualícenlo.</li>'+
+   '<li>A los fines académicos consideramos <strong>sólo la variable ingresos brutos anuales</strong>. No es la única variable real, pero alcanza para este ejercicio.</li>'+
+   '<li>Definan si el proyecto es <strong>responsable inscripto</strong> o <strong>monotributista</strong>, y en ese caso en qué categoría.</li>'+
+   '<li>Estimen el monto del impuesto. El monotributista paga un monto fijo mensual según el nivel de ingresos brutos anuales; el responsable inscripto, un porcentaje sobre las ganancias anuales registradas.</li>'+
+  '</ol>'+
+  '<p class="sm mt2">Las escalas del régimen simplificado se actualizan periódicamente. Consúltenlas en la página oficial de ARCA el día que completan el formulario. En proyectos públicos el ítem no aplica, pero se justifica por qué en lugar de dejarlo en blanco.</p>',
+ nota:''},
+
+{s:'Tributo y cierre', t:'Las conclusiones, y su límite', ac:'var(--celeste)',
+ html:'<p class="lead">La conclusión tiene que cubrir las componentes financieras identificadas, el balance entre inversión y operación y, en los privados, la rentabilidad y la incidencia del impuesto a las ganancias.</p>'+
+  '<blockquote class="cita mt2">Aún queda un largo camino por recorrer hasta que estemos en condiciones de pasar a la fase ejecutiva del proyecto, por lo que <b>bajo ningún aspecto podemos recomendar que se realicen las inversiones</b> sin antes haber avanzado a la etapa de factibilidad.</blockquote>'+
+  '<div class="box info mt2"><span class="et">Y una cosa más</span>'+
+   '<p>Un VAN negativo tampoco clausura la decisión. En proyectos ambientales suele estar <strong>midiendo la brecha</strong> que el beneficio económico —que todavía no valoramos— tendrá que cubrir en la evaluación económica y social.</p></div>'+
+  '<p class="sm mt">Declaren los supuestos que sostienen el resultado y digan cuánto se mueve el resultado si alguno de ellos falla. Eso es una conclusión profesional.</p>',
+ nota:'Es el párrafo que más vamos a mirar al corregir. Un equipo que escribe «se recomienda invertir» perdió el eje de la etapa.'},
+
+{s:'Tributo y cierre', t:'El financiamiento', ac:'var(--celeste)',
+ html:'<p class="lead">Enfrentar las inversiones implica un sacrificio financiero que no siempre se puede afrontar. Por eso se recurre a la financiación externa.</p>'+
+  '<div class="cols mt2">'+
+   '<div class="card"><span class="et">Proyectos privados</span><h3>Se financia la inversión</h3>'+
+    '<p class="mt">Se supone que la operación se financia con los ingresos operativos que genera el propio proyecto.</p></div>'+
+   '<div class="card c"><span class="et">Proyectos públicos sin ingresos</span><h3>Se financian las dos etapas</h3>'+
+    '<p class="mt">La inversión y la operación. Financiar la construcción resuelve la parte fácil: sin compromiso plurianual del gasto operativo, la obra se degrada en pocos años.</p></div>'+
+  '</div>'+
+  '<div class="box mt2"><span class="et">De cada línea hay que especificar</span>'+
+   '<ul class="li" style="margin-top:calc(var(--u)*.4)">'+
+    '<li>La <strong>etapa</strong> del proyecto que financia.</li>'+
+    '<li>El <strong>organismo</strong> o la institución financista.</li>'+
+    '<li>Las <strong>características</strong>: plazo, tasa, garantías, período de gracia, contraparte exigida.</li>'+
+   '</ul></div>',
+ nota:'Pedirles que busquen líneas reales: CFI, Banco Nación, fondos de la Ley 26.331, cooperación internacional. Que no inventen.'}
+];
+</script>
+<script>
+"use strict";
+/* ===============================================================
+   EL RECORRIDO DEL FORMULARIO 03, CASILLA POR CASILLA
+   =============================================================== */
+var DIAPOS_FORM = [
+
+{s:'El Formulario 03', t:'', tipo:'sep', ac:'var(--violeta)', n:'12',
+ html:'<div class="sep"><div class="n">12</div><h1>El Formulario 03,<br>casilla por casilla</h1>'+
+  '<p class="lead">Qué se escribe en cada una y de dónde sale el dato.</p></div>',
+ nota:'Segunda mitad de la clase. Acá pasamos de la teoría al documento que tienen que entregar.'},
+
+{s:'El Formulario 03', t:'Cómo está organizado', ac:'var(--violeta)',
+ html:'<p class="lead">Doce apartados, cada uno remitido a un ítem de la Guía 03. Los primeros tres son de identificación; los nueve siguientes son el trabajo.</p>'+
+  '<table class="t mt2">'+
+   '<tr><th>Apartado del Formulario</th><th>Ítem</th><th>Qué se resuelve</th></tr>'+
+   '<tr><td class="b">Nombre del equipo y del proyecto</td><td>—</td><td>Identificación.</td></tr>'+
+   '<tr><td class="b">Miembros que participaron</td><td>A</td><td>Quiénes trabajaron y cuántas horas le dedicaron.</td></tr>'+
+   '<tr><td class="b">Valoración de las componentes de inversión</td><td>B</td><td>Memoria de cálculo de los costos de inversión.</td></tr>'+
+   '<tr><td class="b">Valoración de las componentes de operación</td><td>C</td><td>Memoria de cálculo de los costos operativos.</td></tr>'+
+   '<tr><td class="b">Componente positiva del flujo</td><td>D</td><td>Ingreso estimado y beneficio económico.</td></tr>'+
+   '<tr><td class="b">Componente negativa del flujo</td><td>E</td><td>Ítems negativos y su ubicación temporal.</td></tr>'+
+   '<tr><td class="b">Revisión del horizonte</td><td>F</td><td>Cuántos períodos y por qué.</td></tr>'+
+   '<tr><td class="b">Resumen de lo observado en el flujo</td><td>G</td><td>Qué muestra la matriz.</td></tr>'+
+   '<tr><td class="b">Identificación de la tasa de descuento (TD)</td><td>H</td><td>La TMAR y su procedimiento.</td></tr>'+
+   '<tr><td class="b">Cálculo de indicadores</td><td>I</td><td>VAN, TIR, RBC o VAC, con conclusiones parciales.</td></tr>'+
+   '<tr><td class="b">Categoría tributaria</td><td>J</td><td>Sólo proyectos privados.</td></tr>'+
+   '<tr><td class="b">Conclusiones y financiamiento</td><td>K · L</td><td>El cierre.</td></tr>'+
+  '</table>'+
+  '<p class="sm mt">Atención a una errata del formulario: la componente negativa remite al «ítem F», pero corresponde al <strong>ítem E</strong> de la Guía. El horizonte sí es el ítem F.</p>',
+ nota:'Avisarles de la errata para que no pierdan tiempo buscando la componente negativa en el ítem F de la Guía.'},
+
+{s:'El Formulario 03', t:'Miembros del equipo que participaron', k:'Ítem A', ac:'var(--violeta)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Miembros del equipo que participaron de la tarea</div>'+
+   '<table><tr><th>Apellido y Nombre</th><th>Dedicación horaria a la tarea</th></tr>'+
+   '<tr><td class="e">…</td><td class="e">…</td></tr>'+
+   '<tr><td class="e">…</td><td class="e">…</td></tr>'+
+   '<tr><td class="e">…</td><td class="e">…</td></tr></table></div></div>'+
+  '<div>'+
+   '<p>El éxito de un equipo se sustenta en la confianza de cada integrante en sus pares. Reconocer el aporte de cada uno es una motivación para seguir trabajando.</p>'+
+   '<ul class="li">'+
+    '<li>Indiquen <strong>quiénes trabajaron</strong> en esta entrega.</li>'+
+    '<li><strong>No incluyan</strong> a quienes no hicieron ningún aporte.</li>'+
+    '<li>Sean lo más <strong>precisos</strong> posible con el tiempo asignado por cada integrante.</li>'+
+   '</ul>'+
+   '<div class="box warn mt"><p>La pregunta que la Guía deja planteada: ¿incentiva al equipo incluir en el reconocimiento a quien no aportó nada? ¿Qué opina el que no participó?</p></div>'+
+  '</div></div>',
+ nota:'Corto. Pero vale decirlo con seriedad: este ítem se lee y tiene consecuencias.'},
+
+{s:'El Formulario 03', t:'Valoración de las componentes de inversión', k:'Ítem B', ac:'var(--verde-l)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Valoración de las componentes de la etapa de inversión</div>'+
+   '<div class="fc">Un resumen narrativo que explique, a modo de memoria de cálculo, cómo el equipo determinó y valoró los recursos necesarios para lograr los resultados de las acciones proyectadas.</div></div>'+
+   '<div class="box info mt"><span class="et">Va aparte</span><p>La planilla RECURSOS-I, con todas las componentes valoradas recurso por recurso.</p></div></div>'+
+  '<div>'+
+   '<h4>Lo que la memoria tiene que contestar</h4>'+
+   '<ul class="li">'+
+    '<li>¿Consideraron <strong>todos</strong> los bienes y servicios necesarios para lograr cada componente?</li>'+
+    '<li>¿A qué <strong>fuentes de mercado</strong> recurrieron para los costos unitarios?</li>'+
+    '<li>¿Es coherente la estimación con la <strong>magnitud del problema</strong> a resolver?</li>'+
+    '<li>¿Qué relación hay entre cada componente y lo que le cuesta al proyecto?</li>'+
+   '</ul>'+
+   '<div class="box ok mt"><span class="et">El modelo de redacción de la Guía</span>'+
+    '<p class="sm">«Para la acción de implantar una hectárea de Pinus taeda con espaciamiento de 2 × 2 se requieren 2.500 plantas. La acción demandará cuatro peones; el jornal se estimó en U$S 24,00. El tiempo se estimó en una semana. Cada plantín cuesta U$S 0,50. Los recursos para obtener la componente Hectárea implantada serán 2.500 plantas y 28 jornales. El costo de los plantines es U$S 1.250,00 y el de la mano de obra U$S 672,00, de modo que el costo total de la acción asciende a U$S 1.922,00.»</p></div>'+
+  '</div></div>',
+ nota:'Leer el modelo en voz alta. Tiene todo: cantidad física, precio unitario, fuente implícita, cuenta y total. Es el estándar que pedimos.'},
+
+{s:'El Formulario 03', t:'Valoración de las componentes de operación', k:'Ítem C', ac:'var(--oro)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Valoración de las componentes de la etapa de operación</div>'+
+   '<div class="fc">Un resumen narrativo sobre la determinación de los recursos y su valoración en las acciones de la fase operativa. Es la justificación técnica y de mercado de los datos de la planilla.</div></div>'+
+   '<div class="box info mt"><span class="et">Va aparte</span><p>La planilla RECURSOS-O, con la misma lógica que la de inversión.</p></div></div>'+
+  '<div>'+
+   '<h4>Lo que hay que preguntarse</h4>'+
+   '<ul class="li">'+
+    '<li>¿Cuál es el <strong>costo operativo más importante</strong> del período considerado?</li>'+
+    '<li>¿Cuál es la <strong>incidencia de la mano de obra</strong> en el costo operativo total?</li>'+
+    '<li>¿Hay relación entre la dimensión de los costos operativos y el proceso productivo descripto?</li>'+
+   '</ul>'+
+   '<div class="box no mt"><span class="et">Lo que no puede faltar</span>'+
+    '<p>Decir explícitamente que de los bienes de capital ya incorporados en la inversión se consignan <strong>sólo los insumos de funcionamiento y los costos de mantenimiento</strong>. Si no lo dicen, quien corrige no sabe si lo hicieron bien o se olvidaron.</p></div>'+
+  '</div></div>',
+ nota:''},
+
+{s:'El Formulario 03', t:'Componente positiva del flujo', k:'Ítem D', ac:'var(--verde-l)',
+ html:'<div class="form">'+
+   '<div class="ft">Componente positiva del flujo de fondos</div>'+
+   '<table>'+
+    '<tr><th rowspan="2">Componente positiva</th><th colspan="2">Descripción</th><th colspan="2">Dimensión temporal</th></tr>'+
+    '<tr><th colspan="2"></th><th>T0</th><th>T1 hasta Tn</th></tr>'+
+    '<tr><td rowspan="2" class="b">Ingresos directos del proyecto</td><td>Cantidad</td>'+
+      '<td class="e">Se producirá 4 toneladas de granza por día durante 250 días al año.</td><td class="e"></td><td style="text-align:center;color:var(--verde-l);font-weight:800">X</td></tr>'+
+    '<tr><td>Precio</td><td class="e">El kilogramo de granza se ofrecerá en el mercado a 2,5 U$S.</td><td class="e"></td><td style="text-align:center;color:var(--verde-l);font-weight:800">X</td></tr>'+
+   '</table></div>'+
+  '<div class="cols mt">'+
+   '<div class="box"><span class="et">Dos filas, no una</span><p>La <strong>cantidad</strong> y el <strong>precio</strong> van en renglones separados, cada uno con su descripción. El producto de los dos es el ingreso, y se justifica abajo.</p></div>'+
+   '<div class="box warn"><span class="et">Si no hay ingresos directos</span><p>Una sola fila con <strong>NO APLICA</strong> y las dos columnas temporales vacías. La justificación técnica y de mercado también dice NO APLICA, pero el beneficio económico <strong>se completa igual</strong>.</p></div>'+
+  '</div>',
+ nota:'Mostrar la tabla del formulario en pantalla junto al Word abierto, para que la reconozcan.'},
+
+{s:'El Formulario 03', t:'Las dos justificaciones del ítem D', k:'Ítem D', ac:'var(--verde-l)',
+ html:'<div class="cols">'+
+   '<div><div class="form">'+
+     '<div class="ft">Justificación técnica y de mercado del ingreso estimado</div>'+
+     '<div class="fc">De dónde salen la cantidad y el precio, con qué fuentes, y por qué la magnitud del ingreso es coherente con las metas y la capacidad instalada.</div></div>'+
+    '<p class="sm mt">Es común que los ingresos se verifiquen con regularidad y generen un flujo periódico. Discutan y fundamenten la magnitud esperada en función de las metas definidas y de la capacidad instalada para enfrentar el problema o la demanda identificada.</p></div>'+
+   '<div><div class="form">'+
+     '<div class="ft">Justificación del beneficio económico del proyecto</div>'+
+     '<div class="fc">A quiénes beneficia, cuántos son, qué bien o servicio reciben, y por qué eso no es lo mismo que el ingreso.</div></div>'+
+    '<div class="box warn mt"><p><strong>Se completa siempre</strong>, tenga el proyecto ingresos o no. Es la justificación económica de por qué el proyecto le importa a alguien más que a su titular.</p></div></div>'+
+  '</div>'+
+  '<div class="box info mt2"><p>¿Podemos <strong>cuantificar</strong> la cantidad de bienes o servicios entregados a la sociedad, aunque todavía no podamos valorarlos en dinero? Sí, y conviene: 180.000 visitas al año, 14.000 habitantes del área de influencia, 2.300 m³ de agua que no se extraen del acuífero.</p></div>',
+ nota:'El beneficio económico dimensionado en unidades físicas es lo que va a permitir valorarlo en la próxima entrega. Si acá queda en generalidades, después no hay de dónde agarrarse.'},
+
+{s:'El Formulario 03', t:'Componente negativa del flujo', k:'Ítem E', ac:'var(--coral)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Componente negativa del flujo de fondos</div>'+
+   '<table>'+
+    '<tr><th rowspan="2">Componente negativa</th><th colspan="2">Dimensión temporal</th></tr>'+
+    '<tr><th>T0</th><th>T1 − Tn</th></tr>'+
+    '<tr><td>Bienes de capital (tierra)</td><td style="text-align:center;color:var(--coral);font-weight:800">X</td><td></td></tr>'+
+    '<tr><td>Bienes de capital (alambrado perimetral)</td><td style="text-align:center;color:var(--coral);font-weight:800">X</td><td></td></tr>'+
+    '<tr><td>Activos nominales (capacitaciones)</td><td style="text-align:center;color:var(--coral);font-weight:800">X</td><td></td></tr>'+
+    '<tr><td>Circulante (adelantos de salarios)</td><td style="text-align:center;color:var(--coral);font-weight:800">X</td><td></td></tr>'+
+    '<tr><td>Circulante (materias primas)</td><td></td><td style="text-align:center;color:var(--coral);font-weight:800">X</td></tr>'+
+    '<tr><td>Circulante (salarios)</td><td></td><td style="text-align:center;color:var(--coral);font-weight:800">X</td></tr>'+
+   '</table></div></div>'+
+  '<div>'+
+   '<p>El objetivo de este ejercicio es determinar <strong>cuáles son las componentes negativas</strong> del flujo y <strong>en qué momento del tiempo</strong> se ingresan los datos.</p>'+
+   '<div class="box ok mt"><span class="et">Cómo se nombran</span><p>Tipo de activo entre paréntesis, y adentro el bien concreto. Así se lee de un vistazo si la clasificación está bien hecha.</p></div>'+
+   '<div class="box warn mt"><span class="et">Ojo</span><p>Los adelantos de salarios para iniciar la actividad van en <strong>T0</strong> y son circulante. Los salarios de la operación van de <strong>T1 a Tn</strong>. Es el mismo concepto en dos lugares distintos, y no es una repetición.</p></div>'+
+  '</div></div>',
+ nota:'La distinción entre el circulante adelantado del T0 y el salario operativo de T1-Tn es justo el tipo de cosa que confunde. Vale detenerse treinta segundos.'},
+
+{s:'El Formulario 03', t:'Los dos resúmenes narrativos de costos', k:'Ítem E', ac:'var(--coral)',
+ html:'<div class="cols">'+
+   '<div><div class="form">'+
+     '<div class="ft">Resumen narrativo de los costos de inversión</div>'+
+     '<div class="fc">¿Cuál es el principal costo de inversión? ¿Qué peso tiene sobre el total? ¿Cómo se estimó?</div></div></div>'+
+   '<div><div class="form">'+
+     '<div class="ft">Resumen narrativo de los costos de operación</div>'+
+     '<div class="fc">¿Cuáles son las componentes de costo operativo más importantes para garantizar el resultado del proceso productivo? ¿Cuál es la incidencia de la mano de obra?</div></div></div>'+
+  '</div>'+
+  '<div class="box info mt2"><p>No son un resumen de la tabla en prosa. Son una <strong>jerarquía</strong>: qué pesa, cuánto pesa, por qué pesa eso y no otra cosa, y con qué grado de confianza está estimado.</p></div>'+
+  '<div class="box ok mt"><span class="et">Un buen ejemplo suena así</span>'+
+   '<p class="sm">«La inversión total es de U$S 49.840. El componente dominante es el galpón de procesamiento, con U$S 21.652, el 43 % del total: se estimó por cómputo y presupuesto de 150 m², a unos U$S 144 por metro cuadrado, con precios de corralón local para materiales y escalas del convenio de la construcción para la mano de obra.»</p></div>',
+ nota:'Si pueden decir el porcentaje del rubro principal, entendieron su propio proyecto. Si no pueden, todavía no lo miraron.'},
+
+{s:'El Formulario 03', t:'Revisión del horizonte', k:'Ítem F', ac:'var(--violeta)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Revisión del horizonte o vida útil del proyecto</div>'+
+   '<div class="fc">Cuántos períodos se evalúan y con qué criterio se fijó ese número.</div></div></div>'+
+  '<div>'+
+   '<div class="box ok"><span class="et">En proyectos privados</span><p>Estimar el <strong>Tiempo de Recupero de la Inversión</strong> y fijar el horizonte tres a cinco años más allá. Si el proyecto da inviable, preguntarse si con más horizonte se torna viable, con argumento técnico.</p></div>'+
+   '<div class="box info mt"><span class="et">En proyectos públicos</span><p>Sugerir un horizonte para una primera evaluación financiera y estimar el <strong>VAC</strong>, dejando planteada la pregunta sobre los beneficios económicos.</p></div>'+
+   '<div class="box no mt"><span class="et">Lo que se nota enseguida</span><p>Un horizonte que excede la vida útil de los bienes principales sin prever ninguna reposición.</p></div>'+
+  '</div></div>',
+ nota:''},
+
+{s:'El Formulario 03', t:'Resumen de lo observado en el flujo', k:'Ítem G', ac:'var(--aqua)',
+ html:'<div class="form">'+
+   '<div class="ft">Resumen narrativo de lo observado en el flujo de fondos</div>'+
+   '<div class="fc">Qué muestra la matriz una vez armada.</div></div>'+
+  '<p class="lead mt">Las preguntas que la Guía pide contestar en este apartado son exactamente estas:</p>'+
+  '<ol class="num">'+
+   '<li>¿Qué observa de los flujos de fondos?</li>'+
+   '<li>¿Qué opina de los ingresos directos del proyecto en función de las inversiones?</li>'+
+   '<li>¿Hay coherencia en los flujos presentados?</li>'+
+   '<li>¿Superan los ingresos a los costos?</li>'+
+   '<li>¿Los costos de inversión guardan proporción con el problema a resolver?</li>'+
+   '<li>¿Cuál es la magnitud de los costos operativos por período?</li>'+
+  '</ol>'+
+  '<div class="box info mt"><p>La matriz en sí no va en el formulario: va en la <strong>planilla de cálculo</strong> que se entrega junto con él. Acá va la lectura.</p></div>',
+ nota:'Seis preguntas, seis oraciones. Es una forma sencilla de asegurarse de no dejar nada afuera.'},
+
+{s:'El Formulario 03', t:'Identificación de la tasa de descuento (TD)', k:'Ítem H', ac:'var(--oro)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Identificación de la tasa de descuento (TD)</div>'+
+   '<div class="fc">La tasa utilizada y el procedimiento a través del cual se obtuvo.</div></div></div>'+
+  '<div>'+
+   '<p>No alcanza con poner el número. El formulario pide <strong>describir el procedimiento</strong>.</p>'+
+   '<ul class="li">'+
+    '<li>Tasa libre de riesgo: valor y <strong>fuente</strong>.</li>'+
+    '<li>Riesgo país: valor, fuente y <strong>fecha</strong>.</li>'+
+    '<li>Prima por riesgo del proyecto: valor y <strong>por qué ese y no otro</strong>, según el sector, el tamaño y la incertidumbre.</li>'+
+    '<li>La TMAR resultante —esa es la <strong>TD</strong> con la que van a descontar— y la <strong>moneda</strong> en que está expresada.</li>'+
+   '</ul>'+
+   '<div class="box warn mt"><p>Si el flujo está en pesos, la TMAR tiene que incorporar la inflación esperada y va a resultar bastante más alta que en dólares. Coherencia entre moneda del flujo y moneda de la tasa.</p></div>'+
+  '</div></div>',
+ nota:''},
+
+{s:'El Formulario 03', t:'Cálculo de indicadores financieros', k:'Ítem I', ac:'var(--verde-l)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Cálculo de indicadores financieros</div>'+
+   '<table>'+
+    '<tr><th>Indicador financiero</th><th>Valor</th><th>Conclusiones parciales</th></tr>'+
+    '<tr><td class="b">VAN</td><td class="e">…</td><td class="e">…</td></tr>'+
+    '<tr><td class="b">TIR</td><td class="e">…</td><td class="e">…</td></tr>'+
+    '<tr><td class="b">RBC</td><td class="e">…</td><td class="e">…</td></tr>'+
+   '</table></div>'+
+   '<p class="sm mt">Así se completa en un proyecto privado.</p></div>'+
+  '<div><div class="form">'+
+   '<div class="ft">Cálculo de indicadores financieros</div>'+
+   '<table>'+
+    '<tr><th>Indicador financiero</th><th>Valor</th><th>Conclusiones parciales</th></tr>'+
+    '<tr><td class="b">VAC</td><td class="e">…</td><td class="e">…</td></tr>'+
+   '</table></div>'+
+   '<p class="sm mt">Así se completa en un proyecto público. Una sola fila.</p></div>'+
+  '</div>'+
+  '<div class="box warn mt2"><span class="et">La tercera columna no es decorativa</span>'+
+   '<p>Cada indicador lleva su <strong>conclusión parcial</strong>: qué dice ese número en particular. No repitan tres veces la misma frase. El VAN dice si hay valor por encima del costo de oportunidad; la TIR, cuánto rinde frente a lo que el inversor exige; la RBC, cuánto devuelve cada peso de costo.</p></div>',
+ nota:'Si el proyecto es público y completan las tres filas con ceros, es error. Si dejan la fila del VAC vacía, también.'},
+
+{s:'El Formulario 03', t:'Categoría tributaria', k:'Ítem J', ac:'var(--celeste)',
+ html:'<div class="cols">'+
+  '<div><div class="form">'+
+   '<div class="ft">Categoría tributaria del proyecto</div>'+
+   '<table>'+
+    '<tr><th>Ingresos del proyecto</th><td class="e">…</td></tr>'+
+    '<tr><th>Categoría</th><td class="e">…</td></tr>'+
+    '<tr><th>Monto anual del impuesto</th><td class="e">…</td></tr>'+
+    '<tr><th>Justificación</th><td class="e">…</td></tr>'+
+   '</table></div></div>'+
+  '<div>'+
+   '<p>De aplicación <strong>exclusiva para proyectos de inversión de carácter privado</strong>.</p>'+
+   '<ul class="li">'+
+    '<li><strong>Ingresos del proyecto:</strong> el ingreso bruto anual. Si el período no es anual, anualizado. Sólo ventas.</li>'+
+    '<li><strong>Categoría:</strong> responsable inscripto o monotributista, y en ese caso cuál.</li>'+
+    '<li><strong>Monto anual del impuesto:</strong> el monotributista paga un fijo mensual; el responsable inscripto, un porcentaje sobre las ganancias.</li>'+
+    '<li><strong>Justificación:</strong> con qué escala lo determinaron y de qué fecha es.</li>'+
+   '</ul>'+
+   '<div class="box info mt"><p>En un proyecto público el ítem <strong>no aplica</strong>, pero se justifica por qué en lugar de dejarlo en blanco.</p></div>'+
+  '</div></div>',
+ nota:'El formulario original remite acá al «Formulario 08»: es una errata heredada, la tabla es esta.'},
+
+{s:'El Formulario 03', t:'Conclusiones y financiamiento', k:'Ítems K y L', ac:'var(--celeste)',
+ html:'<div class="cols">'+
+   '<div><div class="form">'+
+     '<div class="ft">Conclusiones sobre los resultados financieros</div>'+
+     '<div class="fc">Las componentes financieras identificadas, el balance inversión-operación y, en los privados, la rentabilidad y la incidencia del impuesto a las ganancias.</div></div>'+
+    '<div class="box no mt"><p><strong>Bajo ningún aspecto se puede recomendar que se realicen las inversiones</strong> sin antes haber avanzado a la etapa de factibilidad.</p></div></div>'+
+   '<div><div class="form">'+
+     '<div class="ft">Financiamiento del proyecto</div>'+
+     '<div class="fc">Las posibles líneas de financiamiento: etapas a financiar, organismos o instituciones financistas y características de cada línea.</div></div>'+
+    '<div class="box info mt"><p>En privados se financia la inversión; en públicos sin ingresos directos, la inversión <strong>y</strong> la operación.</p></div></div>'+
+  '</div>'+
+  '<div class="box warn mt2"><span class="et">Y una cosa más, en el Aula Virtual</span>'+
+   '<p>El equipo tiene que responder la <strong>encuesta sobre las dificultades encontradas</strong> al resolver el formulario. La puede completar el coordinador o cualquier integrante designado.</p></div>',
+ nota:''},
+
+{s:'El Formulario 03', t:'Qué se entrega', ac:'var(--verde-l)',
+ html:'<p class="lead">Dos piezas, por la plataforma Moodle.</p>'+
+  '<div class="cols mt2">'+
+   '<div class="card"><span class="et">Pieza 1</span><h3>Formulario 03</h3>'+
+    '<p class="mt">Los doce apartados completos, con sus resúmenes narrativos y sus justificaciones.</p></div>'+
+   '<div class="card a"><span class="et">Pieza 2</span><h3>Planilla de cálculo</h3>'+
+    '<p class="mt">La Planilla-FEPAR-TFP propuesta por la cátedra, o la que el equipo desarrolle, con la información cuantitativa: recursos valorados, flujo de fondos e indicadores.</p>'+
+    '<p class="sm mt">Existen otras herramientas y software que pueden usar, conforme a su perfil de trabajo.</p></div>'+
+  '</div>'+
+  '<div class="box warn mt2"><span class="et">Fechas</span>'+
+   '<p>Entrega programada para el <strong>9 de octubre</strong>. Tiempo estimado de desarrollo: <strong>quince días hábiles</strong>.</p></div>',
+ nota:'Cerrar recordando que el taller de la clase siguiente es para avanzar el formulario en grupo, con el visor del Taller 03.'},
+
+{s:'El Formulario 03', t:'', tipo:'cierre', ac:'var(--verde-l)',
+ html:'<div class="portada">'+
+  '<span class="kicker"><i></i>Para cerrar</span>'+
+  '<h1>Tres cosas para<br>no olvidarse</h1>'+
+  '<ol class="num mt2" style="max-width:40em">'+
+   '<li><strong>Un bien de capital se paga una sola vez.</strong> En la operación aparece por lo que consume y por lo que cuesta mantenerlo, nunca por su valor.</li>'+
+   '<li><strong>Sin componente positiva no hay VAN ni TIR.</strong> Hay VAC, y no es un premio consuelo: es el indicador que permite comparar alternativas que producen el mismo resultado.</li>'+
+   '<li><strong>El ingreso no es el beneficio.</strong> El beneficio económico se justifica siempre, aunque todavía no lo valoremos. Es la razón por la que el proyecto le importa a alguien más que a su titular.</li>'+
+  '</ol>'+
+  '<p class="sm mt2">FEPAR 2026 · Formulación y Evaluación de Proyectos Ambientales y de Riesgo · Universidad Nacional de Salta</p></div>',
+ nota:'Si queda tiempo, pedirles que digan de qué tipo es su proyecto y qué indicadores van a calcular. Es el mejor control de comprensión de toda la clase.'}
+];
+</script>
+<script>
+"use strict";
+/* ===============================================================
+   PREGUNTAS PARA DESARROLLAR EL F03
+   Banco general: las mismas preguntas sirven para los diez equipos,
+   ordenadas por ítem del formulario. No son para contestar por
+   escrito; son para ordenar la discusión del equipo.
+   =============================================================== */
+var DIAPOS_PREG = [
+
+{s:'Preguntas para el F03', t:'', tipo:'sep', ac:'var(--verde-l)',
+ html:'<div class="sep"><div class="n">13</div><h1>Preguntas para<br>desarrollar el F03</h1>'+
+  '<p class="lead">Las mismas para todos los equipos, ordenadas por ítem. No hay que contestarlas por escrito: sirven para que el equipo se ponga de acuerdo antes de escribir.</p></div>',
+ nota:'Acá empieza la parte de trabajo. Conviene proyectar una pantalla por vez y darles unos minutos de discusión en cada una.'},
+
+{s:'Preguntas para el F03', t:'Antes de abrir el formulario', k:'Volver al F02', ac:'var(--aqua)',
+ html:'<p class="lead">El F03 no se completa mirando el F03. Se completa mirando el <strong>F02</strong>, y lo primero es revisar si lo que hay ahí se puede multiplicar por un precio.</p>'+
+  '<div class="cols mt2">'+
+   '<div><h4>La lista de recursos</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Cada componente tiene detrás su lista de recursos con unidad y cantidad, o hay filas que dicen «varios»?</li>'+
+     '<li>¿Hay dos o tres recursos distintos en un mismo renglón? Si los hay, ¿por qué precio se multiplican?</li>'+
+     '<li>¿Alguna cantidad quedó escrita como texto en lugar de número?</li>'+
+    '</ul></div>'+
+   '<div><h4>La coherencia</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Las cantidades del informe coinciden con las de la planilla? ¿Y con el dimensionamiento del ítem B?</li>'+
+     '<li>¿Quedó algún estudio o trámite de la formulación dentro de las acciones de inversión?</li>'+
+     '<li>¿Aparecieron componentes nuevos al pensar en los costos? Conviene volver y agregarlos al F02.</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box info mt"><p>Si en esta pantalla aparecen varios «no», el trabajo de hoy empieza por corregir el F02. Vale la pena: cada fila que quede vaga acá se convierte después en un número inventado.</p></div>',
+ nota:'Esta es la pantalla más importante de la sección y la que más resistencia genera, porque implica volver atrás. Insistir en que volver es parte del método, no un castigo.'},
+
+{s:'Preguntas para el F03', t:'Ponerle precio a la inversión', k:'Ítem B', ac:'var(--verde-l)',
+ html:'<div class="cols">'+
+   '<div><h4>El precio</h4>'+
+    '<ul class="qq">'+
+     '<li>¿De dónde sale cada precio y de qué fecha es? ¿Queda anotada la fuente?</li>'+
+     '<li>¿El precio incluye flete, instalación y puesta en marcha, o eso se agrega aparte?</li>'+
+     '<li>¿El IVA está adentro o afuera del número que anotaron? La misma respuesta para todos los ítems.</li>'+
+    '</ul></div>'+
+   '<div><h4>Qué tipo de activo es</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Cuáles de sus componentes quedan incorporadas al terreno y cuáles se pueden retirar?</li>'+
+     '<li>¿Hay activos nominales: habilitaciones, patentes, capacitaciones, permisos?</li>'+
+     '<li>¿Qué recursos hacen falta antes del primer ingreso y todavía no figuran en la inversión?</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<p class="sm mt">La última pregunta es la del capital de trabajo, y es la que más veces queda afuera.</p>',
+ nota:'Recordarles que la fuente del precio se evalúa igual que el precio. Una captura de un portal de venta con fecha vale más que un número redondo sin origen.'},
+
+{s:'Preguntas para el F03', t:'Ponerle precio a la operación', k:'Ítem C', ac:'var(--verde-l)',
+ html:'<div class="cols">'+
+   '<div><h4>Qué se repite</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Qué costos se repiten todos los períodos y cuáles aparecen sólo en algunos?</li>'+
+     '<li>¿Cómo expresaron la mano de obra: jornales, horas, sueldos? ¿Son sumables entre sí?</li>'+
+     '<li>¿Cuáles de estos costos crecen si crece la producción y cuáles se mantienen igual?</li>'+
+    '</ul></div>'+
+   '<div><h4>Lo que suele fallar</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Hay algún recurso anotado dos veces, una en la inversión y otra en la operación?</li>'+
+     '<li>¿Previeron reponer los bienes que no llegan al final del horizonte?</li>'+
+     '<li>¿Están los servicios que nadie anota: energía, agua, conectividad, seguros, mantenimiento?</li>'+
+    '</ul></div>'+
+  '</div>',
+ nota:'La pregunta de la doble anotación conviene hacerla en voz alta: es el error más silencioso de todos, porque el flujo igual cierra y el proyecto queda peor de lo que es.'},
+
+{s:'Preguntas para el F03', t:'La componente positiva', k:'Ítem D', ac:'var(--aqua)',
+ html:'<div class="cols">'+
+   '<div><h4>Si el proyecto vende algo</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Qué vende, a quién y a qué precio? ¿De dónde sale ese precio?</li>'+
+     '<li>¿La cantidad que van a vender es la que pueden producir o la que el mercado les demanda? No siempre es la misma.</li>'+
+     '<li>¿El primer período ya opera a plena capacidad, o hay una curva de arranque?</li>'+
+    '</ul></div>'+
+   '<div><h4>Si el proyecto no vende nada</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Por qué no hay ingreso monetario? Conviene dejarlo escrito, no en blanco.</li>'+
+     '<li>¿Hay un costo que el proyecto evita? ¿Se puede medir con una tarifa o un precio de mercado?</li>'+
+     '<li>¿Ese ahorro lo recibe el proyecto o lo recibe un tercero? La respuesta cambia si entra al flujo o no.</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box warn mt"><p>Ojo con el precio que eligen: el que interesa es el que <strong>cobra el proyecto</strong>, no el que paga el consumidor final en el comercio.</p></div>',
+ nota:'Acá se separan las aguas entre los equipos. Los que no venden nada suelen dejar el ítem en blanco, y eso se corrige pidiéndoles que justifiquen la ausencia por escrito.'},
+
+{s:'Preguntas para el F03', t:'El orden en el tiempo y el horizonte', k:'Ítems E y F', ac:'var(--oro)',
+ html:'<div class="cols">'+
+   '<div><h4>Dónde cae cada número</h4>'+
+    '<ul class="qq">'+
+     '<li>¿En qué período cae cada costo? ¿Está en el período 0 todo lo que corresponde?</li>'+
+     '<li>¿Cuándo termina la inversión y cuándo empieza la operación, en este proyecto?</li>'+
+     '<li>¿Hay costos de inversión que reaparecen más adelante, como una reposición o una ampliación?</li>'+
+    '</ul></div>'+
+   '<div><h4>Cuántos períodos</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Cuántos períodos van a proyectar y con qué argumento? El argumento se evalúa, el número solo no.</li>'+
+     '<li>¿Qué vida útil tiene el bien más caro de la inversión?</li>'+
+     '<li>¿Al cierre queda algo con valor? ¿Cuánto, y por qué ese monto?</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box mal mt"><p>Y una pregunta incómoda que conviene hacerse antes de que la haga otro: <strong>¿cambiaría la conclusión si el horizonte fuera dos períodos más corto?</strong> Si cambia, el proyecto se sostiene en el horizonte y no en el negocio.</p></div>',
+ nota:'La pregunta del final es la que separa un horizonte justificado de un horizonte conveniente. Vale hacerla equipo por equipo.'},
+
+{s:'Preguntas para el F03', t:'La tasa de descuento', k:'Ítem H', ac:'var(--oro)',
+ html:'<p class="lead">Acá no hay respuesta correcta, hay respuesta <strong>argumentada</strong>. Las cuatro preguntas son siempre las mismas.</p>'+
+  '<div class="cols mt2">'+
+   '<div><h4>De quién es el costo de oportunidad</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Quién pone la plata en este proyecto y qué podría hacer con ella si no lo hiciera?</li>'+
+     '<li>¿Por qué esa prima de riesgo y no otra? ¿Qué tiene este proyecto que la justifica?</li>'+
+    '</ul></div>'+
+   '<div><h4>La coherencia del número</h4>'+
+    '<ul class="qq">'+
+     '<li>¿De dónde sacaron cada uno de los tres sumandos y de qué fecha son?</li>'+
+     '<li>¿La moneda de la tasa es la misma que la del flujo? Si el flujo está en pesos, ¿incorporaron la inflación esperada?</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box info mt"><p>Un ejercicio que ordena la discusión: que cada integrante escriba su TMAR por separado y después comparen. Las diferencias que aparecen son las que hay que justificar en el formulario.</p></div>',
+ nota:'El ejercicio de la TMAR individual funciona bien y lleva cinco minutos. Suele aparecer un rango de diez puntos entre integrantes del mismo equipo.'},
+
+{s:'Preguntas para el F03', t:'Los indicadores y el cierre', k:'Ítems I, K y L', ac:'var(--verde-l)',
+ html:'<div class="cols">'+
+   '<div><h4>Leer los números</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Qué indicadores puede calcular este proyecto y cuáles no corresponden? ¿Por qué no corresponden?</li>'+
+     '<li>¿Qué dice cada indicador por separado? Conviene evitar repetir tres veces la misma frase.</li>'+
+     '<li>¿En qué período se recupera la inversión? ¿Ocurre dentro del horizonte?</li>'+
+    '</ul></div>'+
+   '<div><h4>Hasta dónde llega la conclusión</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Qué pasaría con el VAN si el precio de venta fuera diez por ciento menor?</li>'+
+     '<li>¿Cuál es el supuesto que más les preocupa de todos los que adoptaron?</li>'+
+     '<li>¿Qué les falta averiguar para que esto deje de ser una estimación de idea?</li>'+
+    '</ul></div>'+
+  '</div>'+
+  '<div class="box warn mt"><p>Recuerden el límite de esta etapa: la conclusión del F03 dice si <strong>vale la pena seguir estudiando</strong> el proyecto. No dice que convenga invertir.</p></div>',
+ nota:'Cerrar con el límite. Es la frase que más les cuesta y la que más se les va a pedir en la devolución.'},
+
+{s:'Preguntas para el F03', t:'', tipo:'disc', ac:'var(--celeste)',
+ html:'<div class="disc">'+
+  '<span class="kicker"><i></i>Cómo usar estas preguntas</span>'+
+  '<h1>No son un<br>cuestionario</h1>'+
+  '<p class="lead">Ninguna de estas preguntas se contesta en el formulario. Sirven para que el equipo se ponga de acuerdo antes de escribir, que es donde se pierde o se gana la coherencia del trabajo.</p>'+
+  '<div class="cols mt2">'+
+   '<div><h4>Una forma de trabajarlas</h4>'+
+    '<ul class="li">'+
+     '<li>Tomar una pantalla por vez y darse unos minutos de discusión.</li>'+
+     '<li>Anotar las respuestas que el equipo no tiene: esas son las tareas de la semana.</li>'+
+     '<li>Repartir quién averigua cada precio y con qué fuente.</li>'+
+     '<li>Volver a la pantalla del F02 al final, para ver si quedó algo por corregir.</li>'+
+    '</ul></div>'+
+   '<div><h4>Para el final</h4>'+
+    '<ul class="qq">'+
+     '<li>¿Qué pregunta de todas estas no supieron contestar? Esa es la que conviene traer a consulta.</li>'+
+     '<li>¿Hay algo del F02 que van a corregir después de esta clase?</li>'+
+    '</ul></div>'+
+  '</div></div>',
+ nota:'Cierre del taller. Pedirles que salgan de la clase con dos cosas escritas: qué precios les faltan y qué van a corregir del F02.'}
+
+];
+</script>
+<script>
+"use strict";
+/* ===============================================================
+   MOTOR DE LA PRESENTACIÓN
+   =============================================================== */
+var D = DIAPOS_GUIA.concat(DIAPOS_FORM, DIAPOS_PREG);
+var KEY = 'fepar2026_guia03';
+var S = {i:0, notas:false};
+
+try{
+  var o = JSON.parse(localStorage.getItem(KEY) || 'null');
+  if(o && typeof o.i === 'number' && o.i >= 0 && o.i < D.length) S.i = o.i;
+  if(o && typeof o.notas === 'boolean') S.notas = o.notas;
+  var tm = localStorage.getItem(KEY + '_tema');
+  if(tm) document.documentElement.dataset.theme = tm;
+}catch(e){}
+function guardar(){ try{ localStorage.setItem(KEY, JSON.stringify({i:S.i, notas:S.notas})); }catch(e){} }
+
+/* --------------------------------------------------------------- pintar */
+function pinta(){
+  var d = D[S.i], cont = id('dia');
+  document.documentElement.style.setProperty('--ac', d.ac || 'var(--verde-l)');
+  document.body.dataset.tipo = d.tipo || '';
+  /* las pantallas con demostración llevan más elementos y se compactan */
+  cont.className = (d.demo ? 'demo ' : '') + 'entra';
+  cont.innerHTML = '';
+
+  if(d.t){
+    var cab = E('div'); cab.style.marginBottom = 'calc(var(--u)*1.2)';
+    if(d.k) cab.appendChild(E('span','kicker','<i></i>' + esc(d.k)));
+    else if(d.s) cab.appendChild(E('span','kicker','<i></i>' + esc(d.s)));
+    cab.appendChild(E('h2', null, d.t));
+    cont.appendChild(cab);
+  }
+  var cuerpo = E('div');
+  cuerpo.innerHTML = d.html || '';
+  cont.appendChild(cuerpo);
+
+  /* los esquemas se dibujan donde el html dejó su marcador */
+  var marcas = cuerpo.querySelectorAll('[data-esq]');
+  for(var m = 0; m < marcas.length; m++){
+    var nombre = marcas[m].getAttribute('data-esq');
+    if(!ESQ[nombre]) continue;
+    try{ marcas[m].appendChild(ESQ[nombre]()); }
+    catch(err){ marcas[m].innerHTML = '<div class="box no"><p>No se pudo dibujar el esquema.</p></div>'; }
+  }
+
+  if(d.demo && DEMOS[d.demo]){
+    var caja = E('div');
+    caja.style.marginTop = 'calc(var(--u)*1.2)';
+    cont.appendChild(caja);
+    try{ DEMOS[d.demo](caja); }
+    catch(err){ caja.innerHTML = '<div class="box no"><p>No se pudo abrir la demostración en este navegador.</p></div>'; }
+  }
+
+  id('sec-n').textContent = (d.s || '') + (d.t ? ' · ' + d.t : '');
+  id('cont').textContent = (S.i + 1) + ' / ' + D.length;
+  id('prog').style.width = ((S.i + 1) / D.length * 100) + '%';
+  id('notas-t').textContent = d.nota || 'Sin notas para esta pantalla.';
+  id('notas').classList.toggle('on', !!S.notas && !!d.nota);
+  cont.scrollTop = 0;
+  guardar();
+}
+
+/* --------------------------------------------------------------- navegar */
+function ir(i){
+  if(i < 0 || i >= D.length) return;
+  S.i = i; pinta();
+}
+function sig(){ if(S.i < D.length - 1) ir(S.i + 1); }
+function ant(){ if(S.i > 0) ir(S.i - 1); }
+
+/* --------------------------------------------------------------- índice */
+function armaIndice(){
+  var cont = id('ix'); cont.innerHTML = '';
+  var secs = [], mapa = {};
+  D.forEach(function(d, i){
+    var s = d.s || 'Sin sección';
+    if(!mapa[s]){ mapa[s] = []; secs.push(s); }
+    mapa[s].push({d:d, i:i});
+  });
+  secs.forEach(function(s){
+    var caja = E('div','ixs');
+    caja.appendChild(E('h4', null, esc(s)));
+    mapa[s].forEach(function(x){
+      var b = E('button', x.i === S.i ? 'on' : '');
+      b.type = 'button';
+      var rot = x.d.t || (x.d.tipo === 'portada' ? 'Portada' : (x.d.tipo === 'cierre' ? 'Cierre' : 'Apertura de sección'));
+      b.innerHTML = '<b>' + (x.i + 1) + '</b>' + esc(rot);
+      b.onclick = function(){ id('ov-ix').classList.remove('on'); ir(x.i); };
+      caja.appendChild(b);
+    });
+    cont.appendChild(caja);
+  });
+}
+function abreIndice(){ armaIndice(); id('ov-ix').classList.add('on'); }
+
+/* --------------------------------------------------------------- eventos */
+id('b-sig').onclick = sig;
+id('b-ant').onclick = ant;
+id('b-indice').onclick = function(){
+  var o = id('ov-ix');
+  if(o.classList.contains('on')) o.classList.remove('on'); else abreIndice();
+};
+id('b-notas').onclick = function(){
+  S.notas = !S.notas; guardar();
+  id('notas').classList.toggle('on', S.notas && !!D[S.i].nota);
+  if(S.notas && !D[S.i].nota) avisoD('Esta pantalla no tiene notas.');
+};
+id('b-tema').onclick = function(){
+  var r = document.documentElement;
+  r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light';
+  try{ localStorage.setItem(KEY + '_tema', r.dataset.theme); }catch(e){}
+  pinta();
+};
+id('b-full').onclick = function(){
+  if(document.fullscreenElement) document.exitFullscreen();
+  else if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+};
+id('ov-ix').addEventListener('mousedown', function(ev){
+  if(ev.target === this) this.classList.remove('on');
+});
+
+document.addEventListener('keydown', function(ev){
+  var t = ev.target.tagName;
+  if(t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') {
+    if(ev.key === 'Escape') ev.target.blur();
+    return;
+  }
+  var ix = id('ov-ix').classList.contains('on');
+  if(ev.key === 'Escape'){
+    if(ix) id('ov-ix').classList.remove('on'); else abreIndice();
+    ev.preventDefault(); return;
+  }
+  if(ix) return;
+  switch(ev.key){
+    case 'ArrowRight': case 'PageDown': case ' ': case 'Enter':
+      ev.preventDefault(); sig(); break;
+    case 'ArrowLeft': case 'PageUp': case 'Backspace':
+      ev.preventDefault(); ant(); break;
+    case 'Home': ev.preventDefault(); ir(0); break;
+    case 'End':  ev.preventDefault(); ir(D.length - 1); break;
+    case 'i': case 'I': ev.preventDefault(); abreIndice(); break;
+    case 'n': case 'N': ev.preventDefault(); id('b-notas').click(); break;
+    case 't': case 'T': ev.preventDefault(); id('b-tema').click(); break;
+    case 'f': case 'F': ev.preventDefault(); id('b-full').click(); break;
+  }
+});
+
+/* deslizar en pantallas táctiles */
+(function(){
+  var x0 = null, y0 = null;
+  var esc = id('esc');
+  esc.addEventListener('touchstart', function(ev){
+    if(ev.touches.length !== 1) return;
+    x0 = ev.touches[0].clientX; y0 = ev.touches[0].clientY;
+  }, {passive:true});
+  esc.addEventListener('touchend', function(ev){
+    if(x0 === null) return;
+    var tg = ev.target.tagName;
+    if(tg === 'INPUT' || tg === 'BUTTON' || tg === 'SELECT'){ x0 = null; return; }
+    var t = ev.changedTouches[0];
+    var dx = t.clientX - x0, dy = t.clientY - y0;
+    if(Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.6){ dx < 0 ? sig() : ant(); }
+    x0 = null;
+  }, {passive:true});
+})();
+
+/* --------------------------------------------------------------- arranque */
+pinta();
+</script>
+</body>
+</html>
